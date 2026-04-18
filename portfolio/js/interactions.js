@@ -300,4 +300,53 @@ function setupProjectCards() {
     }
 }
 
-export { CustomCursor, setupProjectCards };
+function setupContactSection() {
+    const contactForm = document.getElementById('contact-form');
+    if (!contactForm) return;
+
+    // Contact form submit logic
+    contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        // 1. Rush particles to center
+        if (window.contactParticlesPlugin) {
+            window.contactParticlesPlugin.rushToCenter(() => {
+                // 2. Fade screen to deep-charcoal
+                gsap.to(document.body, { backgroundColor: "var(--deep-charcoal)", duration: 1.5 });
+                contactForm.innerHTML = `<div class="t-line" style="color:var(--matrix-green); text-align:center;">> Message Transmitted Successfully.</div>`;
+            });
+        }
+    });
+
+    // 1 Sakura petal every 3 seconds overlay for the background
+    setInterval(() => {
+        const contactSection = document.getElementById('contact');
+        if (!contactSection) return;
+
+        const petal = document.createElement('div');
+        petal.style.position = 'absolute';
+        petal.style.top = '-20px';
+        petal.style.left = `${Math.random() * 100}%`;
+        petal.style.width = '8px';
+        petal.style.height = '14px';
+        petal.style.backgroundColor = 'var(--sakura-pink)';
+        petal.style.borderRadius = '50% 50% 50% 50% / 60% 60% 40% 40%';
+        petal.style.opacity = Math.random() * 0.5 + 0.2;
+        petal.style.pointerEvents = 'none';
+        petal.style.zIndex = '3';
+        petal.style.transform = `rotate(${Math.random() * 360}deg)`;
+        
+        contactSection.appendChild(petal);
+
+        gsap.to(petal, {
+            y: window.innerHeight + 50,
+            x: `+=${Math.random() * 100 - 50}`, // sway
+            rotation: `+=${Math.random() * 360}`,
+            duration: Math.random() * 4 + 6,
+            ease: "none",
+            onComplete: () => petal.remove()
+        });
+    }, 3000);
+}
+
+export { CustomCursor, setupProjectCards, setupContactSection };

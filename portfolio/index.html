@@ -515,11 +515,54 @@
     </main>
 
     <!-- Contact Section / Footer -->
-    <footer id="contact" class="section-contact">
-        <div class="container">
-            <!-- Contact form, links, etc. -->
+    <section id="contact" class="section-contact">
+        <canvas id="contact-particles"></canvas>
+        <div class="contact-ray ray-left"></div>
+        <div class="contact-ray ray-right"></div>
+        <div class="container contact-container">
+            <h2 class="closing-line">
+                <span class="word">Let's</span> <span class="word">build</span> <span class="word">something</span> <span class="word">that</span> <span class="word">matters.</span>
+            </h2>
+            
+            <div class="terminal-window contact-terminal">
+                <div class="terminal-header" style="background-color: rgba(0,0,0,0.4);">
+                    <div class="p-dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>
+                    <div class="p-tab" style="background: transparent;">ssh</div>
+                </div>
+                <div class="terminal-body form-body">
+                    <div class="t-line">$ ssh hello@yourdomain.com</div>
+                    <div class="t-line">&gt; Connection established...</div>
+                    <div class="t-line">&gt; Waiting for your message...</div>
+                    <br>
+                    <form action="https://formsubmit.co/your-email@example.com" method="POST" id="contact-form">
+                        <div class="form-row">
+                            <span class="form-label">[name]    :</span> <input type="text" name="name" placeholder="_" required autocomplete="off">
+                        </div>
+                        <div class="form-row">
+                            <span class="form-label">[email]   :</span> <input type="email" name="email" placeholder="_" required autocomplete="off">
+                        </div>
+                        <div class="form-row form-row-txt">
+                            <span class="form-label">[message] :</span> <textarea name="message" placeholder="_" required></textarea>
+                        </div>
+                        <br>
+                        <div class="t-line" style="color:var(--muted-indigo);">&gt; Press TAB to cycle options</div>
+                        <button type="submit" class="btn-transmit magnetic" data-cursor="terminal">[transmit]</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="social-links">
+                <a href="#" class="social-link magnetic" data-cursor="link">GitHub</a>
+                <a href="#" class="social-link magnetic" data-cursor="link">LinkedIn</a>
+                <a href="#" class="social-link magnetic" data-cursor="link">Twitter</a>
+                <a href="#" class="social-link magnetic" data-cursor="link">Email</a>
+            </div>
         </div>
-    </footer>
+
+        <div class="outro-wrapper">
+            <div class="outro-text">yours truly &mdash; ALOK</div>
+        </div>
+    </section>
 
     <!-- Fullscreen Project Overlay (GSAP Flip) -->
     <div id="project-overlay" class="project-overlay">

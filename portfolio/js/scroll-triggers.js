@@ -281,4 +281,33 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // ==========================================================================
+    // Contact Section
+    // ==========================================================================
+    const words = gsap.utils.toArray('.closing-line .word');
+    gsap.fromTo(words, 
+        { y: 30, opacity: 0 },
+        {
+            scrollTrigger: {
+                trigger: "#contact",
+                start: "top 60%"
+            },
+            y: 0,
+            opacity: 1,
+            stagger: 0.12,
+            duration: 1.2,
+            ease: "power3.out"
+        }
+    );
+
+    gsap.to('.outro-text', {
+        scrollTrigger: {
+            trigger: ".outro-wrapper",
+            start: "top 95%"
+        },
+        opacity: 0.4,
+        duration: 1.5,
+        ease: "none"
+    });
+
 });
