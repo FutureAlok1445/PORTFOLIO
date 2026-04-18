@@ -1,5 +1,5 @@
 import { SakuraSystem } from './anime-effects.js';
-import { CustomCursor, setupProjectCards, setupContactSection } from './interactions.js';
+import { CustomCursor, setupProjectCards, setupContactSection, setupDevExperience } from './interactions.js';
 import { ContactParticles, HeroScene } from './three-scene.js';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -18,6 +18,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 4. Setup Contact Section
     setupContactSection();
+
+    // 4.5 Initialize Developer Experience Mechanics
+    setupDevExperience();
 
     // 5. Initialize ThreeJS Particle Canvas (Contact)
     if (document.getElementById('contact-particles')) {

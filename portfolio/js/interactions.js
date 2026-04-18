@@ -349,4 +349,224 @@ function setupContactSection() {
     }, 3000);
 }
 
-export { CustomCursor, setupProjectCards, setupContactSection };
+function setupDevExperience() {
+    // 1. CONSOLE MESSAGE
+    console.log("%c Hello, fellow developer. ", "background: #ff6b35; color: #0a0a0f; font-size: 20px; font-weight: bold;");
+    console.log("%cSource is clean. The soul is not.", "color: #00e5ff; font-family: monospace; font-size: 14px;");
+    console.log("→ Connect: hello@yourdomain.com");
+
+    // 2. SCROLL METRICS PANEL (Alt+M toggle)
+    const metricsPanel = document.createElement('div');
+    metricsPanel.id = 'metrics-panel';
+    metricsPanel.style.position = 'fixed';
+    metricsPanel.style.bottom = '10px';
+    metricsPanel.style.right = '10px';
+    metricsPanel.style.fontFamily = "'Space Mono', monospace";
+    metricsPanel.style.fontSize = 'var(--text-xs)';
+    metricsPanel.style.opacity = '0'; // default hidden since it's toggled
+    metricsPanel.style.pointerEvents = 'none';
+    metricsPanel.style.zIndex = '9999';
+    metricsPanel.style.color = 'var(--soft-glow)';
+    metricsPanel.style.backgroundColor = 'rgba(10, 10, 15, 0.8)';
+    metricsPanel.style.padding = '8px 12px';
+    metricsPanel.style.border = '1px solid var(--muted-indigo)';
+    metricsPanel.style.transition = 'opacity 0.3s';
+    document.body.appendChild(metricsPanel);
+
+    let metricsActive = false;
+    let frames = 0;
+    let lastTime = performance.now();
+    let fps = 0;
+    let activeSection = 'hero';
+
+    // Track intersection for current section
+    const secObserver = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+            if (e.isIntersecting) activeSection = e.target.id || 'unknown';
+        });
+    }, { threshold: 0.3 });
+    document.querySelectorAll('section, header, footer').forEach(sec => secObserver.observe(sec));
+
+    function updateMetrics() {
+        if (!metricsActive) return requestAnimationFrame(updateMetrics);
+        
+        frames++;
+        const now = performance.now();
+        if (now - lastTime >= 1000) {
+            fps = Math.round((frames * 1000) / (now - lastTime));
+            frames = 0;
+            lastTime = now;
+        }
+
+        const scrollY = Math.round(window.scrollY);
+        metricsPanel.innerHTML = `scrollY: ${scrollY}px | section: "${activeSection}" | fps: ${fps} | renderer: "WebGL"`;
+        requestAnimationFrame(updateMetrics);
+    }
+    requestAnimationFrame(updateMetrics);
+
+    window.addEventListener('keydown', e => {
+        if (e.altKey && e.key.toLowerCase() === 'm') {
+            metricsActive = !metricsActive;
+            metricsPanel.style.opacity = metricsActive ? '0.35' : '0';
+        }
+    });
+
+    // 3. KONAMI CODE
+    const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+    let kIdx = 0;
+
+    const konamiOverlay = document.createElement('div');
+    konamiOverlay.style.position = 'fixed';
+    konamiOverlay.style.top = '50%';
+    konamiOverlay.style.left = '50%';
+    konamiOverlay.style.transform = 'translate(-50%, -50%)';
+    konamiOverlay.style.backgroundColor = 'var(--circuit-gray)';
+    konamiOverlay.style.color = 'var(--matrix-green)';
+    konamiOverlay.style.fontFamily = "'Space Mono', monospace";
+    konamiOverlay.style.padding = '20px';
+    konamiOverlay.style.border = '1px solid var(--ocean-teal)';
+    konamiOverlay.style.zIndex = '10000';
+    konamiOverlay.style.opacity = '0';
+    konamiOverlay.style.pointerEvents = 'none';
+    konamiOverlay.innerHTML = '> Cheat code activated.<br>> Rendering in wireframe...';
+    document.body.appendChild(konamiOverlay);
+
+    window.addEventListener('keydown', e => {
+        if (e.key === konamiCode[kIdx] || e.key.toLowerCase() === konamiCode[kIdx].toLowerCase()) {
+            kIdx++;
+            if (kIdx === konamiCode.length) {
+                kIdx = 0;
+                activateKonami();
+            }
+        } else {
+            kIdx = 0;
+        }
+    });
+
+    function activateKonami() {
+        console.log("%c👾 You found it. Welcome to the matrix.", "color: #00e5ff; font-weight: bold;");
+        
+        // Invert filter flash
+        document.body.style.transition = 'filter 0s';
+        document.body.style.filter = 'invert(1)';
+        
+        setTimeout(() => {
+            document.body.style.transition = 'filter 0.3s';
+            document.body.style.filter = 'none';
+            gsap.to(konamiOverlay, { opacity: 1, duration: 0.3 });
+
+            // Apply Wireframe equivalent for existing WebGL
+            if (window.heroParticlesPlugin && window.heroParticlesPlugin.material) {
+                window.heroParticlesPlugin.material.wireframe = true;
+            }
+
+            setTimeout(() => {
+                konamiOverlay.innerHTML += '<br>> Resuming high-fidelity mode.';
+                if (window.heroParticlesPlugin && window.heroParticlesPlugin.material) {
+                    window.heroParticlesPlugin.material.wireframe = false;
+                }
+                setTimeout(() => {
+                    gsap.to(konamiOverlay, { opacity: 0, duration: 0.5, onComplete: () => {
+                        konamiOverlay.innerHTML = '> Cheat code activated.<br>> Rendering in wireframe...';
+                    }});
+                }, 1000);
+            }, 5000);
+        }, 150);
+    }
+
+    // 4. ALT+HOVER CODE REVEALS
+    const devTooltip = document.createElement('div');
+    devTooltip.style.position = 'fixed';
+    devTooltip.style.backgroundColor = 'rgba(10, 10, 15, 0.95)';
+    devTooltip.style.color = 'var(--muted-indigo)';
+    devTooltip.style.fontFamily = "'Space Mono', monospace";
+    devTooltip.style.fontSize = '12px';
+    devTooltip.style.padding = '10px';
+    devTooltip.style.border = '1px solid var(--ocean-teal)';
+    devTooltip.style.pointerEvents = 'none';
+    devTooltip.style.opacity = '0';
+    devTooltip.style.zIndex = '99999';
+    devTooltip.style.whiteSpace = 'pre';
+    document.body.appendChild(devTooltip);
+
+    window.addEventListener('mousemove', e => {
+        if (!e.altKey) {
+            if (devTooltip.style.opacity !== '0') gsap.to(devTooltip, { opacity: 0, duration: 0.2 });
+            return;
+        }
+
+        const skillNode = e.target.closest('.skill-node');
+        const projCard = e.target.closest('.project-card');
+
+        if (skillNode) {
+            devTooltip.innerHTML = `> npm install ${skillNode.getAttribute('data-skill').toLowerCase()}\n> WARN deprecated package`;
+            gsap.set(devTooltip, { x: e.clientX + 15, y: e.clientY + 15 });
+            gsap.to(devTooltip, { opacity: 1, duration: 0.2 });
+        } else if (projCard) {
+            devTooltip.innerHTML = `* e4f6d3a (HEAD) fast-forward merge\n* a1b2c3d critical bug patch\n* 9x8y7z6 deploy production bundle`;
+            gsap.set(devTooltip, { x: e.clientX + 15, y: e.clientY + 15 });
+            gsap.to(devTooltip, { opacity: 1, duration: 0.2 });
+        } else {
+            gsap.to(devTooltip, { opacity: 0, duration: 0.2 });
+        }
+    });
+
+    window.addEventListener('keyup', e => {
+        if (!e.altKey) gsap.to(devTooltip, { opacity: 0, duration: 0.2 });
+    });
+
+    // 5. CLICK RIPPLE
+    const rippleCanvas = document.createElement('canvas');
+    rippleCanvas.style.position = 'fixed';
+    rippleCanvas.style.top = '0';
+    rippleCanvas.style.left = '0';
+    rippleCanvas.style.width = '100vw';
+    rippleCanvas.style.height = '100vh';
+    rippleCanvas.style.pointerEvents = 'none';
+    rippleCanvas.style.zIndex = '999';
+    document.body.appendChild(rippleCanvas);
+    
+    const rCtx = rippleCanvas.getContext('2d');
+    let ripples = [];
+
+    function resizeRippleCanvas() {
+        rippleCanvas.width = window.innerWidth;
+        rippleCanvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeRippleCanvas);
+    resizeRippleCanvas();
+
+    window.addEventListener('click', e => {
+        const ripple = { x: e.clientX, y: e.clientY, radius: 0, opacity: 0.3 };
+        ripples.push(ripple);
+        
+        gsap.to(ripple, {
+            radius: 60,
+            opacity: 0,
+            duration: 0.5,
+            ease: "power2.out",
+            onComplete: () => {
+                ripples = ripples.filter(r => r !== ripple);
+            }
+        });
+    });
+
+    // Draw ripples
+    const oceanTeal = getComputedStyle(document.documentElement).getPropertyValue('--ocean-teal').trim() || '#00e5ff';
+    function drawRipples() {
+        rCtx.clearRect(0, 0, rippleCanvas.width, rippleCanvas.height);
+        ripples.forEach(r => {
+            rCtx.beginPath();
+            rCtx.arc(r.x, r.y, r.radius, 0, Math.PI * 2);
+            rCtx.strokeStyle = oceanTeal;
+            rCtx.globalAlpha = r.opacity;
+            rCtx.lineWidth = 1;
+            rCtx.stroke();
+        });
+        rCtx.globalAlpha = 1;
+        requestAnimationFrame(drawRipples);
+    }
+    requestAnimationFrame(drawRipples);
+}
+
+export { CustomCursor, setupProjectCards, setupContactSection, setupDevExperience };
