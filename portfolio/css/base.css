@@ -1,0 +1,82 @@
+/* ==========================================================================
+   CSS Custom Properties (Design System)
+   ========================================================================== */
+
+:root {
+  /* Earth Colors */
+  --deep-charcoal: #0a0a0f;
+  --midnight-blue: #121428;
+  --forest-green: #1a2f2a;
+  --ocean-teal: #2d6b6b;
+  --muted-indigo: #4a4e69;
+  --sunset-accent: #ff6b35;
+  --soft-glow: #e0f2f1;
+  --dusk-purple: #2d1b4e;
+
+  /* Cyber Colors */
+  --matrix-green: #00ff9d;
+  --cyber-amber: #ffb800;
+  --data-blue: #00d4ff;
+  --circuit-gray: #1a1a2e;
+  --error-red: #ff4757;
+
+  /* Anime Colors */
+  --sakura-pink: #ffb7d5;
+  --ethereal-gold: #ffe4a1;
+  --spirit-blue: #a8d8ea;
+  --emerald-flare: #4effa1;
+
+  /* Typography Scale (Fluid using clamp) 
+     Assumes roughly 320px to 1280px viewport range for scaling
+  */
+  --text-xs: clamp(0.75rem, 0.7vw + 0.5rem, 0.875rem);
+  --text-sm: clamp(0.875rem, 0.9vw + 0.6rem, 1rem);
+  --text-base: clamp(1rem, 1vw + 0.75rem, 1.125rem);
+  --text-lg: clamp(1.125rem, 1.2vw + 0.8rem, 1.25rem);
+  --text-xl: clamp(1.25rem, 1.5vw + 1rem, 1.5rem);
+  --text-2xl: clamp(1.5rem, 2vw + 1rem, 2rem);
+  --text-3xl: clamp(2rem, 3.5vw + 1.2rem, 3.5rem);
+
+  /* Spacing Scale */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 2rem;
+  --space-lg: 4rem;
+  --space-xl: 8rem;
+  --space-2xl: 12rem;
+}
+
+/* ==========================================================================
+   Base Styles
+   ========================================================================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: var(--deep-charcoal);
+  color: var(--soft-glow);
+  font-family: 'Space Grotesk', sans-serif;
+  line-height: 1.5;
+  overflow-x: hidden;
+}
+
+/* Base Headings & typography defaults */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
