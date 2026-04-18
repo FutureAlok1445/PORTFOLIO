@@ -1,0 +1,208 @@
+/* ==========================================================================
+   Boot Screen & Loading
+   ========================================================================== */
+
+#boot-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #000;
+  color: #fff;
+  font-family: 'Space Mono', monospace;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: var(--space-md);
+}
+
+.boot-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.boot-line {
+  font-size: var(--text-sm);
+  opacity: 0; /* Hidden by default, revealed via GSAP */
+  margin: 0;
+}
+
+/* ==========================================================================
+   Hero Section
+   ========================================================================== */
+
+#hero {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Z-Index Architecture */
+.z10 { z-index: 10; position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+.z20 { z-index: 20; position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; }
+.z30 { z-index: 30; position: absolute; }
+.z40 { z-index: 40; position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; }
+.z50 { z-index: 50; position: relative; width: 100%; height: 100%; }
+.z60 { z-index: 60; position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; }
+
+/* Background Gradient (z10) */
+.hero-bg {
+  background: radial-gradient(
+    circle at 50% 50%,
+    var(--deep-charcoal) 0%,
+    var(--midnight-blue) 60%,
+    var(--dusk-purple) 100%
+  );
+  /* Make gradient larger so we can pan it via JS without seeing edges */
+  transform: scale(1.1);
+}
+
+/* Topographic Overlay (z20) */
+.hero-topographic {
+  opacity: 0.1;
+}
+
+.topo-line {
+  stroke: var(--ocean-teal);
+  stroke-width: 2px;
+  stroke-dasharray: 200 1000;
+  stroke-dashoffset: 1000;
+  animation: dashPulse 4s linear infinite;
+}
+
+.topo-line.line-1 { animation-delay: 0s; }
+.topo-line.line-2 { animation-delay: 1s; }
+.topo-line.line-3 { animation-delay: 2s; }
+.topo-line.line-4 { animation-delay: 3s; }
+
+/* Spline Container (z30) */
+#spline-container {
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  top: 50%;
+  right: 10%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.02); /* slight placeholder visible until Spline loads */
+  border: 1px dashed rgba(255, 255, 255, 0.1);
+}
+
+/* Floating Math Symbols (z40) */
+.hero-math-symbols {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.hero-math-symbols .symbol {
+  position: absolute;
+  color: var(--ocean-teal);
+  font-family: 'Space Mono', monospace;
+  opacity: 0.15;
+  font-size: var(--text-2xl);
+  animation: driftSymbol 10s ease-in-out infinite;
+}
+
+/* Random positioning for symbols */
+.symbol:nth-child(1) { top: 20%; left: 15%; animation-duration: 12s; }
+.symbol:nth-child(2) { top: 70%; left: 10%; animation-duration: 14s; }
+.symbol:nth-child(3) { top: 40%; left: 80%; animation-duration: 9s; }
+.symbol:nth-child(4) { top: 15%; left: 60%; animation-duration: 11s; }
+.symbol:nth-child(5) { top: 85%; left: 45%; animation-duration: 13s; }
+.symbol:nth-child(6) { top: 60%; left: 30%; animation-duration: 10s; }
+
+/* Conic Ray */
+.hero-ethereal-ray {
+  position: absolute;
+  top: 50%;
+  left: 20%; /* Centered behind the name generally */
+  width: 150vh;
+  height: 150vh;
+  transform: translate(-50%, -50%);
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    var(--ethereal-gold) 45deg,
+    transparent 90deg,
+    var(--ethereal-gold) 225deg,
+    transparent 270deg
+  );
+  opacity: 0.03;
+  border-radius: 50%;
+  animation: rotateRay 60s linear infinite;
+  pointer-events: none;
+}
+
+/* Hero Content Area (z50) */
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding-left: 10%;
+  pointer-events: none; /* Let clicks pass to 3D if needed */
+}
+
+/* Make text select-able despite z50 pointer-events restriction */
+#hero-name, .hero-tagline-wrapper, #hero-terminal {
+  pointer-events: auto;
+}
+
+#hero-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: var(--text-3xl);
+  margin-bottom: var(--space-xs);
+  opacity: 0; /* Initially hidden for scramble */
+}
+
+.hero-tagline-wrapper {
+  display: flex;
+  align-items: center;
+  font-family: 'Space Mono', monospace;
+  font-weight: 400;
+  font-size: var(--text-lg);
+  color: var(--soft-glow);
+  margin-bottom: var(--space-md);
+  min-height: 2em; /* Prevent jump during typeout */
+}
+
+#hero-tagline {
+  margin: 0;
+}
+
+.cursor {
+  animation: blink 1s step-end infinite;
+  margin-left: 2px;
+}
+
+#hero-terminal {
+  font-family: 'Space Mono', monospace;
+  font-size: var(--text-xs);
+  color: var(--matrix-green);
+  opacity: 0.6;
+  margin-top: auto; /* Push to bottom naturally if in flex, but hero is position relative. We'll use absolute maybe? */
+}
+
+/* Scroll Indicator */
+.scroll-indicator {
+  position: absolute;
+  bottom: var(--space-md);
+  left: 10%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'Space Mono', monospace;
+  font-size: var(--text-xs);
+  color: var(--soft-glow);
+  opacity: 0.7;
+  pointer-events: auto;
+}
+
+.scroll-indicator .chevron {
+  animation: bounceChevron 2s infinite;
+}
