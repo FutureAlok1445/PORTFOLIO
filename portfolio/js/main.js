@@ -1,5 +1,5 @@
 import { SakuraSystem } from './anime-effects.js';
-import { CustomCursor } from './interactions.js';
+import { CustomCursor, setupProjectCards } from './interactions.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     // 1. Initialize Custom Cursor System
@@ -11,4 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Hero configuration: 25 petals
         const sakuraSys = new SakuraSystem(sakuraCanvas, 25);
     }
+
+    // 3. Setup Project Cards
+    setupProjectCards();
 });

@@ -101,3 +101,14 @@
 .breathing {
   animation: nodeBreathe 4s ease-in-out infinite;
 }
+
+/* Card Ethereal Light Ray Flash */
+@keyframes etherealFlash {
+  0% { transform: skewX(-20deg) translateX(-100%); opacity: 0; }
+  50% { opacity: 0.08; }
+  100% { transform: skewX(-20deg) translateX(300%); opacity: 0; }
+}
+
+.flash-trigger {
+  animation: etherealFlash 0.5s ease-in-out forwards;
+}

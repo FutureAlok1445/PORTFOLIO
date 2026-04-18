@@ -244,4 +244,41 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // ==========================================================================
+    // Projects Section
+    // ==========================================================================
+    
+    // Pin section label
+    ScrollTrigger.create({
+        trigger: "#projects",
+        start: "top 20%",
+        end: "bottom 80%",
+        pin: ".projects-label-wrapper",
+        pinSpacing: false
+    });
+
+    // Stagger card reveals
+    const projectCards = gsap.utils.toArray('.project-card');
+    
+    gsap.to(projectCards, {
+        scrollTrigger: {
+            trigger: ".project-container",
+            start: "top 75%"
+        },
+        y: 0,
+        opacity: 1,
+        duration: 0.8,
+        stagger: 0.2,
+        ease: "power2.out",
+        onStart: function() {
+            projectCards.forEach((card, idx) => {
+                // Time the flash array perfectly with the container stagger delay
+                setTimeout(() => {
+                    const flash = card.querySelector('.ethereal-flash');
+                    if (flash) flash.classList.add('flash-trigger');
+                }, idx * 200);
+            });
+        }
+    });
+
 });

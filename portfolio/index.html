@@ -359,9 +359,157 @@
         </section>
 
         <!-- Projects Section -->
-        <section id="projects" class="section-projects">
-            <div class="container">
-                <!-- Featured projects -->
+        <section id="projects" class="section-projects" style="position: relative;">
+            <div class="projects-label-wrapper">
+                <span class="projects-label" data-cursor="text">PROJECTS //</span>
+            </div>
+            
+            <div class="container project-container">
+                <!-- Project Card 1 -->
+                <div class="project-card magnetic-card" data-cursor="link">
+                    <div class="ethereal-flash"></div>
+                    <div class="p-header">
+                        <div class="p-dots">
+                            <span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span>
+                        </div>
+                        <div class="p-tab">App.tsx</div>
+                        <div class="p-controls">- &#9633; &#215;</div>
+                    </div>
+                    <div class="p-body">
+                        <div class="p-left">
+                            <div class="p-code js-obj-block">
+                                <span class="syn-var">import</span> React <span class="syn-var">from</span> <span class="syn-string">'react'</span>;<br>
+                                <span class="syn-var">import</span> { NeuralCore } <span class="syn-var">from</span> <span class="syn-string">'@systems/core'</span>;<br><br>
+                                <span class="syn-var">const</span> <span class="syn-obj">AIPlatform</span> = () =&gt; {<br>
+                                &nbsp;&nbsp;<span class="syn-var">return</span> (<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;<span class="syn-tag">&lt;NeuralCore</span> <span class="syn-prop">mode=</span><span class="syn-string">"production"</span><span class="syn-tag">&gt;</span><br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="syn-tag">&lt;Dashboard /&gt;</span><br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;<span class="syn-tag">&lt;/NeuralCore&gt;</span><br>
+                                &nbsp;&nbsp;);<br>
+                                };<br>
+                                <div class="type-line-hover">&gt; Initiating compilation phase...</div>
+                            </div>
+                            <div class="p-actions">
+                                <button class="btn btn-mono">[ Run ]</button>
+                                <button class="btn btn-mono">[ View Source ]</button>
+                                <button class="btn btn-mono">[ Live Demo ]</button>
+                            </div>
+                        </div>
+                        <div class="p-right">
+                            <div class="p-media">
+                                <div class="p-img placeholder-bg"></div>
+                                <video muted loop playsinline data-src="" class="p-vid"></video>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-status">
+                        <div class="status-left">
+                            <span class="branch">&#57504; main</span>
+                            <span class="tags">[React, PyTorch]</span>
+                        </div>
+                        <div class="status-right">
+                            <span class="size">2.4MB</span>
+                            <span class="cursor-pos">Ln 14, Col 2</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project Card 2 -->
+                <div class="project-card magnetic-card" data-cursor="link">
+                    <div class="ethereal-flash"></div>
+                    <div class="p-header">
+                        <div class="p-dots">
+                            <span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span>
+                        </div>
+                        <div class="p-tab">train.py</div>
+                        <div class="p-controls">- &#9633; &#215;</div>
+                    </div>
+                    <div class="p-body">
+                        <div class="p-left">
+                            <div class="p-code js-obj-block">
+                                <span class="syn-var">import</span> torch<br>
+                                <span class="syn-var">import</span> torch.nn <span class="syn-var">as</span> nn<br><br>
+                                <span class="syn-var">def</span> <span class="syn-obj">train_epoch</span>(model, data):<br>
+                                &nbsp;&nbsp;optimizer.zero_grad()<br>
+                                &nbsp;&nbsp;loss = criterion(model(data))<br>
+                                &nbsp;&nbsp;loss.backward()<br>
+                                &nbsp;&nbsp;optimizer.step()<br>
+                                &nbsp;&nbsp;<span class="syn-var">return</span> loss.item()<br>
+                                <div class="type-line-hover">&gt; Loss converging optimally...</div>
+                            </div>
+                            <div class="p-actions">
+                                <button class="btn btn-mono">[ Run ]</button>
+                                <button class="btn btn-mono">[ View Source ]</button>
+                                <button class="btn btn-mono">[ Docs ]</button>
+                            </div>
+                        </div>
+                        <div class="p-right">
+                            <div class="p-media">
+                                <div class="p-img placeholder-bg"></div>
+                                <video muted loop playsinline data-src="" class="p-vid"></video>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-status">
+                        <div class="status-left">
+                            <span class="branch">&#57504; model-v2</span>
+                            <span class="tags">[Python, CUDA]</span>
+                        </div>
+                        <div class="status-right">
+                            <span class="size">48MB</span>
+                            <span class="cursor-pos">Ln 42, Col 8</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project Card 3 -->
+                <div class="project-card magnetic-card" data-cursor="link">
+                    <div class="ethereal-flash"></div>
+                    <div class="p-header">
+                        <div class="p-dots">
+                            <span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span>
+                        </div>
+                        <div class="p-tab">Scene.js</div>
+                        <div class="p-controls">- &#9633; &#215;</div>
+                    </div>
+                    <div class="p-body">
+                        <div class="p-left">
+                            <div class="p-code js-obj-block">
+                                <span class="syn-var">import</span> * <span class="syn-var">as</span> THREE <span class="syn-var">from</span> <span class="syn-string">'three'</span>;<br><br>
+                                <span class="syn-var">export class</span> <span class="syn-obj">CanvasManager</span> {<br>
+                                &nbsp;&nbsp;init() {<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;scene = <span class="syn-var">new</span> THREE.Scene();<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;renderer = <span class="syn-var">new</span> THREE.WebGLRenderer({<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;antialias: <span class="syn-var">true</span><br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;});<br>
+                                &nbsp;&nbsp;}<br>
+                                }<br>
+                                <div class="type-line-hover">&gt; WebGL context rendered at 60fps...</div>
+                            </div>
+                            <div class="p-actions">
+                                <button class="btn btn-mono">[ Run ]</button>
+                                <button class="btn btn-mono">[ View Source ]</button>
+                                <button class="btn btn-mono">[ Live Demo ]</button>
+                            </div>
+                        </div>
+                        <div class="p-right">
+                            <div class="p-media">
+                                <div class="p-img placeholder-bg"></div>
+                                <video muted loop playsinline data-src="" class="p-vid"></video>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-status">
+                        <div class="status-left">
+                            <span class="branch">&#57504; feature/3d</span>
+                            <span class="tags">[WebGL, Threejs]</span>
+                        </div>
+                        <div class="status-right">
+                            <span class="size">1.2MB</span>
+                            <span class="cursor-pos">Ln 85, Col 1</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
@@ -372,6 +520,35 @@
             <!-- Contact form, links, etc. -->
         </div>
     </footer>
+
+    <!-- Fullscreen Project Overlay (GSAP Flip) -->
+    <div id="project-overlay" class="project-overlay">
+        <button class="btn-close-overlay" data-cursor="terminal">[:q]</button>
+        <div class="overlay-grid">
+            <div class="overlay-left terminal-window p-code">
+                <div class="terminal-body space-mono">
+                    <div><span class="syn-prop">📁 src/</span></div>
+                    <div><span class="syn-prop">📁 models/</span></div>
+                    <div><span class="syn-prop">📁 public/</span></div>
+                    <div><span class="syn-string">📄 README.md</span></div>
+                    <div><span class="syn-string">📄 package.json</span></div>
+                </div>
+            </div>
+            <div class="overlay-center project-hero-asset">
+                <!-- Media injected dynamically here -->
+            </div>
+            <div class="overlay-right terminal-window p-code">
+                <div class="terminal-body space-mono" style="opacity:0.7">
+                    <div>$ npm run build</div>
+                    <div>&gt; compiling modules...</div>
+                    <div class="building-logs">&gt; generating standard assets...</div>
+                    <div class="building-logs">&gt; resolving dependencies...</div>
+                    <div class="building-logs">&gt; bundle size: 245kb</div>
+                    <div style="color:var(--matrix-green); margin-top:20px;">✓ Build Complete</div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Custom Cursor Area -->
     <div id="cursor-container"></div>

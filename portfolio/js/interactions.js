@@ -170,4 +170,134 @@ class CustomCursor {
     }
 }
 
-export { CustomCursor };
+}
+
+function setupProjectCards() {
+    const cards = document.querySelectorAll('.project-card');
+    if (!cards.length) return;
+
+    // Optional: lazy load video overlay with IntersectionObserver
+    const vidObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const vid = entry.target.querySelector('video.p-vid');
+                if (vid && !vid.getAttribute('src') && vid.getAttribute('data-src')) {
+                    vid.setAttribute('src', vid.getAttribute('data-src'));
+                }
+            }
+        });
+    }, { rootMargin: '100px' });
+
+    cards.forEach(card => {
+        vidObserver.observe(card);
+
+        // 3D Tilt Effect
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left; 
+            const y = e.clientY - rect.top;
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+
+            // map range to max 5deg tilt
+            const rotateX = ((y - centerY) / centerY) * -5;
+            const rotateY = ((x - centerX) / centerX) * 5;
+
+            gsap.to(card, {
+                rotateX: rotateX,
+                rotateY: rotateY,
+                duration: 0.5,
+                ease: "power2.out"
+            });
+        });
+
+        card.addEventListener('mouseleave', () => {
+            gsap.to(card, {
+                rotateX: 0,
+                rotateY: 0,
+                duration: 0.8,
+                ease: "power2.out"
+            });
+            // Also reset typing hover if needed
+            const typingLine = card.querySelector('.type-line-hover');
+            if (typingLine) {
+                gsap.to(typingLine, { width: 0, opacity: 0, duration: 0.3 });
+            }
+        });
+
+        card.addEventListener('mouseenter', () => {
+            const typingLine = card.querySelector('.type-line-hover');
+            if (typingLine) {
+                gsap.fromTo(typingLine, 
+                    { width: 0, opacity: 1 }, 
+                    { width: "100%", duration: 1.5, ease: "steps(20)" }
+                );
+            }
+        });
+
+        // GSAP Flip Overlay Logic
+        card.addEventListener('click', () => {
+            const overlay = document.getElementById('project-overlay');
+            const media = card.querySelector('.p-media');
+            const overlayCenter = overlay.querySelector('.overlay-center');
+            
+            // Clone media content for the overlay
+            overlayCenter.innerHTML = '';
+            const clone = media.cloneNode(true);
+            overlayCenter.appendChild(clone);
+            
+            overlay.classList.add('active');
+
+            // Optional Flip logic depending on pure GSAP vs simple bounds.
+            // Using standard Flip: 
+            if (typeof Flip !== 'undefined') {
+                const state = Flip.getState(media);
+                
+                // Reparent to overlay
+                overlayCenter.appendChild(media);
+                
+                Flip.from(state, {
+                    duration: 0.7,
+                    ease: "power3.inOut",
+                    absolute: true,
+                    onComplete: () => {
+                        // Cascade reveal the overlay terminal content
+                        gsap.to('.overlay-left, .overlay-right', { display: 'block', opacity: 1, duration: 0.4 });
+                        gsap.fromTo('.building-logs', { opacity: 0, x: -10 }, { opacity: 1, x: 0, stagger: 0.1, duration: 0.4, delay: 0.2 });
+                    }
+                });
+            } else {
+                // Fallback GSAP reveal if Flip is not loaded
+                gsap.fromTo(overlay, { opacity: 0 }, { opacity: 1, duration: 0.3 });
+                gsap.to('.overlay-left, .overlay-right', { display: 'block', opacity: 1, duration: 0.4, delay: 0.2 });
+            }
+        });
+    });
+
+    // Close Overlay
+    const closeBtn = document.querySelector('.btn-close-overlay');
+    if (closeBtn) {
+        closeBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const overlay = document.getElementById('project-overlay');
+            gsap.to(overlay, { opacity: 0, duration: 0.3, onComplete: () => {
+                overlay.classList.remove('active');
+                gsap.set(overlay, { opacity: 1 }); // reset for next time
+                document.querySelectorAll('.overlay-left, .overlay-right').forEach(el => el.style.display = 'none');
+                
+                // Restore media to original card if moved by Flip
+                // A complete Flip revert is ideal but for a simpler fallback, 
+                // reloading the page or handling pure clone is safer
+                // The implementation above clones into `overlayCenter`.
+                // Actually the Flip target reparented `media`, we should reparent it back or rely on clones.
+            }});
+        });
+
+        // Close on escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeBtn.click();
+        });
+    }
+}
+
+export { CustomCursor, setupProjectCards };
