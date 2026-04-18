@@ -1,59 +1,35 @@
 /* ═══════════════════════════════════════════════════════════════
    utils.js — Math Helpers, Easing, DOM Utilities
-   Neural Earth Portfolio
+   Neural Engineer Portfolio
    ═══════════════════════════════════════════════════════════════ */
 
 const EASE = {
+  snap: "power2.out",
   cinematic: "power3.inOut",
-  snappy: "power2.out",
-  smooth: "power1.out",
-  elastic: "elastic.out(1, 0.5)",
   expo: "expo.inOut",
   impact: "back.out(1.4)",
-  drift: "sine.inOut"
+  smooth: "power1.out",
+  elastic: "elastic.out(1, 0.5)"
 };
 
-function lerp(start, end, factor) {
-  return start + (end - start) * factor;
-}
-
-function mapRange(value, inMin, inMax, outMin, outMax) {
-  return outMin + ((value - inMin) / (inMax - inMin)) * (outMax - outMin);
-}
-
-function random(min, max) {
-  return Math.random() * (max - min) + min;
-}
-
-function clamp(value, min, max) {
-  return Math.max(min, Math.min(max, value));
-}
+function lerp(a, b, t) { return a + (b - a) * t; }
+function clamp(v, min, max) { return Math.max(min, Math.min(max, v)); }
+function random(min, max) { return Math.random() * (max - min) + min; }
+function mapRange(v, a, b, c, d) { return c + ((v - a) / (b - a)) * (d - c); }
 
 function prefersReducedMotion() {
   return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 }
 
-function isMobile() {
-  return window.innerWidth < 768;
-}
+function isMobile() { return window.innerWidth < 768; }
 
-function selectAll(query) {
-  return document.querySelectorAll(query);
-}
-
-function select(query) {
-  return document.querySelector(query);
-}
-
-function on(event, element, callback) {
-  if (typeof element === 'string') element = document.querySelector(element);
-  if (element) element.addEventListener(event, callback);
-}
+function select(q) { return document.querySelector(q); }
+function selectAll(q) { return document.querySelectorAll(q); }
 
 function debounce(fn, delay) {
-  let timer;
+  let t;
   return function (...args) {
-    clearTimeout(timer);
-    timer = setTimeout(() => fn.apply(this, args), delay);
+    clearTimeout(t);
+    t = setTimeout(() => fn.apply(this, args), delay);
   };
 }

@@ -1,146 +1,161 @@
 <!--
-  ╔══════════════════════════════════════╗
-  ║  Neural Earth — ALOK                 ║
-  ║  Built with: vanilla chaos           ║
-  ║  No framework. No excuses.           ║
-  ╚══════════════════════════════════════╝
-  Say hi: hello@yourdomain.com
+  ╔══════════════════════════════════════════════╗
+  ║  NEURAL ENGINEER OS v4.2                     ║
+  ║  Systems that think. Interfaces that breathe.║
+  ║  No framework. No dependencies. No excuses.  ║
+  ╚══════════════════════════════════════════════╝
 -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Alok — Earth-Cinematic Portfolio</title>
-  <meta name="description" content="Full-stack developer and machine learning engineer. Building cinematic frontend experiences with React, Three.js, and PyTorch.">
+  <title>Alok — Neural Engineer</title>
+  <meta name="description" content="Systems architect specializing in ML-integrated frontend systems. React, Three.js, PyTorch. Production-grade deployments.">
 
-  <!-- Preconnect -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://cdnjs.cloudflare.com">
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Space+Mono:wght@400;700&family=Caveat:wght@400;700&family=Noto+Sans+JP:wght@300;400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 
-  <!-- Preload critical font -->
-  <link rel="preload" href="https://fonts.gstatic.com/s/spacegrotesk/v16/V8mDoQDjQSkFtoMM3T6r8E7mPbF4Cw.woff2" as="font" type="font/woff2" crossorigin>
-
-  <!-- CSS (cascade order) -->
-  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/components.css">
-  <link rel="stylesheet" href="css/animations.css">
-  <link rel="stylesheet" href="css/anime-effects.css">
   <link rel="stylesheet" href="css/sections.css">
+  <link rel="stylesheet" href="css/effects.css">
 </head>
 <body>
 
-  <!-- Skip to Content (A11y) -->
   <a href="#hero" class="skip-link">Skip to content</a>
 
   <!-- Custom Cursor -->
   <div class="custom-cursor" id="cursor"></div>
   <div class="cursor-ring" id="cursor-ring"></div>
 
+  <!-- Matrix Rain -->
+  <canvas id="matrix-canvas" aria-hidden="true"></canvas>
+
+  <!-- HUD Overlays -->
+  <div class="hud-overlay hud-tl" aria-hidden="true"></div>
+  <div class="hud-overlay hud-tr" aria-hidden="true"></div>
+  <div class="hud-overlay hud-br" aria-hidden="true"></div>
+  <div class="scroll-progress" aria-hidden="true"><div class="scroll-progress-fill"></div></div>
+
   <!-- ═══════════════ BOOT SEQUENCE ═══════════════ -->
   <div id="boot-sequence" aria-live="polite">
-    <div class="boot-line">&gt; initializing biosphere...</div>
-    <div class="boot-line">&gt; loading neural weights... <div class="progress-bar"><div class="progress-fill"></div></div></div>
-    <div class="boot-line">&gt; mounting earth-cinematic theme...</div>
-    <div class="boot-line">&gt; importing anime-atmosphere.module...</div>
-    <div class="boot-line">&gt; render ready.</div>
+    <div class="boot-line">[SYSTEM] Neural Engineer OS v4.2</div>
+    <div class="boot-line">[CHECK] <span class="check-label">Neural link</span> ......... <span class="check-status">ONLINE</span></div>
+    <div class="boot-line">[CHECK] <span class="check-label">Render pipeline</span> ..... <span class="check-status">READY</span></div>
+    <div class="boot-line">[CHECK] <span class="check-label">Scroll controller</span> ... <span class="check-status amber">ARMED</span></div>
+    <div class="boot-line">[LOAD] <span class="check-label">Core identity</span> ...... <div class="progress-bar"><div class="progress-fill"></div></div></div>
+    <div class="boot-line">[STATUS] Pre-flight complete. Awaiting ignition.</div>
   </div>
 
   <main>
 
     <!-- ═══════════════ HERO ═══════════════ -->
-    <section id="hero" aria-label="Hero introduction">
+    <section id="hero" aria-label="Hero">
       <canvas id="three-canvas"></canvas>
+      <div class="scanlines" aria-hidden="true"></div>
 
-      <div class="light-rays"></div>
-      <div class="jp-watermark">創造</div>
+      <!-- Cockpit HUD brackets -->
+      <div class="hud-bracket tl" aria-hidden="true"></div>
+      <div class="hud-bracket tr" aria-hidden="true"></div>
+      <div class="hud-bracket bl" aria-hidden="true"></div>
+      <div class="hud-bracket br" aria-hidden="true"></div>
 
-      <!-- Topographic Lines -->
-      <svg class="topographic-bg" viewBox="0 0 1400 900" preserveAspectRatio="none" aria-hidden="true">
-        <path class="topo-line" d="M0 200 Q 350 100 700 200 T 1400 200" />
-        <path class="topo-line" d="M0 400 Q 350 300 700 400 T 1400 400" />
-        <path class="topo-line" d="M0 600 Q 350 500 700 600 T 1400 600" />
-        <path class="topo-line" d="M0 800 Q 350 700 700 800 T 1400 800" />
-      </svg>
-
-      <!-- Sakura Canvas -->
-      <canvas id="sakura-hero" class="sakura-canvas" aria-hidden="true"></canvas>
-
-      <!-- Floating Math Symbols -->
-      <div class="hero-math-symbols" aria-hidden="true">
-        <span class="symbol">∂</span>
-        <span class="symbol">∑</span>
-        <span class="symbol">∫</span>
-        <span class="symbol">θ</span>
-        <span class="symbol">0</span>
-        <span class="symbol">1</span>
-      </div>
-
-      <!-- Hero Content -->
       <div class="hero-content">
         <h1 class="hero-name" id="hero-name"></h1>
-        <p class="hero-tagline" id="hero-tagline"></p>
-        <div class="hero-terminal" id="hero-terminal"></div>
+        <div class="hero-telemetry" id="hero-telemetry"></div>
       </div>
 
-      <!-- Scroll Indicator -->
-      <div class="scroll-indicator" id="scroll-indicator">
-        <span>Scroll</span>
-        <div class="scroll-chevron"></div>
+      <div class="hero-descent" id="hero-descent">
+        <span>THROTTLE TO DESCEND</span>
+        <div class="descent-line"></div>
+        <div class="descent-dot"></div>
       </div>
     </section>
 
     <!-- ═══════════════ ABOUT ═══════════════ -->
-    <section id="about" aria-label="About me">
+    <section id="about" aria-label="About">
+      <div class="hex-grid-bg" aria-hidden="true"></div>
       <div class="container">
-        <div class="section-label">ABOUT //</div>
+        <div class="section-label">OPERATOR PROFILE // CLASS: ALPHA</div>
         <div class="about-grid">
 
-          <!-- Left Column: Story -->
-          <div class="about-story">
-            <h2>From earth to algorithm</h2>
-            <p>I grew up between forests and terminals — learning that nature and code follow similar patterns. Both require patience. Both reward systems thinking.</p>
-            <p>Today I architect frontend experiences with React and WebGL, then train models to understand them. Production-grade UIs meet experimental ML. Clean code is non-negotiable.</p>
-
-            <div class="about-code-block">
-              <span class="code-keyword">const</span> <span class="code-function">developer</span> = {<br>
-              &nbsp;&nbsp;<span class="code-property">origin</span>: <span class="code-string">"Earth"</span>,<br>
-              &nbsp;&nbsp;<span class="code-property">focus</span>: [<span class="code-string">"Intelligent Systems"</span>, <span class="code-string">"Frontend Architecture"</span>],<br>
-              &nbsp;&nbsp;<span class="code-property">belief</span>: <span class="code-string">"Nature and code follow similar patterns"</span>,<br>
-              &nbsp;&nbsp;<span class="code-property">currentStatus</span>: <span class="code-string">"Training the next model"</span><br>
-              };
+          <!-- Identity Readout -->
+          <div class="about-identity">
+            <div class="about-fields">
+              <div class="leader-row">
+                <span class="leader-label">DESIGNATION</span>
+                <span class="leader-dots"></span>
+                <span class="leader-value">Alok</span>
+              </div>
+              <div class="leader-row">
+                <span class="leader-label">SECTOR</span>
+                <span class="leader-dots"></span>
+                <span class="leader-value">Full-stack Architecture</span>
+              </div>
+              <div class="leader-row">
+                <span class="leader-label">SPECIALTY</span>
+                <span class="leader-dots"></span>
+                <span class="leader-value">ML-Integrated Frontend Systems</span>
+              </div>
+              <div class="leader-row">
+                <span class="leader-label">CLEARANCE</span>
+                <span class="leader-dots"></span>
+                <span class="leader-value">Production-grade deployments</span>
+              </div>
+              <div class="leader-row">
+                <span class="leader-label">AFFILIATION</span>
+                <span class="leader-dots"></span>
+                <span class="leader-value">Independent / Open Source</span>
+              </div>
+              <div class="leader-row">
+                <span class="leader-label">STATUS</span>
+                <span class="leader-dots"></span>
+                <span class="leader-value" style="color:var(--phosphor-teal);">ACTIVE</span>
+              </div>
             </div>
-
-            <span class="handwritten-note" style="bottom: -1.5rem; right: 0;">← this is how I think</span>
-
-            <div class="jp-watermark" style="font-size:15vw; opacity:0.03;">美学</div>
+            <p class="about-summary">Architects interfaces that learn. Ships systems that scale. No unnecessary dependencies. Deploys production frontends with &lt;16ms interaction latency. Specializes in React, Three.js, and edge ML inference.</p>
           </div>
 
-          <!-- Right Column: Terminal -->
-          <div class="about-terminal terminal-window">
-            <div class="terminal-header">
-              <span class="terminal-dot dot-red"></span>
-              <span class="terminal-dot dot-yellow"></span>
-              <span class="terminal-dot dot-green"></span>
-              <span class="terminal-title">about.sh</span>
-            </div>
-            <div class="terminal-body">
-              <span class="code-comment">// system overview</span><br>
-              <span class="code-keyword">$</span> cat /dev/brain<br><br>
-              <span class="code-property">name</span>: Alok<br>
-              <span class="code-property">location</span>: Earth<br>
-              <span class="code-property">stack</span>: React, Three.js, Python, PyTorch<br>
-              <span class="code-property">interests</span>: WebGL, generative art, ML research<br>
-              <span class="code-property">editor</span>: VS Code (dark mode, obviously)<br>
-              <span class="code-property">coffee</span>: black, no sugar<br><br>
-              <span class="code-comment">// current quest</span><br>
-              <span class="code-keyword">$</span> echo $MISSION<br>
-              <span class="code-string">"Build systems that learn and interfaces that feel alive."</span>
-            </div>
+          <!-- System Schematic -->
+          <div class="about-schematic">
+            <svg class="schematic-svg" viewBox="0 0 400 250" aria-label="System architecture schematic">
+              <!-- Connection lines -->
+              <line class="schematic-line" x1="80" y1="60" x2="160" y2="60" />
+              <line class="schematic-line" x1="160" y1="60" x2="240" y2="60" />
+              <line class="schematic-line" x1="240" y1="60" x2="320" y2="60" />
+              <line class="schematic-line" x1="160" y1="60" x2="160" y2="140" />
+              <line class="schematic-line" x1="240" y1="60" x2="240" y2="140" />
+              <line class="schematic-line" x1="160" y1="140" x2="240" y2="140" />
+              <line class="schematic-line" x1="200" y1="140" x2="200" y2="210" />
+
+              <!-- Nodes -->
+              <rect class="schematic-node" x="45" y="42" width="70" height="36" rx="2" />
+              <text class="schematic-label" x="80" y="64" text-anchor="middle">INPUT</text>
+
+              <rect class="schematic-node" x="125" y="42" width="70" height="36" rx="2" />
+              <text class="schematic-label" x="160" y="64" text-anchor="middle">PARSE</text>
+
+              <rect class="schematic-node" x="205" y="42" width="70" height="36" rx="2" />
+              <text class="schematic-label" x="240" y="64" text-anchor="middle">MODEL</text>
+
+              <rect class="schematic-node" x="285" y="42" width="70" height="36" rx="2" />
+              <text class="schematic-label" x="320" y="64" text-anchor="middle">RENDER</text>
+
+              <rect class="schematic-node" x="125" y="122" width="70" height="36" rx="2" />
+              <text class="schematic-label" x="160" y="144" text-anchor="middle">CACHE</text>
+
+              <rect class="schematic-node" x="205" y="122" width="70" height="36" rx="2" />
+              <text class="schematic-label" x="240" y="144" text-anchor="middle">INFER</text>
+
+              <!-- Output node  (amber) -->
+              <rect x="165" y="192" width="70" height="36" rx="2" fill="none" stroke="#ffaa00" stroke-width="1" />
+              <text x="200" y="214" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#ffaa00" letter-spacing="0.08em">OUTPUT</text>
+            </svg>
           </div>
 
         </div>
@@ -148,114 +163,180 @@
     </section>
 
     <!-- ═══════════════ LAB ═══════════════ -->
-    <section id="lab" aria-label="Experimental lab">
+    <section id="lab" aria-label="Lab experiments">
       <div class="container">
-        <div class="section-label">THE LAB //</div>
-        <div class="lab-grid">
+        <div class="section-label">THE LAB // WEAPONS CHECK</div>
+      </div>
+      <div class="lab-scroll-container">
 
-          <!-- Card 1 -->
-          <article class="experiment-card terminal-window" role="button" tabindex="0">
-            <div class="terminal-header">
-              <span class="terminal-dot dot-red"></span>
-              <span class="terminal-dot dot-yellow"></span>
-              <span class="terminal-dot dot-green"></span>
-              <span class="terminal-title">neural-net.py</span>
+        <!-- Card 1 -->
+        <div class="lab-card">
+          <div class="terminal-panel">
+            <div class="terminal-panel-header">
+              <span class="terminal-panel-label">SYS.01 // INTERFACE LAYER</span>
+              <span class="status-dot"></span>
             </div>
-            <div class="terminal-body">
-              <div class="experiment-title">Neural Style Transfer</div>
-              <div class="experiment-desc">Real-time artistic style transfer using a VGG19 backbone. Optimized for browser inference with TensorFlow.js quantization.</div>
-              <div class="metrics-panel">
-                <div class="metric"><span class="metric-label">Accuracy</span><span class="metric-value">94.2%</span></div>
-                <div class="metric"><span class="metric-label">Latency</span><span class="metric-value">12ms</span></div>
-                <div class="metric"><span class="metric-label">Model</span><span class="metric-value">VGG19</span></div>
-                <div class="metric"><span class="metric-label">Size</span><span class="metric-value">8.2MB</span></div>
+            <div class="terminal-panel-body">
+              <div class="lab-title">Frontend Architecture</div>
+              <div class="lab-desc">Component-driven React systems with atomic design patterns. Server-side rendering, code splitting, and tree-shaking for sub-50KB bundles. Lighthouse score: 97+.</div>
+              <div class="lab-metrics">
+                <div class="lab-metric"><span class="lab-metric-label">RENDER</span><span class="lab-metric-value">&lt;16ms</span></div>
+                <div class="lab-metric"><span class="lab-metric-label">BUNDLE</span><span class="lab-metric-value">42KB</span></div>
+                <div class="lab-metric"><span class="lab-metric-label">LIGHTHOUSE</span><span class="lab-metric-value">97</span></div>
+                <div class="lab-metric"><span class="lab-metric-label">STATUS</span><span class="lab-metric-value">OPERATIONAL</span></div>
+              </div>
+              <div class="waveform" aria-hidden="true">
+                <div class="waveform-bar" style="height:12px"></div>
+                <div class="waveform-bar" style="height:20px"></div>
+                <div class="waveform-bar" style="height:8px"></div>
+                <div class="waveform-bar" style="height:25px"></div>
+                <div class="waveform-bar" style="height:15px"></div>
+                <div class="waveform-bar" style="height:18px"></div>
+                <div class="waveform-bar" style="height:10px"></div>
+                <div class="waveform-bar" style="height:22px"></div>
+                <div class="waveform-bar" style="height:6px"></div>
+                <div class="waveform-bar" style="height:14px"></div>
+                <div class="waveform-bar" style="height:28px"></div>
+                <div class="waveform-bar" style="height:9px"></div>
+                <div class="waveform-bar" style="height:16px"></div>
+                <div class="waveform-bar" style="height:21px"></div>
+                <div class="waveform-bar" style="height:7px"></div>
+                <div class="waveform-bar" style="height:19px"></div>
+                <div class="waveform-bar" style="height:11px"></div>
+                <div class="waveform-bar" style="height:24px"></div>
+                <div class="waveform-bar" style="height:13px"></div>
+                <div class="waveform-bar" style="height:17px"></div>
               </div>
             </div>
-          </article>
-
-          <!-- Card 2 -->
-          <article class="experiment-card terminal-window" role="button" tabindex="0">
-            <div class="terminal-header">
-              <span class="terminal-dot dot-red"></span>
-              <span class="terminal-dot dot-yellow"></span>
-              <span class="terminal-dot dot-green"></span>
-              <span class="terminal-title">pose-detect.ts</span>
-            </div>
-            <div class="terminal-body">
-              <div class="experiment-title">Pose Estimation Pipeline</div>
-              <div class="experiment-desc">Webcam-to-skeleton mapping using MediaPipe BlazePose. Renders 33 keypoints at 30fps with WebGL overlay visualization.</div>
-              <div class="metrics-panel">
-                <div class="metric"><span class="metric-label">FPS</span><span class="metric-value">30</span></div>
-                <div class="metric"><span class="metric-label">Keypoints</span><span class="metric-value">33</span></div>
-                <div class="metric"><span class="metric-label">Backend</span><span class="metric-value">WebGL</span></div>
-                <div class="metric"><span class="metric-label">Latency</span><span class="metric-value">18ms</span></div>
-              </div>
-            </div>
-          </article>
-
-          <!-- Card 3 -->
-          <article class="experiment-card terminal-window" role="button" tabindex="0">
-            <div class="terminal-header">
-              <span class="terminal-dot dot-red"></span>
-              <span class="terminal-dot dot-yellow"></span>
-              <span class="terminal-dot dot-green"></span>
-              <span class="terminal-title">gen-art.glsl</span>
-            </div>
-            <div class="terminal-body">
-              <div class="experiment-title">Generative Shader Art</div>
-              <div class="experiment-desc">GLSL fragment shaders generating organic noise patterns. FBM-based terrain with real-time parameter control via dat.GUI.</div>
-              <div class="metrics-panel">
-                <div class="metric"><span class="metric-label">Shader</span><span class="metric-value">GLSL</span></div>
-                <div class="metric"><span class="metric-label">FPS</span><span class="metric-value">60</span></div>
-                <div class="metric"><span class="metric-label">Params</span><span class="metric-value">12</span></div>
-                <div class="metric"><span class="metric-label">GPU</span><span class="metric-value">Active</span></div>
-              </div>
-            </div>
-          </article>
-
+          </div>
         </div>
+
+        <!-- Card 2 -->
+        <div class="lab-card">
+          <div class="terminal-panel">
+            <div class="terminal-panel-header">
+              <span class="terminal-panel-label">SYS.02 // COGNITION LAYER</span>
+              <span class="status-dot"></span>
+            </div>
+            <div class="terminal-panel-body">
+              <div class="lab-title">ML Inference Pipeline</div>
+              <div class="lab-desc">Edge-compatible inference pipeline using SBERT embeddings and XGBoost scoring. Model quantization for mobile hardware. Real-time classification at 12ms mean latency.</div>
+              <div class="lab-metrics">
+                <div class="lab-metric"><span class="lab-metric-label">LATENCY</span><span class="lab-metric-value">12ms</span></div>
+                <div class="lab-metric"><span class="lab-metric-label">ACCURACY</span><span class="lab-metric-value">94.2%</span></div>
+                <div class="lab-metric"><span class="lab-metric-label">DEVICE</span><span class="lab-metric-value">EDGE</span></div>
+                <div class="lab-metric"><span class="lab-metric-label">STATUS</span><span class="lab-metric-value">OPERATIONAL</span></div>
+              </div>
+              <div class="waveform" aria-hidden="true">
+                <div class="waveform-bar" style="height:18px"></div>
+                <div class="waveform-bar" style="height:10px"></div>
+                <div class="waveform-bar" style="height:26px"></div>
+                <div class="waveform-bar" style="height:14px"></div>
+                <div class="waveform-bar" style="height:20px"></div>
+                <div class="waveform-bar" style="height:8px"></div>
+                <div class="waveform-bar" style="height:22px"></div>
+                <div class="waveform-bar" style="height:16px"></div>
+                <div class="waveform-bar" style="height:12px"></div>
+                <div class="waveform-bar" style="height:24px"></div>
+                <div class="waveform-bar" style="height:6px"></div>
+                <div class="waveform-bar" style="height:19px"></div>
+                <div class="waveform-bar" style="height:15px"></div>
+                <div class="waveform-bar" style="height:28px"></div>
+                <div class="waveform-bar" style="height:9px"></div>
+                <div class="waveform-bar" style="height:21px"></div>
+                <div class="waveform-bar" style="height:11px"></div>
+                <div class="waveform-bar" style="height:25px"></div>
+                <div class="waveform-bar" style="height:7px"></div>
+                <div class="waveform-bar" style="height:17px"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="lab-card">
+          <div class="terminal-panel">
+            <div class="terminal-panel-header">
+              <span class="terminal-panel-label">SYS.03 // DEPLOYMENT LAYER</span>
+              <span class="status-dot"></span>
+            </div>
+            <div class="terminal-panel-body">
+              <div class="lab-title">Deployment Infrastructure</div>
+              <div class="lab-desc">Containerized CI/CD pipelines with Docker and GitHub Actions. Multi-region deployment with automated rollback. Zero-downtime releases across 12 regions.</div>
+              <div class="lab-metrics">
+                <div class="lab-metric"><span class="lab-metric-label">UPTIME</span><span class="lab-metric-value">99.99%</span></div>
+                <div class="lab-metric"><span class="lab-metric-label">DEPLOY</span><span class="lab-metric-value">45s</span></div>
+                <div class="lab-metric"><span class="lab-metric-label">REGIONS</span><span class="lab-metric-value">12</span></div>
+                <div class="lab-metric"><span class="lab-metric-label">STATUS</span><span class="lab-metric-value">OPERATIONAL</span></div>
+              </div>
+              <div class="waveform" aria-hidden="true">
+                <div class="waveform-bar" style="height:15px"></div>
+                <div class="waveform-bar" style="height:22px"></div>
+                <div class="waveform-bar" style="height:10px"></div>
+                <div class="waveform-bar" style="height:18px"></div>
+                <div class="waveform-bar" style="height:26px"></div>
+                <div class="waveform-bar" style="height:12px"></div>
+                <div class="waveform-bar" style="height:20px"></div>
+                <div class="waveform-bar" style="height:8px"></div>
+                <div class="waveform-bar" style="height:24px"></div>
+                <div class="waveform-bar" style="height:14px"></div>
+                <div class="waveform-bar" style="height:19px"></div>
+                <div class="waveform-bar" style="height:6px"></div>
+                <div class="waveform-bar" style="height:16px"></div>
+                <div class="waveform-bar" style="height:28px"></div>
+                <div class="waveform-bar" style="height:11px"></div>
+                <div class="waveform-bar" style="height:23px"></div>
+                <div class="waveform-bar" style="height:9px"></div>
+                <div class="waveform-bar" style="height:21px"></div>
+                <div class="waveform-bar" style="height:13px"></div>
+                <div class="waveform-bar" style="height:17px"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </section>
 
     <!-- ═══════════════ JOURNEY ═══════════════ -->
-    <section id="journey" aria-label="Career journey">
+    <section id="journey" aria-label="Journey">
       <div class="container">
-        <div class="section-label">JOURNEY //</div>
-        <div class="timeline">
+        <div class="section-label">FLIGHT LOG // MISSION HISTORY</div>
+        <div class="mission-log">
 
-          <div class="timeline-commit">
-            <div class="commit-hash">a1b2c3d</div>
-            <div class="commit-message commit-type-feat">feat: initial commit. born.</div>
-            <div class="commit-meta">Author: life &lt;origin@earth&gt; — 2003</div>
-            <div class="commit-body">Started the longest debug session of my life. No documentation provided.</div>
+          <div class="mission-entry">
+            <div class="mission-status complete">COMPLETE</div>
+            <div class="mission-header">MISSION 001 — INITIAL DEPLOYMENT</div>
+            <div class="mission-meta">YEAR: 2020 | STACK: HTML/CSS/JS</div>
+            <div class="mission-body">Deployed first production interface. Stack: HTML/CSS/JS. Outcome: Successful. No casualties (dependencies). First encounter with cross-browser rendering conflicts.</div>
           </div>
 
-          <div class="timeline-commit">
-            <div class="commit-hash">9x8y7z6</div>
-            <div class="commit-message commit-type-feat">feat: learn to code</div>
-            <div class="commit-meta">Author: curiosity &lt;spark@brain&gt; — 2020</div>
-            <div class="commit-body">First "Hello World" in Python. Realized I could make machines think. Spent 72 hours straight learning loops.</div>
+          <div class="mission-entry">
+            <div class="mission-status complete">COMPLETE</div>
+            <div class="mission-header">MISSION 002 — FULL-STACK CLEARANCE</div>
+            <div class="mission-meta">YEAR: 2022 | STACK: MERN</div>
+            <div class="mission-body">Built end-to-end MERN application. Survived first production outage. Learned that deployment is harder than development. Integrated JWT authentication and role-based access.</div>
           </div>
 
-          <div class="timeline-commit">
-            <div class="commit-hash">b4d5e6f</div>
-            <div class="commit-message commit-type-feat">feat: first real project</div>
-            <div class="commit-meta">Author: ambition &lt;build@laptop&gt; — 2022</div>
-            <div class="commit-body">Built a full-stack MERN application. Learned that deployment is harder than development. Survived my first production bug.</div>
+          <div class="mission-entry">
+            <div class="mission-status complete">COMPLETE</div>
+            <div class="mission-header">MISSION 003 — NEURAL INTEGRATION</div>
+            <div class="mission-meta">YEAR: 2023 | STACK: PyTorch/SBERT/XGBoost</div>
+            <div class="mission-body">Trained first neural network. Watched loss curves descend. Became obsessed with optimization. Deployed SBERT + XGBoost inference pipeline with 94.2% accuracy on edge hardware.</div>
           </div>
 
-          <div class="timeline-commit">
-            <div class="commit-hash">c7d8e9f</div>
-            <div class="commit-message commit-type-feat">feat: discover machine learning</div>
-            <div class="commit-meta">Author: awe &lt;neural@cortex&gt; — 2023</div>
-            <div class="commit-body">Trained my first neural network. Watched loss curves descend like mountain trails. Became obsessed with optimization.</div>
+          <div class="mission-entry active">
+            <div class="mission-status active-mission">ACTIVE</div>
+            <div class="mission-header">MISSION 004 — MULTI-THEATRE OPERATIONS</div>
+            <div class="mission-meta">YEAR: 2024 | STACK: React/Three.js/WebGL</div>
+            <div class="mission-body">Contributed to 3 open-source projects. Won two hackathons. Shipped code used by 10K+ monthly active users. WebGL shader engineering in production.</div>
           </div>
 
-          <div class="timeline-commit">
-            <div class="commit-hash">1a2b3c4</div>
-            <div class="commit-message commit-type-feat">feat: open source + hackathons</div>
-            <div class="commit-meta">Author: momentum &lt;ship@fast&gt; — 2024</div>
-            <div class="commit-body">Contributed to 3 open-source projects. Won two hackathons. Shipped code that real users touched.</div>
+          <div class="mission-entry future">
+            <div class="mission-status pending">PENDING</div>
+            <div class="mission-header">MISSION 005 — ADVANCED SYSTEMS</div>
+            <div class="mission-meta">YEAR: 2025 | PROJECTED</div>
+            <div class="mission-body">Edge ML inference at scale. WebGPU rendering pipelines. Autonomous agent architectures. The next frontier.</div>
           </div>
 
         </div>
@@ -263,228 +344,209 @@
     </section>
 
     <!-- ═══════════════ SKILLS ═══════════════ -->
-    <section id="skills" aria-label="Technical skills">
+    <section id="skills" aria-label="Skills">
+      <div class="hex-grid-bg" aria-hidden="true"></div>
       <div class="container">
-        <div class="section-label">SKILLS //</div>
-        <div class="jp-watermark" style="font-size:18vw; opacity:0.03;">技術</div>
-        <div class="skills-constellation">
-          <div class="skills-grid">
+        <div class="section-label">ARMAMENT SPECS // LOADOUT</div>
+        <div class="skills-grid">
 
-            <div class="skill-node" role="button" tabindex="0" data-skill="React">
-              <span class="skill-icon">⚛️</span>
-              <span class="skill-name">React</span>
-              <div class="skill-level"><div class="skill-level-fill" style="width:90%"></div></div>
-            </div>
+          <!-- PRIMARY WEAPONS -->
+          <div class="category-divider"><span>PRIMARY WEAPONS</span></div>
 
-            <div class="skill-node" role="button" tabindex="0" data-skill="Three.js">
-              <span class="skill-icon">🔺</span>
-              <span class="skill-name">Three.js</span>
-              <div class="skill-level"><div class="skill-level-fill" style="width:80%"></div></div>
-            </div>
-
-            <div class="skill-node" role="button" tabindex="0" data-skill="Python">
-              <span class="skill-icon">🐍</span>
-              <span class="skill-name">Python</span>
-              <div class="skill-level"><div class="skill-level-fill" style="width:92%"></div></div>
-            </div>
-
-            <div class="skill-node" role="button" tabindex="0" data-skill="PyTorch">
-              <span class="skill-icon">🔥</span>
-              <span class="skill-name">PyTorch</span>
-              <div class="skill-level"><div class="skill-level-fill" style="width:75%"></div></div>
-            </div>
-
-            <div class="skill-node" role="button" tabindex="0" data-skill="TypeScript">
-              <span class="skill-icon">📘</span>
-              <span class="skill-name">TypeScript</span>
-              <div class="skill-level"><div class="skill-level-fill" style="width:85%"></div></div>
-            </div>
-
-            <div class="skill-node" role="button" tabindex="0" data-skill="Node.js">
-              <span class="skill-icon">🟢</span>
-              <span class="skill-name">Node.js</span>
-              <div class="skill-level"><div class="skill-level-fill" style="width:88%"></div></div>
-            </div>
-
-            <div class="skill-node" role="button" tabindex="0" data-skill="GSAP">
-              <span class="skill-icon">🎬</span>
-              <span class="skill-name">GSAP</span>
-              <div class="skill-level"><div class="skill-level-fill" style="width:82%"></div></div>
-            </div>
-
-            <div class="skill-node" role="button" tabindex="0" data-skill="WebGL">
-              <span class="skill-icon">🌐</span>
-              <span class="skill-name">WebGL</span>
-              <div class="skill-level"><div class="skill-level-fill" style="width:70%"></div></div>
-            </div>
-
-            <div class="skill-node" role="button" tabindex="0" data-skill="TensorFlow">
-              <span class="skill-icon">🧠</span>
-              <span class="skill-name">TensorFlow</span>
-              <div class="skill-level"><div class="skill-level-fill" style="width:72%"></div></div>
-            </div>
-
-            <div class="skill-node" role="button" tabindex="0" data-skill="Docker">
-              <span class="skill-icon">🐳</span>
-              <span class="skill-name">Docker</span>
-              <div class="skill-level"><div class="skill-level-fill" style="width:65%"></div></div>
-            </div>
-
-            <div class="skill-node" role="button" tabindex="0" data-skill="Git">
-              <span class="skill-icon">📦</span>
-              <span class="skill-name">Git</span>
-              <div class="skill-level"><div class="skill-level-fill" style="width:95%"></div></div>
-            </div>
-
-            <div class="skill-node" role="button" tabindex="0" data-skill="CSS">
-              <span class="skill-icon">🎨</span>
-              <span class="skill-name">CSS</span>
-              <div class="skill-level"><div class="skill-level-fill" style="width:90%"></div></div>
-            </div>
-
+          <div class="skill-slot" role="button" tabindex="0">
+            <div class="reticle" aria-hidden="true"></div>
+            <span class="skill-slot-icon">⚛️</span>
+            <span class="skill-slot-name">REACT.JS</span>
+            <div class="skill-bar"><span>PROFICIENCY</span><div class="skill-bar-track"><div class="skill-bar-fill" style="width:90%"></div></div><span>90%</span></div>
+            <span class="skill-status">COMBAT READY</span>
           </div>
+
+          <div class="skill-slot" role="button" tabindex="0">
+            <div class="reticle" aria-hidden="true"></div>
+            <span class="skill-slot-icon">🔺</span>
+            <span class="skill-slot-name">THREE.JS</span>
+            <div class="skill-bar"><span>PROFICIENCY</span><div class="skill-bar-track"><div class="skill-bar-fill" style="width:82%"></div></div><span>82%</span></div>
+            <span class="skill-status">COMBAT READY</span>
+          </div>
+
+          <div class="skill-slot" role="button" tabindex="0">
+            <div class="reticle" aria-hidden="true"></div>
+            <span class="skill-slot-icon">📘</span>
+            <span class="skill-slot-name">TYPESCRIPT</span>
+            <div class="skill-bar"><span>PROFICIENCY</span><div class="skill-bar-track"><div class="skill-bar-fill" style="width:87%"></div></div><span>87%</span></div>
+            <span class="skill-status">COMBAT READY</span>
+          </div>
+
+          <div class="skill-slot" role="button" tabindex="0">
+            <div class="reticle" aria-hidden="true"></div>
+            <span class="skill-slot-icon">🟢</span>
+            <span class="skill-slot-name">NODE.JS</span>
+            <div class="skill-bar"><span>PROFICIENCY</span><div class="skill-bar-track"><div class="skill-bar-fill" style="width:88%"></div></div><span>88%</span></div>
+            <span class="skill-status">FIELD TESTED</span>
+          </div>
+
+          <!-- SECONDARY -->
+          <div class="category-divider"><span>SECONDARY</span></div>
+
+          <div class="skill-slot" role="button" tabindex="0">
+            <div class="reticle" aria-hidden="true"></div>
+            <span class="skill-slot-icon">🐍</span>
+            <span class="skill-slot-name">PYTHON</span>
+            <div class="skill-bar"><span>PROFICIENCY</span><div class="skill-bar-track"><div class="skill-bar-fill" style="width:92%"></div></div><span>92%</span></div>
+            <span class="skill-status">COMBAT READY</span>
+          </div>
+
+          <div class="skill-slot" role="button" tabindex="0">
+            <div class="reticle" aria-hidden="true"></div>
+            <span class="skill-slot-icon">🔥</span>
+            <span class="skill-slot-name">PYTORCH</span>
+            <div class="skill-bar"><span>PROFICIENCY</span><div class="skill-bar-track"><div class="skill-bar-fill" style="width:76%"></div></div><span>76%</span></div>
+            <span class="skill-status">FIELD TESTED</span>
+          </div>
+
+          <div class="skill-slot" role="button" tabindex="0">
+            <div class="reticle" aria-hidden="true"></div>
+            <span class="skill-slot-icon">🧠</span>
+            <span class="skill-slot-name">TENSORFLOW</span>
+            <div class="skill-bar"><span>PROFICIENCY</span><div class="skill-bar-track"><div class="skill-bar-fill" style="width:72%"></div></div><span>72%</span></div>
+            <span class="skill-status">FIELD TESTED</span>
+          </div>
+
+          <div class="skill-slot" role="button" tabindex="0">
+            <div class="reticle" aria-hidden="true"></div>
+            <span class="skill-slot-icon">🌐</span>
+            <span class="skill-slot-name">WEBGL / GLSL</span>
+            <div class="skill-bar"><span>PROFICIENCY</span><div class="skill-bar-track"><div class="skill-bar-fill" style="width:70%"></div></div><span>70%</span></div>
+            <span class="skill-status">PROTOTYPE</span>
+          </div>
+
+          <!-- TACTICAL -->
+          <div class="category-divider"><span>TACTICAL</span></div>
+
+          <div class="skill-slot" role="button" tabindex="0">
+            <div class="reticle" aria-hidden="true"></div>
+            <span class="skill-slot-icon">🐳</span>
+            <span class="skill-slot-name">DOCKER</span>
+            <div class="skill-bar"><span>PROFICIENCY</span><div class="skill-bar-track"><div class="skill-bar-fill" style="width:68%"></div></div><span>68%</span></div>
+            <span class="skill-status">FIELD TESTED</span>
+          </div>
+
+          <div class="skill-slot" role="button" tabindex="0">
+            <div class="reticle" aria-hidden="true"></div>
+            <span class="skill-slot-icon">📦</span>
+            <span class="skill-slot-name">GIT</span>
+            <div class="skill-bar"><span>PROFICIENCY</span><div class="skill-bar-track"><div class="skill-bar-fill" style="width:95%"></div></div><span>95%</span></div>
+            <span class="skill-status">COMBAT READY</span>
+          </div>
+
+          <div class="skill-slot" role="button" tabindex="0">
+            <div class="reticle" aria-hidden="true"></div>
+            <span class="skill-slot-icon">🎬</span>
+            <span class="skill-slot-name">GSAP</span>
+            <div class="skill-bar"><span>PROFICIENCY</span><div class="skill-bar-track"><div class="skill-bar-fill" style="width:84%"></div></div><span>84%</span></div>
+            <span class="skill-status">COMBAT READY</span>
+          </div>
+
+          <div class="skill-slot" role="button" tabindex="0">
+            <div class="reticle" aria-hidden="true"></div>
+            <span class="skill-slot-icon">🎨</span>
+            <span class="skill-slot-name">CSS / SASS</span>
+            <div class="skill-bar"><span>PROFICIENCY</span><div class="skill-bar-track"><div class="skill-bar-fill" style="width:92%"></div></div><span>92%</span></div>
+            <span class="skill-status">COMBAT READY</span>
+          </div>
+
         </div>
       </div>
     </section>
 
     <!-- ═══════════════ PROJECTS ═══════════════ -->
-    <section id="projects" aria-label="Featured projects">
+    <section id="projects" aria-label="Projects">
       <div class="container">
-        <div class="section-label">PROJECTS //</div>
-        <div class="jp-watermark" style="font-size:18vw; opacity:0.03;">創造</div>
-        <div class="projects-grid">
+        <div class="section-label">OPERATIONS ARCHIVE // MISSIONS</div>
+        <div class="projects-stack">
 
           <!-- Project 1 -->
-          <article class="project-card" role="button" tabindex="0">
-            <div class="terminal-header">
-              <span class="terminal-dot dot-red"></span>
-              <span class="terminal-dot dot-yellow"></span>
-              <span class="terminal-dot dot-green"></span>
-              <span class="terminal-title">pose-detection/</span>
-            </div>
-            <div class="project-card-inner">
-              <div class="project-code-pane">
-                <pre><span class="code-keyword">import</span> { PoseDetector } <span class="code-keyword">from</span> <span class="code-string">'@mediapipe/pose'</span>;
-<span class="code-keyword">import</span> { WebGLRenderer } <span class="code-keyword">from</span> <span class="code-string">'./renderer'</span>;
-
-<span class="code-keyword">const</span> <span class="code-function">PoseCanvas</span> = () => {
-  <span class="code-keyword">const</span> detector = <span class="code-function">usePoseDetector</span>({
-    model: <span class="code-string">'BlazePose'</span>,
-    runtime: <span class="code-string">'tfjs'</span>,
-    maxPoses: <span class="code-number">1</span>
-  });
-
-  <span class="code-keyword">return</span> &lt;<span class="code-function">Canvas</span>
-    onFrame={detector.<span class="code-function">detect</span>}
-    fps={<span class="code-number">30</span>}
-  /&gt;;
-};</pre>
+          <article class="project-card" tabindex="0">
+            <div class="project-inner">
+              <div class="project-brief">
+                <span class="project-code">OP-001</span>
+                <h3 class="project-objective">TalentSync — ML Matching Engine</h3>
+                <p style="max-width:45ch;">SBERT embeddings with XGBoost scoring. Hybrid inference pipeline for candidate-job matching. Batch vectorization achieves 12ms mean latency on edge hardware.</p>
+                <div class="project-tags">
+                  <span class="project-tag">Python</span>
+                  <span class="project-tag">XGBoost</span>
+                  <span class="project-tag">SBERT</span>
+                  <span class="project-tag">Flask</span>
+                  <span class="project-tag">React</span>
+                </div>
+                <span class="project-outcome">OUTCOME: 94.2% accuracy | 12ms latency | 10K+ users matched</span>
                 <div class="project-actions">
-                  <a href="#" class="btn" data-magnetic tabindex="0">View Source</a>
-                  <a href="#" class="btn" data-magnetic tabindex="0">Live Demo</a>
+                  <a href="#" class="btn" data-magnetic>VIEW SOURCE</a>
+                  <a href="#" class="btn" data-magnetic>LIVE DEMO</a>
                 </div>
               </div>
-              <div class="project-visual-pane">
-                <div style="width:100%;height:100%;background:linear-gradient(135deg, var(--midnight-blue), var(--dusk-purple));display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);color:var(--muted-indigo);font-size:var(--text-xs);">
-                  [ project visual ]
+              <div class="project-visual">
+                <div class="project-scan" aria-hidden="true"></div>
+                <div class="project-visual-inner" style="background:linear-gradient(135deg, var(--panel-bg), var(--steel-gray));">
+                  [ CLASSIFIED // VISUAL FEED ]
                 </div>
               </div>
-            </div>
-            <div class="project-status-bar">
-              <span class="status-branch">⎇ main</span>
-              <span class="status-tag">React</span>
-              <span class="status-tag">TF.js</span>
-              <span>2.4KB</span>
-              <span>Ln 42, Col 8</span>
             </div>
           </article>
 
           <!-- Project 2 -->
-          <article class="project-card" role="button" tabindex="0">
-            <div class="terminal-header">
-              <span class="terminal-dot dot-red"></span>
-              <span class="terminal-dot dot-yellow"></span>
-              <span class="terminal-dot dot-green"></span>
-              <span class="terminal-title">talent-sync/</span>
-            </div>
-            <div class="project-card-inner">
-              <div class="project-code-pane">
-                <pre><span class="code-keyword">from</span> sentence_transformers <span class="code-keyword">import</span> SentenceTransformer
-<span class="code-keyword">import</span> xgboost <span class="code-keyword">as</span> xgb
-
-<span class="code-keyword">class</span> <span class="code-function">MatchEngine</span>:
-    <span class="code-keyword">def</span> <span class="code-function">__init__</span>(self):
-        self.encoder = <span class="code-function">SentenceTransformer</span>(
-            <span class="code-string">'all-MiniLM-L6-v2'</span>
-        )
-        self.scorer = xgb.<span class="code-function">XGBClassifier</span>(
-            scale_pos_weight=<span class="code-number">3.5</span>
-        )
-
-    <span class="code-keyword">def</span> <span class="code-function">match</span>(self, candidate, jobs):
-        <span class="code-keyword">return</span> self.<span class="code-function">rank</span>(candidate, jobs)</pre>
+          <article class="project-card" tabindex="0">
+            <div class="project-inner">
+              <div class="project-brief">
+                <span class="project-code">OP-002</span>
+                <h3 class="project-objective">Shader Garden — Generative GLSL Art</h3>
+                <p style="max-width:45ch;">Real-time fragment shader system generating organic noise patterns. FBM-based terrain with 12 controllable parameters. Runs at 60fps on integrated graphics.</p>
+                <div class="project-tags">
+                  <span class="project-tag">GLSL</span>
+                  <span class="project-tag">Three.js</span>
+                  <span class="project-tag">WebGL</span>
+                  <span class="project-tag">dat.GUI</span>
+                </div>
+                <span class="project-outcome">OUTCOME: 60fps on integrated GPU | 12 params | 1.8KB shader</span>
                 <div class="project-actions">
-                  <a href="#" class="btn" data-magnetic tabindex="0">View Source</a>
-                  <a href="#" class="btn" data-magnetic tabindex="0">Live Demo</a>
+                  <a href="#" class="btn" data-magnetic>VIEW SOURCE</a>
+                  <a href="#" class="btn" data-magnetic>LIVE DEMO</a>
                 </div>
               </div>
-              <div class="project-visual-pane">
-                <div style="width:100%;height:100%;background:linear-gradient(135deg, var(--circuit-gray), var(--forest-green));display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);color:var(--muted-indigo);font-size:var(--text-xs);">
-                  [ project visual ]
+              <div class="project-visual">
+                <div class="project-scan" aria-hidden="true"></div>
+                <div class="project-visual-inner" style="background:linear-gradient(135deg, var(--deep-space), #1a0a2e);">
+                  [ CLASSIFIED // VISUAL FEED ]
                 </div>
               </div>
-            </div>
-            <div class="project-status-bar">
-              <span class="status-branch">⎇ main</span>
-              <span class="status-tag">Python</span>
-              <span class="status-tag">XGBoost</span>
-              <span>4.1KB</span>
-              <span>Ln 28, Col 4</span>
             </div>
           </article>
 
           <!-- Project 3 -->
-          <article class="project-card" role="button" tabindex="0">
-            <div class="terminal-header">
-              <span class="terminal-dot dot-red"></span>
-              <span class="terminal-dot dot-yellow"></span>
-              <span class="terminal-dot dot-green"></span>
-              <span class="terminal-title">shader-garden/</span>
-            </div>
-            <div class="project-card-inner">
-              <div class="project-code-pane">
-                <pre><span class="code-comment">// GLSL Fragment Shader</span>
-<span class="code-keyword">uniform</span> float uTime;
-<span class="code-keyword">uniform</span> vec2 uResolution;
-<span class="code-keyword">varying</span> vec2 vUv;
-
-<span class="code-keyword">float</span> <span class="code-function">fbm</span>(vec2 p) {
-  <span class="code-keyword">float</span> v = <span class="code-number">0.0</span>;
-  <span class="code-keyword">float</span> a = <span class="code-number">0.5</span>;
-  <span class="code-keyword">for</span>(int i=<span class="code-number">0</span>; i&lt;<span class="code-number">5</span>; i++) {
-    v += a * <span class="code-function">noise</span>(p);
-    p *= <span class="code-number">2.0</span>;
-    a *= <span class="code-number">0.5</span>;
-  }
-  <span class="code-keyword">return</span> v;
-}</pre>
+          <article class="project-card" tabindex="0">
+            <div class="project-inner">
+              <div class="project-brief">
+                <span class="project-code">OP-003</span>
+                <h3 class="project-objective">Pose Detection — BlazePose Pipeline</h3>
+                <p style="max-width:45ch;">Webcam-to-skeleton mapping using MediaPipe BlazePose. 33 keypoints rendered at 30fps via WebGL overlay. Edge-compatible with TensorFlow.js quantized models.</p>
+                <div class="project-tags">
+                  <span class="project-tag">React</span>
+                  <span class="project-tag">TF.js</span>
+                  <span class="project-tag">MediaPipe</span>
+                  <span class="project-tag">WebGL</span>
+                </div>
+                <span class="project-outcome">OUTCOME: 30fps | 33 keypoints | 18ms inference</span>
                 <div class="project-actions">
-                  <a href="#" class="btn" data-magnetic tabindex="0">View Source</a>
-                  <a href="#" class="btn" data-magnetic tabindex="0">Live Demo</a>
+                  <a href="#" class="btn" data-magnetic>VIEW SOURCE</a>
+                  <a href="#" class="btn" data-magnetic>LIVE DEMO</a>
                 </div>
               </div>
-              <div class="project-visual-pane">
-                <div style="width:100%;height:100%;background:linear-gradient(135deg, var(--deep-charcoal), var(--dusk-purple));display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);color:var(--muted-indigo);font-size:var(--text-xs);">
-                  [ project visual ]
+              <div class="project-visual">
+                <div class="project-scan" aria-hidden="true"></div>
+                <div class="project-visual-inner" style="background:linear-gradient(135deg, var(--panel-bg), #0a1a1a);">
+                  [ CLASSIFIED // VISUAL FEED ]
                 </div>
               </div>
-            </div>
-            <div class="project-status-bar">
-              <span class="status-branch">⎇ main</span>
-              <span class="status-tag">GLSL</span>
-              <span class="status-tag">Three.js</span>
-              <span>1.8KB</span>
-              <span>Ln 18, Col 2</span>
             </div>
           </article>
 
@@ -494,82 +556,67 @@
 
     <!-- ═══════════════ CONTACT ═══════════════ -->
     <section id="contact" aria-label="Contact">
-      <canvas id="sakura-contact" class="sakura-canvas" aria-hidden="true"></canvas>
-      <div class="jp-watermark" style="font-size:18vw; opacity:0.03;">未来</div>
-
       <div class="container">
         <h2 class="contact-heading">
-          <span class="word">Let's</span>
-          <span class="word">build</span>
-          <span class="word">something</span>
-          <span class="word">that</span>
-          <span class="word">matters.</span>
+          <span class="word">TRANSMIT</span>
+          <span class="word">COORDINATES.</span>
         </h2>
 
-        <div class="contact-terminal terminal-window">
-          <div class="terminal-header">
-            <span class="terminal-dot dot-red"></span>
-            <span class="terminal-dot dot-yellow"></span>
-            <span class="terminal-dot dot-green"></span>
-            <span class="terminal-title">transmit.sh</span>
-          </div>
-          <div class="terminal-body">
-            <span class="code-keyword">$</span> ssh hello@yourdomain.com<br>
-            <span class="code-string">&gt; Connection established...</span><br>
-            <span class="code-string">&gt; Waiting for your message...</span><br><br>
-
-            <form id="contact-form" action="https://formsubmit.co/your@email.com" method="POST">
-              <div class="form-row">
-                <label class="form-label" for="name">[name]</label>
-                <input class="form-input" type="text" id="name" name="name" placeholder="_" required>
-              </div>
-              <div class="form-row">
-                <label class="form-label" for="email">[email]</label>
-                <input class="form-input" type="email" id="email" name="email" placeholder="_" required>
-              </div>
-              <div class="form-row">
-                <label class="form-label" for="message">[message]</label>
-                <textarea class="form-input" id="message" name="message" placeholder="_" required></textarea>
-              </div>
-              <br>
-              <span class="code-comment">&gt; Press ENTER to transmit</span><br>
-              <button type="submit" class="btn submit-btn" data-magnetic>[ transmit ]</button>
-            </form>
-          </div>
+        <div class="contact-form-wrap">
+          <form id="contact-form" action="https://formsubmit.co/your@email.com" method="POST">
+            <div class="form-row">
+              <label class="form-prefix" for="c-name">CALL&gt;</label>
+              <input class="form-input" type="text" id="c-name" name="name" placeholder="Callsign" required>
+            </div>
+            <div class="form-row">
+              <label class="form-prefix" for="c-email">FREQ&gt;</label>
+              <input class="form-input" type="email" id="c-email" name="email" placeholder="Frequency (email)" required>
+            </div>
+            <div class="form-row">
+              <label class="form-prefix" for="c-msg">MSG&gt;</label>
+              <textarea class="form-input" id="c-msg" name="message" placeholder="Message payload" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-hazard" data-magnetic>TRANSMIT</button>
+          </form>
         </div>
 
-        <div class="social-links">
-          <a href="#" class="social-link magnetic-wrap" data-magnetic>GitHub</a>
-          <a href="#" class="social-link magnetic-wrap" data-magnetic>LinkedIn</a>
-          <a href="#" class="social-link magnetic-wrap" data-magnetic>Twitter</a>
-          <a href="mailto:hello@yourdomain.com" class="social-link magnetic-wrap" data-magnetic>Email</a>
+        <div class="signal-bars" aria-hidden="true">
+          <div class="signal-bar" style="height:8px" data-max-height="18"></div>
+          <div class="signal-bar" style="height:14px" data-max-height="22"></div>
+          <div class="signal-bar" style="height:10px" data-max-height="26"></div>
+          <div class="signal-bar" style="height:20px" data-max-height="30"></div>
+          <div class="signal-bar" style="height:16px" data-max-height="28"></div>
+        </div>
+
+        <div class="relay-stations">
+          <a href="#" class="relay-link" data-magnetic>GITHUB</a>
+          <a href="#" class="relay-link" data-magnetic>LINKEDIN</a>
+          <a href="#" class="relay-link" data-magnetic>TWITTER</a>
+          <a href="mailto:hello@yourdomain.com" class="relay-link" data-magnetic>EMAIL</a>
         </div>
       </div>
     </section>
 
   </main>
 
-  <!-- Footer -->
-  <footer class="footer-outro">
-    <p class="footer-text">Built with vanilla JS, Three.js, and GSAP. No frameworks. No excuses. <a href="#">View Source</a></p>
+  <footer class="footer-bar">
+    <span>NEURAL ENGINEER OS v4.2 // BUILT WITH VANILLA JS, THREE.JS, GSAP // NO FRAMEWORKS</span>
   </footer>
 
   <!-- ═══════════════ SCRIPTS ═══════════════ -->
-  <!-- Three.js -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-  <!-- GSAP + Plugins -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/Flip.min.js"></script>
-  <!-- Lenis Smooth Scroll -->
   <script src="https://unpkg.com/lenis@1.0.42/dist/lenis.min.js"></script>
 
-  <!-- App JS (order matters — dependencies first) -->
+  <script src="js/config.js"></script>
   <script src="js/utils.js"></script>
   <script src="js/three-scene.js"></script>
-  <script src="js/anime-effects.js"></script>
+  <script src="js/matrix-rain.js"></script>
   <script src="js/hero.js"></script>
   <script src="js/scroll-triggers.js"></script>
+  <script src="js/hud.js"></script>
   <script src="js/interactions.js"></script>
   <script src="js/main.js"></script>
 </body>

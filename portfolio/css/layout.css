@@ -1,0 +1,60 @@
+/* ═══════════════════════════════════════════════════════════════
+   layout.css — Grid System, Containers, Responsive Breakpoints
+   Neural Engineer Portfolio
+   ═══════════════════════════════════════════════════════════════ */
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 var(--space-4);
+}
+
+.grid-12 {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--space-4);
+}
+
+.grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-4);
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-5);
+  align-items: start;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.section-padding {
+  padding: var(--space-6) var(--space-4);
+}
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  .grid-4 { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+  .container { padding: 0 var(--space-3); }
+  .grid-2 { grid-template-columns: 1fr; gap: var(--space-4); }
+  .grid-4 { grid-template-columns: repeat(2, 1fr); }
+  .section-padding { padding: var(--space-5) var(--space-3); }
+}
+
+@media (max-width: 480px) {
+  .grid-4 { grid-template-columns: 1fr; }
+}

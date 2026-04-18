@@ -1,7 +1,7 @@
 /* ═══════════════════════════════════════════════════════════════
-   three-scene.js — WebGL Scene, Shader Background, Wireframe
-                    Icosahedron, Particles, Lighting, Parallax
-   Neural Earth Portfolio
+   three-scene.js — "The Signal" Avatar, Grid Floor, Particle
+                    Debris, Lighting, Mouse Parallax
+   Neural Engineer Portfolio
    ═══════════════════════════════════════════════════════════════ */
 
 function initThreeScene() {
@@ -13,204 +13,173 @@ function initThreeScene() {
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
   const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-  camera.position.z = 5;
+  const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+  camera.position.set(0, 0.5, 6);
 
+  const clock = new THREE.Clock();
   const heroGroup = new THREE.Group();
   scene.add(heroGroup);
 
-  const clock = new THREE.Clock();
+  /* ── "THE SIGNAL" — Particle Cloud Avatar ── */
+  const signalCount = isMobile() ? 800 : 2500;
+  const signalGeo = new THREE.BufferGeometry();
+  const signalPos = new Float32Array(signalCount * 3);
+  const signalBase = new Float32Array(signalCount * 3);
+  const signalFlicker = new Float32Array(signalCount);
 
-  /* ── Shader Background ── */
-  const bgUniforms = {
-    uTime: { value: 0 },
-    uMouse: { value: new THREE.Vector2(0.5, 0.5) },
-    uColor1: { value: new THREE.Color(0x0a0a0f) },
-    uColor2: { value: new THREE.Color(0x121428) },
-    uColor3: { value: new THREE.Color(0x2d6b6b) }
-  };
+  for (let i = 0; i < signalCount; i++) {
+    /* Head + shoulders silhouette using distance field */
+    let x, y, z, valid = false;
+    while (!valid) {
+      x = (Math.random() - 0.5) * 3;
+      y = (Math.random() - 0.5) * 4;
+      z = (Math.random() - 0.5) * 1.5;
 
-  const bgVertexShader = `
-    varying vec2 vUv;
-    void main() {
-      vUv = uv;
-      gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-    }
-  `;
+      /* Head: sphere at y=1.2 */
+      const headDist = Math.sqrt(x*x + (y-1.2)*(y-1.2) + z*z);
+      /* Torso: ellipsoid at y=-0.3 */
+      const torsoX = x / 1.2;
+      const torsoY = (y + 0.3) / 1.8;
+      const torsoZ = z / 0.6;
+      const torsoDist = Math.sqrt(torsoX*torsoX + torsoY*torsoY + torsoZ*torsoZ);
 
-  const bgFragmentShader = `
-    uniform float uTime;
-    uniform vec2 uMouse;
-    uniform vec3 uColor1;
-    uniform vec3 uColor2;
-    uniform vec3 uColor3;
-    varying vec2 vUv;
-
-    // Simplex-style noise
-    vec3 mod289(vec3 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
-    vec2 mod289(vec2 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
-    vec3 permute(vec3 x) { return mod289(((x * 34.0) + 1.0) * x); }
-
-    float snoise(vec2 v) {
-      const vec4 C = vec4(0.211324865405187, 0.366025403784439,
-                         -0.577350269189626, 0.024390243902439);
-      vec2 i = floor(v + dot(v, C.yy));
-      vec2 x0 = v - i + dot(i, C.xx);
-      vec2 i1 = (x0.x > x0.y) ? vec2(1.0, 0.0) : vec2(0.0, 1.0);
-      vec4 x12 = x0.xyxy + C.xxzz;
-      x12.xy -= i1;
-      i = mod289(i);
-      vec3 p = permute(permute(i.y + vec3(0.0, i1.y, 1.0)) + i.x + vec3(0.0, i1.x, 1.0));
-      vec3 m = max(0.5 - vec3(dot(x0,x0), dot(x12.xy,x12.xy), dot(x12.zw,x12.zw)), 0.0);
-      m = m * m;
-      m = m * m;
-      vec3 x = 2.0 * fract(p * C.www) - 1.0;
-      vec3 h = abs(x) - 0.5;
-      vec3 ox = floor(x + 0.5);
-      vec3 a0 = x - ox;
-      m *= 1.79284291400159 - 0.85373472095314 * (a0*a0 + h*h);
-      vec3 g;
-      g.x = a0.x * x0.x + h.x * x0.y;
-      g.yz = a0.yz * x12.xz + h.yz * x12.yw;
-      return 130.0 * dot(m, g);
+      if (headDist < 0.8 || torsoDist < 1.0) valid = true;
     }
 
-    float fbm(vec2 p) {
-      float value = 0.0;
-      float amplitude = 0.5;
-      for(int i = 0; i < 5; i++) {
-        value += amplitude * snoise(p);
-        p *= 2.0;
-        amplitude *= 0.5;
-      }
-      return value;
-    }
+    signalPos[i*3] = x;
+    signalPos[i*3+1] = y;
+    signalPos[i*3+2] = z;
+    signalBase[i*3] = x;
+    signalBase[i*3+1] = y;
+    signalBase[i*3+2] = z;
+    signalFlicker[i] = Math.random();
+  }
 
-    void main() {
-      vec2 p = vUv * 3.0;
-      float t = uTime * 0.15;
-      float n = fbm(p + vec2(t, t * 0.7));
-      float mouseInfluence = length(vUv - uMouse) * 0.3;
-      n += mouseInfluence * 0.2;
+  signalGeo.setAttribute('position', new THREE.BufferAttribute(signalPos, 3));
 
-      vec3 col = mix(uColor1, uColor2, smoothstep(-0.5, 0.5, n));
-      col = mix(col, uColor3, smoothstep(0.2, 0.8, n) * 0.3);
-
-      // Subtle center glow
-      float glow = 1.0 - length(vUv - vec2(0.5)) * 1.2;
-      col += uColor3 * glow * 0.08;
-
-      gl_FragColor = vec4(col, 1.0);
-    }
-  `;
-
-  const bgMaterial = new THREE.ShaderMaterial({
-    uniforms: bgUniforms,
-    vertexShader: bgVertexShader,
-    fragmentShader: bgFragmentShader
-  });
-  const bgMesh = new THREE.Mesh(new THREE.PlaneGeometry(20, 20), bgMaterial);
-  bgMesh.position.z = -2;
-  scene.add(bgMesh);
-
-  /* ── Wireframe Icosahedron ── */
-  const icoGeometry = new THREE.IcosahedronGeometry(1.8, 1);
-  const icoMaterial = new THREE.MeshStandardMaterial({
-    color: 0x2d6b6b,
-    emissive: 0x121428,
-    emissiveIntensity: 0.5,
-    wireframe: true,
+  const signalMat = new THREE.PointsMaterial({
+    size: 0.03,
+    color: 0x00f0ff,
     transparent: true,
-    opacity: 0.6,
-    roughness: 0.3,
-    metalness: 0.9
+    opacity: 0.7,
+    blending: THREE.AdditiveBlending,
+    depthWrite: false
   });
-  const icosahedron = new THREE.Mesh(icoGeometry, icoMaterial);
-  heroGroup.add(icosahedron);
 
-  /* ── Inner Core ── */
-  const coreGeometry = new THREE.IcosahedronGeometry(1.2, 0);
-  const coreMaterial = new THREE.MeshStandardMaterial({
-    color: 0x121428,
-    emissive: 0x2d6b6b,
-    emissiveIntensity: 0.3,
+  const signal = new THREE.Points(signalGeo, signalMat);
+  heroGroup.add(signal);
+
+  /* ── Grid Floor ── */
+  const gridGeo = new THREE.BufferGeometry();
+  const gridVerts = [];
+  const gridSize = 20;
+  const gridSpacing = 2;
+  for (let i = -gridSize; i <= gridSize; i += gridSpacing) {
+    gridVerts.push(-gridSize, -3, i, gridSize, -3, i);
+    gridVerts.push(i, -3, -gridSize, i, -3, gridSize);
+  }
+  gridGeo.setAttribute('position', new THREE.Float32BufferAttribute(gridVerts, 3));
+  const gridMat = new THREE.LineBasicMaterial({ color: 0x00f0ff, transparent: true, opacity: 0.06 });
+  scene.add(new THREE.LineSegments(gridGeo, gridMat));
+
+  /* ── Particle Debris ── */
+  const debrisCount = isMobile() ? 50 : 200;
+  const debrisGeo = new THREE.BufferGeometry();
+  const debrisPos = new Float32Array(debrisCount * 3);
+  for (let i = 0; i < debrisCount * 3; i++) {
+    debrisPos[i] = (Math.random() - 0.5) * 30;
+  }
+  debrisGeo.setAttribute('position', new THREE.BufferAttribute(debrisPos, 3));
+  const debrisMat = new THREE.PointsMaterial({
+    size: 0.04,
+    color: 0x1a1d2e,
+    transparent: true,
+    opacity: 0.5
+  });
+  const debris = new THREE.Points(debrisGeo, debrisMat);
+  scene.add(debris);
+
+  /* ── Ambient Dust ── */
+  const dustGeo = new THREE.BufferGeometry();
+  const dustPos = new Float32Array(50 * 3);
+  for (let i = 0; i < 50 * 3; i++) {
+    dustPos[i] = (Math.random() - 0.5) * 10;
+  }
+  dustGeo.setAttribute('position', new THREE.BufferAttribute(dustPos, 3));
+  const dustMat = new THREE.PointsMaterial({
+    size: 0.015,
+    color: 0x00f0ff,
     transparent: true,
     opacity: 0.3,
-    roughness: 0.1,
-    metalness: 0.8
-  });
-  const core = new THREE.Mesh(coreGeometry, coreMaterial);
-  heroGroup.add(core);
-
-  /* ── Particles ── */
-  const particleCount = isMobile() ? 100 : 300;
-  const pGeometry = new THREE.BufferGeometry();
-  const pPositions = new Float32Array(particleCount * 3);
-  for (let i = 0; i < particleCount * 3; i++) {
-    pPositions[i] = (Math.random() - 0.5) * 15;
-  }
-  pGeometry.setAttribute('position', new THREE.BufferAttribute(pPositions, 3));
-  const pMaterial = new THREE.PointsMaterial({
-    size: 0.02,
-    color: 0xe0f2f1,
-    transparent: true,
-    opacity: 0.6,
     blending: THREE.AdditiveBlending
   });
-  const particles = new THREE.Points(pGeometry, pMaterial);
-  scene.add(particles);
+  scene.add(new THREE.Points(dustGeo, dustMat));
 
   /* ── Lighting ── */
-  scene.add(new THREE.AmbientLight(0x2d6b6b, 1));
-  const warmLight = new THREE.PointLight(0xff6b35, 1.5, 20);
-  warmLight.position.set(5, 5, 5);
-  scene.add(warmLight);
-  const coolLight = new THREE.PointLight(0x00d4ff, 1, 20);
-  coolLight.position.set(-5, -5, 5);
-  scene.add(coolLight);
+  scene.add(new THREE.AmbientLight(0x1a1d2e, 2));
+  const keyLight = new THREE.PointLight(0x00f0ff, 1, 20);
+  keyLight.position.set(3, 3, 5);
+  scene.add(keyLight);
+  const fillLight = new THREE.PointLight(0xffaa00, 0.3, 20);
+  fillLight.position.set(-3, -2, 3);
+  scene.add(fillLight);
 
   /* ── Mouse Tracking ── */
-  const mouse = { x: 0, y: 0, targetX: 0, targetY: 0 };
+  const mouse = { x: 0, y: 0, tx: 0, ty: 0 };
   window.addEventListener('mousemove', (e) => {
-    mouse.targetX = (e.clientX / window.innerWidth) * 2 - 1;
-    mouse.targetY = -(e.clientY / window.innerHeight) * 2 + 1;
+    mouse.tx = (e.clientX / window.innerWidth) * 2 - 1;
+    mouse.ty = -(e.clientY / window.innerHeight) * 2 + 1;
   });
 
-  /* ── Pause off-screen ── */
-  let isVisible = true;
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => { isVisible = entry.isIntersecting; });
+  /* ── Visibility ── */
+  let visible = true;
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { visible = e.isIntersecting; });
   }, { threshold: 0 });
-  const heroSection = document.getElementById('hero');
-  if (heroSection) observer.observe(heroSection);
+  const hero = document.getElementById('hero');
+  if (hero) obs.observe(hero);
 
-  /* ── Animation Loop ── */
+  /* ── Animate ── */
   function animate() {
     requestAnimationFrame(animate);
-    if (!isVisible) return;
+    if (!visible) return;
 
-    const time = clock.getElapsedTime();
+    const t = clock.getElapsedTime();
+    mouse.x = lerp(mouse.x, mouse.tx, 0.05);
+    mouse.y = lerp(mouse.y, mouse.ty, 0.05);
 
-    bgUniforms.uTime.value = time;
-    mouse.x = lerp(mouse.x, mouse.targetX, 0.05);
-    mouse.y = lerp(mouse.y, mouse.targetY, 0.05);
-    bgUniforms.uMouse.value.set(
-      (mouse.x + 1) * 0.5,
-      (mouse.y + 1) * 0.5
-    );
+    /* Rotate avatar */
+    heroGroup.rotation.y = t * 0.1 + mouse.x * 0.3;
+    heroGroup.rotation.x = mouse.y * 0.15;
 
-    heroGroup.rotation.x = lerp(heroGroup.rotation.x, mouse.y * 0.3, 0.05);
-    heroGroup.rotation.y = lerp(heroGroup.rotation.y, mouse.x * 0.3, 0.05);
+    /* Particle flicker + mouse repulsion */
+    const pos = signal.geometry.attributes.position.array;
+    for (let i = 0; i < signalCount; i++) {
+      const ix = i * 3, iy = i * 3 + 1, iz = i * 3 + 2;
 
-    icosahedron.rotation.x = time * 0.2;
-    icosahedron.rotation.y = time * 0.3;
-    const s = 1 + Math.sin(time * 2) * 0.02;
-    icosahedron.scale.set(s, s, s);
+      /* Flicker */
+      signalFlicker[i] += 0.01;
+      const flick = Math.sin(signalFlicker[i] * 3 + i) > 0.95 ? 0 : 1;
 
-    core.rotation.x = time * 0.15;
-    core.rotation.y = time * 0.25;
+      /* Mouse repulsion */
+      const dx = signalBase[ix] - mouse.x * 2;
+      const dy = signalBase[iy] - mouse.y * 2;
+      const dist = Math.sqrt(dx*dx + dy*dy);
 
-    particles.rotation.y = time * 0.05;
+      if (dist < 1.5) {
+        const force = (1.5 - dist) * 0.3;
+        pos[ix] = signalBase[ix] + dx * force * flick;
+        pos[iy] = signalBase[iy] + dy * force * flick;
+      } else {
+        pos[ix] = lerp(pos[ix], signalBase[ix] * flick, 0.03);
+        pos[iy] = lerp(pos[iy], signalBase[iy] * flick, 0.03);
+      }
+      pos[iz] = signalBase[iz];
+    }
+    signal.geometry.attributes.position.needsUpdate = true;
+
+    /* Debris drift */
+    debris.rotation.y = t * 0.02;
 
     renderer.render(scene, camera);
   }
@@ -228,6 +197,5 @@ function initThreeScene() {
     renderer.setSize(window.innerWidth, window.innerHeight);
   }, 100));
 
-  /* expose for Konami code */
-  window._threeScene = { icoMaterial, coreMaterial, pMaterial };
+  window._threeScene = { signalMat, signal };
 }

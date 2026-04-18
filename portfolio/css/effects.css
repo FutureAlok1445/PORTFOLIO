@@ -1,0 +1,149 @@
+/* ═══════════════════════════════════════════════════════════════
+   effects.css — Glitch, Scanlines, Matrix Rain, Hover States
+   Neural Engineer Portfolio
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── GLITCH CHROMATIC ABERRATION ── */
+@keyframes glitchText {
+  0% { text-shadow: -2px 0 var(--alert-red), 2px 0 var(--phosphor-teal); }
+  25% { text-shadow: 2px 0 var(--alert-red), -2px 0 var(--phosphor-teal); }
+  50% { text-shadow: -1px 1px var(--alert-red), 1px -1px var(--phosphor-teal); }
+  75% { text-shadow: 1px -1px var(--alert-red), -1px 1px var(--phosphor-teal); }
+  100% { text-shadow: none; }
+}
+
+.glitch-reveal {
+  animation: glitchText 0.15s ease;
+}
+
+/* ── Matrix Rain Canvas ── */
+#matrix-canvas {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.08;
+}
+
+/* ── HUD OVERLAY ── */
+.hud-overlay {
+  position: fixed;
+  z-index: 9990;
+  pointer-events: none;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--phosphor-teal);
+  opacity: 0.3;
+  letter-spacing: 0.05em;
+  font-variant-numeric: tabular-nums;
+  transition: opacity 0.3s;
+}
+
+.hud-overlay:hover {
+  opacity: 0.8;
+  pointer-events: auto;
+}
+
+.hud-tl { top: 16px; left: 16px; }
+.hud-tr { top: 16px; right: 16px; text-align: right; }
+.hud-bl { bottom: 16px; left: 16px; }
+.hud-br { bottom: 16px; right: 16px; text-align: right; }
+
+/* ── SCROLL PROGRESS (vertical fuel gauge) ── */
+.scroll-progress {
+  position: fixed;
+  bottom: 16px;
+  left: 16px;
+  width: 2px;
+  height: 80px;
+  background: var(--steel-gray);
+  z-index: 9990;
+  pointer-events: none;
+}
+
+.scroll-progress-fill {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: var(--phosphor-teal);
+  transition: height 0.1s;
+}
+
+/* ── SECTION TRANSITION SCAN ── */
+.section-scan {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--phosphor-teal);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 20;
+}
+
+/* ── HOVER: LIFT & GLOW ── */
+.hover-lift {
+  transition: transform 0.3s var(--ease-snap), box-shadow 0.3s;
+}
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+}
+
+/* ── LINK UNDERLINE ── */
+.link-underline {
+  position: relative;
+}
+.link-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--phosphor-teal);
+  transition: width 0.4s;
+}
+.link-underline:hover::after { width: 100%; }
+
+/* ── RIPPLE CANVAS ── */
+.ripple-canvas {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 998;
+}
+
+/* ── TARGETING RETICLE (skill hover) ── */
+.reticle {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.reticle::before,
+.reticle::after {
+  content: '';
+  position: absolute;
+  background: var(--phosphor-teal);
+}
+
+.reticle::before {
+  width: 1px;
+  height: 100%;
+  left: 50%;
+  opacity: 0.2;
+}
+
+.reticle::after {
+  height: 1px;
+  width: 100%;
+  top: 50%;
+  opacity: 0.2;
+}
+
+.skill-slot:hover .reticle {
+  opacity: 1;
+}
