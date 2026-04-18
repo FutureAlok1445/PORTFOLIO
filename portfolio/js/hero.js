@@ -1,156 +1,166 @@
-import { EASE, lerp, initGSAPDefaults } from './utils.js';
+/* ═══════════════════════════════════════════════════════════════
+   hero.js — Boot Sequence, Text Scramble, Typewriter, Scroll CTA
+   Neural Earth Portfolio
+   ═══════════════════════════════════════════════════════════════ */
 
-document.addEventListener('DOMContentLoaded', () => {
-    // Initialize GSAP & Plugins
-    initGSAPDefaults();
-    if (typeof gsap !== 'undefined') {
-        if (typeof TextPlugin !== 'undefined') gsap.registerPlugin(TextPlugin);
-    }
+function initBootSequence() {
+  const bootScreen = document.getElementById('boot-sequence');
+  if (!bootScreen) { initHeroAnimations(); return; }
 
-    // Elements
-    const bootScreen = document.getElementById('boot-screen');
-    const bootContent = document.querySelector('.boot-content');
-    const bootLines = document.querySelectorAll('.boot-line');
+  const lines = bootScreen.querySelectorAll('.boot-line');
+  const progressFill = bootScreen.querySelector('.progress-fill');
 
-    const heroName = document.getElementById('hero-name');
-    const heroTagline = document.getElementById('hero-tagline');
-    const heroTerminal = document.getElementById('hero-terminal');
-    const scrollIndicator = document.querySelector('.scroll-indicator');
-    
-    // Parallax elements
-    const heroBg = document.querySelector('.hero-bg');
-    const splineContainer = document.getElementById('spline-container');
-    const mathSymbols = document.querySelectorAll('.symbol');
+  if (prefersReducedMotion()) {
+    lines.forEach(l => l.style.opacity = 1);
+    if (progressFill) progressFill.style.width = '100%';
+    bootScreen.style.display = 'none';
+    initHeroAnimations();
+    return;
+  }
 
-    // 1. Boot Sequence
-    // Hide text initially for typing effect
-    const bootTexts = Array.from(bootLines).map(line => {
-        const text = line.textContent;
-        line.textContent = '';
-        line.style.opacity = 1; // Unhide container, text is empty
-        return text;
-    });
-
-    let bootTl = gsap.timeline({
+  const tl = gsap.timeline({
+    onComplete: () => {
+      bootScreen.classList.add('glitch-out');
+      gsap.to(bootScreen, {
+        y: -50,
+        opacity: 0,
+        duration: 0.5,
+        delay: 0.2,
+        ease: EASE.snappy,
         onComplete: () => {
-            // Glitch effect triggers via CSS class on bootContent container
-            bootContent.classList.add('glitch-effect');
-            
-            // Wait 0.2s for glitch to finish, then fade & slide up
-            setTimeout(() => {
-                gsap.to(bootScreen, {
-                    y: "-100%",
-                    opacity: 0,
-                    duration: 0.8,
-                    ease: EASE.expo,
-                    onComplete: () => {
-                        bootScreen.style.display = 'none';
-                        initHero(); // Execute Hero Sequence
-                    }
-                });
-            }, 200);
+          bootScreen.style.display = 'none';
+          initHeroAnimations();
         }
+      });
+    }
+  });
+
+  tl.to(lines, {
+    opacity: 1,
+    stagger: 0.2,
+    duration: 0.1,
+    ease: 'none'
+  });
+
+  if (progressFill) {
+    tl.to(progressFill, {
+      width: '100%',
+      duration: 0.8,
+      ease: EASE.snappy
+    }, '-=0.3');
+  }
+
+  tl.to({}, { duration: 0.3 });
+}
+
+function initHeroAnimations() {
+  const heroName = document.getElementById('hero-name');
+  const heroTagline = document.getElementById('hero-tagline');
+  const heroTerminal = document.getElementById('hero-terminal');
+  const scrollIndicator = document.getElementById('scroll-indicator');
+
+  if (prefersReducedMotion()) {
+    if (heroName) heroName.textContent = CONFIG.name;
+    if (heroTagline) heroTagline.textContent = CONFIG.tagline;
+    if (heroTerminal) heroTerminal.textContent = '> ' + CONFIG.terminalLine;
+    if (scrollIndicator) scrollIndicator.style.opacity = 1;
+    return;
+  }
+
+  /* Matrix Text Scramble */
+  if (heroName) {
+    const finalText = CONFIG.name;
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%&*';
+    let iterations = 0;
+
+    const scramble = setInterval(() => {
+      heroName.textContent = finalText
+        .split('')
+        .map((char, index) => {
+          if (index < iterations) return finalText[index];
+          if (char === ' ') return ' ';
+          return chars[Math.floor(Math.random() * chars.length)];
+        })
+        .join('');
+
+      iterations += 1 / 3;
+      if (iterations >= finalText.length) {
+        clearInterval(scramble);
+        heroName.textContent = finalText;
+        setTimeout(typeTagline, 300);
+      }
+    }, 30);
+  }
+
+  /* Typewriter — Tagline */
+  function typeTagline() {
+    if (!heroTagline) { typeTerminal(); return; }
+    const finalText = CONFIG.tagline;
+    let i = 0;
+    heroTagline.textContent = '';
+
+    const interval = setInterval(() => {
+      heroTagline.innerHTML = finalText.substring(0, i) + '<span class="cursor-blink"></span>';
+      i++;
+      if (i > finalText.length) {
+        clearInterval(interval);
+        heroTagline.textContent = finalText;
+        setTimeout(typeTerminal, 400);
+      }
+    }, 40);
+  }
+
+  /* Typewriter — Terminal Line */
+  function typeTerminal() {
+    if (!heroTerminal) { revealScroll(); return; }
+    const prefix = '> ';
+    const finalText = CONFIG.terminalLine;
+    let i = 0;
+    heroTerminal.textContent = prefix;
+
+    const interval = setInterval(() => {
+      heroTerminal.innerHTML = prefix + finalText.substring(0, i) + '<span class="cursor-blink"></span>';
+      i++;
+      if (i > finalText.length) {
+        clearInterval(interval);
+        heroTerminal.innerHTML = prefix + finalText + '<span class="cursor-blink"></span>';
+        revealScroll();
+      }
+    }, 25);
+  }
+
+  /* Scroll Indicator */
+  function revealScroll() {
+    if (scrollIndicator) {
+      gsap.to(scrollIndicator, { opacity: 1, duration: 1, delay: 0.5, ease: EASE.smooth });
+    }
+  }
+}
+
+function initHeroInteractions() {
+  const hero = document.getElementById('hero');
+  if (!hero || isMobile()) return;
+
+  hero.addEventListener('click', (e) => {
+    const ripple = document.createElement('div');
+    ripple.style.cssText = `
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid var(--ocean-teal);
+      pointer-events: none;
+      left: ${e.offsetX}px;
+      top: ${e.offsetY}px;
+      width: 0; height: 0;
+      transform: translate(-50%, -50%);
+      opacity: 0.4;
+    `;
+    hero.appendChild(ripple);
+    gsap.to(ripple, {
+      width: 100, height: 100,
+      opacity: 0,
+      duration: 0.6,
+      ease: EASE.smooth,
+      onComplete: () => ripple.remove()
     });
-
-    // 5 lines, 200ms stagger, total duration 2s. 
-    // timeline: start times 0, 0.2, 0.4, 0.6, 0.8 
-    // last animation finishes at 2.0s so duration is 1.2s
-    bootTexts.forEach((text, i) => {
-        bootTl.to(bootLines[i], {
-            duration: 1.2,
-            text: { value: text, delimiter: "" },
-            ease: "none"
-        }, i * 0.2);
-    });
-
-    // 2. Hero Sequence
-    function initHero() {
-        // Starts 300ms after boot ends
-        let heroTl = gsap.timeline({ delay: 0.3 });
-
-        heroName.style.opacity = 1;
-        heroName.textContent = "";
-
-        // Determine if ScrambleTextPlugin is available
-        const hasScramble = typeof ScrambleTextPlugin !== 'undefined' || (gsap.plugins && gsap.plugins.ScrambleTextPlugin);
-
-        if (hasScramble) {
-            heroTl.to(heroName, {
-                duration: 2.5,
-                scrambleText: { text: "YOUR NAME", chars: "upperAndLowerCase", speed: 0.3 },
-                ease: "back.out(1.2)"
-            });
-        } else {
-            // Fallback typing effect
-            heroTl.to(heroName, {
-                duration: 2.5,
-                text: "YOUR NAME",
-                ease: "back.out(1.2)"
-            });
-        }
-
-        // Tagline typeout after name
-        heroTl.to(heroTagline, {
-            duration: 1.5,
-            text: 'Full-stack · Machine Learning · Frontend Architecture',
-            ease: "none"
-        });
-
-        // Terminal line typeout directly after or slightly overlapped
-        heroTl.to(heroTerminal, {
-            duration: 1.5,
-            text: '> location: "Earth" | stack: ["React","Three.js","PyTorch"] | status: "Available"',
-            ease: "none"
-        }, "-=0.5"); // Start bit earlier
-
-        initParallax();
-        initScrollIndicator();
-    }
-
-    // 3. Mouse Parallax
-    function initParallax() {
-        let mouseX = 0, mouseY = 0;
-        let targetX = 0, targetY = 0;
-
-        const windowHalfX = window.innerWidth / 2;
-        const windowHalfY = window.innerHeight / 2;
-
-        document.addEventListener('mousemove', (e) => {
-            mouseX = (e.clientX - windowHalfX);
-            mouseY = (e.clientY - windowHalfY);
-        });
-
-        const tick = () => {
-            targetX = lerp(targetX, mouseX, 0.15);
-            targetY = lerp(targetY, mouseY, 0.15);
-
-            // Max movement of roughly 15px at screen edges
-            const moveX = (targetX / windowHalfX) * 15;
-            const moveY = (targetY / windowHalfY) * 15;
-
-            // 3D Placeholder
-            gsap.set(splineContainer, { x: moveX, y: moveY });
-
-            // Floating Symbols (opposite direction)
-            gsap.set(mathSymbols, { x: -moveX * 0.8, y: -moveY * 0.8 });
-
-            // Background shift
-            gsap.set(heroBg, { x: -moveX * 0.2, y: -moveY * 0.2 });
-
-            requestAnimationFrame(tick);
-        };
-        tick();
-    }
-
-    // 4. Scroll Indicator Logic
-    function initScrollIndicator() {
-        // Fade out on first scroll
-        ScrollTrigger.create({
-            trigger: "#hero",
-            start: "top top",
-            end: "10% top",
-            onLeave: () => gsap.to(scrollIndicator, { opacity: 0, duration: 0.3 }),
-            onEnterBack: () => gsap.to(scrollIndicator, { opacity: 0.7, duration: 0.3 })
-        });
-    }
-});
+  });
+}

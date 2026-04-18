@@ -1,114 +1,124 @@
-/* ==========================================================================
-   Animations
-   ========================================================================== */
+/* ═══════════════════════════════════════════════════════════════
+   animations.css — Hover States, Transitions, Micro-Interactions
+   Neural Earth Portfolio
+   ═══════════════════════════════════════════════════════════════ */
 
-/* Glitch / Chromatic Aberration for Boot Screen */
-@keyframes chromaticGlitch {
-  0% {
-    text-shadow: 0.05em 0 0 rgba(255, 0, 0, 0.75), -0.025em -0.05em 0 rgba(0, 255, 0, 0.75), 0.025em 0.05em 0 rgba(0, 0, 255, 0.75);
-    transform: translate(0.01em, 0.02em);
-  }
-  20% {
-    text-shadow: -0.05em -0.025em 0 rgba(255, 0, 0, 0.75), 0.025em 0.025em 0 rgba(0, 255, 0, 0.75), -0.05em -0.05em 0 rgba(0, 0, 255, 0.75);
-    transform: translate(-0.01em, -0.02em);
-  }
-  40% {
-    text-shadow: 0.05em 0.05em 0 rgba(255, 0, 0, 0.75), -0.05em -0.025em 0 rgba(0, 255, 0, 0.75), 0.025em 0.05em 0 rgba(0, 0, 255, 0.75);
-    transform: translate(0.02em, 0.01em);
-  }
-  60% {
-    text-shadow: -0.025em 0 0 rgba(255, 0, 0, 0.75), 0.05em -0.025em 0 rgba(0, 255, 0, 0.75), -0.025em 0.05em 0 rgba(0, 0, 255, 0.75);
-    transform: translate(-0.02em, 0.01em);
-  }
-  80% {
-    text-shadow: 0.025em 0.05em 0 rgba(255, 0, 0, 0.75), 0.025em 0 0 rgba(0, 255, 0, 0.75), -0.05em -0.05em 0 rgba(0, 0, 255, 0.75);
-    transform: translate(0.01em, -0.02em);
-  }
-  100% {
-    text-shadow: none;
-    transform: none;
-  }
+/* ── HOVER LIFT ── */
+.hover-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
 }
 
-.glitch-effect {
-  animation: chromaticGlitch 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+/* ── HOVER GLOW ── */
+.hover-glow {
+  transition: text-shadow 0.3s ease;
+}
+.hover-glow:hover {
+  text-shadow: 0 0 20px rgba(224,242,241,0.3);
 }
 
-/* Blinking Cursor */
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
+/* ── LINK UNDERLINE ── */
+.link-underline {
+  position: relative;
+}
+.link-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--ocean-teal);
+  transition: width 0.4s ease;
+}
+.link-underline:hover::after {
+  width: 100%;
 }
 
-/* Scroll Chevron Bounce */
-@keyframes bounceChevron {
-  0%, 20%, 50%, 80%, 100% {
-    transform: translateY(0);
-  }
-  40% {
-    transform: translateY(-10px);
-  }
-  60% {
-    transform: translateY(-5px);
-  }
+/* ── GLITCH (Boot Exit) ── */
+@keyframes glitch {
+  0% { transform: translate(0); filter: none; }
+  25% { transform: translate(-3px, 1px); filter: hue-rotate(90deg); }
+  50% { transform: translate(2px, -2px); filter: hue-rotate(-90deg); }
+  75% { transform: translate(-1px, 2px); filter: hue-rotate(45deg); }
+  100% { transform: translate(0); filter: none; }
 }
 
-/* Floating Math Symbols Drift */
-@keyframes driftSymbol {
-  0% { transform: translateY(0) rotate(0deg); }
-  33% { transform: translateY(-15px) rotate(5deg); }
-  66% { transform: translateY(10px) rotate(-5deg); }
-  100% { transform: translateY(0) rotate(0deg); }
+.glitch-out {
+  animation: glitch 0.2s ease;
 }
 
-/* Topographic Signal Pulse */
-@keyframes dashPulse {
-  0% {
-    stroke-dashoffset: 1000;
-  }
-  100% {
-    stroke-dashoffset: 0;
-  }
+/* ── SCANLINE CRT ── */
+@keyframes scanline {
+  0% { background-position: 0 0; }
+  100% { background-position: 0 4px; }
 }
 
-/* Rotating Ethereal Ray */
-@keyframes rotateRay {
-  0% {
-    transform: translate(-50%, -50%) rotate(0deg);
-  }
-  100% {
-    transform: translate(-50%, -50%) rotate(360deg);
-  }
+.terminal-body::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0,0,0,0.03) 2px,
+    rgba(0,0,0,0.03) 4px
+  );
+  pointer-events: none;
+  z-index: 1;
 }
 
-/* Impact Frame Burst */
-@keyframes impactFrame {
-  0% { transform: scale(1); filter: brightness(1); }
-  50% { transform: scale(1.03); filter: brightness(1.5) contrast(1.2); }
-  100% { transform: scale(1); filter: brightness(1); }
+.terminal-body {
+  position: relative;
 }
 
-.impact-pop {
-  animation: impactFrame 0.1s ease-out;
+/* ── NODE PULSE ── */
+@keyframes nodePulse {
+  0%, 100% { box-shadow: 0 0 0 rgba(45,107,107,0); }
+  50% { box-shadow: 0 0 15px rgba(45,107,107,0.3); }
 }
 
-/* Node Breathing Loop */
-@keyframes nodeBreathe {
-  0%, 100% { transform: scale(1) translate(-50%, -50%); }
-  50% { transform: scale(1.02) translate(-50%, -50%); }
+.skill-node.active {
+  animation: nodePulse 2s ease-in-out infinite;
 }
 
-.breathing {
-  animation: nodeBreathe 4s ease-in-out infinite;
+/* ── SCROLL REVEAL PRESETS ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
 }
 
-/* Card Ethereal Light Ray Flash */
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 0.8s var(--ease-cinematic);
+}
+
+/* ── ETHEREAL FLASH (project card reveal) ── */
 @keyframes etherealFlash {
-  0% { transform: skewX(-20deg) translateX(-100%); opacity: 0; }
-  50% { opacity: 0.08; }
-  100% { transform: skewX(-20deg) translateX(300%); opacity: 0; }
+  0% { opacity: 0; filter: brightness(2); }
+  50% { opacity: 1; filter: brightness(1.5); }
+  100% { opacity: 1; filter: brightness(1); }
 }
 
 .flash-trigger {
-  animation: etherealFlash 0.5s ease-in-out forwards;
+  animation: etherealFlash 0.6s ease forwards;
+}
+
+/* ── SIGNAL PULSE (SVG line trace) ── */
+@keyframes signalPulse {
+  0% { stroke-dashoffset: 2000; opacity: 0; }
+  10% { opacity: 0.6; }
+  90% { opacity: 0.6; }
+  100% { stroke-dashoffset: 0; opacity: 0; }
+}
+
+/* ── TYPING CURSOR ── */
+@keyframes typingCursor {
+  0%, 100% { border-right-color: var(--matrix-green); }
+  50% { border-right-color: transparent; }
 }

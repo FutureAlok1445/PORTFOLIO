@@ -1,300 +1,233 @@
-import * as THREE from 'https://cdn.skypack.dev/three@0.128.0';
+/* ═══════════════════════════════════════════════════════════════
+   three-scene.js — WebGL Scene, Shader Background, Wireframe
+                    Icosahedron, Particles, Lighting, Parallax
+   Neural Earth Portfolio
+   ═══════════════════════════════════════════════════════════════ */
 
-export class ContactParticles {
-    constructor(canvasId) {
-        this.canvas = document.getElementById(canvasId);
-        if (!this.canvas) return;
+function initThreeScene() {
+  const canvas = document.getElementById('three-canvas');
+  if (!canvas) return;
 
-        this.scene = new THREE.Scene();
-        
-        this.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        this.camera.position.z = 500;
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-        this.renderer = new THREE.WebGLRenderer({ canvas: this.canvas, alpha: true, antialias: true });
-        this.renderer.setSize(window.innerWidth, window.innerHeight);
-        this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+  camera.position.z = 5;
 
-        this.particlesCount = 400; // fewer particles as requested
-        this.positions = new Float32Array(this.particlesCount * 3);
-        this.velocities = [];
+  const heroGroup = new THREE.Group();
+  scene.add(heroGroup);
 
-        for (let i = 0; i < this.particlesCount * 3; i+=3) {
-            this.positions[i] = (Math.random() - 0.5) * 2000;
-            this.positions[i+1] = (Math.random() - 0.5) * 2000;
-            this.positions[i+2] = (Math.random() - 0.5) * 2000;
-            
-            this.velocities.push({
-                x: (Math.random() - 0.5) * 0.5,
-                y: (Math.random() - 0.5) * 0.5,
-                z: (Math.random() - 0.5) * 0.5
-            });
-        }
+  const clock = new THREE.Clock();
 
-        this.geometry = new THREE.BufferGeometry();
-        this.geometry.setAttribute('position', new THREE.BufferAttribute(this.positions, 3));
+  /* ── Shader Background ── */
+  const bgUniforms = {
+    uTime: { value: 0 },
+    uMouse: { value: new THREE.Vector2(0.5, 0.5) },
+    uColor1: { value: new THREE.Color(0x0a0a0f) },
+    uColor2: { value: new THREE.Color(0x121428) },
+    uColor3: { value: new THREE.Color(0x2d6b6b) }
+  };
 
-        // Create glowing material
-        this.material = new THREE.PointsMaterial({
-            size: 3,
-            color: 0x4effa1, // emerald flare
-            transparent: true,
-            opacity: 0.6,
-            blending: THREE.AdditiveBlending
-        });
+  const bgVertexShader = `
+    varying vec2 vUv;
+    void main() {
+      vUv = uv;
+      gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+    }
+  `;
 
-        this.particlesMesh = new THREE.Points(this.geometry, this.material);
-        this.scene.add(this.particlesMesh);
+  const bgFragmentShader = `
+    uniform float uTime;
+    uniform vec2 uMouse;
+    uniform vec3 uColor1;
+    uniform vec3 uColor2;
+    uniform vec3 uColor3;
+    varying vec2 vUv;
 
-        this.isRushing = false;
+    // Simplex-style noise
+    vec3 mod289(vec3 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
+    vec2 mod289(vec2 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
+    vec3 permute(vec3 x) { return mod289(((x * 34.0) + 1.0) * x); }
 
-        window.addEventListener('resize', this.onResize.bind(this));
-        
-        this.animate();
+    float snoise(vec2 v) {
+      const vec4 C = vec4(0.211324865405187, 0.366025403784439,
+                         -0.577350269189626, 0.024390243902439);
+      vec2 i = floor(v + dot(v, C.yy));
+      vec2 x0 = v - i + dot(i, C.xx);
+      vec2 i1 = (x0.x > x0.y) ? vec2(1.0, 0.0) : vec2(0.0, 1.0);
+      vec4 x12 = x0.xyxy + C.xxzz;
+      x12.xy -= i1;
+      i = mod289(i);
+      vec3 p = permute(permute(i.y + vec3(0.0, i1.y, 1.0)) + i.x + vec3(0.0, i1.x, 1.0));
+      vec3 m = max(0.5 - vec3(dot(x0,x0), dot(x12.xy,x12.xy), dot(x12.zw,x12.zw)), 0.0);
+      m = m * m;
+      m = m * m;
+      vec3 x = 2.0 * fract(p * C.www) - 1.0;
+      vec3 h = abs(x) - 0.5;
+      vec3 ox = floor(x + 0.5);
+      vec3 a0 = x - ox;
+      m *= 1.79284291400159 - 0.85373472095314 * (a0*a0 + h*h);
+      vec3 g;
+      g.x = a0.x * x0.x + h.x * x0.y;
+      g.yz = a0.yz * x12.xz + h.yz * x12.yw;
+      return 130.0 * dot(m, g);
     }
 
-    onResize() {
-        this.camera.aspect = window.innerWidth / window.innerHeight;
-        this.camera.updateProjectionMatrix();
-        this.renderer.setSize(window.innerWidth, window.innerHeight);
+    float fbm(vec2 p) {
+      float value = 0.0;
+      float amplitude = 0.5;
+      for(int i = 0; i < 5; i++) {
+        value += amplitude * snoise(p);
+        p *= 2.0;
+        amplitude *= 0.5;
+      }
+      return value;
     }
 
-    animate() {
-        requestAnimationFrame(this.animate.bind(this));
+    void main() {
+      vec2 p = vUv * 3.0;
+      float t = uTime * 0.15;
+      float n = fbm(p + vec2(t, t * 0.7));
+      float mouseInfluence = length(vUv - uMouse) * 0.3;
+      n += mouseInfluence * 0.2;
 
-        if (!this.isRushing) {
-            // standard float
-            const positions = this.particlesMesh.geometry.attributes.position.array;
-            for(let i=0; i < this.particlesCount; i++) {
-                positions[i*3] += this.velocities[i].x;
-                positions[i*3+1] += this.velocities[i].y;
-                positions[i*3+2] += this.velocities[i].z;
+      vec3 col = mix(uColor1, uColor2, smoothstep(-0.5, 0.5, n));
+      col = mix(col, uColor3, smoothstep(0.2, 0.8, n) * 0.3);
 
-                // slow rotation bounds logic isn't strictly necessary if camera is far, but let's rotate mesh
-            }
-            this.particlesMesh.geometry.attributes.position.needsUpdate = true;
-            this.particlesMesh.rotation.y += 0.001;
-            this.particlesMesh.rotation.x += 0.0005;
-        }
+      // Subtle center glow
+      float glow = 1.0 - length(vUv - vec2(0.5)) * 1.2;
+      col += uColor3 * glow * 0.08;
 
-        this.renderer.render(this.scene, this.camera);
+      gl_FragColor = vec4(col, 1.0);
     }
+  `;
 
-    rushToCenter(onComplete) {
-        this.isRushing = true;
-        const positions = this.particlesMesh.geometry.attributes.position.array;
-        
-        // We'll use GSAP to animate the Float32Array directly
-        // GSAP can animate arrays if we use an object proxy or individual tweens
-        // Wait, GSAP iterating over 400 properties might be heavy, but 400 is fine.
-        
-        let targetProxy = {};
-        for(let i=0; i < this.particlesCount; i++) {
-            targetProxy[`x${i}`] = positions[i*3];
-            targetProxy[`y${i}`] = positions[i*3+1];
-            targetProxy[`z${i}`] = positions[i*3+2];
-            
-            gsap.to(targetProxy, {
-                [`x${i}`]: 0,
-                [`y${i}`]: 0,
-                [`z${i}`]: 0,
-                duration: 1.5,
-                delay: i * 0.002, // GSAP stagger logic analogue
-                ease: "expo.in",
-                onUpdate: () => {
-                    positions[i*3] = targetProxy[`x${i}`];
-                    positions[i*3+1] = targetProxy[`y${i}`];
-                    positions[i*3+2] = targetProxy[`z${i}`];
-                    this.particlesMesh.geometry.attributes.position.needsUpdate = true;
-                }
-            });
-        }
-        
-        // Also fade out material
-        gsap.to(this.material, { opacity: 0, duration: 2, delay: 0.5, onComplete: onComplete });
-}
+  const bgMaterial = new THREE.ShaderMaterial({
+    uniforms: bgUniforms,
+    vertexShader: bgVertexShader,
+    fragmentShader: bgFragmentShader
+  });
+  const bgMesh = new THREE.Mesh(new THREE.PlaneGeometry(20, 20), bgMaterial);
+  bgMesh.position.z = -2;
+  scene.add(bgMesh);
 
-export class HeroScene {
-    constructor(canvasId) {
-        this.canvas = document.getElementById(canvasId);
-        if (!this.canvas) return;
+  /* ── Wireframe Icosahedron ── */
+  const icoGeometry = new THREE.IcosahedronGeometry(1.8, 1);
+  const icoMaterial = new THREE.MeshStandardMaterial({
+    color: 0x2d6b6b,
+    emissive: 0x121428,
+    emissiveIntensity: 0.5,
+    wireframe: true,
+    transparent: true,
+    opacity: 0.6,
+    roughness: 0.3,
+    metalness: 0.9
+  });
+  const icosahedron = new THREE.Mesh(icoGeometry, icoMaterial);
+  heroGroup.add(icosahedron);
 
-        this.scene = new THREE.Scene();
-        
-        // PerspectiveCamera fov:75, near:0.1, far:1000, position z:5
-        this.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        this.camera.position.z = 5;
+  /* ── Inner Core ── */
+  const coreGeometry = new THREE.IcosahedronGeometry(1.2, 0);
+  const coreMaterial = new THREE.MeshStandardMaterial({
+    color: 0x121428,
+    emissive: 0x2d6b6b,
+    emissiveIntensity: 0.3,
+    transparent: true,
+    opacity: 0.3,
+    roughness: 0.1,
+    metalness: 0.8
+  });
+  const core = new THREE.Mesh(coreGeometry, coreMaterial);
+  heroGroup.add(core);
 
-        // WebGLRenderer with alpha:true, antialias:true
-        this.renderer = new THREE.WebGLRenderer({ canvas: this.canvas, alpha: true, antialias: true });
-        this.renderer.setSize(window.innerWidth, window.innerHeight);
-        this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  /* ── Particles ── */
+  const particleCount = isMobile() ? 100 : 300;
+  const pGeometry = new THREE.BufferGeometry();
+  const pPositions = new Float32Array(particleCount * 3);
+  for (let i = 0; i < particleCount * 3; i++) {
+    pPositions[i] = (Math.random() - 0.5) * 15;
+  }
+  pGeometry.setAttribute('position', new THREE.BufferAttribute(pPositions, 3));
+  const pMaterial = new THREE.PointsMaterial({
+    size: 0.02,
+    color: 0xe0f2f1,
+    transparent: true,
+    opacity: 0.6,
+    blending: THREE.AdditiveBlending
+  });
+  const particles = new THREE.Points(pGeometry, pMaterial);
+  scene.add(particles);
 
-        // Lighting
-        this.ambientLight = new THREE.AmbientLight(0x2d6b6b, 0.4);
-        this.scene.add(this.ambientLight);
+  /* ── Lighting ── */
+  scene.add(new THREE.AmbientLight(0x2d6b6b, 1));
+  const warmLight = new THREE.PointLight(0xff6b35, 1.5, 20);
+  warmLight.position.set(5, 5, 5);
+  scene.add(warmLight);
+  const coolLight = new THREE.PointLight(0x00d4ff, 1, 20);
+  coolLight.position.set(-5, -5, 5);
+  scene.add(coolLight);
 
-        this.pointLight = new THREE.PointLight(0xff6b35, 0.8);
-        this.pointLight.position.set(2, 2, 2);
-        this.scene.add(this.pointLight);
+  /* ── Mouse Tracking ── */
+  const mouse = { x: 0, y: 0, targetX: 0, targetY: 0 };
+  window.addEventListener('mousemove', (e) => {
+    mouse.targetX = (e.clientX / window.innerWidth) * 2 - 1;
+    mouse.targetY = -(e.clientY / window.innerHeight) * 2 + 1;
+  });
 
-        this.dirLight = new THREE.DirectionalLight(0xe0f2f1, 0.3);
-        this.dirLight.position.set(-2, 1, 0);
-        this.scene.add(this.dirLight);
+  /* ── Pause off-screen ── */
+  let isVisible = true;
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => { isVisible = entry.isIntersecting; });
+  }, { threshold: 0 });
+  const heroSection = document.getElementById('hero');
+  if (heroSection) observer.observe(heroSection);
 
-        // Physics State
-        this.particlesCount = 600;
-        this.positions = new Float32Array(this.particlesCount * 3);
-        this.basePositions = new Float32Array(this.particlesCount * 3);
-        this.sizes = new Float32Array(this.particlesCount);
-        
-        for(let i=0; i<this.particlesCount; i++) {
-            // -8 to 8 (x,y), -3 to 3 (z)
-            const x = (Math.random() - 0.5) * 16;
-            const y = (Math.random() - 0.5) * 16;
-            const z = (Math.random() - 0.5) * 6;
+  /* ── Animation Loop ── */
+  function animate() {
+    requestAnimationFrame(animate);
+    if (!isVisible) return;
 
-            this.positions[i*3] = x;
-            this.positions[i*3+1] = y;
-            this.positions[i*3+2] = z;
+    const time = clock.getElapsedTime();
 
-            this.basePositions[i*3] = x;
-            this.basePositions[i*3+1] = y;
-            this.basePositions[i*3+2] = z;
+    bgUniforms.uTime.value = time;
+    mouse.x = lerp(mouse.x, mouse.targetX, 0.05);
+    mouse.y = lerp(mouse.y, mouse.targetY, 0.05);
+    bgUniforms.uMouse.value.set(
+      (mouse.x + 1) * 0.5,
+      (mouse.y + 1) * 0.5
+    );
 
-            // sizes 0.5 - 2.5
-            this.sizes[i] = Math.random() * 2.0 + 0.5;
-        }
+    heroGroup.rotation.x = lerp(heroGroup.rotation.x, mouse.y * 0.3, 0.05);
+    heroGroup.rotation.y = lerp(heroGroup.rotation.y, mouse.x * 0.3, 0.05);
 
-        this.geometry = new THREE.BufferGeometry();
-        this.geometry.setAttribute('position', new THREE.BufferAttribute(this.positions, 3));
-        this.geometry.setAttribute('size', new THREE.BufferAttribute(this.sizes, 1));
+    icosahedron.rotation.x = time * 0.2;
+    icosahedron.rotation.y = time * 0.3;
+    const s = 1 + Math.sin(time * 2) * 0.02;
+    icosahedron.scale.set(s, s, s);
 
-        // To use per-vertex sizes with PointsMaterial without writing a custom shader, 
-        // ThreeJS standard PointsMaterial 'size' parameter applies to all unless altered via shader.
-        // The prompt says "Sizes: random 0.5-2.5px", we will use a custom shader to support per-vertex sizing, 
-        // or apply an average size on standard material if not critical. 
-        // Wait, "PointsMaterial with sizeAttenuation:true". PointsMaterial natively only takes 1 global size property. 
-        // I will use a ShaderMaterial to respect the random sizes if needed, or simply map the global size.
-        // Actually, PointsMaterial doesn't allow 'size' buffer attribute easily natively. We'll use custom shader to easily honor the prompt.
-        // Actually, building a custom shader might be outside standard prompt. I'll just use ShaderMaterial to be exact.
-        this.material = new THREE.ShaderMaterial({
-            uniforms: {
-                color: { value: new THREE.Color('#e0f2f1') },
-                opacity: { value: 0.5 },
-                pixelRatio: { value: this.renderer.getPixelRatio() }
-            },
-            vertexShader: `
-                attribute float size;
-                void main() {
-                    vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
-                    // size attenuation calculation
-                    gl_PointSize = size * pixelRatio * (300.0 / -mvPosition.z);
-                    gl_Position = projectionMatrix * mvPosition;
-                }
-            `,
-            fragmentShader: `
-                uniform vec3 color;
-                uniform float opacity;
-                void main() {
-                    float dist = length(gl_PointCoord - vec2(0.5));
-                    if (dist > 0.5) discard;
-                    gl_FragColor = vec4(color, opacity * (1.0 - (dist * 2.0)));
-                }
-            `,
-            transparent: true,
-            depthWrite: false,
-            blending: THREE.AdditiveBlending
-        });
+    core.rotation.x = time * 0.15;
+    core.rotation.y = time * 0.25;
 
-        this.points = new THREE.Points(this.geometry, this.material);
-        this.scene.add(this.points);
+    particles.rotation.y = time * 0.05;
 
-        this.mouse = new THREE.Vector2(-9999, -9999);
-        this.raycaster = new THREE.Raycaster();
-        this.plane = new THREE.Plane(new THREE.Vector3(0, 0, 1), 0);
-        this.mouseWorld = new THREE.Vector3();
+    renderer.render(scene, camera);
+  }
 
-        this.isPaused = false;
-        
-        this.initEvents();
-        this.animate();
-    }
+  if (prefersReducedMotion()) {
+    renderer.render(scene, camera);
+  } else {
+    animate();
+  }
 
-    initEvents() {
-        // Resize - debounce 100ms
-        let resizeTimer;
-        window.addEventListener('resize', () => {
-            clearTimeout(resizeTimer);
-            resizeTimer = setTimeout(() => this.onResize(), 100);
-        });
+  /* ── Resize ── */
+  window.addEventListener('resize', debounce(() => {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+  }, 100));
 
-        window.addEventListener('mousemove', (e) => {
-            // Normalized Device Coordinates
-            this.mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
-            this.mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
-            
-            // Unproject mouse to world coords at z=0 plane
-            this.raycaster.setFromCamera(this.mouse, this.camera);
-            this.raycaster.ray.intersectPlane(this.plane, this.mouseWorld);
-        });
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                this.isPaused = !entry.isIntersecting;
-            });
-        }, { threshold: 0 });
-
-        observer.observe(this.canvas);
-    }
-
-    onResize() {
-        this.camera.aspect = window.innerWidth / window.innerHeight;
-        this.camera.updateProjectionMatrix();
-        this.renderer.setSize(window.innerWidth, window.innerHeight);
-        this.material.uniforms.pixelRatio.value = this.renderer.getPixelRatio();
-    }
-
-    animate() {
-        requestAnimationFrame(this.animate.bind(this));
-
-        if (!this.isPaused) {
-            const positions = this.points.geometry.attributes.position.array;
-
-            for(let i=0; i<this.particlesCount; i++) {
-                const ix = i*3;
-                const iy = i*3+1;
-                const iz = i*3+2;
-
-                // Drift behavior
-                this.basePositions[iy] += 0.001;
-                if (this.basePositions[iy] > 8) {
-                    this.basePositions[iy] = -8;
-                }
-
-                // Mouse Repulsion
-                const px = this.basePositions[ix];
-                const py = this.basePositions[iy];
-                // Project mouse xy to z=0 to approximate distances
-                const dx = px - this.mouseWorld.x;
-                const dy = py - this.mouseWorld.y;
-                const distSq = dx*dx + dy*dy;
-                // 1.5 units distance -> 1.5^2 = 2.25
-                if (distSq < 2.25) {
-                    const thrust = (2.25 - distSq) * 0.5;
-                    positions[ix] = px + dx * thrust;
-                    positions[iy] = py + dy * thrust;
-                } else {
-                    // lerp back 0.02
-                    positions[ix] += (px - positions[ix]) * 0.02;
-                    positions[iy] += (py - positions[iy]) * 0.02;
-                }
-                
-                // Z remains unchanged from base
-                positions[iz] = this.basePositions[iz];
-            }
-
-            this.points.geometry.attributes.position.needsUpdate = true;
-            this.renderer.render(this.scene, this.camera);
-        }
-    }
+  /* expose for Konami code */
+  window._threeScene = { icoMaterial, coreMaterial, pMaterial };
 }

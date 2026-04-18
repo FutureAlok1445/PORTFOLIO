@@ -1,58 +1,66 @@
-import { SakuraSystem } from './anime-effects.js';
-import { CustomCursor, setupProjectCards, setupContactSection, setupDevExperience } from './interactions.js';
-import { ContactParticles, HeroScene } from './three-scene.js';
+/* ═══════════════════════════════════════════════════════════════
+   main.js — Entry Point, CONFIG, Init Orchestration
+   Neural Earth Portfolio
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── EDIT THIS CONFIG ── */
+const CONFIG = {
+  name: "Alok",
+  tagline: "Full-stack · Machine Learning · Frontend Architecture",
+  terminalLine: 'location: "Earth" | stack: ["React", "Three.js", "PyTorch"] | status: "Available"',
+  email: "hello@yourdomain.com",
+  github: "https://github.com/yourname",
+  linkedin: "https://linkedin.com/in/yourname"
+};
 
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Initialize Custom Cursor System
-    const cursor = new CustomCursor();
+  /* 1 — Three.js Scene */
+  initThreeScene();
 
-    // 2. Initialize Sakura Effect (on the hero canvas)
-    const sakuraCanvas = document.getElementById('sakura');
-    if (sakuraCanvas) {
-        // Hero configuration: 25 petals
-        const sakuraSys = new SakuraSystem(sakuraCanvas, 25);
-    }
+  /* 2 — Boot Sequence → Hero Animations */
+  initBootSequence();
 
-    // 3. Setup Project Cards
-    setupProjectCards();
+  /* 3 — Custom Cursor */
+  initCustomCursor();
 
-    // 4. Setup Contact Section
-    setupContactSection();
+  /* 4 — Magnetic Buttons */
+  initMagneticButtons();
 
-    // 4.5 Initialize Developer Experience Mechanics
-    setupDevExperience();
+  /* 5 — Project Card Tilt */
+  initProjectTilt();
 
-    // 5. Initialize ThreeJS Particle Canvas (Contact)
-    if (document.getElementById('contact-particles')) {
-        window.contactParticlesPlugin = new ContactParticles('contact-particles');
-    }
+  /* 6 — GSAP ScrollTriggers + Lenis */
+  initScrollTriggers();
 
-    // 6. Initialize Hero ThreeJS Particle System
-    if (document.getElementById('three-canvas')) {
-        window.heroParticlesPlugin = new HeroScene('three-canvas');
-    }
+  /* 7 — Sakura Particle System */
+  initSakura();
 
-    // 7. Lenis Smooth Scroll Initialization
-    if (typeof Lenis !== 'undefined') {
-        const lenis = new Lenis({
-            lerp: 0.08, // cinematic feel
-            duration: 1.4,
-            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
-        });
+  /* 8 — Ghost Trails */
+  initGhostTrails();
 
-        // Use requestAnimationFrame loop for Lenis
-        function raf(time) {
-            lenis.raf(time);
-            requestAnimationFrame(raf);
-        }
-        requestAnimationFrame(raf);
+  /* 9 — Konami Code */
+  initKonamiCode();
 
-        // Connect GSAP ScrollTrigger to Lenis using modern GSAP ticker
-        gsap.ticker.add((time) => {
-            lenis.raf(time * 1000);
-        });
+  /* 10 — Hover Code Reveals */
+  initHoverCodeReveals();
 
-        // GSAP to lag the ticker for smoother syncing
-        gsap.ticker.lagSmoothing(0);
-    }
+  /* 11 — Hero Interactions */
+  initHeroInteractions();
+
+  /* 12 — Click Ripple */
+  initClickRipple();
+
+  /* 13 — Scroll Metrics */
+  initScrollMetrics();
+
+  /* 14 — Contact Form */
+  initContactForm();
+
+  /* 15 — Console Easter Eggs */
+  initConsoleEasterEggs();
+
+  /* 16 — Global Resize Handler */
+  window.addEventListener('resize', debounce(() => {
+    ScrollTrigger.refresh();
+  }, 100));
 });

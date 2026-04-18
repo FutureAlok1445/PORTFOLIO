@@ -1,138 +1,175 @@
-import { random } from './utils.js';
+/* ═══════════════════════════════════════════════════════════════
+   anime-effects.js — Sakura Particles, Speed Lines, Ghost Trails
+   Neural Earth Portfolio
+   ═══════════════════════════════════════════════════════════════ */
 
-class SakuraPetal {
-    constructor(canvasWidth, canvasHeight) {
-        this.canvasWidth = canvasWidth;
-        this.canvasHeight = canvasHeight;
-        this.reset(true);
+class SakuraSystem {
+  constructor(canvasEl, petalCount) {
+    this.canvas = canvasEl;
+    if (!this.canvas) return;
+    this.ctx = this.canvas.getContext('2d');
+    this.petals = [];
+    this.petalCount = isMobile() ? Math.min(petalCount, 10) : petalCount;
+    this.paused = false;
+    this.animId = null;
+
+    this.resize();
+    window.addEventListener('resize', debounce(() => this.resize(), 100));
+
+    for (let i = 0; i < this.petalCount; i++) {
+      this.petals.push(this.createPetal(true));
     }
 
-    reset(initial = false) {
-        // x, y, size(3-8px), speedY(0.5-1.5), speedX(-1 to 1), rotation, rotationSpeed, opacity(0.1-0.4), sway(0.01-0.03), swayOffset
-        this.x = random(0, this.canvasWidth);
-        // If initial, scatter across height, else start above top
-        this.y = initial ? random(0, this.canvasHeight) : random(-50, -10);
-        this.size = random(3, 8);
-        this.speedY = random(0.5, 1.5);
-        this.speedX = random(-1, 1);
-        this.rotation = random(0, Math.PI * 2);
-        this.rotationSpeed = random(-0.05, 0.05);
-        this.opacity = random(0.1, 0.4);
-        this.sway = random(0.01, 0.03);
-        this.swayOffset = random(0, Math.PI * 2);
-    }
+    /* Pause off-screen */
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => { this.paused = !e.isIntersecting; });
+    }, { threshold: 0 });
+    obs.observe(this.canvas);
 
-    update() {
-        // Move petal down with sine-wave horizontal drift
-        this.y += this.speedY;
-        this.x += this.speedX + Math.sin(this.swayOffset) * 0.5;
-        this.swayOffset += this.sway;
-        this.rotation += this.rotationSpeed;
-
-        // Reset if it falls below canvas
-        if (this.y > this.canvasHeight + 20 || this.x > this.canvasWidth + 20 || this.x < -20) {
-            this.reset();
-        }
+    if (!prefersReducedMotion()) {
+      this.animate();
     }
+  }
 
-    draw(ctx, color) {
-        ctx.save();
-        ctx.translate(this.x, this.y);
-        ctx.rotate(this.rotation);
-        
-        ctx.beginPath();
-        // Ellipse ratio 1:0.6
-        ctx.ellipse(0, 0, this.size, this.size * 0.6, 0, 0, Math.PI * 2);
-        ctx.fillStyle = color;
-        ctx.globalAlpha = this.opacity;
-        ctx.fill();
-        
-        ctx.restore();
+  resize() {
+    const rect = this.canvas.parentElement.getBoundingClientRect();
+    this.canvas.width = rect.width;
+    this.canvas.height = rect.height;
+  }
+
+  createPetal(randomY) {
+    return {
+      x: random(0, this.canvas.width),
+      y: randomY ? random(-this.canvas.height, this.canvas.height) : random(-50, -10),
+      size: random(3, 8),
+      speedY: random(0.5, 1.5),
+      speedX: random(-1, 1),
+      rotation: random(0, Math.PI * 2),
+      rotationSpeed: random(-0.02, 0.02),
+      opacity: random(0.1, 0.3),
+      sway: random(0.01, 0.03),
+      swayOffset: random(0, Math.PI * 2)
+    };
+  }
+
+  update(petal) {
+    petal.y += petal.speedY;
+    petal.x += Math.sin(petal.y * petal.sway + petal.swayOffset) * petal.speedX * 0.3;
+    petal.rotation += petal.rotationSpeed;
+    if (petal.y > this.canvas.height + 10) {
+      Object.assign(petal, this.createPetal(false));
     }
+  }
+
+  draw(petal) {
+    this.ctx.save();
+    this.ctx.translate(petal.x, petal.y);
+    this.ctx.rotate(petal.rotation);
+    this.ctx.globalAlpha = petal.opacity;
+    this.ctx.beginPath();
+    this.ctx.ellipse(0, 0, petal.size, petal.size * 0.6, 0, 0, Math.PI * 2);
+    this.ctx.fillStyle = '#ffb7d5';
+    this.ctx.fill();
+    this.ctx.restore();
+  }
+
+  animate() {
+    this.animId = requestAnimationFrame(() => this.animate());
+    if (this.paused) return;
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    for (const petal of this.petals) {
+      this.update(petal);
+      this.draw(petal);
+    }
+  }
+
+  destroy() {
+    if (this.animId) cancelAnimationFrame(this.animId);
+  }
 }
 
-export class SakuraSystem {
-    constructor(canvasElement, count = 25) {
-        this.canvas = canvasElement;
-        this.ctx = this.canvas.getContext('2d');
-        this.petals = [];
-        this.count = count;
-        this.isPaused = false;
-        
-        // Configs based on prompt
-        this.configs = {
-            hero: { count: 25, label: "slow+peaceful" },
-            projectReveal: { count: 12, label: "burst" }, // burst logic could be implemented via a burst() method later
-            contact: { count: 8, label: "slow+drifting" }
-        };
+function initSakura() {
+  const heroCanvas = document.getElementById('sakura-hero');
+  if (heroCanvas) new SakuraSystem(heroCanvas, 25);
 
-        // Cache color from CSS variable map
-        this.color = getComputedStyle(document.documentElement).getPropertyValue('--sakura-pink').trim() || '#ffb7d5';
+  const contactCanvas = document.getElementById('sakura-contact');
+  if (contactCanvas) new SakuraSystem(contactCanvas, 8);
+}
 
-        this.init();
-        this.createObserver();
-    }
+function triggerSpeedLines(targetElement) {
+  if (prefersReducedMotion()) return;
+  const rect = targetElement.getBoundingClientRect();
+  const cx = rect.left + rect.width / 2;
+  const cy = rect.top + rect.height / 2;
 
-    init() {
-        this.resize();
-        window.addEventListener('resize', () => this.resize());
-        
-        for (let i = 0; i < this.count; i++) {
-            this.petals.push(new SakuraPetal(this.width, this.height));
-        }
+  const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  svg.setAttribute('class', 'speed-lines-container');
+  svg.style.position = 'fixed';
+  svg.style.inset = '0';
+  svg.style.width = '100vw';
+  svg.style.height = '100vh';
+  svg.style.pointerEvents = 'none';
+  svg.style.zIndex = '9990';
 
-        this.loop();
-    }
+  const lineCount = 16;
+  for (let i = 0; i < lineCount; i++) {
+    const angle = (Math.PI * 2 / lineCount) * i;
+    const len = Math.max(window.innerWidth, window.innerHeight) * 0.6;
+    const x2 = cx + Math.cos(angle) * len;
+    const y2 = cy + Math.sin(angle) * len;
 
-    resize() {
-        this.width = this.canvas.clientWidth || window.innerWidth;
-        this.height = this.canvas.clientHeight || window.innerHeight;
-        
-        // Handle high DPI displays
-        const dpr = window.devicePixelRatio || 1;
-        this.canvas.width = this.width * dpr;
-        this.canvas.height = this.height * dpr;
-        
-        this.ctx.scale(dpr, dpr);
-        
-        // Update all petal boundaries
-        this.petals.forEach(p => {
-            p.canvasWidth = this.width;
-            p.canvasHeight = this.height;
+    const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+    line.setAttribute('x1', cx);
+    line.setAttribute('y1', cy);
+    line.setAttribute('x2', x2);
+    line.setAttribute('y2', y2);
+    line.setAttribute('stroke', '#e0f2f1');
+    line.setAttribute('stroke-width', '1');
+    line.setAttribute('opacity', '0.1');
+    line.setAttribute('stroke-dasharray', len);
+    line.setAttribute('stroke-dashoffset', len);
+    svg.appendChild(line);
+
+    gsap.to(line, {
+      strokeDashoffset: 0,
+      duration: 0.3,
+      delay: i * 0.01,
+      ease: EASE.snappy
+    });
+  }
+
+  document.body.appendChild(svg);
+  gsap.to(svg, { opacity: 0, duration: 0.3, delay: 0.3, onComplete: () => svg.remove() });
+}
+
+function initGhostTrails() {
+  if (isMobile() || prefersReducedMotion()) return;
+
+  let lastX = 0, lastY = 0;
+  window.addEventListener('mousemove', (e) => {
+    const dx = e.clientX - lastX;
+    const dy = e.clientY - lastY;
+    if (Math.abs(dx) + Math.abs(dy) < 20) return;
+    lastX = e.clientX;
+    lastY = e.clientY;
+
+    const ghost = document.createElement('div');
+    ghost.className = 'ghost-trail';
+    ghost.style.left = e.clientX + 'px';
+    ghost.style.top = e.clientY + 'px';
+    document.body.appendChild(ghost);
+
+    gsap.to(ghost, {
+      opacity: 0.3,
+      duration: 0.1,
+      onComplete: () => {
+        gsap.to(ghost, {
+          opacity: 0,
+          scale: 2,
+          duration: 0.3,
+          onComplete: () => ghost.remove()
         });
-    }
-
-    loop() {
-        if (!this.isPaused) {
-            this.ctx.clearRect(0, 0, this.width, this.height);
-            this.petals.forEach(petal => {
-                petal.update();
-                petal.draw(this.ctx, this.color);
-            });
-        }
-        requestAnimationFrame(() => this.loop());
-    }
-
-    pause() {
-        this.isPaused = true;
-    }
-
-    resume() {
-        this.isPaused = false;
-    }
-
-    // Performance Intersection Observer
-    createObserver() {
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    this.resume();
-                } else {
-                    this.pause();
-                }
-            });
-        }, { threshold: 0 });
-
-        observer.observe(this.canvas);
-    }
+      }
+    });
+  });
 }

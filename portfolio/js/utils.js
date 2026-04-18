@@ -1,70 +1,59 @@
-/* ==========================================================================
-   Utility Functions & Constants
-   ========================================================================== */
+/* ═══════════════════════════════════════════════════════════════
+   utils.js — Math Helpers, Easing, DOM Utilities
+   Neural Earth Portfolio
+   ═══════════════════════════════════════════════════════════════ */
 
-/**
- * Easing Curves for consistent animations across the project.
- * Designed to be used with GSAP.
- */
-export const EASE = {
-  cinematic: "power4.inOut",
-  snappy: "back.out(1.7)",
-  smooth: "power2.out",
-  elastic: "elastic.out(1, 0.3)",
-  expo: "expo.out",
-  anime: "power3.inOut", // general smooth aggressive curve
-  impact: "bounce.out",
+const EASE = {
+  cinematic: "power3.inOut",
+  snappy: "power2.out",
+  smooth: "power1.out",
+  elastic: "elastic.out(1, 0.5)",
+  expo: "expo.inOut",
+  impact: "back.out(1.4)",
   drift: "sine.inOut"
 };
 
-/**
- * Linear interpolation
- * @param {number} start 
- * @param {number} end 
- * @param {number} amt 
- * @returns {number}
- */
-export const lerp = (start, end, amt) => {
-  return (1 - amt) * start + amt * end;
-};
+function lerp(start, end, factor) {
+  return start + (end - start) * factor;
+}
 
-/**
- * Map a value from one range to another
- * @param {number} value 
- * @param {number} inMin 
- * @param {number} inMax 
- * @param {number} outMin 
- * @param {number} outMax 
- * @returns {number}
- */
-export const mapRange = (value, inMin, inMax, outMin, outMax) => {
-  return ((value - inMin) * (outMax - outMin)) / (inMax - inMin) + outMin;
-};
+function mapRange(value, inMin, inMax, outMin, outMax) {
+  return outMin + ((value - inMin) / (inMax - inMin)) * (outMax - outMin);
+}
 
-/**
- * Generate a random number between min and max
- * @param {number} min 
- * @param {number} max 
- * @returns {number}
- */
-export const random = (min, max) => {
+function random(min, max) {
   return Math.random() * (max - min) + min;
-};
+}
 
-/* ==========================================================================
-   GSAP Defaults Setup
-   ========================================================================== */
+function clamp(value, min, max) {
+  return Math.max(min, Math.min(max, value));
+}
 
-export const initGSAPDefaults = () => {
-  if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-    gsap.registerPlugin(ScrollTrigger);
-    
-    // Set global ScrollTrigger defaults
-    ScrollTrigger.defaults({
-      start: "top 85%",
-      toggleActions: "play none none reverse"
-    });
-  } else {
-    console.warn("GSAP or ScrollTrigger is not loaded yet.");
-  }
-};
+function prefersReducedMotion() {
+  return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+}
+
+function isMobile() {
+  return window.innerWidth < 768;
+}
+
+function selectAll(query) {
+  return document.querySelectorAll(query);
+}
+
+function select(query) {
+  return document.querySelector(query);
+}
+
+function on(event, element, callback) {
+  if (typeof element === 'string') element = document.querySelector(element);
+  if (element) element.addEventListener(event, callback);
+}
+
+function debounce(fn, delay) {
+  let timer;
+  return function (...args) {
+    clearTimeout(timer);
+    timer = setTimeout(() => fn.apply(this, args), delay);
+  };
+}

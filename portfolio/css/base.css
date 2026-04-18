@@ -1,9 +1,20 @@
-/* ==========================================================================
-   CSS Custom Properties (Design System)
-   ========================================================================== */
+/* ═══════════════════════════════════════════════════════════════
+   base.css — Reset, Design Tokens, Typography, Utilities
+   Neural Earth Portfolio
+   ═══════════════════════════════════════════════════════════════ */
 
+/* ── RESET ── */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ── CUSTOM PROPERTIES ── */
 :root {
-  /* Earth Colors */
+  /* EARTH CORE PALETTE */
   --deep-charcoal: #0a0a0f;
   --midnight-blue: #121428;
   --forest-green: #1a2f2a;
@@ -13,71 +24,211 @@
   --soft-glow: #e0f2f1;
   --dusk-purple: #2d1b4e;
 
-  /* Cyber Colors */
+  /* CYBER-ML PALETTE */
   --matrix-green: #00ff9d;
   --cyber-amber: #ffb800;
   --data-blue: #00d4ff;
   --circuit-gray: #1a1a2e;
   --error-red: #ff4757;
 
-  /* Anime Colors */
+  /* ANIME SUBTLETY PALETTE */
   --sakura-pink: #ffb7d5;
   --ethereal-gold: #ffe4a1;
   --spirit-blue: #a8d8ea;
   --emerald-flare: #4effa1;
 
-  /* Typography Scale (Fluid using clamp) 
-     Assumes roughly 320px to 1280px viewport range for scaling
-  */
-  --text-xs: clamp(0.75rem, 0.7vw + 0.5rem, 0.875rem);
-  --text-sm: clamp(0.875rem, 0.9vw + 0.6rem, 1rem);
-  --text-base: clamp(1rem, 1vw + 0.75rem, 1.125rem);
-  --text-lg: clamp(1.125rem, 1.2vw + 0.8rem, 1.25rem);
-  --text-xl: clamp(1.25rem, 1.5vw + 1rem, 1.5rem);
-  --text-2xl: clamp(1.5rem, 2vw + 1rem, 2rem);
-  --text-3xl: clamp(2rem, 3.5vw + 1.2rem, 3.5rem);
+  /* TYPOGRAPHY */
+  --font-primary: 'Space Grotesk', sans-serif;
+  --font-mono: 'Space Mono', monospace;
+  --font-human: 'Caveat', cursive;
+  --font-jp: 'Noto Sans JP', sans-serif;
 
-  /* Spacing Scale */
+  /* TYPE SCALE (clamp) */
+  --text-xs: clamp(0.75rem, 0.8vw, 0.875rem);
+  --text-sm: clamp(0.875rem, 1vw, 1rem);
+  --text-base: clamp(1rem, 1.2vw, 1.125rem);
+  --text-lg: clamp(1.25rem, 2vw, 1.5rem);
+  --text-xl: clamp(1.5rem, 3vw, 2.5rem);
+  --text-2xl: clamp(2rem, 5vw, 4.5rem);
+  --text-3xl: clamp(3rem, 8vw, 8rem);
+
+  /* SPACING */
   --space-xs: 0.5rem;
   --space-sm: 1rem;
   --space-md: 2rem;
   --space-lg: 4rem;
   --space-xl: 8rem;
   --space-2xl: 12rem;
+
+  /* EASING */
+  --ease-cinematic: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-snappy: cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-/* ==========================================================================
-   Base Styles
-   ========================================================================== */
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  cursor: none;
-}
-
+/* ── BASE ── */
 html {
-  font-size: 16px;
+  scroll-behavior: smooth;
+  background: var(--deep-charcoal);
+}
+
+body {
+  font-family: var(--font-primary);
+  background: var(--deep-charcoal);
+  color: var(--soft-glow);
+  overflow-x: hidden;
+  cursor: none;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-body {
-  background-color: var(--deep-charcoal);
+@media (max-width: 768px) {
+  body { cursor: auto; }
+}
+
+/* ── SELECTION ── */
+::selection {
+  background: var(--ocean-teal);
+  color: var(--deep-charcoal);
+}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--ocean-teal);
+  border-radius: 3px;
+}
+
+/* ── HEADINGS ── */
+h1, h2, h3, h4 {
+  font-family: var(--font-primary);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
   color: var(--soft-glow);
-  font-family: 'Space Grotesk', sans-serif;
-  line-height: 1.5;
-  overflow-x: hidden;
 }
 
-/* Base Headings & typography defaults */
-h1, h2, h3, h4, h5, h6 {
-  font-weight: 500;
-  line-height: 1.2;
+h1 { font-size: var(--text-3xl); font-weight: 700; }
+h2 { font-size: var(--text-2xl); font-weight: 700; }
+h3 { font-size: var(--text-xl); font-weight: 500; }
+h4 { font-size: var(--text-lg); font-weight: 500; }
+
+/* ── BODY TEXT ── */
+p {
+  max-width: 60ch;
+  opacity: 0.85;
+  line-height: 1.6;
+  letter-spacing: 0em;
 }
 
+/* ── LINKS ── */
 a {
-  color: inherit;
+  color: var(--ocean-teal);
   text-decoration: none;
+  transition: color 0.3s var(--ease-snappy);
+}
+a:hover {
+  color: var(--soft-glow);
+}
+
+/* ── FOCUS STYLES (Accessibility) ── */
+:focus-visible {
+  outline: 2px solid var(--ocean-teal);
+  outline-offset: 3px;
+}
+
+/* ── SKIP LINK ── */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: var(--space-sm);
+  background: var(--ocean-teal);
+  color: var(--deep-charcoal);
+  padding: var(--space-xs) var(--space-sm);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  z-index: 100000;
+  border-radius: 0 0 4px 4px;
+  transition: top 0.3s;
+}
+.skip-link:focus {
+  top: 0;
+}
+
+/* ── UTILITIES ── */
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 var(--space-md);
+}
+
+.section-label {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--sunset-accent);
+  margin-bottom: var(--space-md);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  border: 0;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ── KEYFRAMES ── */
+@keyframes rotateRay {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* ── REDUCED MOTION ── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
