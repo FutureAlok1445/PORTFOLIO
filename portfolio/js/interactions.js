@@ -170,7 +170,7 @@ class CustomCursor {
     }
 }
 
-}
+
 
 function setupProjectCards() {
     const cards = document.querySelectorAll('.project-card');
