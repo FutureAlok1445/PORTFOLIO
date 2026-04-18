@@ -80,3 +80,24 @@
     transform: translate(-50%, -50%) rotate(360deg);
   }
 }
+
+/* Impact Frame Burst */
+@keyframes impactFrame {
+  0% { transform: scale(1); filter: brightness(1); }
+  50% { transform: scale(1.03); filter: brightness(1.5) contrast(1.2); }
+  100% { transform: scale(1); filter: brightness(1); }
+}
+
+.impact-pop {
+  animation: impactFrame 0.1s ease-out;
+}
+
+/* Node Breathing Loop */
+@keyframes nodeBreathe {
+  0%, 100% { transform: scale(1) translate(-50%, -50%); }
+  50% { transform: scale(1.02) translate(-50%, -50%); }
+}
+
+.breathing {
+  animation: nodeBreathe 4s ease-in-out infinite;
+}

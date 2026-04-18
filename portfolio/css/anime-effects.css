@@ -1,0 +1,128 @@
+/* ==========================================================================
+   Custom Cursor System
+   ========================================================================== */
+
+#cursor-container {
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  pointer-events: none;
+  z-index: 10000;
+}
+
+.cursor-dot {
+  position: absolute;
+  top: -4px; left: -4px; /* Center 8px */
+  width: 8px; height: 8px;
+  background-color: var(--soft-glow);
+  border-radius: 50%;
+  mix-blend-mode: difference;
+  pointer-events: none;
+}
+
+.cursor-ring {
+  position: absolute;
+  top: -12px; left: -12px; /* Center 24px */
+  width: 24px; height: 24px;
+  border: 1px solid var(--ocean-teal);
+  border-radius: 50%;
+  pointer-events: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: width 0.3s, height 0.3s, background-color 0.3s, border-radius 0.3s, border-color 0.3s, top 0.3s, left 0.3s, opacity 0.3s;
+}
+
+.cursor-glyph {
+  opacity: 0;
+  font-family: 'Space Mono', monospace;
+  font-size: 12px;
+  color: var(--deep-charcoal);
+  font-weight: bold;
+  transition: opacity 0.2s, transform 0.3s;
+  pointer-events: none;
+}
+
+.cursor-trail {
+  position: absolute;
+  top: -2px; left: -2px; /* Center 4px */
+  width: 4px; height: 4px;
+  background-color: var(--spirit-blue);
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+  box-shadow: 0 0 4px var(--spirit-blue);
+  transition: opacity 0.3s;
+}
+
+/* ==========================================================================
+   Cursor States (applied via JS classes on ring/dot)
+   ========================================================================== */
+
+/* State: Text */
+.cursor-ring.state-text {
+  width: 2px; height: 24px;
+  top: -12px; left: -1px;
+  border-radius: 0;
+  background-color: var(--soft-glow);
+  border-color: transparent;
+}
+.cursor-dot.state-text { opacity: 0; }
+
+/* State: Terminal */
+.cursor-ring.state-terminal {
+  width: 32px; height: 32px;
+  top: -16px; left: -16px;
+  border-radius: 4px;
+  background-color: rgba(0, 255, 157, 0.1);
+  border-color: var(--matrix-green);
+}
+.cursor-ring.state-terminal .cursor-glyph {
+  opacity: 1;
+  color: var(--matrix-green);
+}
+.cursor-dot.state-terminal { opacity: 0; }
+
+/* State: Link */
+.cursor-ring.state-link {
+  width: 32px; height: 32px;
+  top: -16px; left: -16px;
+  background-color: var(--ocean-teal);
+  border-color: var(--ocean-teal);
+}
+.cursor-ring.state-link .cursor-glyph {
+  opacity: 1;
+}
+.cursor-ring.state-link.rotate-up .cursor-glyph {
+  transform: rotate(45deg);
+}
+
+/* State: Code */
+.cursor-ring.state-code {
+  width: 10px; height: 20px;
+  top: -10px; left: -5px;
+  border-radius: 0;
+  background-color: var(--soft-glow);
+  border-color: transparent;
+  animation: cursorBlink 1s step-end infinite;
+}
+.cursor-dot.state-code { opacity: 0; }
+
+/* State: Anime */
+.cursor-ring.state-anime {
+  border-color: var(--spirit-blue);
+  box-shadow: 0 0 10px rgba(168, 216, 234, 0.4);
+}
+.cursor-trail.active {
+  opacity: 0.8;
+}
+
+@keyframes cursorBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Magnetic Items */
+.magnetic {
+  display: inline-block;
+  transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}

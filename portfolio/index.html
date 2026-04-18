@@ -70,15 +70,15 @@
             <span class="symbol">0</span>
             <span class="symbol">1</span>
         </div>
-        <canvas id="sakura" class="z60"></canvas>
+        <canvas id="sakura" class="z60" data-cursor="anime"></canvas>
         <div class="hero-content z50">
             <div class="hero-ethereal-ray"></div>
-            <h1 id="hero-name">YOUR NAME</h1>
-            <div class="hero-tagline-wrapper">
+            <h1 id="hero-name" data-cursor="text">YOUR NAME</h1>
+            <div class="hero-tagline-wrapper" data-cursor="code">
                 <p id="hero-tagline"></p><span class="cursor">_</span>
             </div>
-            <p id="hero-terminal"></p>
-            <div class="scroll-indicator">
+            <p id="hero-terminal" data-cursor="terminal"></p>
+            <div class="scroll-indicator magnetic">
                 <span>[ SCROLL TO EXPLORE ]</span>
                 <svg class="chevron" viewBox="0 0 24 24" width="24" height="24">
                     <path fill="currentColor" d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
@@ -91,29 +91,270 @@
     <main>
         <!-- About Section -->
         <section id="about" class="section-about">
-            <div class="container">
-                <!-- About details -->
+            <div class="watermark" data-cursor="anime">美学</div>
+            <div class="about-grid">
+                <!-- Left Column -->
+                <div class="about-left">
+                    <div class="about-label-wrapper">
+                        <span class="about-label">ABOUT //</span>
+                    </div>
+                    <div class="about-content">
+                        <h2 class="about-headline">From earth to algorithm</h2>
+                        
+                        <!-- JS Object Block -->
+                        <div class="js-obj-block" data-cursor="code">
+                            <span class="syn-var">const</span> <span class="syn-obj">developer</span> = {<br>
+                            &nbsp;&nbsp;<span class="syn-prop">origin</span>: <span class="syn-string">"Earth"</span>,<br>
+                            &nbsp;&nbsp;<span class="syn-prop">focus</span>: [<span class="syn-string">"Intelligent Systems"</span>, <span class="syn-string">"Frontend Architecture"</span>],<br>
+                            &nbsp;&nbsp;<span class="syn-prop">belief</span>: <span class="syn-string">"Nature and code follow similar patterns"</span>,<br>
+                            &nbsp;&nbsp;<span class="syn-prop">currentStatus</span>: <span class="syn-string">"Training the next model"</span><br>
+                            };
+                        </div>
+                        
+                        <!-- Handwritten Notes -->
+                        <div class="note note-1">systems-thinker</div>
+                        <div class="note note-2">pixel-obsessed</div>
+                        
+                        <!-- Neural Roots SVG -->
+                        <div class="neural-roots">
+                            <svg viewBox="0 0 100 100" class="roots-svg">
+                                <path class="root-path" d="M50 0 C40 30, 20 40, 10 90" fill="none" stroke="currentColor"/>
+                                <path class="root-path" d="M50 0 C60 40, 70 50, 90 80" fill="none" stroke="currentColor"/>
+                                <path class="root-path" d="M50 0 C55 20, 45 60, 50 100" fill="none" stroke="currentColor"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column -->
+                <div class="about-right">
+                    <div class="terminal-window" data-cursor="terminal">
+                        <div class="terminal-header">
+                            <span class="dot dot-red"></span>
+                            <span class="dot dot-yellow"></span>
+                            <span class="dot dot-green"></span>
+                        </div>
+                        <div class="terminal-body" id="about-terminal-body">
+                            <div class="t-line">$ cat about.md</div>
+                            <div class="t-line typed-line">&gt; Reading profile...</div>
+                            <div class="t-line typed-line">&gt; Background: Self-taught, systems-thinking</div>
+                            <div class="t-line typed-line">&gt; Passion: Bridging organic design with strict logic</div>
+                            <div class="t-line typed-line">&gt; Stack: Full MERN, Three.js, PyTorch</div>
+                            <div class="t-line typed-line">&gt; Status: 100% operational</div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
         <!-- Lab Section -->
         <section id="lab" class="section-lab">
             <div class="container">
-                <!-- Experimental tech / lab area -->
+                <h2 class="section-title">THE LAB //</h2>
+                <div class="lab-grid">
+                    
+                    <!-- Card 1 -->
+                    <div class="lab-card" data-cursor="code">
+                        <div class="terminal-header">
+                            <span class="dot dot-red"></span>
+                            <span class="dot dot-yellow"></span>
+                            <span class="dot dot-green"></span>
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">Model Training</h3>
+                            <div class="neural-network-svg">
+                                <svg viewBox="0 0 200 100">
+                                    <g class="synapses" stroke="var(--ocean-teal)" opacity="0.4" stroke-width="0.5">
+                                        <path class="synapse-path" d="M20,20 L100,10 M20,20 L100,26 M20,20 L100,42 M20,20 L100,58 M20,20 L100,74 M20,20 L100,90" />
+                                        <path class="synapse-path" d="M20,40 L100,10 M20,40 L100,26 M20,40 L100,42 M20,40 L100,58 M20,40 L100,74 M20,40 L100,90" />
+                                        <path class="synapse-path" d="M20,60 L100,10 M20,60 L100,26 M20,60 L100,42 M20,60 L100,58 M20,60 L100,74 M20,60 L100,90" />
+                                        <path class="synapse-path" d="M20,80 L100,10 M20,80 L100,26 M20,80 L100,42 M20,80 L100,58 M20,80 L100,74 M20,80 L100,90" />
+
+                                        <path class="synapse-path" d="M100,10 L180,20 M100,26 L180,20 M100,42 L180,20 M100,58 L180,20 M100,74 L180,20 M100,90 L180,20" />
+                                        <path class="synapse-path" d="M100,10 L180,40 M100,26 L180,40 M100,42 L180,40 M100,58 L180,40 M100,74 L180,40 M100,90 L180,40" />
+                                        <path class="synapse-path" d="M100,10 L180,60 M100,26 L180,60 M100,42 L180,60 M100,58 L180,60 M100,74 L180,60 M100,90 L180,60" />
+                                        <path class="synapse-path" d="M100,10 L180,80 M100,26 L180,80 M100,42 L180,80 M100,58 L180,80 M100,74 L180,80 M100,90 L180,80" />
+                                    </g>
+                                    <g class="nodes" fill="var(--soft-glow)">
+                                        <!-- Layer 1 (4) -->
+                                        <circle cx="20" cy="20" r="3"/><circle cx="20" cy="40" r="3"/><circle cx="20" cy="60" r="3"/><circle cx="20" cy="80" r="3"/>
+                                        <!-- Layer 2 (6) -->
+                                        <circle cx="100" cy="10" r="3"/><circle cx="100" cy="26" r="3"/><circle cx="100" cy="42" r="3"/><circle cx="100" cy="58" r="3"/><circle cx="100" cy="74" r="3"/><circle cx="100" cy="90" r="3"/>
+                                        <!-- Layer 3 (4) -->
+                                        <circle cx="180" cy="20" r="3"/><circle cx="180" cy="40" r="3"/><circle cx="180" cy="60" r="3"/><circle cx="180" cy="80" r="3"/>
+                                    </g>
+                                </svg>
+                            </div>
+                            <div class="metrics-panel">
+                                epoch: 142/1000 | loss: 0.0234 &darr; | accuracy: <span class="glow-val accuracy-val">0.9871 &uarr;</span> | lr: 0.0001
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="lab-card arch-card" data-cursor="code">
+                        <div class="terminal-header">
+                            <span class="dot dot-red"></span>
+                            <span class="dot dot-yellow"></span>
+                            <span class="dot dot-green"></span>
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">Architecture</h3>
+                            <div class="component-tree">
+                                <span class="syn-tag">&lt;App&gt;</span><br>
+                                &nbsp;&nbsp;<span class="syn-tag">&lt;NeuralCore&gt;</span><br>
+                                <div class="hover-trigger-wrapper">
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="syn-comp hover-trigger">&lt;DataPipeline /&gt;</span>
+                                    <div class="speed-lines">
+                                        <svg viewBox="0 0 100 100" class="speed-svg">
+                                            <path d="M0,50 L100,50 M20,20 L80,80 M20,80 L80,20 M50,0 L50,100" stroke="var(--spirit-blue)" opacity="0.1" fill="none" stroke-width="2"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                                &nbsp;&nbsp;<span class="syn-tag">&lt;/NeuralCore&gt;</span><br>
+                                <span class="syn-tag">&lt;/App&gt;</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="lab-card" data-cursor="terminal">
+                        <div class="terminal-header">
+                            <span class="dot dot-red"></span>
+                            <span class="dot dot-yellow"></span>
+                            <span class="dot dot-green"></span>
+                        </div>
+                        <div class="card-content api-surface">
+                            <h3 class="card-title">API Surface</h3>
+                            <div class="json-block">
+                                <span class="syn-var">GET</span> <span class="syn-string">/api/v1/status</span><br>
+                                {<br>
+                                &nbsp;&nbsp;<span class="syn-prop">"status"</span>: <span class="status-glow">200</span>,<br>
+                                &nbsp;&nbsp;<span class="syn-prop">"message"</span>: <span class="syn-string">"OK"</span><br>
+                                }
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
             </div>
         </section>
 
         <!-- Journey / Timeline Section -->
-        <section id="journey" class="section-journey">
+        <section id="journey" class="section-journey" style="position: relative;">
             <div class="container">
-                <!-- Timeline/Journey content -->
+                <h2 class="section-title">GIT LOG //</h2>
+                <div class="git-timeline">
+                    <svg class="timeline-svg" preserveAspectRatio="none">
+                        <line x1="15" y1="0" x2="15" y2="100%" stroke="var(--ocean-teal)" stroke-opacity="0.3" stroke-width="2" />
+                        <line class="timeline-draw-path" x1="15" y1="0" x2="15" y2="100%" stroke="var(--ocean-teal)" stroke-width="2" />
+                    </svg>
+
+                    <div class="commit-card important-commit" data-cursor="text">
+                        <div class="commit-node"></div>
+                        <div class="commit-content">
+                            <div class="commit-hash">a1b2c3d</div>
+                            <div class="commit-header"><span class="commit-type type-feat">feat</span>: initial commit. born.</div>
+                            <div class="commit-meta">alok <span class="commit-date">2000</span></div>
+                            <p class="commit-body">Hello world. Initial generation phase loaded via organic rendering pipeline.</p>
+                        </div>
+                    </div>
+
+                    <div class="commit-card" data-cursor="text">
+                        <div class="commit-node"></div>
+                        <div class="commit-content">
+                            <div class="commit-hash">9x8y7z6</div>
+                            <div class="commit-header"><span class="commit-type type-feat">feat</span>: learn to code</div>
+                            <div class="commit-meta">alok <span class="commit-date">2020</span></div>
+                            <p class="commit-body">Syntactic alignment. First contact with logic structures and basic scripts.</p>
+                        </div>
+                    </div>
+
+                    <div class="commit-card important-commit" data-cursor="text">
+                        <div class="commit-node"></div>
+                        <div class="commit-content">
+                            <div class="commit-hash">b4d5e6f</div>
+                            <div class="commit-header"><span class="commit-type type-fix">fix</span>: first real project</div>
+                            <div class="commit-meta">alok <span class="commit-date">2022</span></div>
+                            <p class="commit-body">Resolved spaghetti architecture. Scaled full-stack paradigms successfully.</p>
+                        </div>
+                    </div>
+
+                    <div class="commit-card" data-cursor="text">
+                        <div class="commit-node"></div>
+                        <div class="commit-content">
+                            <div class="commit-hash">c7d8e9f</div>
+                            <div class="commit-header"><span class="commit-type type-docs">docs</span>: discover machine learning</div>
+                            <div class="commit-meta">alok <span class="commit-date">2023</span></div>
+                            <p class="commit-body">Integrated neural net behaviors into project understanding. Weights updated.</p>
+                        </div>
+                    </div>
+
+                    <div class="commit-card important-commit" data-cursor="text">
+                        <div class="commit-node"></div>
+                        <div class="commit-content">
+                            <div class="commit-hash">1a2b3c4</div>
+                            <div class="commit-header"><span class="commit-type type-feat">feat</span>: open source + hackathons</div>
+                            <div class="commit-meta">alok <span class="commit-date">2024</span></div>
+                            <p class="commit-body">Merged massive pull requests. Collaboration protocols initialized seamlessly.</p>
+                        </div>
+                    </div>
+
+                </div>
             </div>
         </section>
 
         <!-- Skills Section -->
-        <section id="skills" class="section-skills">
+        <section id="skills" class="section-skills" style="position: relative; overflow: hidden;">
+            <div class="watermark water-1" data-cursor="anime">技術</div>
+            <div class="watermark water-2" data-cursor="anime">創造</div>
+            
             <div class="container">
-                <!-- Skills content -->
+                <h2 class="section-title">CONSTELLATION //</h2>
+                
+                <div class="skills-network">
+                    <svg class="network-edges" viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid slice">
+                        <!-- Strong connections (solid) -->
+                        <path class="edge solid-edge" d="M 250 200 L 350 350 M 250 200 L 150 400 M 350 350 L 150 400 M 750 200 L 850 400 M 750 200 L 650 350 M 850 400 L 650 350 M 350 350 L 650 350" fill="none" />
+                        <!-- Weak connections (dashed) -->
+                        <path class="edge dashed-edge" d="M 150 400 L 500 500 M 850 400 L 500 500 M 250 200 L 500 100 M 750 200 L 500 100" fill="none" />
+                    </svg>
+
+                    <!-- Left Cluster (Frontend) -->
+                    <div class="skill-node pos-front-1 magnetic" data-skill="React" data-prof="90" data-proj="12" data-status="Production-ready">
+                        React <div class="speed-lines"><svg viewBox="0 0 100 100"><path d="M0,50 L100,50 M20,20 L80,80 M20,80 L80,20" stroke="currentColor" fill="none" stroke-width="2"/></svg></div>
+                    </div>
+                    <div class="skill-node pos-front-2 magnetic" data-skill="Three.js" data-prof="75" data-proj="4" data-status="Experimental">
+                        Three.js <div class="speed-lines"><svg viewBox="0 0 100 100"><path d="M0,50 L100,50 M50,0 L50,100" stroke="currentColor" fill="none" stroke-width="2"/></svg></div>
+                    </div>
+                    <div class="skill-node pos-front-3 magnetic" data-skill="GSAP" data-prof="85" data-proj="8" data-status="Production-ready">
+                        GSAP <div class="speed-lines"><svg viewBox="0 0 100 100"><path d="M20,20 L80,80" stroke="currentColor" fill="none" stroke-width="2"/></svg></div>
+                    </div>
+
+                    <!-- Right Cluster (ML/Backend) -->
+                    <div class="skill-node pos-back-1 magnetic" data-skill="PyTorch" data-prof="80" data-proj="6" data-status="Researching">
+                        PyTorch <div class="speed-lines"><svg viewBox="0 0 100 100"><path d="M0,50 L100,50 M20,20 L80,80 M20,80 L80,20" stroke="currentColor" fill="none" stroke-width="2"/></svg></div>
+                    </div>
+                    <div class="skill-node pos-back-2 magnetic" data-skill="Node.js" data-prof="85" data-proj="10" data-status="Production-ready">
+                        Node.js <div class="speed-lines"><svg viewBox="0 0 100 100"><path d="M0,50 L100,50 M50,0 L50,100" stroke="currentColor" fill="none" stroke-width="2"/></svg></div>
+                    </div>
+                    <div class="skill-node pos-back-3 magnetic" data-skill="Python" data-prof="95" data-proj="15" data-status="Production-ready">
+                        Python <div class="speed-lines"><svg viewBox="0 0 100 100"><path d="M20,20 L80,80" stroke="currentColor" fill="none" stroke-width="2"/></svg></div>
+                    </div>
+                    
+                    <!-- Center (Bridging) -->
+                    <div class="skill-node pos-center magnetic" data-skill="Architecture" data-prof="80" data-proj="5" data-status="Active">
+                        Architecture <div class="speed-lines"><svg viewBox="0 0 100 100"><path d="M50,0 L50,100 M0,50 L100,50" stroke="currentColor" fill="none" stroke-width="2"/></svg></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Skill Tooltip structure -->
+            <div id="skill-tooltip" class="skill-tooltip">
+                <div class="tt-name">[SkillName]</div>
+                <div class="tt-prof">Proficiency: <span class="tt-bar">████████░░</span> <span class="tt-pct">80%</span></div>
+                <div class="tt-proj">Projects: <span class="tt-proj-num">N</span></div>
+                <div class="tt-status">Status: <span class="tt-status-val">...</span></div>
             </div>
         </section>
 
@@ -131,6 +372,9 @@
             <!-- Contact form, links, etc. -->
         </div>
     </footer>
+
+    <!-- Custom Cursor Area -->
+    <div id="cursor-container"></div>
 
     <!-- Scripts -->
     <script type="module" src="js/utils.js"></script>
