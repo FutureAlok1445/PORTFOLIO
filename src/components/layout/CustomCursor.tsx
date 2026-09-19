@@ -55,9 +55,9 @@ export const CustomCursor = () => {
 
   return (
     <div className="pointer-events-none fixed inset-0 z-[100] overflow-hidden">
-      {/* Precision center dot */}
+      {/* Precision center dot (signature red indicator) */}
       <motion.div
-        className="fixed top-0 left-0 w-1.5 h-1.5 rounded-full bg-white/90 pointer-events-none -translate-x-1/2 -translate-y-1/2"
+        className="fixed top-0 left-0 w-1.5 h-1.5 rounded-full bg-[#ee4444] pointer-events-none -translate-x-1/2 -translate-y-1/2 shadow-[0_0_6px_rgba(238,68,68,0.7)]"
         style={{
           x: mouseX,
           y: mouseY,

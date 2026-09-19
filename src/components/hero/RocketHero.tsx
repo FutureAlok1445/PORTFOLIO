@@ -1,11 +1,9 @@
-import { useState, useEffect, useRef, Suspense } from 'react';
-import { Canvas } from '@react-three/fiber';
+import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { LaunchScene } from './LaunchScene';
 import { ArrowDown } from 'lucide-react';
+import { useMissionStore } from '../../mission/missionStore';
 
-// Register ScrollTrigger plugin with GSAP
 gsap.registerPlugin(ScrollTrigger);
 
 export const RocketHero = () => {
@@ -13,31 +11,20 @@ export const RocketHero = () => {
   const stickyRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLDivElement>(null);
 
-  const [scrollProgress, setScrollProgress] = useState(0);
-  const [reducedMotion, setReducedMotion] = useState(false);
+  const reducedMotion = useMissionStore((state) => state.reducedMotion);
+  const progress = useMissionStore((state) => state.progress);
 
   useEffect(() => {
-    // Check reduced motion preference
-    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-    setReducedMotion(mediaQuery.matches);
-    const handleMotionChange = (e: MediaQueryListEvent) => setReducedMotion(e.matches);
-    mediaQuery.addEventListener('change', handleMotionChange);
+    if (reducedMotion || !containerRef.current) return;
 
-    if (mediaQuery.matches) return;
-
-    if (!containerRef.current) return;
-
-    // Build deterministic GSAP ScrollTrigger timeline
+    // Fade out hero UI overlay during launch liftoff phase
     const ctx = gsap.context(() => {
       ScrollTrigger.create({
         trigger: containerRef.current,
         start: 'top top',
-        end: 'bottom bottom',
+        end: 'bottom top',
         scrub: 0.6,
         onUpdate: (self) => {
-          setScrollProgress(self.progress);
-
-          // Fade out hero UI overlay during launch liftoff phase
           if (textRef.current) {
             const opacity = Math.max(0, 1 - self.progress * 2.2);
             textRef.current.style.opacity = opacity.toString();
@@ -48,11 +35,8 @@ export const RocketHero = () => {
       });
     }, containerRef);
 
-    return () => {
-      mediaQuery.removeEventListener('change', handleMotionChange);
-      ctx.revert();
-    };
-  }, []);
+    return () => ctx.revert();
+  }, [reducedMotion]);
 
   const scrollToSection = (id: string) => {
     const target = document.getElementById(id);
@@ -64,31 +48,14 @@ export const RocketHero = () => {
   return (
     <div
       ref={containerRef}
-      className={`relative w-full ${reducedMotion ? 'min-h-screen' : 'h-[260vh]'}`}
+      id="hero"
+      className={`relative w-full ${reducedMotion ? 'min-h-screen' : 'h-[160vh]'}`}
     >
       {/* Pinned Viewport Container */}
       <div
         ref={stickyRef}
-        className="sticky top-0 w-full h-screen overflow-hidden bg-[#090a0d]"
+        className="sticky top-0 w-full h-screen overflow-hidden bg-transparent"
       >
-        {/* React Three Fiber 3D Launch Scene */}
-        <div className="absolute inset-0 z-0">
-          <Canvas
-            shadows
-            camera={{ position: [5.5, 5, 22], fov: 50 }}
-            gl={{
-              antialias: true,
-              alpha: false,
-              powerPreference: 'high-performance',
-            }}
-            dpr={[1, 1.8]}
-          >
-            <Suspense fallback={null}>
-              <LaunchScene progress={scrollProgress} reducedMotion={reducedMotion} />
-            </Suspense>
-          </Canvas>
-        </div>
-
         {/* Minimal Hero UI Overlay */}
         <div className="relative z-10 w-full h-full max-w-5xl mx-auto px-6 sm:px-8 flex items-start pt-28 sm:items-center sm:pt-0 pointer-events-none">
           <div
@@ -111,7 +78,7 @@ export const RocketHero = () => {
 
             {/* Supporting Sentence */}
             <p className="text-sm sm:text-base text-secondary font-light leading-relaxed mb-6 sm:mb-8 max-w-md">
-              B.E. Information Technology engineer specializing in distributed systems, high-throughput backend architecture, and security telemetry.
+              B.E. Information Technology student specializing in backend architecture, distributed systems, and security telemetry.
             </p>
 
             {/* Primary & Secondary CTAs */}
@@ -133,16 +100,11 @@ export const RocketHero = () => {
           </div>
         </div>
 
-        {/* Bottom Seamless Gradient Fade into Page Content */}
-        <div className="pointer-events-none absolute bottom-0 inset-x-0 h-44 bg-gradient-to-t from-[#090a0d] via-[#090a0d]/60 to-transparent z-10" />
-
         {/* Subtle Scroll Hint */}
-        {!reducedMotion && scrollProgress < 0.08 && (
+        {!reducedMotion && progress < 0.05 && (
           <div
             onClick={() => {
-              if (containerRef.current) {
-                window.scrollBy({ top: window.innerHeight * 0.8, behavior: 'smooth' });
-              }
+              window.scrollBy({ top: window.innerHeight * 0.8, behavior: 'smooth' });
             }}
             className="absolute bottom-6 left-6 sm:left-8 z-20 flex items-center gap-2 text-muted hover:text-secondary cursor-pointer transition-colors"
           >
