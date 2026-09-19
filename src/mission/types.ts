@@ -25,6 +25,14 @@ export interface PhaseConfig {
   defaultEvent?: string;
 }
 
+export type IgnitionStage =
+  | 'IDLE'
+  | 'COUNTDOWN'
+  | 'DELUGE'
+  | 'IGNITION'
+  | 'LIFTOFF'
+  | 'COMPLETED';
+
 export interface MissionTelemetry {
   progress: number;
   phaseId: MissionPhaseId;
@@ -35,4 +43,11 @@ export interface MissionTelemetry {
   stage: string;
   eventFlash: string | null;
   qualityTier: QualityTier;
+  ignitionStage: IgnitionStage;
+  engineThrust: number; // 0..1
+  armRetract: number; // 0..1
+  delugeIntensity: number; // 0..1
+  cameraShake: number; // 0..1
+  pitchAngle: number; // radians
+  downrangeKm: number;
 }

@@ -192,6 +192,41 @@ export function interpolateTelemetry(
     }
   }
 
+  // Gravity turn pitch angle: 0 rad until tower cleared (0.2 km), then arches downrange to ~42 deg
+  let pitchAngle = 0;
+  if (altitudeKm > 0.2) {
+    pitchAngle = Math.min(0.72, Math.pow((altitudeKm - 0.2) / 80.0, 0.6) * 0.72);
+  }
+
+  // Downrange drift
+  const downrangeKm = altitudeKm > 0.2 ? Math.pow(altitudeKm, 1.15) * 0.35 : 0;
+
+  // Camera shake amplitude profile: max at ignition and Max-Q, ZERO after MECO (~65km)
+  let cameraShake = 0;
+  if (clamped < 0.08) {
+    // Ignition & Liftoff acoustic rumble
+    cameraShake = Math.min(0.85, clamped * 12.0);
+  } else if (clamped >= 0.14 && clamped <= 0.22) {
+    // Max-Q transonic buffeting
+    const maxQDist = Math.abs(clamped - 0.18);
+    cameraShake = Math.max(0, 1.0 - maxQDist / 0.04) * 0.95;
+  } else if (clamped > 0.24) {
+    // Post-MECO: Space is completely calm and smooth
+    cameraShake = 0;
+  }
+
+  // Engine thrust profile across mission phases
+  let engineThrust = 1.0;
+  if (clamped < 0.02) {
+    engineThrust = clamped / 0.02;
+  } else if (clamped >= 0.22 && clamped <= 0.25) {
+    // Staging / MECO coast
+    engineThrust = 0;
+  } else if (clamped > 0.36) {
+    // Orbit / Engine cutoff
+    engineThrust = 0;
+  }
+
   return {
     progress: clamped,
     phaseId: currentPhase.id,
@@ -202,5 +237,12 @@ export function interpolateTelemetry(
     stage: currentPhase.stageName || lower.stage,
     eventFlash,
     qualityTier,
+    ignitionStage: clamped > 0.06 ? 'COMPLETED' : 'IDLE',
+    engineThrust,
+    armRetract: clamped > 0.03 ? 1.0 : 0.0,
+    delugeIntensity: clamped < 0.06 ? Math.max(0, 1.0 - clamped / 0.06) : 0,
+    cameraShake,
+    pitchAngle,
+    downrangeKm,
   };
 }

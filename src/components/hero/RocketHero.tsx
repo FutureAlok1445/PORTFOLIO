@@ -100,16 +100,17 @@ export const RocketHero = () => {
           </div>
         </div>
 
-        {/* Subtle Scroll Hint */}
+        {/* Subtle Scroll Hint / Launch Action */}
         {!reducedMotion && progress < 0.05 && (
           <div
             onClick={() => {
-              window.scrollBy({ top: window.innerHeight * 0.8, behavior: 'smooth' });
+              useMissionStore.getState().startLaunchSequence();
+              window.scrollBy({ top: window.innerHeight * 0.4, behavior: 'smooth' });
             }}
             className="absolute bottom-6 left-6 sm:left-8 z-20 flex items-center gap-2 text-muted hover:text-secondary cursor-pointer transition-colors"
           >
             <span className="text-[11px] font-mono tracking-widest uppercase">
-              Scroll to Launch
+              Scroll or Click to Launch
             </span>
             <ArrowDown size={13} className="animate-bounce" />
           </div>

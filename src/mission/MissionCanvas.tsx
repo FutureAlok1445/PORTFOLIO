@@ -5,6 +5,7 @@ import { PerformanceMonitor } from '@react-three/drei';
 import { useMissionStore, liveTelemetry } from './missionStore';
 import { PhaseSceneManager } from './PhaseSlots';
 import { PostprocessingScaffold } from './PostprocessingScaffold';
+import { SHARED_SUN_DIRECTION } from './environment/SkyDome';
 
 // Static poster camera angles for prefers-reduced-motion (6 distinct architectural shots)
 const REDUCED_MOTION_POSTERS: { pos: [number, number, number]; lookAt: [number, number, number] }[] = [
@@ -71,8 +72,13 @@ const SceneController: React.FC<{ reducedMotion: boolean }> = ({ reducedMotion }
     const mouseX = isMobile ? 0 : state.pointer.x * 0.7;
     const mouseY = isMobile ? 0 : state.pointer.y * 0.4;
 
-    camera.position.x += (targetX + mouseX - camera.position.x) * Math.min(1, delta * 3.5);
-    camera.position.y += (targetY - mouseY - camera.position.y) * Math.min(1, delta * 3.5);
+    // Acoustic & aerodynamic camera shake
+    const shake = liveTelemetry.cameraShake;
+    const shakeX = shake > 0.01 ? (Math.sin(state.clock.getElapsedTime() * 72.0) + Math.cos(state.clock.getElapsedTime() * 94.0) * 0.5) * 0.07 * shake : 0;
+    const shakeY = shake > 0.01 ? (Math.cos(state.clock.getElapsedTime() * 82.0) + Math.sin(state.clock.getElapsedTime() * 110.0) * 0.5) * 0.07 * shake : 0;
+
+    camera.position.x += (targetX + mouseX + shakeX - camera.position.x) * Math.min(1, delta * 3.5);
+    camera.position.y += (targetY - mouseY + shakeY - camera.position.y) * Math.min(1, delta * 3.5);
     camera.position.z += (targetZ - camera.position.z) * Math.min(1, delta * 3.0);
 
     cameraLookAt.current.y += (targetLookY - cameraLookAt.current.y) * Math.min(1, delta * 4.0);
@@ -81,22 +87,21 @@ const SceneController: React.FC<{ reducedMotion: boolean }> = ({ reducedMotion }
 
   return (
     <>
-      {/* Global Lighting Foundation */}
-      <ambientLight intensity={0.18} color="#151922" />
+      {/* Global Lighting Foundation aligned with SHARED_SUN_DIRECTION */}
+      <ambientLight intensity={0.22} color="#181e2b" />
       <directionalLight
-        position={[40, 50, 30]}
-        intensity={1.8}
-        color="#fffaf0"
+        position={[SHARED_SUN_DIRECTION.x * 250, SHARED_SUN_DIRECTION.y * 250, SHARED_SUN_DIRECTION.z * 250]}
+        intensity={2.2}
+        color="#fff0dc"
         castShadow
         shadow-mapSize={[1024, 1024]}
         shadow-bias={-0.0002}
       />
       <directionalLight
-        position={[-30, 10, -20]}
+        position={[-SHARED_SUN_DIRECTION.x * 100, 15, -SHARED_SUN_DIRECTION.z * 100]}
         intensity={0.4}
         color="#1f2838"
       />
-      <fogExp2 attach="fog" args={['#050608', 0.003]} />
 
       {/* Dynamic Phase Scenes (Current Phase +/- 1) */}
       <PhaseSceneManager reducedMotion={reducedMotion} />

@@ -24,6 +24,7 @@ export interface MissionState extends MissionTelemetry {
   reducedMotion: boolean;
   activePhaseIndex: number;
   // Actions
+  startLaunchSequence: () => void;
   setProgress: (progress: number) => void;
   setQualityTier: (tier: QualityTier) => void;
   setReducedMotion: (reduced: boolean) => void;
@@ -39,6 +40,10 @@ export const useMissionStore = create<MissionState>((set, get) => ({
   isPreloaded: false,
   reducedMotion: false,
   activePhaseIndex: 0,
+
+  startLaunchSequence: () => {
+    startPhysicalIgnition();
+  },
 
   setProgress: (progress: number) => {
     const currentTier = get().qualityTier;
@@ -80,8 +85,90 @@ export const liveTelemetry = {
   ...initialTelemetry,
 };
 
+let ignitionAnimId: number | null = null;
+
+// Time-based physical ignition sequence execution
+export function startPhysicalIgnition() {
+  if (liveTelemetry.ignitionStage !== 'IDLE') return;
+
+  const startTime = performance.now();
+  liveTelemetry.ignitionStage = 'COUNTDOWN';
+
+  function step() {
+    const elapsedSec = (performance.now() - startTime) / 1000;
+
+    if (elapsedSec < 3.0) {
+      // Phase 1: T-10 to T-7 Countdown
+      liveTelemetry.ignitionStage = 'COUNTDOWN';
+      liveTelemetry.missionTimeSec = -10 + elapsedSec;
+      liveTelemetry.formattedTime = `T-00:${String(Math.ceil(10 - elapsedSec)).padStart(2, '0')}`;
+      liveTelemetry.delugeIntensity = 0;
+      liveTelemetry.engineThrust = 0;
+      liveTelemetry.armRetract = 0;
+      liveTelemetry.cameraShake = 0;
+    } else if (elapsedSec < 7.0) {
+      // Phase 2: T-7 to T-3 Water Deluge starts (billowing white steam sideways from trench)
+      liveTelemetry.ignitionStage = 'DELUGE';
+      liveTelemetry.missionTimeSec = -10 + elapsedSec;
+      liveTelemetry.formattedTime = `T-00:${String(Math.ceil(10 - elapsedSec)).padStart(2, '0')}`;
+      liveTelemetry.delugeIntensity = Math.min(1.0, (elapsedSec - 3.0) / 1.8);
+      liveTelemetry.engineThrust = 0;
+      liveTelemetry.armRetract = (elapsedSec - 3.0) / 4.0;
+      liveTelemetry.cameraShake = 0.08;
+    } else if (elapsedSec < 10.0) {
+      // Phase 3: T-3 to T-0 Engines Ignite! (flash, ground-bounce flicker, micro-shake, clamped)
+      liveTelemetry.ignitionStage = 'IGNITION';
+      liveTelemetry.missionTimeSec = -10 + elapsedSec;
+      liveTelemetry.formattedTime = `T-00:${String(Math.ceil(10 - elapsedSec)).padStart(2, '0')}`;
+      liveTelemetry.delugeIntensity = 1.0;
+      liveTelemetry.engineThrust = Math.min(1.0, (elapsedSec - 7.0) / 1.0);
+      liveTelemetry.armRetract = 1.0;
+      liveTelemetry.cameraShake = 0.65;
+      liveTelemetry.eventFlash = 'IGNITION';
+    } else if (elapsedSec < 14.0) {
+      // Phase 4: T-0 Hold-down release & Slow Liftoff accelerating strongly past tower
+      liveTelemetry.ignitionStage = 'LIFTOFF';
+      const flightTime = elapsedSec - 10.0;
+      liveTelemetry.missionTimeSec = flightTime;
+      liveTelemetry.formattedTime = `T+00:${String(Math.floor(flightTime)).padStart(2, '0')}`;
+      liveTelemetry.delugeIntensity = Math.max(0, 1.0 - flightTime / 4.0);
+      liveTelemetry.engineThrust = 1.0;
+      liveTelemetry.cameraShake = 0.85;
+
+      // Heavy liftoff quadratic acceleration curve
+      const altMeters = Math.pow(flightTime / 4.0, 2.2) * 85.0;
+      liveTelemetry.altitudeKm = altMeters / 1000.0;
+      liveTelemetry.velocityKms = (flightTime * 0.015);
+      liveTelemetry.progress = (altMeters / 85.0) * 0.08;
+      liveTelemetry.eventFlash = flightTime < 1.5 ? 'LIFTOFF' : 'TOWER CLEARED';
+    } else {
+      // Phase 5: Hand control back to scroll for ascent
+      liveTelemetry.ignitionStage = 'COMPLETED';
+      liveTelemetry.eventFlash = null;
+      if (ignitionAnimId) cancelAnimationFrame(ignitionAnimId);
+      ignitionAnimId = null;
+      return;
+    }
+
+    ignitionAnimId = requestAnimationFrame(step);
+  }
+
+  ignitionAnimId = requestAnimationFrame(step);
+}
+
 // Global telemetry updater callable at 60fps from GSAP scrub or RAF without React re-render overhead
 export function updateLiveTelemetry(progress: number) {
+  // If user starts scrolling before ignition completes, trigger the ignition sequence
+  if (liveTelemetry.ignitionStage === 'IDLE' && progress > 0.03) {
+    startPhysicalIgnition();
+    return;
+  }
+
+  // If ignition is running its time-based physical sequence, let it drive the initial liftoff
+  if (liveTelemetry.ignitionStage !== 'IDLE' && liveTelemetry.ignitionStage !== 'COMPLETED') {
+    return;
+  }
+
   const currentTier = useMissionStore.getState().qualityTier;
   const t = interpolateTelemetry(progress, currentTier);
   liveTelemetry.progress = t.progress;
@@ -93,6 +180,12 @@ export function updateLiveTelemetry(progress: number) {
   liveTelemetry.stage = t.stage;
   liveTelemetry.eventFlash = t.eventFlash;
   liveTelemetry.qualityTier = t.qualityTier;
+  liveTelemetry.engineThrust = t.engineThrust;
+  liveTelemetry.armRetract = t.armRetract;
+  liveTelemetry.delugeIntensity = t.delugeIntensity;
+  liveTelemetry.cameraShake = t.cameraShake;
+  liveTelemetry.pitchAngle = t.pitchAngle;
+  liveTelemetry.downrangeKm = t.downrangeKm;
 
   // Sync with store
   useMissionStore.getState().setProgress(progress);

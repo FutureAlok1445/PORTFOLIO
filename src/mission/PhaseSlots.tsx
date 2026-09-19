@@ -1,10 +1,14 @@
 import React from 'react';
 import { MissionPhaseId } from './types';
 import { MISSION_PHASES } from './telemetryKeyframes';
-import { LaunchPad } from '../components/hero/LaunchPad';
-import { LaunchSmoke } from '../components/hero/LaunchSmoke';
+import { SkyDome } from './environment/SkyDome';
+import { LaunchPadEnvironment } from './environment/LaunchPadEnvironment';
+import { AerospaceRocket } from './rocket/AerospaceRocket';
+import { EnginePlume } from './rocket/EnginePlume';
+import { WaterDelugeSteam } from './rocket/WaterDelugeSteam';
+import { CloudDecks } from './ascent/CloudDecks';
+import { CondensationVaporCone } from './ascent/CondensationVaporCone';
 import { StarField } from '../components/hero/StarField';
-import { Rocket } from '../components/hero/Rocket';
 import { liveTelemetry, useMissionStore } from './missionStore';
 
 // Slot Props passed to each phase scene
@@ -14,33 +18,45 @@ export interface PhaseSlotProps {
   reducedMotion: boolean;
 }
 
-// 1. PAD Phase (Launch Complex 39A - Liftoff sequence)
+// 1. PAD Phase (Launch Complex 39A - Liftoff sequence at golden-hour dawn)
 export const PadScene: React.FC<PhaseSlotProps> = ({ reducedMotion }) => {
-  const rocketGroupRef = React.useRef<any>(null);
-
-  // Smooth liftoff altitude displacement without React re-render overhead
-  React.useEffect(() => {}, []);
-
   return (
     <group name="phase-PAD">
-      <StarField count={reducedMotion ? 400 : 900} />
-      <LaunchPad armRetract={0.3} />
-      <LaunchSmoke intensity={0.4} />
-      <group ref={rocketGroupRef}>
-        <Rocket engineHeat={0.9} thrust={0.7} />
-      </group>
+      <SkyDome />
+      <StarField count={reducedMotion ? 350 : 800} />
+      <LaunchPadEnvironment />
+      <WaterDelugeSteam />
+      <AerospaceRocket />
+      <EnginePlume />
     </group>
   );
 };
 
-// 2. ASCENT Phase (Cloud breakout)
-export const AscentScene: React.FC<PhaseSlotProps> = () => {
-  return <group name="phase-ASCENT" />;
+// 2. ASCENT Phase (Cloud punch-through, gravity turn & downrange drift)
+export const AscentScene: React.FC<PhaseSlotProps> = ({ reducedMotion }) => {
+  return (
+    <group name="phase-ASCENT">
+      <SkyDome />
+      <StarField count={reducedMotion ? 400 : 1000} />
+      <CloudDecks />
+      <AerospaceRocket />
+      <EnginePlume />
+    </group>
+  );
 };
 
-// 3. MAX_Q Phase (Transonic Mach shockwaves)
-export const MaxQScene: React.FC<PhaseSlotProps> = () => {
-  return <group name="phase-MAX_Q" />;
+// 3. MAX_Q Phase (Transonic Mach shockwaves & Prandtl-Glauert vapor cone)
+export const MaxQScene: React.FC<PhaseSlotProps> = ({ reducedMotion }) => {
+  return (
+    <group name="phase-MAX_Q">
+      <SkyDome />
+      <StarField count={reducedMotion ? 500 : 1200} />
+      <CloudDecks />
+      <AerospaceRocket />
+      <CondensationVaporCone />
+      <EnginePlume />
+    </group>
+  );
 };
 
 // 4. STAGING Phase (MECO & Stage separation)
