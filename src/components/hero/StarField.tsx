@@ -1,5 +1,6 @@
-import { useMemo } from 'react';
+import { useMemo, useRef } from 'react';
 import * as THREE from 'three';
+import { useFrame } from '@react-three/fiber';
 import { getStarTexture } from './textures';
 
 interface StarFieldProps {
@@ -7,7 +8,16 @@ interface StarFieldProps {
 }
 
 export const StarField = ({ count = 900 }: StarFieldProps) => {
+  const groupRef = useRef<THREE.Group>(null);
   const starTexture = useMemo(() => getStarTexture(), []);
+
+  // Subtle organic rotation of the stellar sphere
+  useFrame((state) => {
+    if (groupRef.current) {
+      groupRef.current.rotation.y = state.clock.getElapsedTime() * 0.003;
+      groupRef.current.rotation.x = Math.sin(state.clock.getElapsedTime() * 0.0015) * 0.02;
+    }
+  });
 
   // 1. Faint deep background celestial stars
   const bgStars = useMemo(() => {
@@ -72,7 +82,7 @@ export const StarField = ({ count = 900 }: StarFieldProps) => {
   }, [count]);
 
   return (
-    <group>
+    <group ref={groupRef}>
       {/* Background celestial stars */}
       <points>
         <bufferGeometry>

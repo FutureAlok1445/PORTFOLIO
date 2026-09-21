@@ -1,8 +1,11 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import { Volume2, VolumeX } from 'lucide-react';
 import { liveTelemetry } from './missionStore';
 import { MISSION_PHASES } from './telemetryKeyframes';
+import { audioEngine } from './audio/audioEngine';
 
 export const TelemetryHUD: React.FC = () => {
+  const [audioActive, setAudioActive] = useState(!audioEngine.getIsMuted());
   // Direct DOM refs for 60fps updates with ZERO React re-renders
   const timeRef = useRef<HTMLSpanElement>(null);
   const altRef = useRef<HTMLSpanElement>(null);
@@ -16,6 +19,7 @@ export const TelemetryHUD: React.FC = () => {
   useEffect(() => {
     let animId: number;
     let lastEvent: string | null = null;
+    let eventDisplayUntil = 0;
 
     const updateHUD = () => {
       // 1. Mission Time
@@ -50,21 +54,27 @@ export const TelemetryHUD: React.FC = () => {
         phaseRef.current.textContent = phase ? phase.label : liveTelemetry.phaseId;
       }
 
-      // 6. Vertical Trajectory Dot Position (starts at PAD at bottom, ascends to ORB at top)
+      // 6. Vertical Trajectory Dot Position (GPU transform without layout reflow)
       if (dotRef.current) {
-        dotRef.current.style.bottom = `${(liveTelemetry.progress * 100).toFixed(2)}%`;
+        const p = Math.max(0, Math.min(1, liveTelemetry.progress));
+        // Starts at PAD (bottom, y ~ 168px), ascends to ORB (top, y ~ 0px)
+        const y = (1 - p) * 168;
+        dotRef.current.style.transform = `translate3d(-50%, ${y.toFixed(1)}px, 0)`;
       }
 
-      // 7. Event Flash Banner
+      // 7. Event Flash Banner (guaranteed visible for at least 1.8s)
       if (eventBannerRef.current && eventTextRef.current) {
-        if (liveTelemetry.eventFlash) {
+        const now = performance.now();
+        if (liveTelemetry.eventFlash && liveTelemetry.eventFlash !== lastEvent) {
+          lastEvent = liveTelemetry.eventFlash;
+          eventDisplayUntil = now + 1800;
           eventTextRef.current.textContent = liveTelemetry.eventFlash;
           eventBannerRef.current.style.opacity = '1';
           eventBannerRef.current.style.transform = 'translateY(0)';
-          lastEvent = liveTelemetry.eventFlash;
-        } else if (lastEvent) {
+        } else if (now >= eventDisplayUntil && lastEvent) {
           eventBannerRef.current.style.opacity = '0';
           eventBannerRef.current.style.transform = 'translateY(6px)';
+          lastEvent = null;
         }
       }
 
@@ -83,11 +93,15 @@ export const TelemetryHUD: React.FC = () => {
       {/* Event Flash Banner (Center-Bottom, just above nav/telemetry) */}
       <div
         ref={eventBannerRef}
-        className="fixed bottom-20 left-1/2 -translate-x-1/2 px-3 py-1 rounded bg-[#111318]/90 border border-accent/40 backdrop-blur-md transition-all duration-300 opacity-0 pointer-events-none"
+        className="fixed bottom-20 sm:bottom-12 left-1/2 -translate-x-1/2 px-4 py-2 rounded-lg bg-[#080a0f]/95 border border-[#c99a5e]/60 shadow-[0_0_24px_rgba(201,154,94,0.25)] backdrop-blur-xl transition-all duration-300 opacity-0 pointer-events-none z-50 flex items-center gap-3"
       >
-        <div className="flex items-center gap-2 text-xs text-accent">
-          <span className="w-1.5 h-1.5 rounded-full bg-accent animate-ping" />
-          <span ref={eventTextRef} className="tracking-widest font-semibold uppercase">
+        <span className="relative flex h-2 w-2">
+          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#c99a5e] opacity-75" />
+          <span className="relative inline-flex rounded-full h-2 w-2 bg-[#c99a5e]" />
+        </span>
+        <div className="flex items-center gap-2 text-[11px] font-mono tracking-widest text-[#f0f3f8]">
+          <span className="text-[#8c919d] text-[10px]">EVENT //</span>
+          <span ref={eventTextRef} className="text-[#e2b77d] font-bold uppercase tracking-wider">
             STAGE SEP
           </span>
         </div>
@@ -140,11 +154,47 @@ export const TelemetryHUD: React.FC = () => {
           {/* Moving Trajectory indicator dot */}
           <div
             ref={dotRef}
-            className="absolute left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-accent shadow-[0_0_8px_rgba(201,154,94,0.8)] transition-[bottom] duration-75"
-            style={{ bottom: '0%' }}
+            className="absolute top-0 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-accent shadow-[0_0_8px_rgba(201,154,94,0.8)] will-change-transform"
+            style={{ transform: 'translate3d(-50%, 168px, 0)' }}
           />
         </div>
         <span className="tracking-tighter">PAD</span>
+      </div>
+
+      {/* Bottom-Right: Single Audio Telemetry Mute/Unmute Toggle (Pointer-events-auto) */}
+      <div className="fixed bottom-5 right-5 sm:right-8 pointer-events-auto z-40">
+        <button
+          onClick={() => {
+            const isUnmuted = audioEngine.toggleMute();
+            setAudioActive(isUnmuted);
+          }}
+          data-cursor-text="AUDIO"
+          className={`flex items-center gap-2 px-3 py-1.5 rounded-xl border text-[10px] font-mono tracking-wider uppercase transition-all duration-300 shadow-lg ${
+            audioActive
+              ? 'bg-[#c99a5e]/20 border-[#c99a5e] text-[#c99a5e] shadow-[0_0_16px_rgba(201,154,94,0.3)]'
+              : 'bg-[#080b14]/70 backdrop-blur-md border-white/[0.1] text-[#8c919d] hover:text-white hover:border-white/20'
+          }`}
+          title={audioActive ? 'Mute synthesized ambient audio' : 'Unmute synthesized ambient audio'}
+          aria-label={audioActive ? 'Mute ambient audio' : 'Unmute ambient audio'}
+        >
+          {audioActive ? (
+            <>
+              <Volume2 size={13} className="text-[#c99a5e] animate-pulse" />
+              <span>AUDIO: LIVE</span>
+              {/* Micro Equalizer Bars */}
+              <div className="flex items-end gap-0.5 h-3 ml-0.5">
+                <span className="w-0.5 h-2.5 bg-[#c99a5e] animate-bounce" />
+                <span className="w-0.5 h-1.5 bg-[#c99a5e] animate-bounce delay-75" />
+                <span className="w-0.5 h-3 bg-[#c99a5e] animate-bounce delay-150" />
+              </div>
+            </>
+          ) : (
+            <>
+              <VolumeX size={13} />
+              <span>AUDIO: MUTED</span>
+            </>
+          )}
+        </button>
       </div>
     </aside>
   );

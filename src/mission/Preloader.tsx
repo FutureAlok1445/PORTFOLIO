@@ -6,7 +6,10 @@ export const Preloader: React.FC = () => {
   const { active, progress } = useProgress();
   const setIsPreloaded = useMissionStore((state) => state.setIsPreloaded);
 
-  const [dismissed, setDismissed] = useState(false);
+  // Check if visitor has already completed preloader in this session
+  const alreadySeen = typeof window !== 'undefined' && sessionStorage.getItem('alok_portfolio_seen') === '1';
+
+  const [dismissed, setDismissed] = useState(alreadySeen);
   const [fading, setFading] = useState(false);
 
   // Map 0..100 load progress to T-10s down to T-0s
@@ -14,19 +17,31 @@ export const Preloader: React.FC = () => {
 
   const handleFinish = () => {
     setFading(true);
+    if (typeof window !== 'undefined') {
+      sessionStorage.setItem('alok_portfolio_seen', '1');
+    }
     setTimeout(() => {
       setDismissed(true);
       setIsPreloaded(true);
-    }, 600);
+    }, 500);
   };
 
   useEffect(() => {
+    if (alreadySeen) {
+      setIsPreloaded(true);
+      return;
+    }
+
     // When assets finish loading
     if (!active && progress >= 100) {
-      const timer = setTimeout(handleFinish, 400);
+      const timer = setTimeout(handleFinish, 300);
       return () => clearTimeout(timer);
     }
-  }, [active, progress]);
+
+    // Safety timeout: Never block visitor for more than 2.2 seconds
+    const safetyTimer = setTimeout(handleFinish, 2200);
+    return () => clearTimeout(safetyTimer);
+  }, [active, progress, alreadySeen]);
 
   if (dismissed) return null;
 

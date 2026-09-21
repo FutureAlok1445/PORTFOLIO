@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import { MissionPhaseId, QualityTier, MissionTelemetry } from './types';
 import { interpolateTelemetry } from './telemetryKeyframes';
+import { audioEngine } from './audio/audioEngine';
 
 // Auto-detect default quality tier with query parameter override (?quality=low|med|high)
 function getInitialQualityTier(): QualityTier {
@@ -13,7 +14,7 @@ function getInitialQualityTier(): QualityTier {
     const isMobile = window.matchMedia('(pointer: coarse)').matches || window.innerWidth < 768;
     const cores = navigator.hardwareConcurrency || 4;
     if (isMobile || cores <= 4) {
-      return 'med';
+      return 'low';
     }
   }
   return 'high';
@@ -49,13 +50,13 @@ export const useMissionStore = create<MissionState>((set, get) => ({
     const currentTier = get().qualityTier;
     const telemetry = interpolateTelemetry(progress, currentTier);
 
-    // Only update zustand state if values changed meaningfully or phase crossed
-    // to protect React rendering performance
+    // Only update Zustand React state when discrete phase or milestone changes,
+    // protecting React 60fps rendering performance while liveTelemetry handles continuous scrub
     const prev = get();
     if (
       prev.phaseId !== telemetry.phaseId ||
       prev.eventFlash !== telemetry.eventFlash ||
-      Math.abs(prev.progress - progress) > 0.005
+      prev.stage !== telemetry.stage
     ) {
       set({
         ...telemetry,
@@ -189,4 +190,7 @@ export function updateLiveTelemetry(progress: number) {
 
   // Sync with store
   useMissionStore.getState().setProgress(progress);
+
+  // Sync with synthesized audio engine
+  audioEngine.updateTelemetry(progress);
 }

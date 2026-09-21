@@ -8,6 +8,15 @@ import { EnginePlume } from './rocket/EnginePlume';
 import { WaterDelugeSteam } from './rocket/WaterDelugeSteam';
 import { CloudDecks } from './ascent/CloudDecks';
 import { CondensationVaporCone } from './ascent/CondensationVaporCone';
+import { StageSeparationScene } from './staging/StageSeparationScene';
+import { FairingSeparationScene } from './staging/FairingSeparationScene';
+import { PayloadDeployScene } from './deploy/PayloadDeployScene';
+import { OrbitScene } from './orbit/OrbitScene';
+import { TransferScene } from './transfer/TransferScene';
+import { ConstellationsScene } from './constellations/ConstellationsScene';
+import { AsteroidBeltScene } from './asteroids/AsteroidBeltScene';
+import { PaleBlueDotScene } from './palebluedot/PaleBlueDotScene';
+import { NebulaScene } from './nebula/NebulaScene';
 import { StarField } from '../components/hero/StarField';
 import { liveTelemetry, useMissionStore } from './missionStore';
 
@@ -60,48 +69,48 @@ export const MaxQScene: React.FC<PhaseSlotProps> = ({ reducedMotion }) => {
 };
 
 // 4. STAGING Phase (MECO & Stage separation)
-export const StagingScene: React.FC<PhaseSlotProps> = () => {
-  return <group name="phase-STAGING" />;
+export const StagingScene: React.FC<PhaseSlotProps> = ({ reducedMotion }) => {
+  return <StageSeparationScene reducedMotion={reducedMotion} />;
 };
 
-// 5. FAIRING Phase (Fairing jettison)
-export const FairingScene: React.FC<PhaseSlotProps> = () => {
-  return <group name="phase-FAIRING" />;
+// 5. FAIRING Phase (Fairing jettison & Satellite reveal)
+export const FairingScene: React.FC<PhaseSlotProps> = ({ reducedMotion }) => {
+  return <FairingSeparationScene reducedMotion={reducedMotion} />;
 };
 
-// 6. DEPLOY Phase (Orbital insertion)
-export const DeployScene: React.FC<PhaseSlotProps> = () => {
-  return <group name="phase-DEPLOY" />;
+// 6. DEPLOY Phase (Orbital insertion & SAHOO-1 Satellite deployment)
+export const DeployScene: React.FC<PhaseSlotProps> = ({ reducedMotion }) => {
+  return <PayloadDeployScene reducedMotion={reducedMotion} />;
 };
 
-// 7. ORBIT Phase (Work / Projects background)
-export const OrbitScene: React.FC<PhaseSlotProps> = () => {
-  return <group name="phase-ORBIT" />;
+// 7. ORBIT Phase (Work / Projects background: Earth with Mumbai/Thane night pass & SAHOO-1 in LEO)
+export const OrbitPhaseSlot: React.FC<PhaseSlotProps> = ({ reducedMotion }) => {
+  return <OrbitScene reducedMotion={reducedMotion} />;
 };
 
-// 8. TRANSFER Phase (Experience background)
-export const TransferScene: React.FC<PhaseSlotProps> = () => {
-  return <group name="phase-TRANSFER" />;
+// 8. TRANSFER Phase (Experience background: Receding Earth, dotted trajectory arc, 3 internship waypoints)
+export const TransferPhaseSlot: React.FC<PhaseSlotProps> = ({ reducedMotion }) => {
+  return <TransferScene reducedMotion={reducedMotion} />;
 };
 
-// 9. CONSTELLATIONS Phase (Skills background)
-export const ConstellationsScene: React.FC<PhaseSlotProps> = () => {
-  return <group name="phase-CONSTELLATIONS" />;
+// 9. CONSTELLATIONS Phase (Skills background: 7 skill constellations, scroll line draw, interactive hover)
+export const ConstellationsPhaseSlot: React.FC<PhaseSlotProps> = ({ reducedMotion }) => {
+  return <ConstellationsScene reducedMotion={reducedMotion} />;
 };
 
-// 10. ASTEROID_BELT Phase (Honors background)
-export const AsteroidBeltScene: React.FC<PhaseSlotProps> = () => {
-  return <group name="phase-ASTEROID_BELT" />;
+// 10. ASTEROID_BELT Phase (Honors background: 1000 instanced rocks, harsh space lighting, 5 hero honor asteroids)
+export const AsteroidBeltPhaseSlot: React.FC<PhaseSlotProps> = ({ reducedMotion }) => {
+  return <AsteroidBeltScene reducedMotion={reducedMotion} />;
 };
 
-// 11. PALE_BLUE_DOT Phase (About background)
-export const PaleBlueDotScene: React.FC<PhaseSlotProps> = () => {
-  return <group name="phase-PALE_BLUE_DOT" />;
+// 11. PALE_BLUE_DOT Phase (About background: Camera looks back at luminous pale blue dot in cosmic sunbeam)
+export const PaleBlueDotPhaseSlot: React.FC<PhaseSlotProps> = ({ reducedMotion }) => {
+  return <PaleBlueDotScene reducedMotion={reducedMotion} />;
 };
 
-// 12. NEBULA Phase (Contact background)
-export const NebulaScene: React.FC<PhaseSlotProps> = () => {
-  return <group name="phase-NEBULA" />;
+// 12. NEBULA Phase (Contact background: Volumetric amber/magenta/indigo nebula with pulsing antenna radio waves)
+export const NebulaPhaseSlot: React.FC<PhaseSlotProps> = ({ reducedMotion }) => {
+  return <NebulaScene reducedMotion={reducedMotion} />;
 };
 
 // Phase Component Registry Map
@@ -112,12 +121,12 @@ const PHASE_COMPONENTS: Record<MissionPhaseId, React.FC<PhaseSlotProps>> = {
   STAGING: StagingScene,
   FAIRING: FairingScene,
   DEPLOY: DeployScene,
-  ORBIT: OrbitScene,
-  TRANSFER: TransferScene,
-  CONSTELLATIONS: ConstellationsScene,
-  ASTEROID_BELT: AsteroidBeltScene,
-  PALE_BLUE_DOT: PaleBlueDotScene,
-  NEBULA: NebulaScene,
+  ORBIT: OrbitPhaseSlot,
+  TRANSFER: TransferPhaseSlot,
+  CONSTELLATIONS: ConstellationsPhaseSlot,
+  ASTEROID_BELT: AsteroidBeltPhaseSlot,
+  PALE_BLUE_DOT: PaleBlueDotPhaseSlot,
+  NEBULA: NebulaPhaseSlot,
 };
 
 // Master Phase Manager: Only mounts current phase +/- 1 so we never render everything at once
@@ -150,12 +159,13 @@ export const PhaseSceneManager: React.FC<{ reducedMotion: boolean }> = ({ reduce
             : 0;
 
         return (
-          <Component
-            key={phase.id}
-            phaseProgress={phaseProgress}
-            globalProgress={currentProgress}
-            reducedMotion={reducedMotion}
-          />
+          <group key={phase.id} visible={phase.id === phaseId}>
+            <Component
+              phaseProgress={phaseProgress}
+              globalProgress={currentProgress}
+              reducedMotion={reducedMotion}
+            />
+          </group>
         );
       })}
     </>
