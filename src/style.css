@@ -1,0 +1,7 @@
+@font-face{font-family:Space;src:url('/fonts/space-grotesk-latin-400-normal.woff2') format('woff2');font-weight:400;font-display:swap}
+@font-face{font-family:Space;src:url('/fonts/space-grotesk-latin-500-normal.woff2') format('woff2');font-weight:500;font-display:swap}
+@font-face{font-family:Space;src:url('/fonts/space-grotesk-latin-700-normal.woff2') format('woff2');font-weight:700;font-display:swap}
+@font-face{font-family:Instrument;src:url('/fonts/instrument-serif-latin-400-normal.woff2') format('woff2');font-weight:400;font-display:swap}
+:root{--bg:#f5f6f8;--surface:#fff;--ink:#182b48;--muted:#526078;--line:#ced5e0;--accent:#ed6b36;--blue:#254cbd;--fast:180ms;--medium:550ms;--slow:850ms;color:var(--ink);background:var(--bg);font-family:Space,sans-serif;font-synthesis:none}
+:root[data-theme=dark]{--bg:#101c30;--surface:#182b48;--ink:#edf2fa;--muted:#a9b6cd;--line:#3e506b;--accent:#ff986d;--blue:#93b2ff}
+*{box-sizing:border-box}body{margin:0}button,input,textarea{font:inherit}a{color:inherit}button,a{-webkit-tap-highlight-color:transparent}button{cursor:pointer}button:disabled{cursor:wait}::selection{background:var(--accent);color:#101c30}button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid var(--blue);outline-offset:5px}button{color:inherit}img{max-width:100%;display:block}p{line-height:1.65}h1,h2,h3,p{margin-top:0}a{text-decoration:none}button{background:none;border:none}html{scroll-padding-top:100px}section{scroll-margin-top:100px}
