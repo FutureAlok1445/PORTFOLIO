@@ -205,7 +205,7 @@ export const content = {
       ],
     },
     {
-      title: "Reimbursement system",
+      title: "Reimbursement System",
       slug: "reimbursement-system",
       category: "Full-stack",
       description: "Less paperwork. A clearer process.",

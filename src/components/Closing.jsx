@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import { content } from "../data/content";
 import { Magnetic } from "./Motion";
+import { scrollToTarget } from "./scroll";
 export function Credentials() {
   return (
     <section className="credentials container" id="credentials">
@@ -46,15 +47,11 @@ export function Credentials() {
               <span className="certificate-date">{c.date}</span>
               <h4>{c.title}</h4>
               <p>{c.issuer}</p>
-              <span className="certificate-link">
-                {c.url ? (
-                  <>
-                    View certificate <ArrowUpRight size={14} />
-                  </>
-                ) : (
-                  "Document link coming later"
-                )}
-              </span>
+              {c.url && (
+                <span className="certificate-link">
+                  View credential <ArrowUpRight size={16} />
+                </span>
+              )}
             </>
           );
           return c.url ? (
@@ -345,16 +342,7 @@ export function Footer({ notify }) {
           <button aria-label="Discover one more connection" onClick={egg}>
             <Sparkles size={17} />
           </button>
-          <button
-            onClick={() =>
-              window.scrollTo({
-                top: 0,
-                behavior: matchMedia("(prefers-reduced-motion:reduce)").matches
-                  ? "instant"
-                  : "smooth",
-              })
-            }
-          >
+          <button onClick={() => scrollToTarget(0)}>
             Back to top <ArrowUp size={17} />
           </button>
         </div>

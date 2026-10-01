@@ -1,135 +1,118 @@
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { SplitText } from "gsap/SplitText";
 import Lenis from "lenis";
-gsap.registerPlugin(ScrollTrigger, SplitText);
+import { bindScroll } from "./scroll";
+gsap.registerPlugin(ScrollTrigger);
+const motion = { entrance: 1.2, reveal: 0.65, ease: "power3.out" };
 export function startMotion() {
-  window.scrollTo(0, 0);
-  const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const fine = matchMedia("(pointer: fine)").matches;
-  let lenis;
-  let tick;
-  if (!reduced) {
-    lenis = new Lenis({ duration: 1.05, smoothWheel: true, anchors: true });
-    lenis.on("scroll", ScrollTrigger.update);
-    tick = (time) => lenis.raf(time * 1000);
-    gsap.ticker.add(tick);
-  }
+  let disposed = false;
+  const lenis = new Lenis({
+    duration: 0.95,
+    smoothWheel: true,
+    anchors: { offset: -96 },
+    prevent: (node) => node.tagName === "DIALOG",
+  });
+  const unbind = bindScroll(lenis);
+  const tick = (time) => lenis.raf(time * 1000);
+  lenis.on("scroll", ScrollTrigger.update);
+  gsap.ticker.add(tick);
+  const mm = gsap.matchMedia();
   const ctx = gsap.context(() => {
-    gsap.to(".scroll-progress", {
-      scaleX: 1,
-      ease: "none",
-      scrollTrigger: { start: 0, end: "max", scrub: true },
-    });
-    if (!reduced) {
-      gsap.fromTo(
-        ".route-page",
-        { opacity: 0.6, y: 12 },
-        { opacity: 1, y: 0, duration: 0.55, ease: "power3.out" },
+    const heading = document.querySelector(".hero-title");
+    if (heading) {
+      // Stable line wrappers: no font-load re-split and no opacity-hidden letters.
+      const entrance = gsap.timeline({
+        defaults: { ease: "expo.out" },
+        onComplete: () => {
+          document.documentElement.dataset.motionReady = "true";
+        },
+      });
+      entrance.from(
+        ".hero-line-inner",
+        { yPercent: 34, duration: motion.entrance, stagger: 0.12 },
+        0,
       );
-      if (document.querySelector(".hero-title"))
-        SplitText.create(".hero-title", {
-          type: "chars",
-          autoSplit: true,
-          aria: "auto",
-          onSplit(self) {
-            return gsap.from(self.chars, {
-              yPercent: 65,
-              opacity: 0,
-              duration: 0.85,
-              stagger: 0.035,
-              ease: "expo.out",
-            });
-          },
-        });
-      if (document.querySelector(".hero-portrait"))
-        gsap.from(".hero-side", {
-          y: 30,
-          duration: 1,
-          ease: "power3.out",
-        });
-      if (fine && innerWidth > 1024 && document.querySelector(".hero-portrait"))
-        gsap.to(".hero-side", {
-          yPercent: 8,
-          ease: "none",
-          scrollTrigger: {
-            trigger: ".hero",
-            start: "top top",
-            end: "bottom top",
-            scrub: true,
-          },
-        });
-      if (
-        fine &&
-        innerWidth > 1024 &&
-        document.querySelector(".experience-intro")
-      )
-        ScrollTrigger.create({
-          trigger: ".experience-intro",
-          start: "top 120px",
-          endTrigger: ".experience-grid",
-          end: "bottom bottom",
-          pin: true,
-          pinSpacing: false,
-        });
-      document.querySelectorAll(".reveal-title").forEach((el) =>
+      entrance.from(
+        ".hero-portrait",
+        { y: 16, scale: 0.98, duration: 1.2 },
+        0.08,
+      );
+      entrance.from(".hero-copy,.hero-actions", { y: 12, duration: 0.8 }, 0.15);
+      // Fast scrolling finishes the entrance once; the name never reconstructs.
+      ScrollTrigger.create({
+        trigger: ".hero",
+        start: "top top",
+        onLeave: () => entrance.progress(1),
+      });
+    } else document.documentElement.dataset.motionReady = "true";
+    document
+      .querySelectorAll(".reveal-title")
+      .forEach((el) =>
         gsap.from(el, {
-          y: 24,
-          duration: 0.7,
-          ease: "power3.out",
-          scrollTrigger: { trigger: el, start: "top 90%", once: true },
+          y: 18,
+          duration: motion.reveal,
+          ease: motion.ease,
+          scrollTrigger: { trigger: el, start: "top 93%", once: true },
         }),
       );
-      if (document.querySelector(".timeline-fill"))
-        gsap.to(".timeline-fill", {
-          scaleY: 1,
-          ease: "none",
-          scrollTrigger: {
-            trigger: ".timeline",
-            start: "top 70%",
-            end: "bottom 70%",
-            scrub: true,
-          },
-        });
-    }
+    if (document.querySelector(".timeline-fill"))
+      gsap.to(".timeline-fill", {
+        scaleY: 1,
+        ease: "none",
+        scrollTrigger: {
+          trigger: ".timeline",
+          start: "top 70%",
+          end: "bottom 70%",
+          scrub: true,
+        },
+      });
+    document
+      .querySelectorAll(".timeline-item")
+      .forEach((el) =>
+        ScrollTrigger.create({
+          trigger: el,
+          start: "top 70%",
+          toggleClass: "reached",
+        }),
+      );
   });
-  const cursor = document.querySelector(".view-cursor");
-  const pointer = (e) => {
-    if (!fine || reduced) return;
-    gsap.to(cursor, {
-      x: e.clientX,
-      y: e.clientY,
-      duration: 0.12,
-      overwrite: true,
-    });
-    const project = e.target.closest('[data-cursor="view"]');
-    cursor.classList.toggle("on", !!project);
-    cursor.dataset.state = e.buttons
-      ? "drag"
-      : project
-        ? "view"
-        : e.target.closest("button,a")
-          ? "hover"
-          : "default";
+  mm.add("(min-width: 1025px) and (pointer: fine)", () => {
+    if (document.querySelector(".hero-side"))
+      gsap.to(".hero-side", {
+        y: 24,
+        ease: "none",
+        scrollTrigger: {
+          trigger: ".hero",
+          start: "top top",
+          end: "bottom top",
+          scrub: true,
+        },
+      });
+    if (document.querySelector(".experience-intro"))
+      ScrollTrigger.create({
+        trigger: ".experience-intro",
+        start: "top 112px",
+        endTrigger: ".experience-grid",
+        end: "bottom bottom",
+        pin: true,
+        pinSpacing: false,
+      });
+  });
+  const refresh = () => {
+    if (!disposed) ScrollTrigger.refresh();
   };
-  const hide = () => cursor.classList.remove("on");
-  window.addEventListener("pointermove", pointer);
-  window.addEventListener("blur", hide);
-  document.addEventListener("mouseleave", hide);
-  const timer = setTimeout(() => ScrollTrigger.refresh(), 300);
-  const refresh = () => ScrollTrigger.refresh();
+  const timer = setTimeout(refresh, 180);
   window.addEventListener("portfolio:layout", refresh);
-  document.fonts.ready.then(() => ScrollTrigger.refresh());
+  document.fonts.ready.then(refresh);
   return () => {
+    disposed = true;
     clearTimeout(timer);
     window.removeEventListener("portfolio:layout", refresh);
+    mm.revert();
     ctx.revert();
-    gsap.killTweensOf(cursor);
-    lenis?.destroy();
-    if (tick) gsap.ticker.remove(tick);
-    window.removeEventListener("pointermove", pointer);
-    window.removeEventListener("blur", hide);
-    document.removeEventListener("mouseleave", hide);
-    hide();
+    unbind();
+    lenis.destroy();
+    gsap.ticker.remove(tick);
+    document.documentElement.dataset.motionReady = "true";
   };
 }

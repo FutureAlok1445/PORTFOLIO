@@ -54,3 +54,11 @@ Updated after production build, lint, responsive browser checks, keyboard intera
 - External GitHub profile/repositories, reimbursement demo and Techriciate returned HTTP 200. LinkedIn returned 999 (automated access restriction); retained the exact resume URL rather than claiming successful verification.
 - Origin-dependent sitemap/canonical/social URLs intentionally require VITE_SITE_URL. Certificate documents and TrustNet-AI public links remain owner inputs.
 - Motion changes from the initial proposal: bounded CSS tilt/magnet effects prevent overlapping GSAP owners; GSAP handles typography, page entrances, pinned desktop experience, scrubbed timeline, parallax and velocity marquee. No forced horizontal scrolling; mobile stacks the studies.
+
+## Upgrade brief — Systems in Motion
+
+The existing architecture remains. The refinement uses editorial tech maximalism for typography, restrained photographic imperfection and the existing navy/coral identity. No new project facts or missing dates are inferred.
+
+Baseline audit: build/lint pass; Codex Browser console is clean. 35 sampled metadata elements render below 12px. SplitText autoSplit can rebuild character wrappers after font loading/resizing, restarting the name reveal. Portrait pointer rotation is unbounded relative to its intended treatment. Header progress and active link share the same baseline. Native anchor calls compete with Lenis. Credentials repeat an unfinished label; artwork repeats one generic subtitle. The stylesheet has overlapping media overrides and negative-margin mobile portrait composition. Footer visibility handlers can resume the marquee when offscreen. Sound preference resets after route changes. Route motion initializes above Suspense, before lazy content is mounted.
+
+Phase 1 fixes: stable masked line wrappers; no letter opacity or reconstruction; once-only entrance with fast-scroll completion; bounded ±1.5° tilt; route-local motion initialization; one Lenis scroll coordinator; responsive matchMedia teardown; readable minimum metadata; missing credential URLs render plain noninteractive articles without placeholder text; canonical TrustNet-AI and Reimbursement System names; project cursor ownership separated from route animations.

@@ -17,7 +17,7 @@ export default function Seo() {
         addressCountry: "IN",
       },
       sameAs: content.socials.map((s) => s.url),
-        affiliation: {
+      affiliation: {
         "@type": "CollegeOrUniversity",
         name: content.education[0].institution,
       },

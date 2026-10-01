@@ -4,8 +4,10 @@ import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
 import { content } from "../data/content";
 import ProjectArt from "../components/ProjectArt";
 import NotFound from "./NotFound";
+import { useMotion } from "../components/useMotion";
 export default function Project() {
   const { slug } = useParams();
+  useMotion(slug);
   const project = content.projects.find((p) => p.slug === slug);
   const [node, setNode] = useState(0);
   useEffect(() => {

@@ -9,7 +9,8 @@ import {
 import { ArrowUpRight, Command, Menu, Moon, Sun, X } from "lucide-react";
 import { content } from "./data/content";
 import Home from "./pages/Home";
-import { useMotion } from "./components/useMotion";
+import { scrollToTarget } from "./components/scroll";
+import ProjectCursor from "./components/ProjectCursor";
 import Seo from "./components/Seo";
 const Project = lazy(() => import("./pages/Project"));
 const NotFound = lazy(() => import("./pages/NotFound"));
@@ -69,6 +70,7 @@ function NavButton({ label, active, onClick }) {
   return (
     <button
       className={active ? "active" : ""}
+      aria-current={active ? "location" : undefined}
       onClick={onClick}
       onPointerEnter={scramble}
       onPointerLeave={reset}
@@ -104,7 +106,29 @@ export default function App() {
   const navigate = useNavigate();
   const toastTimer = useRef();
   const dialog = useRef();
-  useMotion(location.pathname);
+  useEffect(() => {
+    if (!location.hash) window.scrollTo({ top: 0, behavior: "instant" });
+  }, [location.pathname, location.hash]);
+  useEffect(() => {
+    let frame;
+    const progress = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        const height = document.documentElement.scrollHeight - innerHeight;
+        const bar = document.querySelector(".scroll-progress");
+        if (bar)
+          bar.style.transform = `scaleX(${height > 0 ? scrollY / height : 0})`;
+      });
+    };
+    window.addEventListener("scroll", progress, { passive: true });
+    window.addEventListener("resize", progress);
+    progress();
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", progress);
+      window.removeEventListener("resize", progress);
+    };
+  }, []);
   useEffect(() => {
     document.documentElement.dataset.theme = theme;
     try {
@@ -152,7 +176,14 @@ export default function App() {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((e) => {
-          if (e.isIntersecting) setActive(e.target.id);
+          if (e.isIntersecting)
+            setActive(
+              ["credentials", "education"].includes(e.target.id)
+                ? "experience"
+                : e.target.id === "skills"
+                  ? "about"
+                  : e.target.id,
+            );
         });
       },
       { rootMargin: "-20% 0px -55% 0px" },
@@ -171,7 +202,7 @@ export default function App() {
   async function copyEmail() {
     try {
       await navigator.clipboard.writeText(content.profile.email);
-      notify("Email copied. Your move.");
+      notify("Copied ✓");
     } catch {
       notify("Copy unavailable. Email: " + content.profile.email);
     }
@@ -180,19 +211,11 @@ export default function App() {
     setPalette(false);
     setMenu(false);
     if (location.pathname !== "/") navigate("/#" + id);
-    else
-      document.getElementById(id)?.scrollIntoView({
-        behavior: matchMedia("(prefers-reduced-motion: reduce)").matches
-          ? "instant"
-          : "smooth",
-      });
+    else scrollToTarget(id);
   }
   useEffect(() => {
     if (!location.hash) return;
-    const t = setTimeout(
-      () => document.querySelector(location.hash)?.scrollIntoView(),
-      100,
-    );
+    const t = setTimeout(() => scrollToTarget(location.hash), 100);
     return () => clearTimeout(t);
   }, [location]);
   return (
@@ -335,9 +358,7 @@ export default function App() {
       <div className={"toast " + (toast ? "visible" : "")} role="status">
         {toast}
       </div>
-      <div className="view-cursor" aria-hidden="true">
-        View <ArrowUpRight size={16} />
-      </div>
+      <ProjectCursor />
     </ErrorBoundary>
   );
 }

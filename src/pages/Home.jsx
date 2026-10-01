@@ -3,8 +3,10 @@ import { Skills, Experience } from "../components/Credibility";
 import Projects from "../components/Projects";
 import { Credentials, Contact, Footer } from "../components/Closing";
 import { lazy, Suspense } from "react";
+import { useMotion } from "../components/useMotion";
 const Field = lazy(() => import("../components/Field"));
 export default function Home({ copyEmail, notify }) {
+  useMotion("home");
   return (
     <>
       <main id="main">

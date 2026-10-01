@@ -118,7 +118,7 @@ export default function ProjectArt({ project }) {
         </div>
       )}
       <div className="art-bottom">
-        <span>Conceptual architecture study</span>
+        <span>{project.artLabel || "Architecture illustration"}</span>
         <span>{project.title}</span>
       </div>
     </div>

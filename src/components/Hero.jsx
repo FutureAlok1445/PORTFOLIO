@@ -12,7 +12,9 @@ export default function Hero() {
     )
       return;
     const r = e.currentTarget.getBoundingClientRect();
-    portrait.current.style.transform = `rotate(5deg) rotateY(${(e.clientX - r.left - r.width / 2) / 35}deg) rotateX(${-(e.clientY - r.top - r.height / 2) / 35}deg)`;
+    const x = ((e.clientX - r.left) / r.width - 0.5) * 3;
+    const y = ((e.clientY - r.top) / r.height - 0.5) * -3;
+    portrait.current.style.transform = `rotate(1.5deg) rotateY(${x}deg) rotateX(${y}deg)`;
   }
   return (
     <section className="hero container" aria-labelledby="hero-heading">
@@ -25,9 +27,15 @@ export default function Hero() {
         </span>
       </div>
       <div className="hero-name">
-        <h1 className="hero-title" id="hero-heading">
-          ALOK
-          <br /> SAHOO<span className="name-dot">.</span>
+        <h1 className="hero-title" id="hero-heading" aria-label="Alok Sahoo">
+          <span className="hero-line" aria-hidden="true">
+            <span className="hero-line-inner">ALOK</span>
+          </span>
+          <span className="hero-line" aria-hidden="true">
+            <span className="hero-line-inner">
+              SAHOO<span className="name-dot">.</span>
+            </span>
+          </span>
         </h1>
         <div className="hero-side">
           <span className="vertical-note">
@@ -38,7 +46,7 @@ export default function Hero() {
             ref={portrait}
             onPointerMove={tilt}
             onPointerLeave={() => {
-              portrait.current.style.transform = "rotate(5deg)";
+              portrait.current.style.transform = "rotate(1.5deg)";
             }}
           >
             <div className="photo-frame">
