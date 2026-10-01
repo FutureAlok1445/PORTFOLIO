@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-01T23:44:37Z",
+  "title": "Design System: Alok Sahoo — Editorial systems atlas",
+  "extensions": {
+    "shadows": [
+      { "name": "book-rest", "value": "5px 7px 0 -3px var(--bg), 7px 7px 0 -3px var(--line), 10px 18px 25px -20px #0008", "purpose": "Neutral page edges for project books only." },
+      { "name": "book-hover", "value": "5px 8px 0 -3px var(--bg), 7px 8px 0 -3px var(--line), 12px 28px 35px -22px #0009", "purpose": "Fine-pointer book lift; not a global shadow vocabulary." }
+    ],
+    "motion": [
+      { "name": "ease", "value": "cubic-bezier(0.22, 1, 0.36, 1)", "purpose": "Inherited state easing." },
+      { "name": "book-transition", "value": "450ms", "purpose": "Book transform and shadow changes; removed for reduced motion." },
+      { "name": "progress-transition", "value": "350ms", "purpose": "Progress scaleX; removed for reduced motion." }
+    ],
+    "breakpoints": [
+      { "name": "library-mobile-max", "value": "768px" },
+      { "name": "library-narrow-max", "value": "375px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "description": "Inherited rounded portfolio action.",
+      "html": "<button class=\"ds-primary\">Explore projects</button>",
+      "css": ".ds-primary{display:inline-flex;align-items:center;justify-content:center;gap:20px;min-height:48px;padding:16px 24px;background:var(--ink,#182b48);color:var(--bg,#f5f1e9);border:1px solid transparent;border-radius:40px;font:14px Space,sans-serif;cursor:pointer;transition:translate .3s var(--ease,cubic-bezier(.22,1,.36,1))}.ds-primary:hover{background:var(--coral,#ed6b36);color:var(--navy-deep,#101c30)}.ds-primary:focus-visible{outline:2px solid var(--focus,#a74019);outline-offset:5px}"
+    },
+    {
+      "name": "Outline Button",
+      "kind": "button",
+      "description": "Inherited secondary action.",
+      "html": "<button class=\"ds-outline\">View resume</button>",
+      "css": ".ds-outline{min-height:48px;padding:16px 24px;background:transparent;color:var(--ink,#182b48);border:1px solid var(--line,#cec8bf);border-radius:40px;font:14px Space,sans-serif;cursor:pointer;transition:translate .3s var(--ease,cubic-bezier(.22,1,.36,1))}.ds-outline:hover{background:var(--paper-muted,#e9e4da);color:var(--navy,#182b48)}.ds-outline:focus-visible{outline:2px solid var(--focus,#a74019);outline-offset:5px}"
+    },
+    {
+      "name": "Contact Field",
+      "kind": "input",
+      "description": "Underlined field on the existing navy contact surface.",
+      "html": "<div class=\"ds-contact\"><label for=\"ds-email\">Email</label><input id=\"ds-email\" type=\"email\" placeholder=\"you@example.com\" /></div>",
+      "css": ".ds-contact{padding:24px;background:var(--navy,#182b48)}.ds-contact label{display:block;font:14px Space,sans-serif;margin-bottom:12px;color:var(--paper,#f5f1e9)}.ds-contact input{width:100%;background:transparent;color:var(--paper-raised,#fbf8f2);border:0;border-bottom:1px solid var(--line,#cec8bf);padding:10px 0 18px;font:16px Space,sans-serif;border-radius:0}.ds-contact input::placeholder{color:#b6c2d4}.ds-contact input:focus-visible{outline:2px solid var(--coral-hover,#ff986d);outline-offset:5px}"
+    },
+    {
+      "name": "Domain Filter",
+      "kind": "chip",
+      "description": "Pressed-state domain discovery with a 44px target.",
+      "html": "<button class=\"ds-filter\" aria-pressed=\"true\">All</button>",
+      "css": ".ds-filter{min-height:44px;padding:12px 14px;border:1px solid var(--line,#cec8bf);border-radius:2px;background:transparent;color:var(--ink,#182b48);font:13px Space,sans-serif;cursor:pointer}.ds-filter[aria-pressed=true]{background:var(--ink,#182b48);color:var(--bg,#f5f1e9);border-color:var(--ink,#182b48)}.ds-filter:focus-visible{outline:2px solid var(--focus,#a74019);outline-offset:5px}"
+    },
+    {
+      "name": "Chapter Navigation",
+      "kind": "nav",
+      "description": "Circular native-track navigation control.",
+      "html": "<nav class=\"ds-chapter-nav\" aria-label=\"Chapters\"><button aria-label=\"Next chapter\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12h14m-7-7 7 7-7 7\" /></svg></button></nav>",
+      "css": ".ds-chapter-nav button{width:46px;height:46px;display:grid;place-items:center;border:1px solid var(--line,#cec8bf);background:transparent;color:var(--ink,#182b48);border-radius:50%;cursor:pointer;transition:background 180ms}.ds-chapter-nav button:hover:not(:disabled){background:var(--surface,#fbf8f2)}.ds-chapter-nav button:disabled{opacity:.4;cursor:default}.ds-chapter-nav button:focus-visible{outline:2px solid var(--focus,#a74019);outline-offset:5px}"
+    },
+    {
+      "name": "Project Book Surface",
+      "kind": "card",
+      "description": "Neutral chapter shell with local page-edge depth; sample omits project facts.",
+      "html": "<a class=\"ds-book\" href=\"#chapter\"><span>Chapter</span><span class=\"ds-book-title\">Project title</span><span>Explore case study</span></a>",
+      "css": ".ds-book{display:flex;flex-direction:column;gap:22px;padding:20px 22px 20px 26px;background:var(--surface,#fbf8f2);border:1px solid var(--line,#cec8bf);border-radius:2px 5px 5px 2px;color:var(--ink,#182b48);font:13px Space,sans-serif;text-decoration:none;box-shadow:5px 7px 0 -3px var(--bg,#f5f1e9),7px 7px 0 -3px var(--line,#cec8bf),10px 18px 25px -20px #0008;transition:transform 450ms var(--ease,cubic-bezier(.22,1,.36,1)),box-shadow 450ms var(--ease,cubic-bezier(.22,1,.36,1))}.ds-book-title{font:400 34px/1.06 Instrument,serif;letter-spacing:-.015em}.ds-book:focus-visible{outline:2px solid var(--focus,#a74019);outline-offset:6px;transform:translateY(-6px)}@media(hover:hover) and (pointer:fine){.ds-book:hover{transform:translateY(-7px) scale(1.008);box-shadow:5px 8px 0 -3px var(--bg,#f5f1e9),7px 8px 0 -3px var(--line,#cec8bf),12px 28px 35px -22px #0009}}@media(prefers-reduced-motion:reduce){.ds-book{transform:none!important;transition:none}}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Editorial systems atlas",
+    "overview": "The portfolio retains its navy, paper and coral identity, candid portrait and self-hosted typography. The owner explicitly pinned a digital technical-library direction for Projects; this is an approved extension of the incumbent world, not an identity replacement. Its technical diagrams explain domain workflows, while concise case studies expose evidence and limits for recruiters and engineering peers.\n\nThe current collection comprises twelve equally treated chapters: HistoFacts, AURA, Reimbursement Automation System, Techriciate, Bloom Blossom, FinCoach AI, Talent-Sync, Credit Card Fraud Detection, BookItNow, Speedotype, COSMEON FS-LITE and TrustNet-AI. AURA uses its corrected repository mapping; Reimbursement is one updated chapter. Historical three-study descriptions above remain implementation history.",
+    "keyCharacteristics": ["Equal chapter importance, with domain filters and technology/domain command search.", "Readable technical publishing, quiet book edges and semantic workflow illustrations.", "Source evidence and resume provenance remain distinct from claims of authorship or production readiness.", "Native desktop collection scrolling and full-width mobile chapters."],
+    "rules": [
+      { "name": "The Inherited Palette Rule", "body": "New library surfaces use the existing semantic theme variables; a project's cover tint does not become a global accent.", "section": "colors" },
+      { "name": "The Meaningful Label Rule", "body": "Chapter positions and architecture steps express real sequence. Domain labels belong to covers, filters and case metadata; redundant heading eyebrows and decorative feature numbers are omitted.", "section": "typography" },
+      { "name": "The Equal Chapter Rule", "body": "The full collection remains visible through one shared structural grammar. Filters select domains without featured, secondary or archive tiers.", "section": "layout" }
+    ],
+    "dos": ["Do preserve the inherited editorial systems atlas and its self-hosted fonts.", "Do keep all twelve chapters equally discoverable, with source evidence and honest boundaries.", "Do edit project facts, cover wording and provenance in `src/data/content.js`.", "Do preserve native scrolling, keyboard focus, touch access and reduced-motion final states."],
+    "donts": ["Don't infer authorship, dates, metrics, deployment or model validity from repository existence.", "Don't present conceptual diagrams as screenshots or resume-supported facts as verified source implementation.", "Don't turn local cover colors, book-edge shadows or genuine sequence markers into unrelated decorative patterns.", "Don't canonize redundant eyebrows, decorative feature numbering, glyph icon stand-ins or thick accent strips as the library system.", "Don't link absent credentials, expose TODO slots, claim form success before service success or publish without owner authorization."]
+  }
+}

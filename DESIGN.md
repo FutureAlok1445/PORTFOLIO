@@ -1,5 +1,7 @@
 # Alok Sahoo — Systems, with a human side
 
+The identity and implementation history below are retained. The canonical sections at the end record the current twelve-chapter project-library extension (2 October 2026); references to three studies in earlier phases describe the former composition, not the current collection.
+
 ## Identity and purpose
 
 Alok is a software engineer and final-year Information Technology student in Thane. His strongest thread is turning complex systems into usable software: backend APIs, institutional workflows, security visualization, and explainable detection. Within 30 seconds, visitors should see a real person, concrete engineering work, and an easy way to contact him.
@@ -113,3 +115,98 @@ First-visit case-study accessibility also identified the brief welcome surface o
 - Project case-study wayfinding: Direct "Home / Hero" return links added to the top navigation bar and bottom pagination in project detail pages.
 
 The editorial identity, candid portrait, self-hosted type and resume facts remain intact. Missing credential URLs remain visibly unlinked. The form endpoint and production origin are owner configuration inputs; the email fallback works. No site was published.
+
+## Overview
+
+**Creative North Star: "Editorial systems atlas"**
+
+The portfolio retains its navy, paper and coral identity, candid portrait and self-hosted typography. The owner explicitly pinned a digital technical-library direction for Projects; this is an approved extension of the incumbent world, not an identity replacement. Its technical diagrams explain domain workflows, while concise case studies expose evidence and limits for recruiters and engineering peers.
+
+The current collection comprises twelve equally treated chapters: HistoFacts, AURA, Reimbursement Automation System, Techriciate, Bloom Blossom, FinCoach AI, Talent-Sync, Credit Card Fraud Detection, BookItNow, Speedotype, COSMEON FS-LITE and TrustNet-AI. AURA uses its corrected repository mapping; Reimbursement is one updated chapter. Historical three-study descriptions above remain implementation history.
+
+**Key Characteristics:**
+
+- Equal chapter importance, with domain filters and technology/domain command search.
+- Readable technical publishing, quiet book edges and semantic workflow illustrations.
+- Source evidence and resume provenance remain distinct from claims of authorship or production readiness.
+- Native desktop collection scrolling and full-width mobile chapters.
+
+## Colors
+
+The extension inherits the live theme variables in `src/style.css`: navy and raised paper surfaces, coral interaction accents, muted text and quiet divider lines. Covers use restrained domain-specific tints inside the same notation grammar; those local illustration colors are not replacements for the portfolio palette.
+
+**The Inherited Palette Rule.** New library surfaces use the existing semantic theme variables; a project's cover tint does not become a global accent.
+
+Pre-existing documentation drift is recorded, not repaired in this extension: the historical Tokens section names chalk (#f5f6f8) and dark muted (#a9b6cd), while current CSS uses paper (#f5f1e9) and dark secondary text (#b6c2d4). Its 850ms entrance proposal also differs from the existing slow token (1200ms). The original section is preserved rather than treating its historical values as fresh measurements.
+
+## Typography
+
+**Display / Body Font:** self-hosted Space Grotesk, registered as `Space`, with sans-serif fallback.
+**Editorial Font:** self-hosted Instrument Serif, registered as `Instrument`, with serif fallback where specified.
+
+The library balances serif chapter titles against compact, readable interface text. Library headings use a fluid display size (48–80px), line height (1.04); book titles use Instrument Serif (34px, 400, 1.06), becoming 36px on mobile and 32px at the narrowest breakpoint. Case titles use Instrument Serif (48–88px, 400, 1.04). Book descriptions use body copy (14px, 1.6); case summaries scale (18–23px, 1.6). Metadata and cover evidence use 12–13px; explanatory architecture text uses 17px. These are current library measurements, not a rewrite of unrelated page type.
+
+**The Meaningful Label Rule.** Chapter positions and architecture steps express real sequence. Domain labels belong to covers, filters and case metadata; redundant heading eyebrows and decorative feature numbers are omitted.
+
+## Layout
+
+The inherited container caps content at 1600px, with fluid side gutters (20–64px). Above 768px, the library is a native horizontal flex track with mandatory snap alignment, a gap (28px) and equally sized book slots (330–420px). It displays chapter position, transform-based progress and previous/next controls. Horizontal input stays native; the track opts out of Lenis wheel handling without converting vertical wheel motion into horizontal navigation.
+
+At 768px and below, chapters stack vertically at full available width; desktop track navigation is hidden. Case-study introduction, engineering and status layouts collapse to one column. Architecture and feature grids become two columns, then one at 375px and below. Cover stages remain readable in a two-column mobile pipeline; the case hero uses four columns for the same pipeline on desktop. Detail routes retain return-to-library and wrapping previous/next chapter navigation.
+
+**The Equal Chapter Rule.** The full collection remains visible through one shared structural grammar. Filters select domains without featured, secondary or archive tiers.
+
+## Elevation & Depth
+
+Book depth is local to the owner-requested chapter objects: perspective (1100px), a neutral spine (8px), thin borders and layered page-edge shadows. At rest the exact shadow stack is `5px 7px 0 -3px var(--bg), 7px 7px 0 -3px var(--line), 10px 18px 25px -20px #0008`. Fine-pointer hover substitutes `5px 8px 0 -3px var(--bg), 7px 8px 0 -3px var(--line), 12px 28px 35px -22px #0009`. These page edges are a scoped book metaphor, not permission to add hard-offset shadows across other portfolio surfaces.
+
+## Shapes
+
+Books use subtly asymmetric corners (2px 5px 5px 2px), one-pixel outlines and a quiet neutral spine. Filters and architecture buttons use restrained corners (2px); chapter arrow buttons are circular (46px). Cover nodes, AURA outcome markers and active architecture descriptions use one-pixel rules. No thick accent strips are introduced as a reusable library device.
+
+## Components
+
+### Chapter books and covers
+
+Each complete book is one semantic case-study link, with chapter position, project-specific visual, title, purpose, up to three technology tags and a visible exploration action. No essential information depends on hover. Keyboard focus supplies an explicit outline (2px, offset 6px). Fine mouse input alone enables bounded rotation (±5° horizontal, ±2° vertical); hover lifts the book (7px), scales it (1.008) and shifts adjacent books (5px). Transform and shadow transitions take 450ms using the inherited easing. Queued pointer frames are cancelled during reset and unmount.
+
+Cover content, workflow labels, imagery references and provenance captions are editable only in `src/data/content.js`; presentation components supply geometry. TrustNet-AI now shows Image input → Forensics → Vision models → Explanation and explicitly labels its pipeline as conceptual and supplied-resume based. FinCoach shows its demo-context/advisor/explanation workflow, without invented financial plot measurements. Icons use the existing Lucide stroke system. The same media renderer supplies library and case-study artwork.
+
+### Filters, navigation and architecture
+
+Domain filters expose pressed state and at least 44px targets. On desktop, ArrowLeft/ArrowRight and Home/End move through the native track and focus chapter links; Enter opens the focused chapter. Track measurement uses a ResizeObserver, passive scroll listener and one queued animation frame, all cleaned up. Chapter navigation retains real links; architecture steps are ordered buttons with pressed state and a live status description, usable by keyboard and touch.
+
+### Source, role, status and media assumptions
+
+Repository code outranks README claims. `PROJECT_RESEARCH.md` records inspected snapshots and implementation limitations; source links in each case expose that evidence. A system capability is not an individual contribution claim. Roles and years appear only where supplied evidence establishes them. HistoFacts is a fork with unestablished individual authorship. TrustNet's facts and contribution come from the supplied resume; its public repository and accuracy benchmarks are unavailable, its development status remains visible and no public link is fabricated.
+
+Only documented live URLs are rendered. Reimbursement's documented portal returned HTTP 200 during research; Techriciate's documented URL returned HTTP 403 to automated checking, so no successful availability assertion is made. Other unverified deployments are omitted. Prototype, demo-data, configuration-dependent, simulated and incomplete behavior stays explicit: FinCoach is not linked to banking data, BookItNow does not fulfill reservations, Bloom's persistence requires configuration, and COSMEON's consensus/audit are simulations. No accuracy, throughput, user-count or production-scale metrics are inferred.
+
+No usable application screenshots were established in the repository inventories. Authored covers are labeled system illustrations, not screenshots or measured results. Bloom Blossom uses repository product imagery and Techriciate uses its repository logo; compressed WebP assets retain their recorded provenance. Library imagery is lazy except prioritized case artwork. No stock art, fabricated dashboard or new GPU scene was added.
+
+### Motion and performance scope
+
+One Lenis instance remains the vertical-scroll coordinator. Native track navigation uses instant movement under reduced motion. CSS removes book transforms/transitions, progress transitions and ticket rotation for that preference; touch and coarse pointers receive no book tilt. Progress animates with scaleX rather than width. The existing route-transition fallback, field visibility/hardware gates, and cleaned-up GSAP lifecycle remain part of the incumbent implementation. No dependency was added for the library. These implementation facts do not establish a new Lighthouse score, constant frame rate or measured heap-retention guarantee.
+
+### Scoped validation — 2 October 2026
+
+Fresh parent implementation evidence reports **PASS** for build and lint, full `npm run verify` at nine widths in both themes (zero axe violations, console errors or overflow), `scripts/library-verify.mjs` at eight widths, and `scripts/extended-verify.mjs` across all twelve detail routes at nine widths (320, 375, 390, 430, 768, 1024, 1280, 1440, 1920px: 108 route-width checks). Functional coverage includes filters, Home/End/arrows/Enter, architecture interaction, stack/domain search, bounded hover and ordinary vertical wheel behavior. Main verification waits 600ms for the existing theme crossfade to settle, removing a transient mid-transition navigation-contrast false failure. Isolated mocked contact checks also **PASS** for pending, success, error and retry; no external message was sent and form success requires a successful service response. `PROJECT_LIBRARY_REPORT.md` records implementation and QA scope. The documenter inspected source and recorded this evidence; it did not rerun browser QA or inspect screenshots.
+
+The independent screenshot review initially returned **fix**, listing eight material items. Source inspection confirms fixes 1–7: semantic TrustNet/FinCoach pipelines, resume provenance, repaired apostrophe, removed redundant eyebrows/feature numbering, Lucide arrows, one-pixel accent rules and centralized cover content. This merge addresses documentation item 8. The final independent reviewer returned scoped disposition **ship**: all eight listed fixes resolved across 31 valid final captures, with no fix-batch regressions observed. This is a screenshot-based fix-list review, not a whole-surface independent functional audit; the fresh functional results above are supplied separately by the parent. Historical Lighthouse scores above belong to earlier phases, not this twelve-chapter extension.
+
+## Do's and Don'ts
+
+### Do:
+
+- **Do** preserve the inherited editorial systems atlas and its self-hosted fonts.
+- **Do** keep all twelve chapters equally discoverable, with source evidence and honest boundaries.
+- **Do** edit project facts, cover wording and provenance in `src/data/content.js`.
+- **Do** preserve native scrolling, keyboard focus, touch access and reduced-motion final states.
+
+### Don't:
+
+- **Don't** infer authorship, dates, metrics, deployment or model validity from repository existence.
+- **Don't** present conceptual diagrams as screenshots or resume-supported facts as verified source implementation.
+- **Don't** turn local cover colors, book-edge shadows or genuine sequence markers into unrelated decorative patterns.
+- **Don't** canonize redundant eyebrows, decorative feature numbering, glyph icon stand-ins or thick accent strips as the library system.
+- **Don't** link absent credentials, expose TODO slots, claim form success before service success or publish without owner authorization.

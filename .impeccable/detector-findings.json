@@ -1,0 +1,4 @@
+[
+  {"antipattern":"layout-transition","disposition":"resolved","evidence":"The library progress indicator now uses scaleX with a left transform origin. Its width remains fixed."},
+  {"antipattern":"side-tab","disposition":"retained for finish review","evidence":"The neutral 8px spine is explicitly requested book depth, paired with page-edge shadows. It is not an accent-colored card stripe."}
+]
