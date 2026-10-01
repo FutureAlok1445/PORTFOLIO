@@ -13,7 +13,7 @@ page.on("pageerror", (e) => errors.push(e.message));
 page.on("console", (m) => {
   if (["error", "warning"].includes(m.type())) errors.push(m.text());
 });
-for (const width of [320, 375, 430, 768, 1024, 1280, 1440, 1920]) {
+for (const width of [320, 375, 390, 430, 768, 1024, 1280, 1440, 1920]) {
   await page.setViewportSize({ width, height: width < 600 ? 800 : 1000 });
   await page.goto("http://127.0.0.1:4173/");
   await page.getByRole("heading", { name: /Alok Sahoo/i }).waitFor();
@@ -74,6 +74,8 @@ for (const width of [320, 375, 430, 768, 1024, 1280, 1440, 1920]) {
   await page
     .getByRole("button", { name: "Switch to dark mode", exact: true })
     .click();
+  // Audit the settled theme, rather than an intermediate crossfade color.
+  await page.waitForTimeout(600);
   const dark = await new AxeBuilder({ page }).analyze();
   fs.writeFileSync(
     "test-results/axe-dark-" + width + ".json",
@@ -87,19 +89,21 @@ for (const width of [320, 375, 430, 768, 1024, 1280, 1440, 1920]) {
   await page
     .getByRole("button", { name: "Switch to light mode", exact: true })
     .click();
+  await page.waitForTimeout(600);
 }
-await page.getByRole("button", { name: "MongoDB", exact: true }).click();
+await page.getByRole("button", { name: "Mobile", exact: true }).click();
 assert.equal(await page.locator(".project-card").count(), 1);
 await page.getByRole("button", { name: "All", exact: true }).click();
-assert.equal(await page.locator(".project-card").count(), 3);
+assert.equal(await page.locator(".project-card").count(), 12);
 await page.getByRole("link", { name: "View TrustNet-AI project" }).click();
 await page.getByRole("heading", { name: "TrustNet-AI", exact: true }).waitFor();
 await page.getByRole("button", { name: "Forensics", exact: false }).click();
 assert.match(await page.locator(".node-description").innerText(), /2D FFT/);
-await page.getByRole("link", { name: "Next project AURA" }).click();
-await page.getByRole("heading", { name: "AURA", exact: true }).waitFor();
+await page.getByRole("link", { name: "Next project HistoFacts" }).click();
+await page.getByRole("heading", { name: "HistoFacts", exact: true }).waitFor();
 await page.screenshot({ path: "test-results/project.png", fullPage: true });
 await page.goto("http://127.0.0.1:4173/");
+await page.locator(".intro").waitFor({ state: "detached" });
 await page.getByRole("button", { name: "Open command palette" }).click();
 await page.getByRole("dialog").waitFor({ state: "visible" });
 await page.keyboard.press("Tab");
@@ -193,7 +197,7 @@ await page.keyboard.press("ArrowDown");
 await page.keyboard.press("Enter");
 await page.getByRole("heading", { name: "AURA", exact: true }).waitFor();
 await page
-  .getByRole("heading", { name: "Engineering decisions", exact: true })
+  .getByRole("heading", { name: "Engineering decisions.", exact: true })
   .waitFor();
 await page
   .getByRole("button", { name: "Open command palette", exact: true })
@@ -208,7 +212,7 @@ await page.getByRole("button", { name: /Sound off/ }).click();
 await page
   .getByRole("link", { name: "View TrustNet-AI project", exact: true })
   .click();
-await page.getByRole("link", { name: "Selected work", exact: true }).click();
+await page.getByRole("link", { name: "Project library", exact: true }).click();
 assert.equal(
   await page
     .getByRole("button", { name: /Sound on/ })
@@ -249,7 +253,9 @@ for (let i = 0; i < 3; i++) {
     .getByRole("heading", { name: "TrustNet-AI", exact: true })
     .waitFor();
   assert.equal(await page.locator("canvas").count(), 0);
-  await page.getByRole("link", { name: "Selected work", exact: true }).click();
+  await page
+    .getByRole("link", { name: "Project library", exact: true })
+    .click();
   await page.waitForFunction(
     () => document.querySelector("canvas")?.dataset.nodeCount === "28",
   );
@@ -336,5 +342,5 @@ await noJs.close();
 assert.deepEqual(errors, [], "Console errors");
 await browser.close();
 console.log(
-  "PASS: eight breakpoints, both themes, zero overflow/axe/console errors, project routes, filters, search and keyboard selection, modal focus, theme memory, clipboard, form fallback, 404, reduced motion, mobile navigation, cursor, 28-node canvas, offscreen loops, bounded route cycles and no-JS content.",
+  "PASS: nine breakpoints, both themes, zero overflow/axe/console errors, project routes, filters, search and keyboard selection, modal focus, theme memory, clipboard, form fallback, 404, reduced motion, mobile navigation, cursor, 28-node canvas, offscreen loops, bounded route cycles and no-JS content.",
 );

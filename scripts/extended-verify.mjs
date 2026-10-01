@@ -1,6 +1,7 @@
 import { chromium, expect } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 import fs from "node:fs";
+import { content } from "../src/data/content.js";
 import assert from "node:assert/strict";
 const browser = await chromium.launch({ channel: "chromium" });
 const context = await browser.newContext({ reducedMotion: "reduce" });
@@ -15,8 +16,8 @@ function monitor(target) {
 }
 monitor(page);
 const cases = [];
-for (const slug of ["trustnet-ai", "aura", "reimbursement-system"]) {
-  for (const width of [320, 375, 430, 768, 1024, 1280, 1440, 1920]) {
+for (const slug of content.projects.map((p) => p.slug)) {
+  for (const width of [320, 375, 390, 430, 768, 1024, 1280, 1440, 1920]) {
     await page.setViewportSize({ width, height: 850 });
     await page.goto("http://127.0.0.1:4173/projects/" + slug);
     await page.locator(".detail-heading h1").waitFor();
@@ -30,11 +31,11 @@ for (const slug of ["trustnet-ai", "aura", "reimbursement-system"]) {
     );
     const clipped = await page.evaluate(() => {
       const art = document
-        .querySelector(".project-art")
+        .querySelector(".project-cover-art")
         .getBoundingClientRect();
       return [
         ...document.querySelectorAll(
-          ".art-top,.art-bottom,.analysis-label,.network-caption",
+          ".cover-notation,.cover-evidence,.cover-footnote",
         ),
       ]
         .filter((element) => {
@@ -134,9 +135,11 @@ assert.equal(native[0].ready, true);
 assert.equal(native[0].error, undefined);
 await transition.emulateMedia({ reducedMotion: "reduce" });
 await transition
-  .getByRole("link", { name: "Next project AURA", exact: true })
+  .getByRole("link", { name: "Next project HistoFacts", exact: true })
   .click();
-await transition.getByRole("heading", { name: "AURA", exact: true }).waitFor();
+await transition
+  .getByRole("heading", { name: "HistoFacts", exact: true })
+  .waitFor();
 assert.equal(await transition.evaluate(() => window.__transitions.length), 1);
 await transitionContext.close();
 const fallbackContext = await browser.newContext();
@@ -168,5 +171,5 @@ fs.writeFileSync(
 );
 await browser.close();
 console.log(
-  "PASS: three case studies at eight widths, artwork text bounds, case axe scans, touch palette and cursor, native artwork transition and reduced/unsupported fallbacks.",
+  "PASS: twelve case studies at nine widths, artwork text bounds, case axe scans, touch palette and cursor, native artwork transition and reduced/unsupported fallbacks.",
 );

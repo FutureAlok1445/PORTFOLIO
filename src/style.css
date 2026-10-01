@@ -1,4 +1,4 @@
-@import "./styles/project-art.css";
+@import "./styles/project-library.css";
 @font-face {
   font-family: Space;
   src: url("/fonts/space-grotesk-latin-400-normal.woff2") format("woff2");
@@ -2410,5 +2410,4 @@ dialog small {
     font-size: 12px;
   }
 }
-
 

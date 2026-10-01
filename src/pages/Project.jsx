@@ -1,22 +1,26 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Link from "../components/TransitionLink";
 import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
 import { content } from "../data/content";
 import ProjectMedia from "../components/ProjectMedia";
+import ProjectArchitecture from "../components/ProjectArchitecture";
 import NotFound from "./NotFound";
 import { useMotion } from "../components/useMotion";
 export default function Project() {
   const { slug } = useParams();
   useMotion(slug);
   const project = content.projects.find((p) => p.slug === slug);
-  const [node, setNode] = useState(0);
   useEffect(() => {
     document.title = project
       ? project.title + " — Alok Sahoo"
       : "Page not found — Alok Sahoo";
+    const description = document.querySelector('meta[name="description"]');
+    const original = description?.content;
+    if (description && project) description.content = project.summary;
     return () => {
       document.title = "Alok Sahoo — Software Engineer";
+      if (description) description.content = original;
     };
   }, [project]);
   if (!project) return <NotFound />;
@@ -27,119 +31,122 @@ export default function Project() {
     ];
   const next = content.projects[(index + 1) % content.projects.length];
   return (
-    <main id="main" className="project-detail container">
-      <Link to="/#work" className="text-link">
-        <ArrowLeft size={17} /> Selected work
-      </Link>
-      <div className="detail-heading">
+    <main id="main" className="case-study container">
+      <div className="case-wayfinding">
+        <Link to="/#work" className="text-link">
+          <ArrowLeft size={17} /> Project library
+        </Link>
         <span>
-          {project.category} / {project.status}
+          Chapter {String(index + 1).padStart(2, "0")} /{" "}
+          {String(content.projects.length).padStart(2, "0")}
         </span>
+      </div>
+      <header className="detail-heading case-hero">
         <h1>{project.title}</h1>
-        {project.summary && <p>{project.summary}</p>}
-      </div>
+        <p>{project.summary}</p>
+        <div className="case-meta">
+          <span>{project.category}</span>
+          <span>{project.status}</span>
+          {project.role && <span>{project.role}</span>}
+          {project.year && <span>{project.year}</span>}
+        </div>
+        <div className="case-links">
+          {project.repo && (
+            <a href={project.repo} target="_blank" rel="noopener noreferrer">
+              View repository <ArrowUpRight size={17} />
+            </a>
+          )}
+          {project.live && (
+            <a href={project.live} target="_blank" rel="noopener noreferrer">
+              Open live project <ArrowUpRight size={17} />
+            </a>
+          )}
+        </div>
+      </header>
       <div
-        className="detail-media"
-        style={{ viewTransitionName: "project-" + project.slug }}
+        className="case-visual"
+        style={{ viewTransitionName: "project-" + slug }}
       >
-        <ProjectMedia key={project.slug} project={project} />
+        <ProjectMedia key={slug} project={project} priority />
       </div>
-      <div className="detail-body">
-        <aside>
-          <h2>My part</h2>
-          <p>{project.role}</p>
-          {project.year && <p>{project.year}</p>}
-          <div className="project-stack">
-            {project.stack.map((s) => (
-              <span key={s}>{s}</span>
-            ))}
-          </div>
-          {(project.repo || project.live) && (
-            <div className="detail-links">
-              {project.repo && (
-                <a
-                  className="button outline"
-                  href={project.repo}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  View repository <ArrowUpRight size={16} />
-                </a>
-              )}
-              {project.live && (
-                <a
-                  className="button"
-                  href={project.live}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Open live project <ArrowUpRight size={16} />
-                </a>
-              )}
-            </div>
-          )}
-        </aside>
+      <div className="case-introduction">
         <section>
-          {project.details.length > 0 && <h2 className="serif">Overview.</h2>}
-          {project.details.map((d) => (
-            <p key={d}>{d}</p>
-          ))}
-          {project.problem && (
-            <div className="case-chapter">
-              <h2>Problem</h2>
-              <p>{project.problem}</p>
-            </div>
-          )}
-          {project.context && (
-            <div className="case-chapter">
-              <h2>Context</h2>
-              <p>{project.context}</p>
-            </div>
-          )}
-          {project.decisions.length > 0 && (
-            <div className="case-chapter">
-              <h2>Engineering decisions</h2>
-              <ul>
-                {project.decisions.map((decision) => (
-                  <li key={decision}>{decision}</li>
-                ))}
-              </ul>
-            </div>
-          )}
-          {project.nodes.length > 0 && (
-            <div className="system-explorer">
-              <h3>Architecture · follow the system</h3>
-              <p>Choose a layer to see its role.</p>
-              <div className="system-nodes" aria-label="System layers">
-                {project.nodes.map((n, i) => (
-                  <button
-                    aria-pressed={node === i}
-                    key={n.name}
-                    className={node === i ? "selected" : ""}
-                    onClick={() => setNode(i)}
-                  >
-                    {n.name}
-                    {i < project.nodes.length - 1 && <ArrowRight size={14} />}
-                  </button>
-                ))}
-              </div>
-              <div className="node-description" role="status">
-                <span>
-                  {project.nodes[node]?.name || project.nodes[0].name}
-                </span>
-                <p>{project.nodes[node]?.text || project.nodes[0].text}</p>
-              </div>
-            </div>
-          )}
-          {project.outcome && (
-            <div className="case-chapter case-outcome">
-              <h2>Outcome</h2>
-              <p>{project.outcome}</p>
-            </div>
-          )}
+          <h2>Why it exists.</h2>
+          <p>{project.problem}</p>
+        </section>
+        <section>
+          <h2>What the system does.</h2>
+          <p>{project.solution || project.details.join(" ")}</p>
         </section>
       </div>
-      <nav className="project-pagination" aria-label="More projects">
+      {project.nodes.length > 0 && (
+        <ProjectArchitecture key={slug} nodes={project.nodes} />
+      )}
+      <section className="case-features">
+        <div className="case-section-heading">
+          <h2>Inside the build.</h2>
+          <p>Capabilities present in the inspected implementation.</p>
+        </div>
+        <ul>
+          {(project.features || []).map((f) => (
+            <li key={f}>
+              <h3>{f}</h3>
+            </li>
+          ))}
+        </ul>
+      </section>
+      <div className="case-engineering">
+        <section>
+          <h2>Engineering decisions.</h2>
+          <ul className="decision-list">
+            {project.decisions.map((d) => (
+              <li key={d}>{d}</li>
+            ))}
+          </ul>
+        </section>
+        <section className="case-stack">
+          <h2>Technology.</h2>
+          {Object.entries(project.techGroups || {}).map(([group, values]) => (
+            <div key={group}>
+              <h3>{group}</h3>
+              <p>{values.join(" · ")}</p>
+            </div>
+          ))}
+        </section>
+      </div>
+      <section className="case-status">
+        <div>
+          <h2>Result & current boundaries.</h2>
+          <p>{project.outcome}</p>
+        </div>
+        <ul>
+          {(project.limitations || []).map((l) => (
+            <li key={l}>{l}</li>
+          ))}
+        </ul>
+      </section>
+      {project.sources?.length > 0 && (
+        <details className="case-sources">
+          <summary>
+            Inspect the source evidence{" "}
+            <span>{project.sources.length} files</span>
+          </summary>
+          <ul>
+            {project.sources.map((s) => (
+              <li key={s.url}>
+                <a href={s.url} target="_blank" rel="noopener noreferrer">
+                  {s.label}
+                  <ArrowUpRight size={15} />
+                </a>
+              </li>
+            ))}
+          </ul>
+        </details>
+      )}
+      <nav
+        className="project-pagination case-pagination"
+        aria-label="More projects"
+      >
         <Link to={"/projects/" + previous.slug}>
           <ArrowLeft size={20} />
           <div>

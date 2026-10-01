@@ -26,6 +26,9 @@ export default function CommandPalette({
     ...content.projects.map((p) => ({
       label: p.title,
       group: "Project",
+      search: [p.category, p.summary, ...p.stack, ...(p.filters || [])].join(
+        " ",
+      ),
       run: () => openProject(p.slug),
     })),
     {
@@ -42,7 +45,7 @@ export default function CommandPalette({
     { label: "Copy email", group: "Connect", run: copyEmail },
     { label: "Toggle color theme", group: "View", run: toggleTheme },
   ].filter((a) =>
-    (a.label + " " + a.group)
+    (a.label + " " + a.group + " " + (a.search || ""))
       .toLowerCase()
       .includes(query.trim().toLowerCase()),
   );
