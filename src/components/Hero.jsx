@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { ArrowDown, ArrowUpRight, Download, MapPin } from "lucide-react";
 import { content } from "../data/content";
+import { scrollToTarget } from "./scroll";
 export default function Hero() {
   const { profile } = content;
   const portrait = useRef();
@@ -29,11 +30,14 @@ export default function Hero() {
       <div className="hero-name">
         <h1 className="hero-title" id="hero-heading" aria-label="Alok Sahoo">
           <span className="hero-line" aria-hidden="true">
-            <span className="hero-line-inner">ALOK</span>
+            <span className="hero-line-inner">
+              {profile.firstName.toUpperCase()}
+            </span>
           </span>
           <span className="hero-line" aria-hidden="true">
             <span className="hero-line-inner">
-              SAHOO<span className="name-dot">.</span>
+              {profile.name.split(" ").slice(1).join(" ").toUpperCase()}
+              <span className="name-dot">.</span>
             </span>
           </span>
         </h1>
@@ -93,7 +97,15 @@ export default function Hero() {
           <p>{profile.summary}</p>
         </div>
         <div className="hero-actions">
-          <a href="#work" className="button">
+          <a
+            href="#work"
+            className="button"
+            onClick={(e) => {
+              if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+              e.preventDefault();
+              scrollToTarget("work");
+            }}
+          >
             Explore my work <ArrowUpRight size={18} />
           </a>
           <a className="resume-link" href={profile.resume} download>

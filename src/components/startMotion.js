@@ -9,7 +9,7 @@ export function startMotion() {
   const lenis = new Lenis({
     duration: 0.95,
     smoothWheel: true,
-    anchors: { offset: -96 },
+    anchors: false,
     prevent: (node) => node.tagName === "DIALOG",
   });
   const unbind = bindScroll(lenis);
@@ -80,13 +80,19 @@ export function startMotion() {
           scrub: true,
         },
       });
-    document.querySelectorAll(".timeline-item").forEach((el) =>
+    document.querySelectorAll(".timeline-item").forEach((el) => {
+      gsap.from(el.querySelector("h3"), {
+        y: 10,
+        duration: 0.55,
+        ease: motion.ease,
+        scrollTrigger: { trigger: el, start: "top 83%", once: true },
+      });
       ScrollTrigger.create({
         trigger: el,
         start: "top 70%",
         toggleClass: "reached",
-      }),
-    );
+      });
+    });
   });
   mm.add("(min-width: 1025px) and (pointer: fine)", () => {
     if (document.querySelector(".hero-side"))

@@ -4,8 +4,10 @@ import Projects from "../components/Projects";
 import { Credentials, Contact, Footer } from "../components/Closing";
 import { lazy, Suspense } from "react";
 import { useMotion } from "../components/useMotion";
+import { useOutletContext } from "react-router-dom";
 const Field = lazy(() => import("../components/Field"));
-export default function Home({ copyEmail, notify }) {
+export default function Home() {
+  const { copyEmail, notify } = useOutletContext();
   useMotion("home");
   return (
     <>

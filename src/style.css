@@ -136,10 +136,6 @@ textarea:focus-visible {
 html {
   scroll-padding-top: 96px;
 }
-section[id],
-article[id] {
-  scroll-margin-top: 96px;
-}
 ul {
   padding: 0;
 }
@@ -233,10 +229,7 @@ ul {
   border: 1px solid transparent;
   border-radius: 40px;
   font-size: 14px;
-  transition:
-    background var(--fast),
-    color var(--fast),
-    translate 0.3s var(--ease);
+  transition: translate 0.3s var(--ease);
 }
 .button:hover {
   background: var(--coral);
@@ -1334,7 +1327,6 @@ footer {
   max-width: 740px;
 }
 .project-detail > .detail-media {
-  aspect-ratio: 2.3;
   border-radius: 4px;
 }
 .detail-body {
@@ -1613,7 +1605,7 @@ dialog small {
   .detail-body {
     gap: 40px;
   }
-  .project-detail > .detail-media {
+  .detail-media > .project-art {
     aspect-ratio: 1.9;
   }
   .experience-intro {
@@ -1918,8 +1910,8 @@ dialog small {
   .detail-heading p {
     font-size: 18px;
   }
-  .project-detail > .detail-media {
-    aspect-ratio: 1.4;
+  .detail-media > .project-art {
+    aspect-ratio: 1.35;
   }
   .detail-body {
     grid-template-columns: 1fr;
@@ -2227,8 +2219,8 @@ dialog small {
   overflow: clip;
 }
 .detail-media > .project-art {
-  min-height: inherit;
-  aspect-ratio: 16/10;
+  min-height: 300px;
+  aspect-ratio: 2.3;
 }
 .detail-media > img {
   width: 100%;
@@ -2290,5 +2282,72 @@ dialog small {
   ::view-transition-old(*),
   ::view-transition-new(*) {
     animation-duration: 0s !important;
+  }
+}
+
+/* One static paper texture; it has no running animation or page overlay. */
+.hero-portrait {
+  background-image: url("/images/grain.png");
+}
+.journey-band {
+  background-image: url("/images/grain.png");
+}
+@media (max-width: 768px) {
+  .field-canvas {
+    display: none;
+  }
+}
+
+/* Grid tracks must shrink below artwork's intrinsic content width. */
+.project-grid {
+  grid-template-columns: minmax(0, 1fr);
+}
+.project-card,
+.project-caption,
+.project-media {
+  min-width: 0;
+}
+@media (max-width: 375px) {
+  .forensics-diagram {
+    gap: 10px;
+  }
+  .scan-matrix {
+    width: 100px;
+  }
+  .scan-matrix > svg {
+    inset: 10px;
+  }
+  .analysis-label {
+    max-width: 110px;
+  }
+}
+
+@media (max-width: 1100px) {
+  .detail-media > .project-art {
+    aspect-ratio: 1.9;
+  }
+}
+@media (max-width: 700px) {
+  .project-art {
+    min-height: 270px;
+  }
+  .detail-media > .project-art {
+    aspect-ratio: 1.35;
+    min-height: 300px;
+  }
+}
+
+@media (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  body:has(.view-cursor.on) [data-cursor="view"] {
+    cursor: none;
+  }
+}
+
+.command-icon {
+  display: none;
+}
+@media (max-width: 700px) {
+  .command-icon {
+    display: block;
   }
 }

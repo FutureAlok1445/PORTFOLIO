@@ -26,6 +26,12 @@ await page.route("**/form-test", async (route) => {
 await fill();
 await page.getByRole("button", { name: "Send a message" }).click();
 await expect(page.getByRole("button", { name: "Sending…" })).toBeDisabled();
+await expect(page.getByLabel("Your name", { exact: true })).toHaveValue(
+  "Test Visitor",
+);
+await expect(page.getByLabel("What are you thinking?")).toHaveValue(
+  "A simulated contact form test.",
+);
 finish();
 await expect(page.locator(".form-feedback")).toContainText("Message sent.");
 await expect(page.getByLabel("Your name", { exact: true })).toHaveValue("");
@@ -45,6 +51,25 @@ await expect(page.locator(".form-feedback")).toContainText(
 await expect(
   page.getByRole("button", { name: "Send a message" }),
 ).toBeEnabled();
+await expect(page.getByLabel("Your name", { exact: true })).toHaveValue(
+  "Test Visitor",
+);
+await expect(page.getByLabel("What are you thinking?")).toHaveValue(
+  "A simulated contact form test.",
+);
+await page.unroute("**/form-test");
+await page.route("**/form-test", (route) =>
+  route.fulfill({
+    status: 200,
+    contentType: "application/json",
+    body: '{"ok":true}',
+  }),
+);
+await page.getByRole("button", { name: "Send a message", exact: true }).click();
+await expect(page.locator(".form-feedback")).toContainText("Message sent.");
+await expect(
+  page.getByRole("button", { name: "Message sent", exact: true }),
+).toBeVisible();
 await browser.close();
 console.log(
   "PASS: client validation, pending request, successful response, form reset, failed response and retry. All network requests mocked; no messages sent.",

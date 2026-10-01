@@ -1,20 +1,11 @@
 import { Component, Suspense, useEffect, useRef, useState } from "react";
-import {
-  Link,
-  Route,
-  Routes,
-  useLocation,
-  useNavigate,
-} from "react-router-dom";
-import { ArrowUpRight, Menu, Moon, Sun, X } from "lucide-react";
+import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
+import { ArrowUpRight, Menu, Moon, Sun, X, Search } from "lucide-react";
 import { content } from "./data/content";
-import Home from "./pages/Home";
-import { scrollToTarget } from "./components/scroll";
+import { scrollToTarget, scheduleScrollToTarget } from "./components/scroll";
 import ProjectCursor from "./components/ProjectCursor";
 import Seo from "./components/Seo";
-import Project from "./pages/Project";
 import CommandPalette from "./components/CommandPalette";
-import NotFound from "./pages/NotFound";
 class ErrorBoundary extends Component {
   state = { failed: false };
   static getDerivedStateFromError() {
@@ -25,7 +16,7 @@ class ErrorBoundary extends Component {
       <main className="error-page">
         <h1>Something interrupted the page.</h1>
         <p>Reload to try again, or reach me directly.</p>
-        <a href="mailto:aloknsahoo@gmail.com">Email Alok</a>
+        <a href={"mailto:" + content.profile.email}>Email Alok</a>
         <button onClick={() => window.location.reload()}>Reload</button>
       </main>
     ) : (
@@ -208,8 +199,7 @@ export default function App() {
   }
   useEffect(() => {
     if (!location.hash) return;
-    const t = setTimeout(() => scrollToTarget(location.hash), 100);
-    return () => clearTimeout(t);
+    return scheduleScrollToTarget(location.hash);
   }, [location]);
   return (
     <ErrorBoundary>
@@ -218,14 +208,14 @@ export default function App() {
         Skip to content
       </a>
       {intro && (
-        <div className="intro" aria-label="Welcome">
+        <section className="intro" aria-label="Welcome">
           <span>
             Alok<span className="orange">.</span>
           </span>
           <button onClick={() => setIntro(false)}>
             Skip intro <X size={16} />
           </button>
-        </div>
+        </section>
       )}
       <header className="nav">
         <Link className="wordmark" to="/" aria-label="as. — Alok Sahoo home">
@@ -239,7 +229,11 @@ export default function App() {
             <NavButton
               key={s.id}
               label={s.label}
-              active={active === s.id}
+              active={
+                location.pathname.startsWith("/projects/")
+                  ? s.id === "work"
+                  : active === s.id
+              }
               onClick={() => jump(s.id)}
             />
           ))}
@@ -250,6 +244,7 @@ export default function App() {
             data-tooltip={"Search portfolio · " + shortcut}
             onClick={() => setPalette(true)}
           >
+            <Search size={18} className="command-icon" />
             <span className="key-label">{shortcut}</span>
           </button>
           <button
@@ -263,7 +258,7 @@ export default function App() {
           >
             {theme === "light" ? <Moon size={19} /> : <Sun size={19} />}
           </button>
-          <a className="nav-contact" href="mailto:aloknsahoo@gmail.com">
+          <a className="nav-contact" href={"mailto:" + content.profile.email}>
             Let’s talk <ArrowUpRight size={17} />
           </a>
           <button
@@ -285,14 +280,7 @@ export default function App() {
         }
       >
         <div className="route-page" key={location.pathname}>
-          <Routes>
-            <Route
-              path="/"
-              element={<Home copyEmail={copyEmail} notify={notify} />}
-            />
-            <Route path="/projects/:slug" element={<Project />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
+          <Outlet context={{ copyEmail, notify }} />
         </div>
       </Suspense>
       {palette && (

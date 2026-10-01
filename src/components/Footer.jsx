@@ -107,7 +107,7 @@ export default function Footer({ notify }) {
         <div className="marquee-track" ref={marquee}>
           {Array.from({ length: 4 }, (_, i) => (
             <span key={i}>
-              Stay curious. Keep building. <span>•</span>{" "}
+              Stay curious. Keep building. <span className="marquee-dot" />{" "}
             </span>
           ))}
         </div>

@@ -68,6 +68,40 @@ Phase 2 design: centralized navy/paper/coral tokens replace scattered hover colo
 
 The command palette now filters sections, projects, resume, social links and actions. Native dialog focus containment is retained; arrows, Home/End and Enter offer quick selection while Tab reaches every real button/link. Shortcut labels follow the platform. Tooltips appear on hover and keyboard focus.
 
-React Router's native View Transition integration now shares project artwork names across the card and case-study hero. The existing App routes are retained under a minimal data-router shell; the small case-study component loads eagerly to avoid capturing a Suspense loading screen. Unsupported browsers and reduced motion use normal navigation. Case studies render supplied problem, context, decisions and outcome fields only. The same media component handles illustrations and future screenshots in both locations.
+React Router's native View Transition integration now shares project artwork names across the card and case-study hero. The existing routes are registered as data-router children under the App shell; the small case-study component loads eagerly to avoid capturing a Suspense loading screen. Unsupported browsers and reduced motion use normal navigation. Case studies render supplied problem, context, decisions and outcome fields only. The same media component handles illustrations and future screenshots in both locations.
 
 Form errors attach to individual controls and focus the first invalid field. Pending and failed requests preserve values; only successful HTTP responses clear the form. Copy feedback lasts 1.8 seconds. Sound remains opt-in and persists within the session; oscillators disconnect after playback. The footer's 40-second loop runs only when visible and the document is active, including live reduced-motion changes. Work uses large vertical editorial rows instead of another pinned section: this preserves all three projects, natural scrolling and laptop usability.
+
+### Upgrade phase 4 — bounded atmosphere
+
+The hero constellation contains exactly 28 deterministic nodes, nearby network connections and four decorative labels (API, AI, DB, SYS). Drawing is capped at 30 frames per second and pixel ratio 1.5. Slow movement and pointer influence stay bounded to a few pixels. It stops offscreen and when hidden, and is disabled below 769px, for coarse input, reduced motion, data saving and reported low hardware capacity. No nodes are React elements. Media changes restart only one loop; effect cleanup cancels frames, observers and listeners.
+
+A deterministic 128px paper grain is confined to the portrait frame and cream Journey chapter. The existing candid photo remains intact. The portrait's 1.5-degree offset frame and coral dot provide the intentional imperfection; no extra tapes, gradients or glass layers were added.
+
+The 320px audit exposed an intrinsic-width project grid track. Tracks and children now explicitly shrink, and the narrow forensics diagram uses a smaller matrix with readable labels. Theme QA also caught a transient low-contrast button during opposite foreground/background color interpolation; button colors now switch atomically while pointer translation remains animated.
+
+Visual review caught nested aspect ratios cropping the case-study artwork. The media wrapper now follows its child's natural ratio, with content-safe minimum heights and narrower mobile compositions. Grain opacity was reduced below four percent. Programmatic section navigation also synchronizes Lenis with the real browser offset before applying a new target, covering keyboard focus and scrollbar jumps during an active animation.
+
+A fast route-return test revealed the old delayed hash anchor could overtake a newer Back to top action. Hash targets now queue for the next rendered frame and direct user navigation cancels the pending target. The fallback before Lenis is ready is an instant browser jump, avoiding two smooth-scroll systems. Case-study links with no URL are omitted, and project routes identify Work as the active navigation section.
+
+The cursor test caught scroll events hiding the View cursor after a hover-triggered browser scroll. A single queued hit test now checks the artwork under the saved pointer position; it stays visible while the artwork remains beneath the pointer and disappears elsewhere. The native cursor is suppressed only while the contextual cursor is actually active. Media changes, clicks, blur and pointer exit clear it, with all listeners and queued frames cleaned up.
+
+Final console QA found Lenis's automatic anchor handler racing React Router's cross-route hash navigation, producing missing-target warnings. Automatic anchors are disabled; the hero action and route/navigation controls use the same explicit scroll helper. The installed Lenis version already accounts for CSS scroll padding, so duplicate manual offsets and section scroll margins were removed. One 96px root scroll-padding token supplies the header clearance. Universal font and portrait preloads were also removed: routes request the fonts they actually use, while the hero's responsive image retains high fetch priority without fetching an unused larger source on mobile. The no-JavaScript project name is canonical too.
+
+The final touch review restores a visible Search icon for the command button when its desktop shortcut label is hidden. Its accessible label and keyboard shortcut remain available at all sizes.
+
+A direct native API probe showed the first wildcard bridge still left descendant declarative Routes outside the data-router transition context. Routes now register as real children in the entry point and App renders an Outlet; Home receives its existing callbacks through Outlet context. URLs, pages and animation lifecycles remain the same. The probe requires the browser transition's ready and finished promises to succeed, and verifies both reduced-motion and unavailable-API fallbacks.
+
+First-visit case-study accessibility also identified the brief welcome surface outside a landmark; it is now a native named section.
+
+### Final upgrade evidence
+
+- `npm run build`, `npm run lint`, `npm run verify`, `node scripts/extended-verify.mjs` and the separate mocked `scripts/form-states.mjs` checks pass.
+- Home: 320, 375, 430, 768, 1024, 1280, 1440 and 1920px, both themes; zero overflow, axe violations, under-12px content or browser warnings/errors. Keyboard search/selection, native modal focus containment, Escape, mobile navigation, copy, resume download, filters, routes and theme/sound persistence pass.
+- All three case studies: all eight widths; no overflow or artwork-label clipping. Case-study axe scans pass at 320px. Touch has a visible command button, usable palette, inactive particle field and no contextual cursor.
+- Native transition: actual browser API invoked, ready and finished both true. Reduced motion does not invoke it. An unavailable API retains working route navigation.
+- Lifecycle: 701 DOM elements, one canvas, one desktop pin and 20 ScrollTriggers remain stable over three route-return cycles at 1440px. The pin is removed at the mobile breakpoint. Hidden/offscreen gates are verified at hero, Journey and footer; offscreen running count is zero. Heap retention is not measured.
+- Form: all requests mocked against an isolated build. Invalid controls receive inline errors and focus; loading and failed requests retain input; only successful responses clear values, including a successful retry. No message was sent.
+- Final local mobile Lighthouse: 94 performance / 100 accessibility / 100 best practices / 100 SEO. FCP 2.2s, LCP 2.6s, TBT 100ms, CLS 0.015. A prior run scored 95 performance; results vary by timing. No typecheck command is configured.
+
+The editorial identity, candid portrait, self-hosted type and resume facts remain intact. Missing credential URLs remain visibly unlinked. The form endpoint and production origin are owner configuration inputs; the email fallback works. No site was published.

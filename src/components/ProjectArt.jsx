@@ -10,6 +10,7 @@ export default function ProjectArt({ project }) {
   return (
     <div
       className={"project-art " + project.visual}
+      role="img"
       aria-label={project.title + " conceptual system diagram"}
     >
       <div className="art-top">

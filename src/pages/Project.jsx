@@ -36,7 +36,7 @@ export default function Project() {
           {project.category} / {project.status}
         </span>
         <h1>{project.title}</h1>
-        <p>{project.summary}</p>
+        {project.summary && <p>{project.summary}</p>}
       </div>
       <div
         className="detail-media"
@@ -54,34 +54,33 @@ export default function Project() {
               <span key={s}>{s}</span>
             ))}
           </div>
-          <div className="detail-links">
-            {project.repo && (
-              <a
-                className="button outline"
-                href={project.repo}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                View repository <ArrowUpRight size={16} />
-              </a>
-            )}
-            {project.live && (
-              <a
-                className="button"
-                href={project.live}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Open live project <ArrowUpRight size={16} />
-              </a>
-            )}
-            {!project.repo && !project.live && (
-              <p className="quiet">Public links aren’t available yet.</p>
-            )}
-          </div>
+          {(project.repo || project.live) && (
+            <div className="detail-links">
+              {project.repo && (
+                <a
+                  className="button outline"
+                  href={project.repo}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  View repository <ArrowUpRight size={16} />
+                </a>
+              )}
+              {project.live && (
+                <a
+                  className="button"
+                  href={project.live}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Open live project <ArrowUpRight size={16} />
+                </a>
+              )}
+            </div>
+          )}
         </aside>
         <section>
-          <h2 className="serif">Overview.</h2>
+          {project.details.length > 0 && <h2 className="serif">Overview.</h2>}
           {project.details.map((d) => (
             <p key={d}>{d}</p>
           ))}
