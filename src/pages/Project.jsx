@@ -1,12 +1,125 @@
-import { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import { ArrowLeft, ArrowRight, ArrowUpRight } from 'lucide-react';
-import { content } from '../data/content';
-import ProjectArt from '../components/ProjectArt';
-import NotFound from './NotFound';
+import { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
+import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
+import { content } from "../data/content";
+import ProjectArt from "../components/ProjectArt";
+import NotFound from "./NotFound";
 export default function Project() {
-  const { slug } = useParams(); const project = content.projects.find(p => p.slug === slug); const [node, setNode] = useState(0);
-  useEffect(() => { document.title = project ? project.title + ' — Alok Sahoo' : 'Page not found — Alok Sahoo'; return () => { document.title = 'Alok Sahoo — Software Engineer'; }; }, [project]);
-  if (!project) return <NotFound/>; const index = content.projects.indexOf(project); const previous = content.projects[(index+content.projects.length-1)%content.projects.length]; const next=content.projects[(index+1)%content.projects.length];
-  return <main id="main" className="project-detail container"><Link to="/#work" className="text-link"><ArrowLeft size={17}/> Selected work</Link><div className="detail-heading"><span>{project.category} / {project.status}</span><h1>{project.title}</h1><p>{project.summary}</p></div><ProjectArt project={project}/><div className="detail-body"><aside><h2>My part</h2><p>{project.role}</p>{project.year&&<p>{project.year}</p>}<div className="project-stack">{project.stack.map(s=><span key={s}>{s}</span>)}</div><div className="detail-links">{project.repo&&<a className="button outline" href={project.repo} target="_blank" rel="noopener noreferrer">View repository <ArrowUpRight size={16}/></a>}{project.live&&<a className="button" href={project.live} target="_blank" rel="noopener noreferrer">Open live project <ArrowUpRight size={16}/></a>}{!project.repo&&!project.live&&<p className="quiet">Public links aren’t available yet.</p>}</div></aside><section><h2 className="serif">Inside the build.</h2>{project.details.map(d=><p key={d}>{d}</p>)}<div className="system-explorer"><h3>Follow the system</h3><p>Choose a layer to see its role.</p><div className="system-nodes" aria-label="System layers">{project.nodes.map((n,i)=><button aria-pressed={node===i} key={n.name} className={node===i?'selected':''} onClick={()=>setNode(i)}>{n.name}{i<project.nodes.length-1&&<ArrowRight size={14}/>}</button>)}</div><div className="node-description" role="status"><span>{project.nodes[node]?.name || project.nodes[0].name}</span><p>{project.nodes[node]?.text || project.nodes[0].text}</p></div></div></section></div><nav className="project-pagination" aria-label="More projects"><Link to={'/projects/'+previous.slug}><ArrowLeft size={20}/><div><small>Previous project</small><span>{previous.title}</span></div></Link><Link to={'/projects/'+next.slug}><div><small>Next project</small><span>{next.title}</span></div><ArrowRight size={20}/></Link></nav></main>;
+  const { slug } = useParams();
+  const project = content.projects.find((p) => p.slug === slug);
+  const [node, setNode] = useState(0);
+  useEffect(() => {
+    document.title = project
+      ? project.title + " — Alok Sahoo"
+      : "Page not found — Alok Sahoo";
+    return () => {
+      document.title = "Alok Sahoo — Software Engineer";
+    };
+  }, [project]);
+  if (!project) return <NotFound />;
+  const index = content.projects.indexOf(project);
+  const previous =
+    content.projects[
+      (index + content.projects.length - 1) % content.projects.length
+    ];
+  const next = content.projects[(index + 1) % content.projects.length];
+  return (
+    <main id="main" className="project-detail container">
+      <Link to="/#work" className="text-link">
+        <ArrowLeft size={17} /> Selected work
+      </Link>
+      <div className="detail-heading">
+        <span>
+          {project.category} / {project.status}
+        </span>
+        <h1>{project.title}</h1>
+        <p>{project.summary}</p>
+      </div>
+      <ProjectArt project={project} />
+      <div className="detail-body">
+        <aside>
+          <h2>My part</h2>
+          <p>{project.role}</p>
+          {project.year && <p>{project.year}</p>}
+          <div className="project-stack">
+            {project.stack.map((s) => (
+              <span key={s}>{s}</span>
+            ))}
+          </div>
+          <div className="detail-links">
+            {project.repo && (
+              <a
+                className="button outline"
+                href={project.repo}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                View repository <ArrowUpRight size={16} />
+              </a>
+            )}
+            {project.live && (
+              <a
+                className="button"
+                href={project.live}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Open live project <ArrowUpRight size={16} />
+              </a>
+            )}
+            {!project.repo && !project.live && (
+              <p className="quiet">Public links aren’t available yet.</p>
+            )}
+          </div>
+        </aside>
+        <section>
+          <h2 className="serif">Inside the build.</h2>
+          {project.details.map((d) => (
+            <p key={d}>{d}</p>
+          ))}
+          {project.nodes.length > 0 && (
+            <div className="system-explorer">
+              <h3>Follow the system</h3>
+              <p>Choose a layer to see its role.</p>
+              <div className="system-nodes" aria-label="System layers">
+                {project.nodes.map((n, i) => (
+                  <button
+                    aria-pressed={node === i}
+                    key={n.name}
+                    className={node === i ? "selected" : ""}
+                    onClick={() => setNode(i)}
+                  >
+                    {n.name}
+                    {i < project.nodes.length - 1 && <ArrowRight size={14} />}
+                  </button>
+                ))}
+              </div>
+              <div className="node-description" role="status">
+                <span>
+                  {project.nodes[node]?.name || project.nodes[0].name}
+                </span>
+                <p>{project.nodes[node]?.text || project.nodes[0].text}</p>
+              </div>
+            </div>
+          )}
+        </section>
+      </div>
+      <nav className="project-pagination" aria-label="More projects">
+        <Link to={"/projects/" + previous.slug}>
+          <ArrowLeft size={20} />
+          <div>
+            <small>Previous project</small>
+            <span>{previous.title}</span>
+          </div>
+        </Link>
+        <Link to={"/projects/" + next.slug}>
+          <div>
+            <small>Next project</small>
+            <span>{next.title}</span>
+          </div>
+          <ArrowRight size={20} />
+        </Link>
+      </nav>
+    </main>
+  );
 }
