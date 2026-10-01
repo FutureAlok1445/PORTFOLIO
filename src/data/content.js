@@ -1,4 +1,16 @@
 export const content = {
+  navigation: [
+    { label: "About", id: "about" },
+    { label: "Work", id: "work" },
+    { label: "Journey", id: "experience" },
+    { label: "Contact", id: "contact" },
+  ],
+  commandSections: [
+    { label: "Skills", id: "skills" },
+    { label: "Experience", id: "experience" },
+    { label: "Education", id: "education" },
+    { label: "Achievements & certificates", id: "credentials" },
+  ],
   profile: {
     name: "Alok Sahoo",
     firstName: "Alok",
@@ -401,6 +413,7 @@ content.projects = content.projects
     ...project,
     stack: Array.isArray(project.stack) ? project.stack : [],
     details: Array.isArray(project.details) ? project.details : [],
+    decisions: Array.isArray(project.decisions) ? project.decisions : [],
     nodes: Array.isArray(project.nodes)
       ? project.nodes.filter((node) => node.name && node.text)
       : [],

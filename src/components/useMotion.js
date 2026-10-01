@@ -3,8 +3,10 @@ export function useMotion(route) {
   useEffect(() => {
     let disposed = false;
     let cleanup;
+    let generation = 0;
     const reduced = matchMedia("(prefers-reduced-motion: reduce)");
     const run = () => {
+      const current = ++generation;
       cleanup?.();
       cleanup = undefined;
       document.documentElement.dataset.motionReady = reduced.matches
@@ -12,7 +14,8 @@ export function useMotion(route) {
         : "false";
       if (!reduced.matches)
         import("./startMotion").then(({ startMotion }) => {
-          if (!disposed && !reduced.matches) cleanup = startMotion();
+          if (!disposed && current === generation && !reduced.matches)
+            cleanup = startMotion();
         });
     };
     run();

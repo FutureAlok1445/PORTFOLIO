@@ -1,4 +1,4 @@
-import { Component, Suspense, lazy, useEffect, useRef, useState } from "react";
+import { Component, Suspense, useEffect, useRef, useState } from "react";
 import {
   Link,
   Route,
@@ -6,14 +6,15 @@ import {
   useLocation,
   useNavigate,
 } from "react-router-dom";
-import { ArrowUpRight, Command, Menu, Moon, Sun, X } from "lucide-react";
+import { ArrowUpRight, Menu, Moon, Sun, X } from "lucide-react";
 import { content } from "./data/content";
 import Home from "./pages/Home";
 import { scrollToTarget } from "./components/scroll";
 import ProjectCursor from "./components/ProjectCursor";
 import Seo from "./components/Seo";
-const Project = lazy(() => import("./pages/Project"));
-const NotFound = lazy(() => import("./pages/NotFound"));
+import Project from "./pages/Project";
+import CommandPalette from "./components/CommandPalette";
+import NotFound from "./pages/NotFound";
 class ErrorBoundary extends Component {
   state = { failed: false };
   static getDerivedStateFromError() {
@@ -32,7 +33,8 @@ class ErrorBoundary extends Component {
     );
   }
 }
-const sections = ["About", "Work", "Experience", "Contact"];
+const sections = content.navigation;
+const shortcut = /Mac|iPhone|iPad/.test(navigator.platform) ? "⌘ K" : "Ctrl K";
 function NavButton({ label, active, onClick }) {
   const [display, setDisplay] = useState(label);
   const timer = useRef();
@@ -105,7 +107,6 @@ export default function App() {
   const location = useLocation();
   const navigate = useNavigate();
   const toastTimer = useRef();
-  const dialog = useRef();
   useEffect(() => {
     if (!location.hash) window.scrollTo({ top: 0, behavior: "instant" });
   }, [location.pathname, location.hash]);
@@ -145,7 +146,7 @@ export default function App() {
       } catch {
         /* Optional persistence. */
       }
-    }, 1100);
+    }, 800);
     return () => clearTimeout(t);
   }, []);
   useEffect(() => {
@@ -162,16 +163,6 @@ export default function App() {
     window.addEventListener("keydown", key);
     return () => window.removeEventListener("keydown", key);
   }, []);
-  useEffect(() => {
-    if (!palette) return;
-    const previous = document.activeElement;
-    dialog.current.showModal();
-    const d = dialog.current;
-    return () => {
-      d.close();
-      previous?.focus();
-    };
-  }, [palette]);
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -197,14 +188,16 @@ export default function App() {
   function notify(message) {
     setToast(message);
     clearTimeout(toastTimer.current);
-    toastTimer.current = setTimeout(() => setToast(""), 3500);
+    toastTimer.current = setTimeout(() => setToast(""), 1800);
   }
   async function copyEmail() {
     try {
       await navigator.clipboard.writeText(content.profile.email);
       notify("Copied ✓");
+      return true;
     } catch {
       notify("Copy unavailable. Email: " + content.profile.email);
+      return false;
     }
   }
   function jump(id) {
@@ -244,23 +237,26 @@ export default function App() {
         >
           {sections.map((s) => (
             <NavButton
-              key={s}
-              label={s}
-              active={active === s.toLowerCase()}
-              onClick={() => jump(s.toLowerCase())}
+              key={s.id}
+              label={s.label}
+              active={active === s.id}
+              onClick={() => jump(s.id)}
             />
           ))}
         </nav>
         <div className="nav-tools">
           <button
             aria-label="Open command palette"
+            data-tooltip={"Search portfolio · " + shortcut}
             onClick={() => setPalette(true)}
           >
-            <Command size={17} />
-            <span className="key-label">K</span>
+            <span className="key-label">{shortcut}</span>
           </button>
           <button
             aria-label={
+              "Switch to " + (theme === "light" ? "dark" : "light") + " mode"
+            }
+            data-tooltip={
               "Switch to " + (theme === "light" ? "dark" : "light") + " mode"
             }
             onClick={() => setTheme(theme === "light" ? "dark" : "light")}
@@ -299,62 +295,21 @@ export default function App() {
           </Routes>
         </div>
       </Suspense>
-      <dialog
-        ref={dialog}
-        onCancel={() => setPalette(false)}
-        onClick={(e) => {
-          if (e.target === dialog.current) setPalette(false);
-        }}
-        aria-labelledby="command-title"
-      >
-        <div className="palette-head">
-          <h2 id="command-title">Where to?</h2>
-          <button
-            aria-label="Close command palette"
-            onClick={() => setPalette(false)}
-          >
-            <X />
-          </button>
-        </div>
-        <p>Jump, connect, or change the view.</p>
-        {sections.map((s) => (
-          <button
-            className="command-item"
-            key={s}
-            onClick={() => jump(s.toLowerCase())}
-          >
-            Jump to {s.toLowerCase()} <ArrowUpRight size={18} />
-          </button>
-        ))}
-        <button
-          className="command-item"
-          onClick={() => {
-            copyEmail();
-            setPalette(false);
-          }}
-        >
-          Copy email
-        </button>
-        {content.socials.map((s) => (
-          <a
-            className="command-item"
-            key={s.label}
-            href={s.url}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Open {s.label}
-            <ArrowUpRight size={18} />
-          </a>
-        ))}
-        <button
-          className="command-item"
-          onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-        >
-          Toggle color theme
-        </button>
-        <small>Escape to close · Tab to navigate</small>
-      </dialog>
+      {palette && (
+        <CommandPalette
+          close={() => setPalette(false)}
+          jump={jump}
+          copyEmail={copyEmail}
+          toggleTheme={() => setTheme(theme === "light" ? "dark" : "light")}
+          openProject={(slug) =>
+            navigate("/projects/" + slug, {
+              viewTransition:
+                typeof document.startViewTransition === "function" &&
+                !matchMedia("(prefers-reduced-motion:reduce)").matches,
+            })
+          }
+        />
+      )}
       <div className={"toast " + (toast ? "visible" : "")} role="status">
         {toast}
       </div>

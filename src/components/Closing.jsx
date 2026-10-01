@@ -1,20 +1,17 @@
 import { useEffect, useRef, useState } from "react";
 import {
-  ArrowUp,
   ArrowUpRight,
-  Award,
   Copy,
   Code2,
   UserRound,
   Send,
-  Sparkles,
+  Check,
   Flag,
   Trophy,
   Medal,
 } from "lucide-react";
 import { content } from "../data/content";
 import { Magnetic } from "./Motion";
-import { scrollToTarget } from "./scroll";
 export function Credentials() {
   const icons = { flag: Flag, trophy: Trophy, medal: Medal };
   return (
@@ -83,8 +80,24 @@ export function Credentials() {
 export function Contact({ copyEmail, notify }) {
   const [state, setState] = useState("idle");
   const [error, setError] = useState("");
+  const [fields, setFields] = useState({});
+  const [copied, setCopied] = useState(false);
+  const copyTimer = useRef();
   const abort = useRef();
-  useEffect(() => () => abort.current?.abort(), []);
+  useEffect(
+    () => () => {
+      abort.current?.abort();
+      clearTimeout(copyTimer.current);
+    },
+    [],
+  );
+  async function copy() {
+    if (await copyEmail()) {
+      setCopied(true);
+      clearTimeout(copyTimer.current);
+      copyTimer.current = setTimeout(() => setCopied(false), 1800);
+    }
+  }
   async function submit(e) {
     e.preventDefault();
     const form = e.currentTarget;
@@ -92,15 +105,18 @@ export function Contact({ copyEmail, notify }) {
     const name = String(data.get("name") || "").trim();
     const email = String(data.get("email") || "").trim();
     const message = String(data.get("message") || "").trim();
-    if (
-      !name ||
-      !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) ||
-      message.length < 10
-    ) {
+    const invalid = {};
+    if (!name) invalid.name = "Enter your name.";
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
+      invalid.email = "Enter a valid email address.";
+    if (message.length < 10) invalid.message = "Write at least 10 characters.";
+    setFields(invalid);
+    if (Object.keys(invalid).length) {
       setError(
         "Add your name, a valid email, and a message of at least 10 characters.",
       );
-      setState("error");
+      setState("invalid");
+      form.elements[Object.keys(invalid)[0]].focus();
       return;
     }
     const endpoint = import.meta.env.VITE_FORMSPREE_ENDPOINT;
@@ -152,8 +168,12 @@ export function Contact({ copyEmail, notify }) {
               <a href={"mailto:" + content.profile.email}>
                 {content.profile.email}
               </a>
-              <Magnetic aria-label="Copy email address" onClick={copyEmail}>
-                <Copy size={18} />
+              <Magnetic
+                aria-label="Copy email address"
+                data-tooltip={copied ? "Copied" : "Copy email address"}
+                onClick={copy}
+              >
+                {copied ? <Check size={18} /> : <Copy size={18} />}
               </Magnetic>
             </div>
             <div className="social-links">
@@ -176,20 +196,39 @@ export function Contact({ copyEmail, notify }) {
               ))}
             </div>
           </div>
-          <form onSubmit={submit} className="contact-form">
+          <form
+            noValidate
+            onSubmit={submit}
+            className="contact-form"
+            onInput={(e) => {
+              const field = e.target.name;
+              if (fields[field])
+                setFields((previous) => ({ ...previous, [field]: undefined }));
+              if (state === "success") setState("idle");
+            }}
+          >
             <p>Tell me about the problem you’re solving.</p>
             <label htmlFor="name">Your name</label>
             <input
               id="name"
+              aria-invalid={fields.name ? true : undefined}
+              aria-describedby={fields.name ? "name-error" : undefined}
               name="name"
               autoComplete="name"
               placeholder="How should I call you?"
               required
               maxLength={100}
             />
+            {fields.name && (
+              <p className="field-error" id="name-error">
+                {fields.name}
+              </p>
+            )}
             <label htmlFor="email">Your email</label>
             <input
               id="email"
+              aria-invalid={fields.email ? true : undefined}
+              aria-describedby={fields.email ? "email-error" : undefined}
               name="email"
               type="email"
               autoComplete="email"
@@ -197,9 +236,16 @@ export function Contact({ copyEmail, notify }) {
               required
               maxLength={254}
             />
+            {fields.email && (
+              <p className="field-error" id="email-error">
+                {fields.email}
+              </p>
+            )}
             <label htmlFor="message">What are you thinking?</label>
             <textarea
               id="message"
+              aria-invalid={fields.message ? true : undefined}
+              aria-describedby={fields.message ? "message-error" : undefined}
               name="message"
               placeholder="A project, a role, or an interesting idea…"
               required
@@ -207,6 +253,11 @@ export function Contact({ copyEmail, notify }) {
               maxLength={5000}
               rows={4}
             />
+            {fields.message && (
+              <p className="field-error" id="message-error">
+                {fields.message}
+              </p>
+            )}
             <input
               name="_gotcha"
               className="honeypot"
@@ -219,8 +270,12 @@ export function Contact({ copyEmail, notify }) {
               disabled={state === "loading"}
               type="submit"
             >
-              {state === "loading" ? "Sending…" : "Send a message"}
-              <Send size={17} />
+              {state === "loading"
+                ? "Sending…"
+                : state === "success"
+                  ? "Message sent"
+                  : "Send a message"}
+              {state === "success" ? <Check size={17} /> : <Send size={17} />}
             </Magnetic>
             <div className="form-feedback" aria-live="polite">
               {state === "success" ? (
@@ -238,122 +293,4 @@ export function Contact({ copyEmail, notify }) {
     </section>
   );
 }
-export function Footer({ notify }) {
-  const marquee = useRef();
-  const [sound, setSound] = useState(false);
-  const audio = useRef();
-  const soundRef = useRef(false);
-  useEffect(() => {
-    soundRef.current = sound;
-  }, [sound]);
-  useEffect(() => {
-    if (matchMedia("(prefers-reduced-motion:reduce)").matches) return;
-    let disposed = false;
-    let cleanup;
-    import("gsap").then(({ default: gsap }) => {
-      if (disposed) return;
-      const animation = gsap.to(marquee.current, {
-        xPercent: -50,
-        ease: "none",
-        duration: 40,
-        repeat: -1,
-      });
-      let last = window.scrollY;
-      let idle;
-      const scroll = () => {
-        const velocity = Math.min(4, 1 + Math.abs(window.scrollY - last) / 100);
-        last = window.scrollY;
-        animation.timeScale(velocity);
-        clearTimeout(idle);
-        idle = setTimeout(() => animation.timeScale(1), 120);
-      };
-      const visibility = () =>
-        document.hidden ? animation.pause() : animation.resume();
-      window.addEventListener("scroll", scroll, { passive: true });
-      document.addEventListener("visibilitychange", visibility);
-      const observer = new IntersectionObserver(([entry]) =>
-        entry.isIntersecting ? animation.resume() : animation.pause(),
-      );
-      observer.observe(marquee.current);
-      cleanup = () => {
-        animation.kill();
-        clearTimeout(idle);
-        observer.disconnect();
-        window.removeEventListener("scroll", scroll);
-        document.removeEventListener("visibilitychange", visibility);
-      };
-    });
-    return () => {
-      disposed = true;
-      cleanup?.();
-    };
-  }, []);
-  useEffect(
-    () => () => {
-      audio.current?.close();
-    },
-    [],
-  );
-  function egg() {
-    notify("Connection established. Curiosity is always welcome.");
-    if (soundRef.current) {
-      audio.current ||= new (
-        window.AudioContext || window.webkitAudioContext
-      )();
-      audio.current.resume();
-      const oscillator = audio.current.createOscillator();
-      const gain = audio.current.createGain();
-      oscillator.connect(gain);
-      gain.connect(audio.current.destination);
-      oscillator.frequency.setValueAtTime(440, audio.current.currentTime);
-      oscillator.frequency.exponentialRampToValueAtTime(
-        880,
-        audio.current.currentTime + 0.12,
-      );
-      gain.gain.setValueAtTime(0.04, audio.current.currentTime);
-      gain.gain.exponentialRampToValueAtTime(
-        0.001,
-        audio.current.currentTime + 0.25,
-      );
-      oscillator.start();
-      oscillator.stop(audio.current.currentTime + 0.25);
-    }
-  }
-  return (
-    <footer>
-      <div className="marquee-window" aria-hidden="true">
-        <div className="marquee-track" ref={marquee}>
-          {Array.from({ length: 4 }, (_, i) => (
-            <span key={i}>
-              Stay curious. Keep building. <span>✳</span>{" "}
-            </span>
-          ))}
-        </div>
-      </div>
-      <div className="footer-bottom container">
-        <div className="footer-identity">
-          <span className="wordmark">
-            as<span>.</span>
-          </span>
-          <p>
-            Alok Sahoo
-            <br />
-            <small>Software engineer · Thane, India</small>
-          </p>
-        </div>
-        <div className="footer-controls">
-          <button onClick={() => setSound(!sound)} aria-pressed={sound}>
-            Sound {sound ? "on" : "off"}
-          </button>
-          <button aria-label="Discover one more connection" onClick={egg}>
-            <Sparkles size={17} />
-          </button>
-          <button onClick={() => scrollToTarget(0)}>
-            Back to top <ArrowUp size={17} />
-          </button>
-        </div>
-        <small>© {new Date().getFullYear()} Alok Sahoo</small>
-      </div>
-    </footer>
-  );
-}
+export { default as Footer } from "./Footer";

@@ -1,25 +1,8 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import Link from "./TransitionLink";
 import { ArrowUpRight } from "lucide-react";
 import { content } from "../data/content";
-import ProjectArt from "./ProjectArt";
-function ProjectImage({ project }) {
-  const [failed, setFailed] = useState(false);
-  return project.image && !failed ? (
-    <img
-      src={project.image}
-      alt={project.title + " project preview"}
-      loading="lazy"
-      width="1000"
-      height="650"
-      onError={() => setFailed(true)}
-    />
-  ) : (
-    <div aria-hidden="true">
-      <ProjectArt project={project} />
-    </div>
-  );
-}
+import ProjectMedia from "./ProjectMedia";
 export default function Projects() {
   const [filter, setFilter] = useState("All");
   const filters = ["All", "React", "Python", "MongoDB"];
@@ -67,9 +50,10 @@ export default function Projects() {
               to={"/projects/" + p.slug}
               data-cursor="view"
               className="project-media"
+              style={{ viewTransitionName: "project-" + p.slug }}
               aria-label={"View " + p.title + " project"}
             >
-              <ProjectImage project={p} />
+              <ProjectMedia project={p} />
               <span className="project-open">
                 <ArrowUpRight size={21} />
               </span>

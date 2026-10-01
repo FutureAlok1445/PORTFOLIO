@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import Link from "../components/TransitionLink";
 import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
 import { content } from "../data/content";
-import ProjectArt from "../components/ProjectArt";
+import ProjectMedia from "../components/ProjectMedia";
 import NotFound from "./NotFound";
 import { useMotion } from "../components/useMotion";
 export default function Project() {
@@ -37,7 +38,12 @@ export default function Project() {
         <h1>{project.title}</h1>
         <p>{project.summary}</p>
       </div>
-      <ProjectArt project={project} />
+      <div
+        className="detail-media"
+        style={{ viewTransitionName: "project-" + project.slug }}
+      >
+        <ProjectMedia key={project.slug} project={project} />
+      </div>
       <div className="detail-body">
         <aside>
           <h2>My part</h2>
@@ -75,13 +81,35 @@ export default function Project() {
           </div>
         </aside>
         <section>
-          <h2 className="serif">Inside the build.</h2>
+          <h2 className="serif">Overview.</h2>
           {project.details.map((d) => (
             <p key={d}>{d}</p>
           ))}
+          {project.problem && (
+            <div className="case-chapter">
+              <h2>Problem</h2>
+              <p>{project.problem}</p>
+            </div>
+          )}
+          {project.context && (
+            <div className="case-chapter">
+              <h2>Context</h2>
+              <p>{project.context}</p>
+            </div>
+          )}
+          {project.decisions.length > 0 && (
+            <div className="case-chapter">
+              <h2>Engineering decisions</h2>
+              <ul>
+                {project.decisions.map((decision) => (
+                  <li key={decision}>{decision}</li>
+                ))}
+              </ul>
+            </div>
+          )}
           {project.nodes.length > 0 && (
             <div className="system-explorer">
-              <h3>Follow the system</h3>
+              <h3>Architecture · follow the system</h3>
               <p>Choose a layer to see its role.</p>
               <div className="system-nodes" aria-label="System layers">
                 {project.nodes.map((n, i) => (
@@ -102,6 +130,12 @@ export default function Project() {
                 </span>
                 <p>{project.nodes[node]?.text || project.nodes[0].text}</p>
               </div>
+            </div>
+          )}
+          {project.outcome && (
+            <div className="case-chapter case-outcome">
+              <h2>Outcome</h2>
+              <p>{project.outcome}</p>
             </div>
           )}
         </section>

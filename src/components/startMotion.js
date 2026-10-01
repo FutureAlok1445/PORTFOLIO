@@ -53,6 +53,22 @@ export function startMotion() {
         scrollTrigger: { trigger: el, start: "top 93%", once: true },
       }),
     );
+    document.querySelectorAll(".project-card").forEach((el) =>
+      gsap.from(el, {
+        y: 18,
+        duration: 0.75,
+        ease: motion.ease,
+        scrollTrigger: { trigger: el, start: "top 94%", once: true },
+      }),
+    );
+    if (document.querySelector(".honors"))
+      gsap.from(".honors article", {
+        y: 12,
+        stagger: 0.08,
+        duration: 0.65,
+        ease: motion.ease,
+        scrollTrigger: { trigger: ".honors", start: "top 90%", once: true },
+      });
     if (document.querySelector(".timeline-fill"))
       gsap.to(".timeline-fill", {
         scaleY: 1,
@@ -95,7 +111,12 @@ export function startMotion() {
       });
   });
   const refresh = () => {
-    if (!disposed) ScrollTrigger.refresh();
+    if (!disposed) {
+      ScrollTrigger.refresh();
+      document.documentElement.dataset.motionTriggers = String(
+        ScrollTrigger.getAll().length,
+      );
+    }
   };
   const timer = setTimeout(refresh, 180);
   window.addEventListener("portfolio:layout", refresh);
@@ -110,5 +131,8 @@ export function startMotion() {
     lenis.destroy();
     gsap.ticker.remove(tick);
     document.documentElement.dataset.motionReady = "true";
+    document.documentElement.dataset.motionTriggers = String(
+      ScrollTrigger.getAll().length,
+    );
   };
 }
