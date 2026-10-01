@@ -4,6 +4,8 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { SplitText } from 'gsap/SplitText';
 import Lenis from 'lenis';
 gsap.registerPlugin(ScrollTrigger, SplitText);
+// This module deliberately keeps the animation hook and magnetic primitive together.
+// eslint-disable-next-line react-refresh/only-export-components
 export function useMotion(route) {
   useEffect(() => {
     window.scrollTo(0, 0); const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches; const fine = matchMedia('(pointer: fine)').matches; let lenis; let tick;
