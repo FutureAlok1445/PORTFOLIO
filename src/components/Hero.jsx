@@ -112,7 +112,16 @@ export default function Hero() {
             Take my resume <Download size={15} />
           </a>
         </div>
-        <a className="scroll-cue" href="#about" aria-label="Scroll to about">
+        <a
+          className="scroll-cue"
+          href="#about"
+          aria-label="Scroll to about"
+          onClick={(e) => {
+            if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+            e.preventDefault();
+            scrollToTarget("about");
+          }}
+        >
           <ArrowDown size={20} />
           <span>Scroll to connect</span>
         </a>

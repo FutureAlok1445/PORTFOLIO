@@ -6,6 +6,7 @@ import { scrollToTarget, scheduleScrollToTarget } from "./components/scroll";
 import ProjectCursor from "./components/ProjectCursor";
 import Seo from "./components/Seo";
 import CommandPalette from "./components/CommandPalette";
+import BackToTop from "./components/BackToTop";
 class ErrorBoundary extends Component {
   state = { failed: false };
   static getDerivedStateFromError() {
@@ -98,8 +99,22 @@ export default function App() {
   const location = useLocation();
   const navigate = useNavigate();
   const toastTimer = useRef();
+  const isReload = useRef(
+    typeof window !== "undefined" &&
+      ((window.performance &&
+        window.performance.getEntriesByType("navigation")[0]?.type ===
+          "reload") ||
+        window.performance?.navigation?.type === 1),
+  );
   useEffect(() => {
-    if (!location.hash) window.scrollTo({ top: 0, behavior: "instant" });
+    if (isReload.current) {
+      if (window.location.hash) {
+        window.history.replaceState(null, "", window.location.pathname);
+      }
+      window.scrollTo({ top: 0, behavior: "instant" });
+    } else if (!location.hash) {
+      window.scrollTo({ top: 0, behavior: "instant" });
+    }
   }, [location.pathname, location.hash]);
   useEffect(() => {
     let frame;
@@ -199,6 +214,10 @@ export default function App() {
   }
   useEffect(() => {
     if (!location.hash) return;
+    if (isReload.current) {
+      isReload.current = false;
+      return;
+    }
     return scheduleScrollToTarget(location.hash);
   }, [location]);
   return (
@@ -302,6 +321,7 @@ export default function App() {
         {toast}
       </div>
       <ProjectCursor />
+      <BackToTop />
     </ErrorBoundary>
   );
 }

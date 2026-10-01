@@ -13,6 +13,15 @@ export function startMotion() {
     prevent: (node) => node.tagName === "DIALOG",
   });
   const unbind = bindScroll(lenis);
+  const isReload =
+    typeof window !== "undefined" &&
+    ((window.performance &&
+      window.performance.getEntriesByType("navigation")[0]?.type ===
+        "reload") ||
+      window.performance?.navigation?.type === 1);
+  if (isReload) {
+    lenis.scrollTo(0, { immediate: true });
+  }
   const tick = (time) => lenis.raf(time * 1000);
   lenis.on("scroll", ScrollTrigger.update);
   gsap.ticker.add(tick);

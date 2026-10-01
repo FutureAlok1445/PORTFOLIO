@@ -128,5 +128,12 @@ export default function Field() {
       window.removeEventListener("blur", leave);
     };
   }, []);
-  return <canvas className="field-canvas" ref={canvas} aria-hidden="true" />;
+  return (
+    <canvas
+      className="field-canvas"
+      ref={canvas}
+      aria-hidden="true"
+      data-animation-active="false"
+    />
+  );
 }

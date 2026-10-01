@@ -22,6 +22,19 @@
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="icon" href="/favicon.svg" />
     <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
+    <script>
+      if ("scrollRestoration" in history) {
+        history.scrollRestoration = "manual";
+      }
+      if (
+        (window.performance &&
+          window.performance.getEntriesByType("navigation")[0]?.type ===
+            "reload") ||
+        window.performance?.navigation?.type === 1
+      ) {
+        window.scrollTo(0, 0);
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>

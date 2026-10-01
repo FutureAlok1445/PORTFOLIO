@@ -104,4 +104,12 @@ First-visit case-study accessibility also identified the brief welcome surface o
 - Form: all requests mocked against an isolated build. Invalid controls receive inline errors and focus; loading and failed requests retain input; only successful responses clear values, including a successful retry. No message was sent.
 - Final local mobile Lighthouse: 94 performance / 100 accessibility / 100 best practices / 100 SEO. FCP 2.2s, LCP 2.6s, TBT 100ms, CLS 0.015. A prior run scored 95 performance; results vary by timing. No typecheck command is configured.
 
+### Upgrade phase 5 — polish and refresh experience
+
+- Scroll restoration on refresh: `history.scrollRestoration` is set to manual early in index.html and main.jsx. On browser refresh/reload, the scroll offset immediately resets to 0 (Hero section on Home, top of case study on detail pages), preventing browsers from restoring arbitrary scroll positions. Hash targets from previous navigations are cleaned and suppressed on initial reload, ensuring the Hero is always the first visual state. Lenis initializes cleanly at offset 0.
+- Frosted-glass header: `.nav` adopts a subtle frosted-glass background (`color-mix(in srgb, var(--bg) 88%, transparent)` with `backdrop-filter: blur(12px)` and smooth color transitions), maintaining WCAG AA contrast while creating depth as content glides beneath.
+- Hero cue interaction: "Scroll to connect" in Hero is linked to `scrollToTarget("about")`, replacing the abrupt native jump with coordinated Lenis smooth scrolling.
+- Floating Back to Top button: Unobtrusive floating button appears once scroll exceeds 480px, with keyboard focus, accessible label, reduced motion compliance, and smooth Lenis scroll to 0.
+- Project case-study wayfinding: Direct "Home / Hero" return links added to the top navigation bar and bottom pagination in project detail pages.
+
 The editorial identity, candid portrait, self-hosted type and resume facts remain intact. Missing credential URLs remain visibly unlinked. The form endpoint and production origin are owner configuration inputs; the email fallback works. No site was published.
