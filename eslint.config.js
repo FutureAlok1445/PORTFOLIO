@@ -3,7 +3,7 @@ import globals from "globals";
 import hooks from "eslint-plugin-react-hooks";
 import refresh from "eslint-plugin-react-refresh";
 export default [
-  { ignores: ["dist/**", "scripts/**"] },
+  { ignores: ["dist/**", "scripts/**", "test-results/**", ".impeccable/**"] },
   {
     files: ["src/**/*.{js,jsx}"],
     ...js.configs.recommended,
