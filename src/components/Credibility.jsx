@@ -34,11 +34,11 @@ export function Skills() {
               <article className={"skill-card " + s.icon} key={s.title}>
                 <Icon size={26} strokeWidth={1.5} />
                 <h3>{s.title}</h3>
-                <div className="skill-chips">
+                <ul className="skill-chips">
                   {s.items.map((item) => (
-                    <span key={item}>{item}</span>
+                    <li key={item}>{item}</li>
                   ))}
-                </div>
+                </ul>
               </article>
             );
           })}
@@ -69,7 +69,7 @@ export function Experience() {
             The full story, in a PDF <ArrowUpRight size={17} />
           </a>
         </div>
-        <div>
+        <div className="journey-records">
           <div className="timeline">
             <div className="timeline-fill" />
             {content.experience.map((e) => (
@@ -96,7 +96,7 @@ export function Experience() {
             ))}
           </div>
           {content.education.map((e) => (
-            <article className="education" key={e.institution}>
+            <article className="education" id="education" key={e.institution}>
               <GraduationCap size={24} />
               <span>{e.date}</span>
               <h3>{e.institution}</h3>

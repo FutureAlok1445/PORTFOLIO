@@ -107,7 +107,7 @@ export default function Hero() {
       </div>
       <div className="hero-rule">
         <span>Backend / Full-stack / AI</span>
-        <span>Personal portfolio — 2026</span>
+        <span>{profile.portfolioTitle} / 2026</span>
       </div>
     </section>
   );

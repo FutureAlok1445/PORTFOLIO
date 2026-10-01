@@ -45,16 +45,14 @@ export function startMotion() {
         onLeave: () => entrance.progress(1),
       });
     } else document.documentElement.dataset.motionReady = "true";
-    document
-      .querySelectorAll(".reveal-title")
-      .forEach((el) =>
-        gsap.from(el, {
-          y: 18,
-          duration: motion.reveal,
-          ease: motion.ease,
-          scrollTrigger: { trigger: el, start: "top 93%", once: true },
-        }),
-      );
+    document.querySelectorAll(".reveal-title").forEach((el) =>
+      gsap.from(el, {
+        y: 18,
+        duration: motion.reveal,
+        ease: motion.ease,
+        scrollTrigger: { trigger: el, start: "top 93%", once: true },
+      }),
+    );
     if (document.querySelector(".timeline-fill"))
       gsap.to(".timeline-fill", {
         scaleY: 1,
@@ -66,15 +64,13 @@ export function startMotion() {
           scrub: true,
         },
       });
-    document
-      .querySelectorAll(".timeline-item")
-      .forEach((el) =>
-        ScrollTrigger.create({
-          trigger: el,
-          start: "top 70%",
-          toggleClass: "reached",
-        }),
-      );
+    document.querySelectorAll(".timeline-item").forEach((el) =>
+      ScrollTrigger.create({
+        trigger: el,
+        start: "top 70%",
+        toggleClass: "reached",
+      }),
+    );
   });
   mm.add("(min-width: 1025px) and (pointer: fine)", () => {
     if (document.querySelector(".hero-side"))

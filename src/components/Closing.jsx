@@ -8,11 +8,15 @@ import {
   UserRound,
   Send,
   Sparkles,
+  Flag,
+  Trophy,
+  Medal,
 } from "lucide-react";
 import { content } from "../data/content";
 import { Magnetic } from "./Motion";
 import { scrollToTarget } from "./scroll";
 export function Credentials() {
+  const icons = { flag: Flag, trophy: Trophy, medal: Medal };
   return (
     <section className="credentials container" id="credentials">
       <div className="section-meta">
@@ -25,15 +29,18 @@ export function Credentials() {
         Keep learning.
       </h2>
       <div className="honors">
-        {content.achievements.map((a) => (
-          <article key={a.title}>
-            <span>{a.year}</span>
-            <h3>{a.title}</h3>
-            <p>{a.result}</p>
-            <small>{a.issuer}</small>
-            <Award size={24} strokeWidth={1.4} />
-          </article>
-        ))}
+        {content.achievements.map((a) => {
+          const Icon = icons[a.icon] || Medal;
+          return (
+            <article key={a.title}>
+              <span>{a.year}</span>
+              <h3>{a.title}</h3>
+              <p>{a.result}</p>
+              <small>{a.issuer}</small>
+              <Icon size={22} />
+            </article>
+          );
+        })}
       </div>
       <div className="certificate-heading">
         <h3>Courses & certificates</h3>
@@ -43,7 +50,6 @@ export function Credentials() {
         {content.certificates.map((c) => {
           const Body = (
             <>
-              <Award size={24} strokeWidth={1.4} />
               <span className="certificate-date">{c.date}</span>
               <h4>{c.title}</h4>
               <p>{c.issuer}</p>

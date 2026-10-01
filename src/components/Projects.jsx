@@ -61,11 +61,8 @@ export default function Projects() {
         </div>
       </div>
       <div className="project-grid">
-        {projects.map((p, i) => (
-          <article
-            className={"project-card " + (i === 0 ? "featured" : "")}
-            key={p.slug}
-          >
+        {projects.map((p) => (
+          <article className="project-card" key={p.slug}>
             <Link
               to={"/projects/" + p.slug}
               data-cursor="view"
@@ -79,6 +76,11 @@ export default function Projects() {
             </Link>
             <div className="project-caption">
               <div>
+                <span className="project-index">
+                  <span className="small-dot" />{" "}
+                  {String(content.projects.indexOf(p) + 1).padStart(2, "0")} /{" "}
+                  {String(content.projects.length).padStart(2, "0")}
+                </span>
                 <span className="project-category">
                   {p.category}
                   {p.year ? " / " + p.year : ""}
@@ -87,6 +89,7 @@ export default function Projects() {
                   <Link to={"/projects/" + p.slug}>{p.title}</Link>
                 </h3>
                 <p>{p.description}</p>
+                {p.role && <p className="project-role">{p.role}</p>}
               </div>
               <span className="project-status">{p.status}</span>
             </div>

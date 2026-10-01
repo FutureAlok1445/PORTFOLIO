@@ -19,7 +19,9 @@ export default function Home({ copyEmail, notify }) {
         <About />
         <Projects />
         <Skills />
-        <Experience />
+        <div className="journey-band">
+          <Experience />
+        </div>
         <Credentials />
         <Contact copyEmail={copyEmail} notify={notify} />
       </main>

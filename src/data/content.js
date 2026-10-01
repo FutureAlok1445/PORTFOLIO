@@ -3,6 +3,7 @@ export const content = {
     name: "Alok Sahoo",
     firstName: "Alok",
     title: "Software Engineer",
+    portfolioTitle: "Systems in motion",
     location: "Thane, Maharashtra, India",
     timeZone: "Asia/Kolkata",
     email: "aloknsahoo@gmail.com",
@@ -144,6 +145,18 @@ export const content = {
       repo: "",
       status: "In development",
       visual: "forensics",
+      artLabel: "Architecture / explainable image detection",
+      problem:
+        "Synthetic faces and manipulated images need detection with evidence a person can inspect.",
+      context:
+        "Senior capstone: an explainable digital-deception platform, currently in development.",
+      decisions: [
+        "Combine spatial models with multiple forensic signals rather than presenting a model result alone.",
+        "Use Grad-CAM to expose model attention alongside the detection pipeline.",
+        "Keep the pipeline modular across FastAPI microservices and the React interface.",
+      ],
+      outcome:
+        "The detection and explanation pipeline is in development. No accuracy or production benchmark is claimed.",
       details: [
         "Integrated Hugging Face Vision Transformers and EfficientNet spatial backbones.",
         "Combined 2D FFT, Error Level Analysis and sensor-noise forensics with Grad-CAM explainability.",
@@ -183,6 +196,18 @@ export const content = {
       repo: "https://github.com/FutureAlok1445/sih-aura",
       status: "SIH 2025 National Finalist",
       visual: "network",
+      artLabel: "Architecture / network threat analysis",
+      problem:
+        "An attack attempt and a confirmed breach are different events. Analysts need a clear way to inspect the traffic behind each.",
+      context:
+        "Built for the Smart India Hackathon 2025 National Grand Finale cybersecurity problem.",
+      decisions: [
+        "Make network and threat relationships visible with React and Three.js.",
+        "Use dynamic charts and Kibana dashboards for analyst-facing data exploration.",
+        "Curate the traffic dataset for the hackathon problem evaluation.",
+      ],
+      outcome:
+        "National Grand Finale finalist at Smart India Hackathon 2025. My contribution focused on the analyst frontend and data visualization.",
       details: [
         "Built the analyst-facing frontend for the Smart India Hackathon 2025 National Grand Finale.",
         "Created interactive network and threat visualizations with React, Three.js, charts and Kibana dashboards.",
@@ -219,6 +244,18 @@ export const content = {
       repo: "https://github.com/FutureAlok1445/reimbursement-automation-system",
       status: "Deployed for departmental operations",
       visual: "workflow",
+      artLabel: "Workflow / academic expense approvals",
+      problem:
+        "Academic expense records need a structured submission and approval path across institutional roles.",
+      context:
+        "An institutional platform connecting Student, Faculty, HOD and Principal portals.",
+      decisions: [
+        "Separate the workflow into four role-based portals.",
+        "Connect approval records to MongoDB schemas and REST APIs.",
+        "Generate PDF reimbursement reports from submitted records.",
+      ],
+      outcome:
+        "Integrated full-stack workflows deployed on Vercel for college departmental operations. Backend API and schema contribution: 20–30%.",
       details: [
         "Connected Student, Faculty, HOD and Principal portals across multi-tier approvals.",
         "Generated PDF reports from submitted reimbursement records.",
@@ -244,30 +281,35 @@ export const content = {
   achievements: [
     {
       title: "Smart India Hackathon",
+      icon: "flag",
       result: "National Grand Finale finalist",
       issuer: "Ministry of Education / AICTE",
       year: "2025",
     },
     {
       title: "OpsStorm Hackathon",
+      icon: "trophy",
       result: "1st prize",
       issuer: "Technical Systems & Automation Challenge",
       year: "2026",
     },
     {
       title: "IEEE Techithon ’26 · Hackdeck 2.0",
+      icon: "medal",
       result: "1st rank",
       issuer: "Atharva University Mumbai",
       year: "2026",
     },
     {
       title: "HackStreak 2.0",
+      icon: "trophy",
       result: "First place · Third Year Category",
       issuer: "ITSA, A. P. Shah Institute of Technology",
       year: "2026",
     },
     {
       title: "DataWeb Hackathon",
+      icon: "medal",
       result: "2nd prize · Generative AI",
       issuer: "Intercollegiate 6-Hour Hackathon",
       year: "2026",

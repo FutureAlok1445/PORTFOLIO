@@ -1,0 +1,215 @@
+.project-art {
+  aspect-ratio: 1.7;
+  background: #e8edf6;
+  color: #254cbd;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  overflow: hidden;
+  transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.project-media:hover .project-art {
+  transform: scale(1.035);
+}
+.project-media > img {
+  width: 100%;
+  aspect-ratio: 1.7;
+  object-fit: cover;
+}
+.art-top,
+.art-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12px;
+  position: relative;
+  z-index: 1;
+}
+.art-dot {
+  width: 6px;
+  height: 6px;
+  background: currentColor;
+  border-radius: 100%;
+}
+.art-bottom {
+  margin-top: auto;
+  opacity: 0.7;
+}
+.forensics-diagram {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  margin-block: 20px;
+}
+.scan-matrix {
+  width: 160px;
+  aspect-ratio: 1;
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 3px;
+  position: relative;
+  transform: rotate(-8deg);
+}
+.scan-matrix > span {
+  background: #254cbd;
+  border-radius: 2px;
+}
+.scan-matrix > svg {
+  position: absolute;
+  z-index: 1;
+  inset: 30px;
+  color: #fff;
+}
+.analysis-label {
+  font-size: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.data-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+  height: 74px;
+  border-bottom: 1px solid #254cbd44;
+  padding-bottom: 8px;
+}
+.data-bars span {
+  width: 10px;
+  background: #254cbd;
+  border-radius: 2px 2px 0 0;
+}
+.scan-cross {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  border-top: 1px solid #254cbd77;
+  border-left: 1px solid #254cbd77;
+}
+.cross-a {
+  left: 5%;
+  top: 5%;
+}
+.cross-b {
+  right: 5%;
+  bottom: 5%;
+  transform: rotate(180deg);
+}
+.network {
+  background: #182b48;
+  color: #a4bde4;
+}
+.network-diagram {
+  flex: 1;
+  position: relative;
+  display: grid;
+  place-items: center;
+}
+.network-diagram svg:first-child {
+  width: 100%;
+  height: 100%;
+  max-height: 240px;
+}
+.network-shield {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.network-caption {
+  position: absolute;
+  bottom: 8%;
+  font-size: 12px;
+  left: 8%;
+}
+.workflow {
+  background: #eadfd0;
+  color: #594b39;
+}
+.workflow-diagram {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+}
+.expense-ticket {
+  width: 140px;
+  padding: 18px;
+  background: #fff8ef;
+  border: 1px solid #d7c6ae;
+  border-radius: 6px;
+  box-shadow: 6px 8px 0 #d7c6ae55;
+  transform: rotate(-6deg);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  font-size: 12px;
+}
+.ticket-lines {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.ticket-lines i {
+  display: block;
+  height: 3px;
+  background: #d7c6ae;
+}
+.ticket-lines i:last-child {
+  width: 60%;
+}
+.ticket-check {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  color: #45634d;
+}
+.approval-flow {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.approval-flow > div {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.approval-flow > div > svg {
+  transform: rotate(90deg);
+}
+.flow-node {
+  padding: 9px 14px;
+  border: 1px solid #bbaa92;
+  border-radius: 4px;
+  font-size: 12px;
+  width: 110px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.node-3 {
+  background: #594b39;
+  color: #fff8ef;
+}
+.project-open {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  background: #ffffffdd;
+  color: #182b48;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  transition: transform 0.3s;
+}
+.project-media:hover .project-open {
+  transform: rotate(45deg);
+}
