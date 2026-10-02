@@ -104,11 +104,55 @@
 .book-masthead {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
   color: var(--muted);
   font-size: 12px;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.04em;
+  margin-bottom: 16px;
+}
+.book-category-tag {
+  font-weight: 500;
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+}
+.book-masthead-meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.book-status-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 7px;
+  font-size: 12px;
+  line-height: 1.2;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  color: var(--muted);
+  background: color-mix(in srgb, var(--surface) 60%, transparent);
+}
+.book-status-tag.status-finalist {
+  color: var(--accent);
+  border-color: color-mix(in srgb, var(--accent) 45%, transparent);
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  font-weight: 500;
+}
+.book-status-tag.status-live {
+  color: #10b981;
+  border-color: rgba(16, 185, 129, 0.4);
+  background: rgba(16, 185, 129, 0.1);
+  font-weight: 500;
+}
+.book-index-num {
   font-variant-numeric: tabular-nums;
-  margin-bottom: 18px;
+  font-size: 12px;
+  color: var(--muted);
+  opacity: 0.75;
 }
 .book-cover {
   height: 320px;
@@ -160,6 +204,48 @@
   padding-top: 14px;
   border-top: 1px solid var(--line);
   font-size: 13px;
+  transition: color 180ms ease;
+}
+.book-quick-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+  padding: 0 4px;
+}
+.quick-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 500;
+  text-decoration: none;
+  border-radius: 3px;
+  border: 1px solid var(--line);
+  color: var(--ink);
+  background: var(--surface);
+  transition: all 180ms ease;
+}
+.quick-btn:hover {
+  border-color: var(--focus);
+  color: var(--focus);
+  background: var(--bg);
+}
+.quick-btn-live {
+  color: var(--focus);
+  border-color: color-mix(in srgb, var(--focus) 40%, transparent);
+  background: color-mix(in srgb, var(--focus) 8%, transparent);
+}
+.quick-btn-live:hover {
+  background: color-mix(in srgb, var(--focus) 18%, transparent);
+}
+.quick-btn-repo {
+  color: var(--muted);
+}
+.quick-btn-repo:hover {
+  color: var(--ink);
+  border-color: var(--ink);
 }
 .project-book-surface:focus-visible {
   outline: 2px solid var(--focus);
@@ -906,10 +992,73 @@
 .case-status li:last-child {
   margin-bottom: 0;
 }
-.case-sources {
-  margin-top: 28px;
-  border-block: 1px solid var(--line);
-  padding: 12px 0;
+.case-cta-banner {
+  margin-top: 48px;
+  padding: 36px 32px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  flex-wrap: wrap;
+}
+.case-cta-text h2 {
+  font-family: Instrument, serif;
+  font-size: 32px;
+  font-weight: 400;
+  margin: 0 0 8px;
+  color: var(--ink);
+}
+.case-cta-text p {
+  margin: 0;
+  font-size: 15px;
+  color: var(--muted);
+  max-width: 50ch;
+  line-height: 1.5;
+}
+.case-cta-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.case-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 22px;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  border-radius: 3px;
+  background: var(--ink);
+  color: var(--bg) !important;
+  border: 1px solid var(--ink);
+  transition: all 180ms ease;
+}
+.case-btn-primary:hover {
+  background: color-mix(in srgb, var(--ink) 85%, transparent);
+  transform: translateY(-1px);
+}
+.case-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 22px;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  border-radius: 3px;
+  background: transparent;
+  color: var(--ink) !important;
+  border: 1px solid var(--line);
+  transition: all 180ms ease;
+}
+.case-btn-secondary:hover {
+  background: color-mix(in srgb, var(--ink) 5%, transparent);
+  border-color: var(--focus);
 }
 .case-sources summary {
   cursor: pointer;

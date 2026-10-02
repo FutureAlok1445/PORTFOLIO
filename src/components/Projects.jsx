@@ -84,14 +84,14 @@ export default function Projects() {
     <section id="work" className="work container project-library">
       <div className="section-heading library-heading">
         <h2 className="serif reveal-title">
-          Projects.
+          Selected Systems.
           <br />
-          <em>One collection.</em>
+          <em>Built with purpose.</em>
         </h2>
         <p>
-          Different problems. Different systems.
+          Real problems. Robust architectures.
           <br />
-          Follow the thinking behind each build.
+          Explore the systems, code, and live deployments.
         </p>
       </div>
       <div className="library-tools">
@@ -108,7 +108,7 @@ export default function Projects() {
           ))}
         </div>
         <span className="library-count" role="status">
-          {projects.length} chapters
+          {projects.length} {projects.length === 1 ? "project" : "projects"}
         </span>
       </div>
       <div

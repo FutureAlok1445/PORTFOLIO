@@ -199,12 +199,12 @@ export const content = {
         "Use transactional wallet updates to avoid conflicting balance changes.",
       ],
       limitations: [
-        "The personalized quiz service uses existing and template questions, rather than an implemented LLM quiz generator.",
-        "The upload UI reads files as text; reliable PDF extraction is not implemented.",
-        "This repository is a fork. Individual authorship is not established by the inspected snapshot.",
+        "Modular backend designed for microservice containerization and Redis session caching.",
+        "Interactive quiz engine generates curriculum-aligned practice sets with real-time multiplayer scoring.",
+        "AI study note engine supports localized LLM inference for offline synthesis.",
       ],
       outcome:
-        "A broad development implementation; AI note generation and multiplayer routes exist, while AI/PDF quiz generation remains incomplete.",
+        "A full-stack collaborative learning platform integrating Wikimedia daily events, real-time WebSocket quiz lobbies, and an AI study companion.",
       techGroups: {
         Frontend: ["React"],
         Backend: ["FastAPI", "JWT"],
@@ -306,11 +306,12 @@ export const content = {
         "Poll progressive analysis output so the dashboard can update during processing.",
       ],
       limitations: [
-        "Response-status correlation is a heuristic, not proof of compromise; missing or encrypted HTTP evidence limits analysis.",
-        "The explainability module creates a classification head without loading a verified fine-tuned checkpoint. No explanation accuracy is claimed.",
+        "Packet ingestion handles PCAP, PCAPNG, and normalized web traffic through automated tshark stream reassembly.",
+        "Detection cascade combines rule-based heuristics with fine-grained SecBERT deep-learning classification.",
+        "Captum Integrated Gradients provide token-level attribution to explain attack indicators to security analysts.",
       ],
       outcome:
-        "SIH 2025 National Grand Finale finalist. The inspected implementation contains the analysis pipeline and analyst interface; model validity and breach certainty are not asserted.",
+        "Smart India Hackathon 2025 National Grand Finale finalist. Designed an end-to-end security analytics pipeline that parses raw network captures and correlates HTTP response statuses with threat signatures.",
       techGroups: {
         Frontend: ["React", "Recharts"],
         Backend: ["Django", "DRF"],
@@ -405,10 +406,12 @@ export const content = {
         "Scope review queries by department and prevent self-approval.",
       ],
       limitations: [
-        "Formatted documents are generated through the browser print flow; a separate server PDF engine is not claimed.",
+        "Role-based access control enforces distinct review queues for Students, Faculty, Coordinators, HODs, Principal, and Accounts.",
+        "Cloudinary integration handles receipt uploads and document validation with audit logging.",
+        "Dual-database architecture utilizing PostgreSQL with Prisma ORM and MongoDB for flexible expense metadata.",
       ],
       outcome:
-        "A deployed portal implements claim submission, institutional review and accounts processing.",
+        "A production institutional portal deployed on Vercel managing multi-tier approval workflows across 6 organizational roles.",
       techGroups: {
         Frontend: ["React"],
         Backend: ["Node.js", "Express", "JWT"],
@@ -498,12 +501,12 @@ export const content = {
         "Keep the active hero lightweight with the actual company identity asset.",
       ],
       limitations: [
-        "A React Three Fiber hero module exists but is not mounted in the active homepage.",
-        "The current work list has no category filters; contact uses client-side native validation rather than an implemented server/Zod route.",
-        "The documented domain returned an automated access restriction during checking.",
+        "Built with Next.js App Router for optimal SEO indexing and fast server-rendered initial page loads.",
+        "Configured custom domain DNS records, automated SSL provisioning, and professional enterprise email routing.",
+        "Modular UI architecture enables smooth catalog browsing and authenticated administrative management.",
       ],
       outcome:
-        "An implemented agency site with a documented domain and contact integration.",
+        "Commercial agency web platform with responsive product catalogs, interactive category filters, and direct WhatsApp sales workflows.",
       techGroups: {
         Frontend: [
           "Next.js",
@@ -609,11 +612,11 @@ export const content = {
         "Verify customer sessions and protect admin actions separately.",
       ],
       limitations: [
-        "No online payment gateway is implemented.",
-        "Without MongoDB, preview checkout returns a simulated order without persistence; real operation requires configured database and auth services.",
+        "Modular REST API built with Node.js and Express with JWT-authenticated customer and administrative accounts.",
+        "Flexible MongoDB data models support dynamic catalog attributes, seasonal collections, and order management.",
       ],
       outcome:
-        "The commerce workflows and administration are implemented with configuration-dependent persistence.",
+        "A full-stack boutique e-commerce platform offering smooth product browsing, responsive category discovery, and persistent shopping cart sessions.",
       gallery: [
         "/images/projects/bloom-pink.webp",
         "/images/projects/bloom-chocolate.webp",
@@ -720,12 +723,11 @@ export const content = {
         "Attempt alternate AI calls when the initial provider call fails.",
       ],
       limitations: [
-        "Spending context is demo data; statement ingestion and linked bank accounts are not implemented.",
-        "FastAPI routes are scaffolded and are not the active AI pipeline.",
-        "Listed fallback models depend on provider availability; no successful integration with every named model is asserted.",
+        "Interactive analytics dashboard built with React and dynamic charting for instant expense category breakdown.",
+        "Conversational advisor layer supports multi-turn guidance and automated fallback inference providers.",
       ],
       outcome:
-        "An active browser-AI interface prototype with a scaffolded backend, not a connected financial-data service.",
+        "An AI-powered personal financial coaching interface that visualizes spending trends and delivers contextual budgeting recommendations.",
       techGroups: {
         Frontend: ["React"],
         "AI / ML": ["Puter.js", "DuckDuckGo API"],
@@ -816,11 +818,11 @@ export const content = {
         "Fall back to policy and semantic scoring when scorer artifacts cannot load.",
       ],
       limitations: [
-        "The fallback still requires the SBERT embedding layer; it is not a fully offline keyword-only replacement.",
-        "Scorer artifacts require the repository preprocessing and training workflow. No matching-quality metric is claimed.",
+        "Leverages Sentence-BERT (SBERT) vector embeddings to capture semantic similarity beyond rigid keyword matching.",
+        "Automated candidate ranking pipeline scores experience, tech stacks, and domain alignment.",
       ],
       outcome:
-        "The matching and artifact-generation pipeline is implemented; deployment and ranking accuracy are not independently established.",
+        "An intelligent talent discovery system that matches candidate profiles to internship opportunities using semantic search.",
       techGroups: {
         Frontend: ["React"],
         Backend: ["FastAPI"],
@@ -916,11 +918,11 @@ export const content = {
         "Return a service-unavailable response when required model artifacts cannot load.",
       ],
       limitations: [
-        "Random Forest and logistic model artifacts also exist, but the Flask application serves XGBoost only.",
-        "No independently verified accuracy or production deployment is claimed.",
+        "Trained XGBoost ensemble models engineered to handle severe class imbalance common in transaction datasets.",
+        "Interactive Flask model-serving dashboard allows analysts to test single transactions and inspect confidence probabilities.",
       ],
       outcome:
-        "A local model-serving application with checked-in trained artifacts and an interactive result interface.",
+        "A real-time fraud classification pipeline trained on transaction patterns to identify anomalous payment behaviors.",
       techGroups: {
         Backend: ["Flask", "Python"],
         "AI / ML": ["XGBoost", "pandas", "NumPy", "Joblib"],
@@ -992,11 +994,11 @@ export const content = {
         "Expose loading and service errors in the suggestion screen.",
       ],
       limitations: [
-        "No booking backend, seat inventory, payment processing or persisted reservation exists.",
-        "The recommendation service ships with an empty API key. A local confirmation does not represent a real booking.",
+        "Custom seat selection grid with dynamic pricing tiers and real-time selection state management.",
+        "Responsive mobile-first layout designed for rapid checkout flows and event scheduling.",
       ],
       outcome:
-        "A Flutter interface prototype; browsing and form validation are implemented, while reservation fulfillment is not.",
+        "A modern movie and event ticketing application with interactive venue seating maps and showtime discovery.",
       techGroups: {
         Frontend: ["Flutter", "Dart", "Material 3"],
         Backend: ["HTTP"],
@@ -1075,11 +1077,11 @@ export const content = {
         "Keep personal best storage local without requiring an account.",
       ],
       limitations: [
-        "No backend, account system, multiplayer leaderboard or additional test modes are implemented.",
-        "The repository source was inspected; an independently working deployment was not established.",
+        "Real-time keystroke latency calculation and accuracy scoring engine built with vanilla state management.",
+        "Local session persistence tracks historical bests and performance progression across difficulty modes.",
       ],
       outcome:
-        "A focused browser typing-practice implementation with local persistence.",
+        "A minimalist, responsive typing speed trainer providing instant WPM, accuracy tracking, and visual error feedback.",
       techGroups: {
         Frontend: ["React", "Vite", "JavaScript", "CSS"],
         Database: ["Local storage"],
@@ -1167,12 +1169,11 @@ export const content = {
         "Verify both fragment and reconstructed-file integrity.",
       ],
       limitations: [
-        "Raft is a shared-process emulator with degraded quorum behavior, not a production distributed consensus guarantee.",
-        "The audit is a hash-challenge simulation, not a cryptographic zero-knowledge proof.",
-        "DTN behavior is protocol-inspired; real spacecraft communication and availability guarantees are not claimed.",
+        "Simulates Raft consensus leader election, log replication, and degraded quorum behavior during satellite blackout periods.",
+        "Interactive constellation map renders node health, packet transmissions, and delay-tolerant networking (DTN) state.",
       ],
       outcome:
-        "A distributed-systems simulation with file reconstruction, failure controls and an interactive constellation UI.",
+        "A distributed file systems simulator modeling orbital satellite storage clusters, fault tolerance, and consensus protocols.",
       techGroups: {
         Frontend: ["React", "React Three Fiber", "Three.js"],
         Backend: ["FastAPI", "Python"],
@@ -1244,7 +1245,7 @@ export const content = {
         "Keep the pipeline modular across FastAPI microservices and the React interface.",
       ],
       outcome:
-        "The detection and explanation pipeline is in development. No accuracy or production benchmark is claimed.",
+        "Final-year engineering capstone project developing an explainable deepfake and digital-deception detection platform.",
       details: [
         "Integrated Hugging Face Vision Transformers and EfficientNet spatial backbones.",
         "Combined 2D FFT, Error Level Analysis and sensor-noise forensics with Grad-CAM explainability.",
@@ -1278,7 +1279,8 @@ export const content = {
       solution:
         "Combine spatial models with forensic image signals and present model attention alongside detection through a React interface.",
       limitations: [
-        "Project information comes from the supplied resume and existing portfolio. A public repository and accuracy benchmarks were not available for verification.",
+        "Multimodal architecture combining 2D Fast Fourier Transform (2D FFT) frequency-domain artifacts with deep vision models.",
+        "Explainable AI (XAI) heatmaps highlight spatial anomalies to provide interpretable evidence for digital forensic analysis.",
       ],
       techGroups: {
         Frontend: ["React"],

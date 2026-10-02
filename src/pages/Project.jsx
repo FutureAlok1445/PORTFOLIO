@@ -85,7 +85,7 @@ export default function Project() {
       <section className="case-features">
         <div className="case-section-heading">
           <h2>Inside the build.</h2>
-          <p>Capabilities present in the inspected implementation.</p>
+          <p>Core engineering modules and operational workflows.</p>
         </div>
         <ul>
           {(project.features || []).map((f) => (
@@ -116,7 +116,7 @@ export default function Project() {
       </div>
       <section className="case-status">
         <div>
-          <h2>Result & current boundaries.</h2>
+          <h2>Impact & Architecture Scope.</h2>
           <p>{project.outcome}</p>
         </div>
         <ul>
@@ -125,23 +125,37 @@ export default function Project() {
           ))}
         </ul>
       </section>
-      {project.sources?.length > 0 && (
-        <details className="case-sources">
-          <summary>
-            Inspect the source evidence{" "}
-            <span>{project.sources.length} files</span>
-          </summary>
-          <ul>
-            {project.sources.map((s) => (
-              <li key={s.url}>
-                <a href={s.url} target="_blank" rel="noopener noreferrer">
-                  {s.label}
-                  <ArrowUpRight size={15} />
-                </a>
-              </li>
-            ))}
-          </ul>
-        </details>
+      {(project.live || project.repo) && (
+        <section className="case-cta-banner">
+          <div className="case-cta-text">
+            <h2>Ready to inspect the build?</h2>
+            <p>
+              Experience the deployed application or review the complete codebase on GitHub.
+            </p>
+          </div>
+          <div className="case-cta-actions">
+            {project.live && (
+              <a
+                href={project.live}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="case-btn-primary"
+              >
+                Open Live Application <ArrowUpRight size={17} />
+              </a>
+            )}
+            {project.repo && (
+              <a
+                href={project.repo}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="case-btn-secondary"
+              >
+                Browse GitHub Code <ArrowUpRight size={17} />
+              </a>
+            )}
+          </div>
+        </section>
       )}
       <nav
         className="project-pagination case-pagination"

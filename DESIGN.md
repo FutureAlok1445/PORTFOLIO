@@ -194,6 +194,24 @@ Fresh parent implementation evidence reports **PASS** for build and lint, full `
 
 The independent screenshot review initially returned **fix**, listing eight material items. Source inspection confirms fixes 1–7: semantic TrustNet/FinCoach pipelines, resume provenance, repaired apostrophe, removed redundant eyebrows/feature numbering, Lucide arrows, one-pixel accent rules and centralized cover content. This merge addresses documentation item 8. The final independent reviewer returned scoped disposition **ship**: all eight listed fixes resolved across 31 valid final captures, with no fix-batch regressions observed. This is a screenshot-based fix-list review, not a whole-surface independent functional audit; the fresh functional results above are supplied separately by the parent. Historical Lighthouse scores above belong to earlier phases, not this twelve-chapter extension.
 
+### Upgrade phase 6 — Practical & engaging engineering showcase (October 2026)
+
+- Transformed the project presentation from a forensic code audit feel into a compelling, professional engineering showcase designed for recruiters, interviewers, educators, and engineering peers.
+- Streamlined Project Cards (`src/components/ProjectBook.jsx`):
+  - Added clean category headers, prominent status badges (e.g., SIH 2025 finalist, Deployed portal, Live production), and compact project index indicators.
+  - Added quick-action direct links (`Live Demo ↗` and `GitHub ↗`) directly on project cards so visitors can inspect code and deployed applications in one click.
+  - Retained accessible, primary case-study card linking with `aria-label` compatibility.
+- Polished Project Case Studies (`src/pages/Project.jsx`):
+  - Removed forensic "Inspect the source evidence" file list accordion.
+  - Introduced a clean, high-contrast action CTA banner linking directly to live deployments and GitHub code repositories.
+  - Reframed "Result & current boundaries" to "Impact & Architecture Scope" and "Capabilities present in the inspected implementation" to "Core engineering modules and operational workflows".
+- Refined Single Content Source of Truth (`src/data/content.js`):
+  - Rephrased outcome statements and scope notes across all 12 projects to celebrate authentic engineering capabilities and architectures without defensive audit disclaimers, while preserving complete truthfulness to the resume and code facts.
+- Verified Quality & Compliance:
+  - Passed `npm run build` and `npm run lint` with 0 warnings or errors.
+  - Passed full `verify.mjs` test suite (9 screen widths, light/dark themes, WCAG AA axe accessibility, keyboard navigation, form states).
+  - Passed `extended-verify.mjs` across all 12 detail routes at all 9 widths with 0 axe violations.
+
 ## Do's and Don'ts
 
 ### Do:

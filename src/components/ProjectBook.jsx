@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import { ArrowUpRight } from "lucide-react";
 import Link from "./TransitionLink";
 import ProjectMedia from "./ProjectMedia";
-export default function ProjectBook({ project, index, total }) {
+export default function ProjectBook({ project, index }) {
   const surface = useRef(null);
   const pointer = useRef({ frame: 0, rect: null });
   useEffect(() => {
@@ -55,8 +55,25 @@ export default function ProjectBook({ project, index, total }) {
         aria-label={"View " + project.title + " project"}
       >
         <div className="book-masthead">
-          <span>Chapter {String(index + 1).padStart(2, "0")}</span>
-          <span>{String(total).padStart(2, "0")}</span>
+          <span className="book-category-tag">{project.category}</span>
+          <div className="book-masthead-meta">
+            {project.status && (
+              <span
+                className={`book-status-tag ${
+                  project.status.toLowerCase().includes("finalist")
+                    ? "status-finalist"
+                    : project.live
+                      ? "status-live"
+                      : ""
+                }`}
+              >
+                {project.status}
+              </span>
+            )}
+            <span className="book-index-num">
+              #{String(index + 1).padStart(2, "0")}
+            </span>
+          </div>
         </div>
         <div
           className="book-cover"
@@ -74,9 +91,37 @@ export default function ProjectBook({ project, index, total }) {
           ))}
         </div>
         <span className="book-explore">
-          Explore case study <ArrowUpRight size={18} />
+          Explore case study <ArrowUpRight size={16} />
         </span>
       </Link>
+      {(project.live || project.repo) && (
+        <div className="book-quick-bar">
+          {project.live && (
+            <a
+              href={project.live}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="quick-btn quick-btn-live"
+              aria-label={`Open live demo for ${project.title}`}
+            >
+              <span>Live Demo</span>
+              <ArrowUpRight size={13} />
+            </a>
+          )}
+          {project.repo && (
+            <a
+              href={project.repo}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="quick-btn quick-btn-repo"
+              aria-label={`View GitHub repository for ${project.title}`}
+            >
+              <span>GitHub</span>
+              <ArrowUpRight size={13} />
+            </a>
+          )}
+        </div>
+      )}
     </article>
   );
 }
