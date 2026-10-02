@@ -55,25 +55,22 @@ export default function ProjectBook({ project, index }) {
         aria-label={"View " + project.title + " project"}
       >
         <div className="book-masthead">
-          <span className="book-category-tag">{project.category}</span>
-          <div className="book-masthead-meta">
-            {project.status && (
-              <span
-                className={`book-status-tag ${
-                  project.status.toLowerCase().includes("finalist")
-                    ? "status-finalist"
-                    : project.live
-                      ? "status-live"
-                      : ""
-                }`}
-              >
-                {project.status}
-              </span>
-            )}
-            <span className="book-index-num">
-              #{String(index + 1).padStart(2, "0")}
+          <span className="book-index-pill">
+            Project #{String(index + 1).padStart(2, "0")}
+          </span>
+          {project.status && (
+            <span
+              className={`book-status-tag ${
+                project.status.toLowerCase().includes("finalist")
+                  ? "status-finalist"
+                  : project.live
+                    ? "status-live"
+                    : ""
+              }`}
+            >
+              {project.status}
             </span>
-          </div>
+          )}
         </div>
         <div
           className="book-cover"

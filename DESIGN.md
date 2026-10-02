@@ -197,8 +197,10 @@ The independent screenshot review initially returned **fix**, listing eight mate
 ### Upgrade phase 6 — Practical & engaging engineering showcase (October 2026)
 
 - Transformed the project presentation from a forensic code audit feel into a compelling, professional engineering showcase designed for recruiters, interviewers, educators, and engineering peers.
-- Streamlined Project Cards (`src/components/ProjectBook.jsx`):
-  - Added clean category headers, prominent status badges (e.g., SIH 2025 finalist, Deployed portal, Live production), and compact project index indicators.
+- Streamlined Project Cards (`src/components/ProjectBook.jsx` & `src/styles/project-library.css`):
+  - Modernized card aesthetics from the physical textbook metaphor (removing the 8px fake spine and hard multi-layered page shadows) to a sleek, contemporary 12px rounded surface with smooth ambient lighting and subtle border transitions.
+  - Replaced duplicate category tags with clean `#01` project indicators and accessible status badges featuring glowing indicator dots (coral for finalists, emerald for deployed apps) paired with high-contrast text to meet strict WCAG AAA guidelines.
+  - Converted tech stack tags into sleek minimalist pill badges (`border-radius: 999px`) with micro-hover interactions.
   - Added quick-action direct links (`Live Demo ↗` and `GitHub ↗`) directly on project cards so visitors can inspect code and deployed applications in one click.
   - Retained accessible, primary case-study card linking with `aria-label` compatibility.
 - Polished Project Case Studies (`src/pages/Project.jsx`):
