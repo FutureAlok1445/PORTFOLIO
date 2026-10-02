@@ -87,38 +87,41 @@ export default function ProjectBook({ project, index }) {
             <span key={s}>{s}</span>
           ))}
         </div>
-        <span className="book-explore">
-          Explore case study <ArrowUpRight size={16} />
-        </span>
       </Link>
-      {(project.live || project.repo) && (
-        <div className="book-quick-bar">
-          {project.live && (
-            <a
-              href={project.live}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="quick-btn quick-btn-live"
-              aria-label={`Open live demo for ${project.title}`}
-            >
-              <span>Live Demo</span>
-              <ArrowUpRight size={13} />
-            </a>
-          )}
-          {project.repo && (
-            <a
-              href={project.repo}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="quick-btn quick-btn-repo"
-              aria-label={`View GitHub repository for ${project.title}`}
-            >
-              <span>GitHub</span>
-              <ArrowUpRight size={13} />
-            </a>
-          )}
-        </div>
-      )}
+      <div className="book-quick-bar">
+        <Link
+          to={"/projects/" + project.slug}
+          className="quick-btn quick-btn-case"
+          aria-label={`Read case study for ${project.title}`}
+        >
+          <span>Case study</span>
+          <ArrowUpRight size={13} />
+        </Link>
+        {project.live && (
+          <a
+            href={project.live}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="quick-btn quick-btn-live"
+            aria-label={`Open live demo for ${project.title}`}
+          >
+            <span>Live Demo</span>
+            <ArrowUpRight size={13} />
+          </a>
+        )}
+        {project.repo && (
+          <a
+            href={project.repo}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="quick-btn quick-btn-repo"
+            aria-label={`View GitHub repository for ${project.title}`}
+          >
+            <span>GitHub</span>
+            <ArrowUpRight size={13} />
+          </a>
+        )}
+      </div>
     </article>
   );
 }

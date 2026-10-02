@@ -214,6 +214,23 @@ The independent screenshot review initially returned **fix**, listing eight mate
   - Passed full `verify.mjs` test suite (9 screen widths, light/dark themes, WCAG AA axe accessibility, keyboard navigation, form states).
   - Passed `extended-verify.mjs` across all 12 detail routes at all 9 widths with 0 axe violations.
 
+## Phase 7: Project Experience Streamlining & Visual Decluttering
+
+- **Streamlined Card Proportions & Unified Hierarchy** (`src/components/ProjectBook.jsx` & `src/styles/project-library.css`):
+  - Reduced bloated card height from ~560px down to an elegant, scannable ~420px by optimizing visual cover height from 290px to 200px (16:10 ratio).
+  - Unified the action footer: integrated direct `Case study →`, `Live Demo ↗`, and `GitHub ↗` pills cleanly into `.book-quick-bar`, eliminating the awkward redundant "Explore case study" intermediate row.
+  - Clamped description text to 2 lines for uniform visual rhythm across all project cards.
+  - Enhanced title styling with responsive Instrument Serif (26px) that smoothly highlights to `--focus` on card hover.
+- **Decluttered Case Study Pages** (`src/pages/Project.jsx`):
+  - Replaced academic "Chapter 01 / 12" with modern, confident "Project 01 / 12" wayfinding.
+  - Removed defensive bulleted "limitations" lists, consolidating the project evaluation into a confident, authoritative "Impact & Architecture Scope" outcome statement.
+- **Audience Impact (Teachers, Friends, Interviewers, Recruiters, Designers)**:
+  - Immediate visual clarity without cognitive or scroll fatigue.
+  - Instant access to working live applications and source repositories.
+  - Preserved 100% adherence to verified resume facts and zero invented claims.
+- **Verification & Accessibility**:
+  - `npm run build`, `npm run lint`, `node scripts/verify.mjs`, and `node scripts/extended-verify.mjs` all pass with exit code 0 and 0 accessibility violations across all 9 breakpoints and both themes.
+
 ## Do's and Don'ts
 
 ### Do:

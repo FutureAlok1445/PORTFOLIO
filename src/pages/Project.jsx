@@ -37,7 +37,7 @@ export default function Project() {
           <ArrowLeft size={17} /> Project library
         </Link>
         <span>
-          Chapter {String(index + 1).padStart(2, "0")} /{" "}
+          Project {String(index + 1).padStart(2, "0")} /{" "}
           {String(content.projects.length).padStart(2, "0")}
         </span>
       </div>
@@ -119,11 +119,6 @@ export default function Project() {
           <h2>Impact & Architecture Scope.</h2>
           <p>{project.outcome}</p>
         </div>
-        <ul>
-          {(project.limitations || []).map((l) => (
-            <li key={l}>{l}</li>
-          ))}
-        </ul>
       </section>
       {(project.live || project.repo) && (
         <section className="case-cta-banner">
