@@ -1,0 +1,69 @@
+{
+  "frameWidth": 48,
+  "frameHeight": 48,
+  "character": "Patch",
+  "palette": {
+    "fur": "#303740",
+    "edge": "#111820",
+    "eyes": "#f5efe5",
+    "ear": "#d7a35d"
+  },
+  "animations": {
+    "idle": {
+      "file": "patch-idle.png",
+      "frames": 4,
+      "fps": 2,
+      "row": 0,
+      "columns": 4,
+      "loop": true
+    },
+    "blink": {
+      "file": "patch-blink.png",
+      "frames": 3,
+      "fps": 7,
+      "row": 0,
+      "columns": 3,
+      "loop": false
+    },
+    "tail": {
+      "file": "patch-tail.png",
+      "frames": 5,
+      "fps": 6,
+      "row": 0,
+      "columns": 5,
+      "loop": false
+    },
+    "walk": {
+      "file": "patch-walk.png",
+      "frames": 8,
+      "fps": 9,
+      "row": 0,
+      "columns": 8,
+      "loop": false
+    },
+    "sleep": {
+      "file": "patch-sleep.png",
+      "frames": 4,
+      "fps": 2,
+      "row": 0,
+      "columns": 4,
+      "loop": true
+    },
+    "peek": {
+      "file": "patch-peek.png",
+      "frames": 4,
+      "fps": 4,
+      "row": 0,
+      "columns": 4,
+      "loop": false
+    },
+    "paw": {
+      "file": "patch-paw.png",
+      "frames": 4,
+      "fps": 5,
+      "row": 0,
+      "columns": 4,
+      "loop": false
+    }
+  }
+}
