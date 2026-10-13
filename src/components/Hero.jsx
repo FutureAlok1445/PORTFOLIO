@@ -160,9 +160,7 @@ export function About() {
       </div>
       <div className="about-grid">
         <h2 className="serif reveal-title">
-          Curiosity is the
-          <br />
-          starting point.
+          {content.workshop.aboutTitle}
         </h2>
         <div>
           <p className="about-text">{content.profile.about}</p>

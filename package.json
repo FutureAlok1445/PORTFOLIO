@@ -21,7 +21,8 @@
     "lucide-react": "^1.49.0",
     "react": "^19.3.0",
     "react-dom": "^19.3.0",
-    "react-router-dom": "^7.18.4"
+    "react-router-dom": "^7.18.4",
+    "three": "^0.186.1"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.13.0",
@@ -36,6 +37,7 @@
     "globals": "^17.13.0",
     "lighthouse": "^13.5.0",
     "prettier": "^3.9.9",
+    "sharp": "^0.35.5",
     "vite": "^8.3.1"
   }
 }

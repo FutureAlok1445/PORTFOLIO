@@ -5,7 +5,7 @@ import App from "./App.jsx";
 import Home from "./pages/Home";
 import Project from "./pages/Project";
 import NotFound from "./pages/NotFound";
-import "./style.css";
+import "./styles/after-hours/workshop.css";
 const router = createBrowserRouter([
   {
     element: <App />,

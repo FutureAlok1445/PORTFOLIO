@@ -3,7 +3,6 @@ import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import { ArrowUpRight, Menu, Moon, Sun, X, Search } from "lucide-react";
 import { content } from "./data/content";
 import { scrollToTarget, scheduleScrollToTarget } from "./components/scroll";
-import ProjectCursor from "./components/ProjectCursor";
 import Seo from "./components/Seo";
 import CommandPalette from "./components/CommandPalette";
 import BackToTop from "./components/BackToTop";
@@ -28,49 +27,13 @@ class ErrorBoundary extends Component {
 const sections = content.navigation;
 const shortcut = /Mac|iPhone|iPad/.test(navigator.platform) ? "⌘ K" : "Ctrl K";
 function NavButton({ label, active, onClick }) {
-  const [display, setDisplay] = useState(label);
-  const timer = useRef();
-  useEffect(() => () => clearInterval(timer.current), []);
-  function reset() {
-    clearInterval(timer.current);
-    setDisplay(label);
-  }
-  function scramble() {
-    if (
-      !matchMedia("(pointer:fine)").matches ||
-      matchMedia("(prefers-reduced-motion:reduce)").matches
-    )
-      return;
-    clearInterval(timer.current);
-    let frame = 0;
-    timer.current = setInterval(() => {
-      frame++;
-      if (frame > label.length) {
-        reset();
-        return;
-      }
-      setDisplay(
-        label
-          .split("")
-          .map((letter, index) =>
-            index < frame
-              ? letter
-              : "abcdefghijklmnopqrstuvwxyz"[(frame * 7 + index * 3) % 26],
-          )
-          .join(""),
-      );
-    }, 35);
-  }
   return (
     <button
       className={active ? "active" : ""}
       aria-current={active ? "location" : undefined}
       onClick={onClick}
-      onPointerEnter={scramble}
-      onPointerLeave={reset}
     >
-      <span aria-hidden="true">{display}</span>
-      <span className="sr-only">{label}</span>
+      {label}
     </button>
   );
 }
@@ -79,10 +42,10 @@ export default function App() {
     try {
       return (
         localStorage.getItem("theme") ||
-        (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light")
+        "dark"
       );
     } catch {
-      return "light";
+      return "dark";
     }
   });
   const [menu, setMenu] = useState(false);
@@ -91,7 +54,7 @@ export default function App() {
   const [active, setActive] = useState("");
   const [intro, setIntro] = useState(() => {
     try {
-      return !sessionStorage.getItem("visited");
+      return !sessionStorage.getItem("visited") && !matchMedia("(prefers-reduced-motion:reduce)").matches;
     } catch {
       return true;
     }
@@ -229,7 +192,7 @@ export default function App() {
       {intro && (
         <section className="intro" aria-label="Welcome">
           <span>
-            Alok<span className="orange">.</span>
+            <img src="/images/after-hours/brand/mark.svg" alt="" />{content.workshop.welcome}
           </span>
           <button onClick={() => setIntro(false)}>
             Skip intro <X size={16} />
@@ -237,8 +200,9 @@ export default function App() {
         </section>
       )}
       <header className="nav">
-        <Link className="wordmark" to="/" aria-label="as. — Alok Sahoo home">
-          as<span>.</span>
+        <Link className="wordmark" to="/" aria-label="After hours — Alok Sahoo home">
+          <img src="/images/after-hours/brand/mark.svg" alt="" />
+          <span>{content.workshop.name}<small>{content.profile.name}</small></span>
         </Link>
         <nav
           className={menu ? "links open" : "links"}
@@ -320,7 +284,6 @@ export default function App() {
       <div className={"toast " + (toast ? "visible" : "")} role="status">
         {toast}
       </div>
-      <ProjectCursor />
       <BackToTop />
     </ErrorBoundary>
   );

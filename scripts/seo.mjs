@@ -30,8 +30,8 @@ fs.writeFileSync(
 );
 let html = fs.readFileSync("dist/index.html", "utf8");
 html = html.replace(
-  'content="/images/og.jpg"',
-  'content="' + base + '/images/og.jpg"',
+  'content="/images/after-hours/brand/og-home.webp"',
+  'content="' + base + '/images/after-hours/brand/og-home.webp"',
 );
 html = html.replace(
   "</head>",
