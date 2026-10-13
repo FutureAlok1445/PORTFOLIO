@@ -1,4 +1,16 @@
-# Alok Sahoo — Systems, with a human side
+# AFTER HOURS — Alok’s digital workshop
+
+## Current direction — 13 October 2026
+
+The owner’s AFTER HOURS master brief and final addendum supersede the historical directions below. Preserve editorial clarity, truthful source-grounded content and self-hosted fonts. The signature is one original matte miniature 3D desk, with an immediate SVG poster fallback, a small consistent pixel cat, and project-specific paper artifacts. Desktop pairs readable name/role/actions with the desk; mobile places the compact desk below the introduction. About is a notebook spread, projects an open shelf, skills a labeled tool drawer, Journey a ledger, credentials an archive and Contact a note.
+
+Tokens: deeper ink #111820, ink #19212B, paper #F5EFE5, steel #87A9C4, amber #D7A35D, coral #D98E7D, mint #8FAE9C. Instrument Serif carries headings; Space Grotesk carries text/UI. All body copy remains readable without motion. Dark is the initial workshop atmosphere; light mode remains available.
+
+Assumptions: artwork represents workflow concepts, never application screenshots. The desk represents the portfolio metaphor, not a claim about Alok’s physical room. Patch is an original fictional companion. Supplied project data is retained; fields labeled limitations in the old data often describe capabilities instead, so the UI must not mislabel those as actual shortcomings. Missing service endpoint, credential URLs, production origin and TrustNet public links remain owner inputs. Three.js is justified only for the one lazy desktop anchor; no R3F, Drei, postprocessing or additional scroll engine is needed.
+
+Design review: avoid making twelve recolored cards. Each cover uses a different object grounded in its purpose; the shared paper, ink lines and restrained lighting hold the collection together. Remove hacker text scrambling, cursor replacement and the large marquee. Keep the real person visible and the engineering prose intact.
+
+---
 
 The identity and implementation history below are retained. The canonical sections at the end record the current twelve-chapter project-library extension (2 October 2026); references to three studies in earlier phases describe the former composition, not the current collection.
 
