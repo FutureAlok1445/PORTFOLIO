@@ -1,153 +1,22 @@
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Lenis from "lenis";
-import { bindScroll } from "./scroll";
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import Lenis from 'lenis';
+import { bindScroll } from './scroll';
 gsap.registerPlugin(ScrollTrigger);
-const motion = { entrance: 1.2, reveal: 0.65, ease: "power3.out" };
-export function startMotion() {
-  let disposed = false;
-  const lenis = new Lenis({
-    duration: 0.95,
-    smoothWheel: true,
-    anchors: false,
-    prevent: (node) => node.tagName === "DIALOG",
-  });
-  const unbind = bindScroll(lenis);
-  const isReload =
-    typeof window !== "undefined" &&
-    ((window.performance &&
-      window.performance.getEntriesByType("navigation")[0]?.type ===
-        "reload") ||
-      window.performance?.navigation?.type === 1);
-  if (isReload) {
-    lenis.scrollTo(0, { immediate: true });
-  }
-  const tick = (time) => lenis.raf(time * 1000);
-  lenis.on("scroll", ScrollTrigger.update);
-  gsap.ticker.add(tick);
-  const mm = gsap.matchMedia();
-  const ctx = gsap.context(() => {
-    const heading = document.querySelector(".hero-title");
-    if (heading) {
-      // Stable line wrappers: no font-load re-split and no opacity-hidden letters.
-      const entrance = gsap.timeline({
-        defaults: { ease: "expo.out" },
-        onComplete: () => {
-          document.documentElement.dataset.motionReady = "true";
-        },
-      });
-      entrance.from(
-        ".hero-line-inner",
-        { yPercent: 34, duration: motion.entrance, stagger: 0.12 },
-        0,
-      );
-      entrance.from(
-        ".hero-portrait",
-        { y: 16, scale: 0.98, duration: 1.2 },
-        0.08,
-      );
-      entrance.from(".hero-copy,.hero-actions", { y: 12, duration: 0.8 }, 0.15);
-      // Fast scrolling finishes the entrance once; the name never reconstructs.
-      ScrollTrigger.create({
-        trigger: ".hero",
-        start: "top top",
-        onLeave: () => entrance.progress(1),
-      });
-    } else document.documentElement.dataset.motionReady = "true";
-    document.querySelectorAll(".reveal-title").forEach((el) =>
-      gsap.from(el, {
-        y: 18,
-        duration: motion.reveal,
-        ease: motion.ease,
-        scrollTrigger: { trigger: el, start: "top 93%", once: true },
-      }),
-    );
-    document.querySelectorAll(".project-card").forEach((el) =>
-      gsap.from(el, {
-        y: 18,
-        duration: 0.75,
-        ease: motion.ease,
-        scrollTrigger: { trigger: el, start: "top 94%", once: true },
-      }),
-    );
-    if (document.querySelector(".honors"))
-      gsap.from(".honors article", {
-        y: 12,
-        stagger: 0.08,
-        duration: 0.65,
-        ease: motion.ease,
-        scrollTrigger: { trigger: ".honors", start: "top 90%", once: true },
-      });
-    if (document.querySelector(".timeline-fill"))
-      gsap.to(".timeline-fill", {
-        scaleY: 1,
-        ease: "none",
-        scrollTrigger: {
-          trigger: ".timeline",
-          start: "top 70%",
-          end: "bottom 70%",
-          scrub: true,
-        },
-      });
-    document.querySelectorAll(".timeline-item").forEach((el) => {
-      gsap.from(el.querySelector("h3"), {
-        y: 10,
-        duration: 0.55,
-        ease: motion.ease,
-        scrollTrigger: { trigger: el, start: "top 83%", once: true },
-      });
-      ScrollTrigger.create({
-        trigger: el,
-        start: "top 70%",
-        toggleClass: "reached",
-      });
-    });
-  });
-  mm.add("(min-width: 1025px) and (pointer: fine)", () => {
-    if (document.querySelector(".hero-side"))
-      gsap.to(".hero-side", {
-        y: 24,
-        ease: "none",
-        scrollTrigger: {
-          trigger: ".hero",
-          start: "top top",
-          end: "bottom top",
-          scrub: true,
-        },
-      });
-    if (document.querySelector(".experience-intro"))
-      ScrollTrigger.create({
-        trigger: ".experience-intro",
-        start: "top 112px",
-        endTrigger: ".experience-grid",
-        end: "bottom bottom",
-        pin: true,
-        pinSpacing: false,
-      });
-  });
-  const refresh = () => {
-    if (!disposed) {
-      ScrollTrigger.refresh();
-      document.documentElement.dataset.motionTriggers = String(
-        ScrollTrigger.getAll().length,
-      );
+export function startMotion(){
+  let disposed=false;
+  const lenis=new Lenis({duration:.85,smoothWheel:true,anchors:false,prevent:node=>node.tagName==='DIALOG'});
+  const unbind=bindScroll(lenis);
+  const tick=time=>lenis.raf(time*1000);lenis.on('scroll',ScrollTrigger.update);gsap.ticker.add(tick);
+  const ctx=gsap.context(()=>{
+    if(document.querySelector('.workshop-hero')){
+      gsap.from('.workshop-copy',{y:12,duration:.8,ease:'expo.out'});
+      gsap.from('.workshop-environment',{y:8,duration:1,ease:'expo.out'});
     }
-  };
-  const timer = setTimeout(refresh, 180);
-  window.addEventListener("portfolio:layout", refresh);
-  document.fonts.ready.then(refresh);
-  return () => {
-    disposed = true;
-    clearTimeout(timer);
-    window.removeEventListener("portfolio:layout", refresh);
-    mm.revert();
-    ctx.revert();
-    unbind();
-    lenis.destroy();
-    gsap.ticker.remove(tick);
-    document.documentElement.dataset.motionReady = "true";
-    document.documentElement.dataset.motionTriggers = String(
-      ScrollTrigger.getAll().length,
-    );
-  };
+    if(document.querySelector('.timeline-fill'))gsap.to('.timeline-fill',{scaleY:1,ease:'none',scrollTrigger:{trigger:'.timeline',start:'top 75%',end:'bottom 75%',scrub:true}});
+  });
+  document.documentElement.dataset.motionReady='true';
+  const refresh=()=>{if(!disposed){ScrollTrigger.refresh();document.documentElement.dataset.motionTriggers=String(ScrollTrigger.getAll().length);}};
+  const timer=setTimeout(refresh,180);window.addEventListener('portfolio:layout',refresh);document.fonts.ready.then(refresh);
+  return ()=>{disposed=true;clearTimeout(timer);window.removeEventListener('portfolio:layout',refresh);ctx.revert();unbind();lenis.destroy();gsap.ticker.remove(tick);document.documentElement.dataset.motionReady='true';document.documentElement.dataset.motionTriggers=String(ScrollTrigger.getAll().length);};
 }

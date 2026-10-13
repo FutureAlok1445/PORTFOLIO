@@ -12,18 +12,13 @@ import {
 } from "lucide-react";
 import { content } from "../data/content";
 import { Magnetic } from "./Motion";
+import PatchCat from "./after-hours/PatchCat";
 export function Credentials() {
   const icons = { flag: Flag, trophy: Trophy, medal: Medal };
   return (
     <section className="credentials container" id="credentials">
-      <div className="section-meta">
-        <span>A little outside the syllabus</span>
-        <span>Recognition & continued learning</span>
-      </div>
       <h2 className="serif reveal-title">
-        Show up. Build.
-        <br />
-        Keep learning.
+        {content.workshop.credentialsTitle}
       </h2>
       <div className="honors">
         {content.achievements.map((a) => {
@@ -151,19 +146,12 @@ export function Contact({ copyEmail, notify }) {
   return (
     <section id="contact" className="contact-band">
       <div className="container">
-        <div className="section-meta">
-          <span>The next connection</span>
-          <span>Have something in mind?</span>
-        </div>
         <div className="contact-grid">
           <div>
             <h2 className="contact-title reveal-title">
-              Let’s build
-              <br />
-              something
-              <br />
-              <span className="serif">that works.</span>
+              {content.workshop.contactTitle}
             </h2>
+            <p className="contact-intro">{content.workshop.contactIntro}</p>
             <div className="email-row">
               <a href={"mailto:" + content.profile.email}>
                 {content.profile.email}
@@ -195,6 +183,7 @@ export function Contact({ copyEmail, notify }) {
                 </Magnetic>
               ))}
             </div>
+            <PatchCat variant="sleep" />
           </div>
           <form
             noValidate
@@ -207,7 +196,7 @@ export function Contact({ copyEmail, notify }) {
               if (state === "success") setState("idle");
             }}
           >
-            <p>Tell me about the problem you’re solving.</p>
+            <p>{content.workshop.contactFormTitle}</p>
             <label htmlFor="name">Your name</label>
             <input
               id="name"

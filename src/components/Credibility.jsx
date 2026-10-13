@@ -8,6 +8,7 @@ import {
   GraduationCap,
 } from "lucide-react";
 import { content } from "../data/content";
+import { useState } from "react";
 const icons = {
   code: Code2,
   layers: Layers,
@@ -16,19 +17,19 @@ const icons = {
   shield: ShieldCheck,
 };
 export function Skills() {
+  const [category, setCategory] = useState("All tools");
+  const [selected, setSelected] = useState("");
+  const projects = content.projects.filter(project => project.stack.some(tool => tool.toLowerCase() === selected.toLowerCase()));
   return (
     <section id="skills" className="skills-band">
       <div className="container">
-        <div className="section-meta">
-          <span>The toolkit</span>
-          <span>Different tools. One connected system.</span>
-        </div>
         <div className="section-heading">
-          <h2 className="serif reveal-title">Built on solid foundations.</h2>
-          <p>From the first request to the final render.</p>
+          <h2 className="serif">{content.workshop.toolkitTitle}</h2>
+          <p>{content.workshop.toolkitIntro}</p>
         </div>
+        <div className="toolkit-filters" aria-label="Tool categories">{["All tools", ...content.skills.map(skill => skill.title)].map(title => <button key={title} aria-pressed={category === title} onClick={() => { setCategory(title); setSelected(""); }}>{title}</button>)}</div>
         <div className="skills-grid">
-          {content.skills.map((s) => {
+          {content.skills.filter(skill => category === "All tools" || skill.title === category).map((s) => {
             const Icon = icons[s.icon] || Code2;
             return (
               <article className={"skill-card " + s.icon} key={s.title}>
@@ -36,13 +37,14 @@ export function Skills() {
                 <h3>{s.title}</h3>
                 <ul className="skill-chips">
                   {s.items.map((item) => (
-                    <li key={item}>{item}</li>
+                    <li key={item}><button aria-pressed={selected === item} onClick={() => setSelected(selected === item ? "" : item)}>{item}</button></li>
                   ))}
                 </ul>
               </article>
             );
           })}
         </div>
+        <div className="tool-selection" role="status">{selected && <><strong>{selected}</strong><p>{projects.length ? "In the project files: " + projects.map(project => project.title).join(", ") : "Part of the " + content.skills.find(skill => skill.items.includes(selected)).title.toLowerCase() + " toolkit."}</p></>}</div>
       </div>
     </section>
   );
@@ -50,16 +52,10 @@ export function Skills() {
 export function Experience() {
   return (
     <section className="experience container" id="experience">
-      <div className="section-meta">
-        <span>Learning by building</span>
-        <span>Work & education</span>
-      </div>
       <div className="experience-grid">
         <div className="experience-intro">
           <h2 className="serif reveal-title">
-            Real problems.
-            <br />
-            Real practice.
+            {content.workshop.journeyTitle}
           </h2>
           <p>
             Internships, independent contributions, and a degree in progress.
