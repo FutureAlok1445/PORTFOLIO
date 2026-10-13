@@ -1,261 +1,239 @@
-# AFTER HOURS — Alok’s digital workshop
-
-## Current direction — 13 October 2026
-
-The owner’s AFTER HOURS master brief and final addendum supersede the historical directions below. Preserve editorial clarity, truthful source-grounded content and self-hosted fonts. The signature is one original matte miniature 3D desk, with an immediate SVG poster fallback, a small consistent pixel cat, and project-specific paper artifacts. Desktop pairs readable name/role/actions with the desk; mobile places the compact desk below the introduction. About is a notebook spread, projects an open shelf, skills a labeled tool drawer, Journey a ledger, credentials an archive and Contact a note.
-
-Tokens: deeper ink #111820, ink #19212B, paper #F5EFE5, steel #87A9C4, amber #D7A35D, coral #D98E7D, mint #8FAE9C. Instrument Serif carries headings; Space Grotesk carries text/UI. All body copy remains readable without motion. Dark is the initial workshop atmosphere; light mode remains available.
-
-Assumptions: artwork represents workflow concepts, never application screenshots. The desk represents the portfolio metaphor, not a claim about Alok’s physical room. Patch is an original fictional companion. Supplied project data is retained; fields labeled limitations in the old data often describe capabilities instead, so the UI must not mislabel those as actual shortcomings. Missing service endpoint, credential URLs, production origin and TrustNet public links remain owner inputs. Three.js is justified only for the one lazy desktop anchor; no R3F, Drei, postprocessing or additional scroll engine is needed.
-
-Design review: avoid making twelve recolored cards. Each cover uses a different object grounded in its purpose; the shared paper, ink lines and restrained lighting hold the collection together. Remove hacker text scrambling, cursor replacement and the large marquee. Keep the real person visible and the engineering prose intact.
-
+---
+name: "AFTER HOURS — Alok’s digital workshop"
+description: "A personal engineering workshop built from warm paper, matte objects and source evidence."
+colors:
+  deep: "#111820"
+  navy: "#19212B"
+  paper: "#F5EFE5"
+  steel: "#87A9C4"
+  amber: "#D7A35D"
+  coral: "#D98E7D"
+  mint: "#8FAE9C"
+  surface-light: "#fffaf1"
+  muted-light: "#53616a"
+  muted-dark: "#afbcc6"
+  line-light: "#c9c4bb"
+  line-dark: "#3e4a54"
+  accent-light: "#825a26"
+  artifact-ground: "#28333e"
+typography:
+  display:
+    fontFamily: "Instrument, serif"
+    fontSize: "clamp(62px, 6.2vw, 96px)"
+    fontWeight: 400
+    lineHeight: 0.95
+    letterSpacing: "-0.035em"
+  headline:
+    fontFamily: "Instrument, serif"
+    fontSize: "clamp(38px, 4.4vw, 64px)"
+    fontWeight: 400
+    lineHeight: 1.08
+    letterSpacing: "-0.025em"
+  case-display:
+    fontFamily: "Instrument, serif"
+    fontSize: "clamp(43px, 6vw, 86px)"
+    fontWeight: 400
+    lineHeight: 1.07
+    letterSpacing: "-0.025em"
+  title:
+    fontFamily: "Space, sans-serif"
+    fontSize: "21px"
+    lineHeight: 1.3
+  body:
+    fontFamily: "Space, sans-serif"
+    fontSize: "16px"
+    fontWeight: 400
+    lineHeight: 1.7
+  label:
+    fontFamily: "Space, sans-serif"
+    fontSize: "13px"
+rounded:
+  paper: "2px"
+  control: "3px"
+  key: "4px"
+  artifact: "5px 5px 0 0"
+  dialog: "6px"
+  desk: "8px"
+spacing:
+  compact: "8px"
+  control-gap: "12px"
+  action-block: "16px"
+  small: "20px"
+  medium: "24px"
+  toolkit: "28px"
+  section-heading: "36px"
+  paper: "44px"
+  column: "70px"
+  gutter: "clamp(20px, 4vw, 72px)"
+  section: "clamp(70px, 8vw, 128px)"
+components:
+  button-primary:
+    backgroundColor: "{colors.amber}"
+    textColor: "{colors.deep}"
+    rounded: "{rounded.key}"
+    padding: "16px 24px"
+  button-text-dark:
+    textColor: "{colors.paper}"
+    padding: "0"
+  filter-selected-dark:
+    backgroundColor: "{colors.paper}"
+    textColor: "{colors.deep}"
+    rounded: "{rounded.control}"
+    padding: "11px 12px"
+  filter-selected-light:
+    backgroundColor: "{colors.navy}"
+    textColor: "{colors.paper}"
+    rounded: "{rounded.control}"
+    padding: "11px 12px"
+  contact-field:
+    backgroundColor: "{colors.surface-light}"
+    textColor: "{colors.navy}"
+    rounded: "{rounded.paper}"
+    padding: "13px"
+  toolkit-key:
+    rounded: "{rounded.key}"
+    padding: "10px 12px"
+  toolkit-card:
+    rounded: "{rounded.key}"
+    padding: "28px"
+  notebook:
+    backgroundColor: "{colors.paper}"
+    textColor: "{colors.navy}"
+    rounded: "{rounded.paper}"
+    padding: "44px 44px 32px"
+  contact-note:
+    backgroundColor: "{colors.paper}"
+    textColor: "{colors.navy}"
+    rounded: "{rounded.paper}"
+    padding: "36px"
 ---
 
-The identity and implementation history below are retained. The canonical sections at the end record the current twelve-chapter project-library extension (2 October 2026); references to three studies in earlier phases describe the former composition, not the current collection.
-
-## Identity and purpose
-
-Alok is a software engineer and final-year Information Technology student in Thane. His strongest thread is turning complex systems into usable software: backend APIs, institutional workflows, security visualization, and explainable detection. Within 30 seconds, visitors should see a real person, concrete engineering work, and an easy way to contact him.
-
-## Four directions explored
-
-1. Technical field notebook: diagrams, blue ink, annotations. Fits the backend/security work, but a pure blueprint risks hiding the person.
-2. Synthwave terminal: neon, command windows, kinetic code. Fits technical curiosity, but gaming tropes would weaken recruiter clarity.
-3. Tactile scrapbook: event portrait, stickers, loose project notes. Fits hackathon experience, but dense layering would compete with project evidence.
-4. Editorial systems atlas: monumental typography, quiet grids, original system diagrams. Best fit: communicates human confidence and engineering structure together.
-
-## Chosen direction
-
-An editorial systems atlas dominates. Blue technical diagrams and a lightly tilted photo supply the personal accents. No fabricated dashboards or screenshots: project visuals are explicitly conceptual architecture studies. White space and confident type keep the technical material readable.
-
-## Tokens
-
-- Chalk #f5f6f8; ink #182b48; muted #526078; blue #254cbd; signal #ed6b36; white #ffffff.
-- Dark: midnight #101c30, pale #edf2fa, muted #a9b6cd, accent #ff986d.
-- Self-hosted Latin Space Grotesk for interface/display; Instrument Serif for editorial headings. WOFF2, swap, critical font preload.
-- Fluid hero 80–240px; section titles 44–96px; body 16–20px; metadata 12–14px.
-- Spacing: 8, 16, 24, 32, 48, 64, 96, 128px. Twelve-column desktop grid, six-column tablet, single-column mobile. Content max 1600px.
-- Motion: 180ms hover, 550ms transitions, 850ms entrance; power3.out and expo.out. Transform/opacity only. Reduced motion renders final states; touch disables cursor/magnet/tilt.
-- Cursor: native by default; contextual View disk over projects; hover state over controls; drag state over diagrams.
-
-## Story and signature
-
-Hook: enormous name and an event portrait. Approach: human context with a live Thane clock. Proof: asymmetric project studies. Signature: an interactive architecture diagram expands each project's actual resume-supported pipeline; tap nodes to inspect what each layer does. Credibility: skill categories, work timeline, education, honors and certificates. Contact: oversized invitation, email, and a validated form. Quiet footer marquee closes the story.
-
-## Assumptions and missing data
-
-- Resume is source of truth; expected graduation is 2027, final-year status retained exactly as supplied.
-- Project years are omitted where the resume does not establish them. AURA is dated 2025.
-- Certificate dates are year-only; Google Drive URLs and thumbnails are absent. Cards disclose that documents are not linked yet.
-- TrustNet-AI has no verified repository/live link. Others use extracted PDF annotations.
-- Formspree endpoint and public production domain require owner configuration. No submission is claimed without an endpoint.
-- Provided aws2.jpeg is the only portrait. JPEG retained as requested; optimized WebP used for rendering. Conceptual diagrams are interface/data graphics, not product screenshots.
-- No availability claim or client testimonials. Phone from resume lives in content data; public contact prioritizes email.
-- No Three.js: semantic diagrams provide stronger evidence with less GPU work. Lenis is the only smooth-scroll engine.
-- Writing guidance comes from frontend-design; installed X voice skill is unrelated and not applied.
-
-## Validation log
-
-Updated after production build, lint, responsive browser checks, keyboard interactions and contact state checks.
-
-- All seven implementation phases have independent Git commits and successful production builds/lint.
-- Playwright: 360, 768, 1024, 1440 and 1920px screenshots reviewed; no horizontal overflow. Axe reports zero violations in light and dark mode. Console/page error list is empty.
-- Verified project filters, three detail routes, next/previous links, architecture node selection, modal focus containment, Escape and Ctrl+K, theme persistence, clipboard, mobile navigation, 404, reduced-motion static content and no-JavaScript fallback.
-- Contact validation, loading, success, reset, service error and retry tested against intercepted requests in a separate configured build. No external messages sent. Production build retains the unconfigured endpoint fallback.
-- Local Lighthouse mobile measurement: Performance 93, Accessibility 100, Best Practices 100, SEO 100. LCP 2.8s. This is a local measurement, not a universal 60fps or deployment guarantee.
-- Initial JavaScript reduced from 444KB to approximately 304KB through lazy motion imports; GSAP, ScrollTrigger/SplitText/Lenis, project routes and field canvas are separate chunks. Latin fonts and responsive WebP portrait are self-hosted; font licenses included.
-- External GitHub profile/repositories, reimbursement demo and Techriciate returned HTTP 200. LinkedIn returned 999 (automated access restriction); retained the exact resume URL rather than claiming successful verification.
-- Origin-dependent sitemap/canonical/social URLs intentionally require VITE_SITE_URL. Certificate documents and TrustNet-AI public links remain owner inputs.
-- Motion changes from the initial proposal: bounded CSS tilt/magnet effects prevent overlapping GSAP owners; GSAP handles typography, page entrances, pinned desktop experience, scrubbed timeline, parallax and velocity marquee. No forced horizontal scrolling; mobile stacks the studies.
-
-## Upgrade brief — Systems in Motion
-
-The existing architecture remains. The refinement uses editorial tech maximalism for typography, restrained photographic imperfection and the existing navy/coral identity. No new project facts or missing dates are inferred.
-
-Baseline audit: build/lint pass; Codex Browser console is clean. 35 sampled metadata elements render below 12px. SplitText autoSplit can rebuild character wrappers after font loading/resizing, restarting the name reveal. Portrait pointer rotation is unbounded relative to its intended treatment. Header progress and active link share the same baseline. Native anchor calls compete with Lenis. Credentials repeat an unfinished label; artwork repeats one generic subtitle. The stylesheet has overlapping media overrides and negative-margin mobile portrait composition. Footer visibility handlers can resume the marquee when offscreen. Sound preference resets after route changes. Route motion initializes above Suspense, before lazy content is mounted.
-
-Phase 1 fixes: stable masked line wrappers; no letter opacity or reconstruction; once-only entrance with fast-scroll completion; bounded ±1.5° tilt; route-local motion initialization; one Lenis scroll coordinator; responsive matchMedia teardown; readable minimum metadata; missing credential URLs render plain noninteractive articles without placeholder text; canonical TrustNet-AI and Reimbursement System names; project cursor ownership separated from route animations.
-Phase 2 design: centralized navy/paper/coral tokens replace scattered hover colors. Cream Journey chapter remains paper in both themes; other chapters follow the selected theme. Work now has three large indexed rows with role, stack, category, available year and supported status. Case-study additions are interpretations of the existing resume facts (problem context and design intent), never new results or benchmarks. Skills use an application anchor and category lists without confidence ranking. Education and timeline text share a parent subgrid. Recognition keeps the featured finalist; semantic flag/trophy/medal icons distinguish honors. Seven certificates become seven compact index rows, with no empty grid position. All body copy is 16–18px, metadata 13–14px, and microcopy is at least 12px. Mobile hero uses parent grid placement instead of negative margins.
-
-### Upgrade phase 3 — interactions and case studies
-
-The command palette now filters sections, projects, resume, social links and actions. Native dialog focus containment is retained; arrows, Home/End and Enter offer quick selection while Tab reaches every real button/link. Shortcut labels follow the platform. Tooltips appear on hover and keyboard focus.
-
-React Router's native View Transition integration now shares project artwork names across the card and case-study hero. The existing routes are registered as data-router children under the App shell; the small case-study component loads eagerly to avoid capturing a Suspense loading screen. Unsupported browsers and reduced motion use normal navigation. Case studies render supplied problem, context, decisions and outcome fields only. The same media component handles illustrations and future screenshots in both locations.
-
-Form errors attach to individual controls and focus the first invalid field. Pending and failed requests preserve values; only successful HTTP responses clear the form. Copy feedback lasts 1.8 seconds. Sound remains opt-in and persists within the session; oscillators disconnect after playback. The footer's 40-second loop runs only when visible and the document is active, including live reduced-motion changes. Work uses large vertical editorial rows instead of another pinned section: this preserves all three projects, natural scrolling and laptop usability.
-
-### Upgrade phase 4 — bounded atmosphere
-
-The hero constellation contains exactly 28 deterministic nodes, nearby network connections and four decorative labels (API, AI, DB, SYS). Drawing is capped at 30 frames per second and pixel ratio 1.5. Slow movement and pointer influence stay bounded to a few pixels. It stops offscreen and when hidden, and is disabled below 769px, for coarse input, reduced motion, data saving and reported low hardware capacity. No nodes are React elements. Media changes restart only one loop; effect cleanup cancels frames, observers and listeners.
-
-A deterministic 128px paper grain is confined to the portrait frame and cream Journey chapter. The existing candid photo remains intact. The portrait's 1.5-degree offset frame and coral dot provide the intentional imperfection; no extra tapes, gradients or glass layers were added.
-
-The 320px audit exposed an intrinsic-width project grid track. Tracks and children now explicitly shrink, and the narrow forensics diagram uses a smaller matrix with readable labels. Theme QA also caught a transient low-contrast button during opposite foreground/background color interpolation; button colors now switch atomically while pointer translation remains animated.
-
-Visual review caught nested aspect ratios cropping the case-study artwork. The media wrapper now follows its child's natural ratio, with content-safe minimum heights and narrower mobile compositions. Grain opacity was reduced below four percent. Programmatic section navigation also synchronizes Lenis with the real browser offset before applying a new target, covering keyboard focus and scrollbar jumps during an active animation.
-
-A fast route-return test revealed the old delayed hash anchor could overtake a newer Back to top action. Hash targets now queue for the next rendered frame and direct user navigation cancels the pending target. The fallback before Lenis is ready is an instant browser jump, avoiding two smooth-scroll systems. Case-study links with no URL are omitted, and project routes identify Work as the active navigation section.
-
-The cursor test caught scroll events hiding the View cursor after a hover-triggered browser scroll. A single queued hit test now checks the artwork under the saved pointer position; it stays visible while the artwork remains beneath the pointer and disappears elsewhere. The native cursor is suppressed only while the contextual cursor is actually active. Media changes, clicks, blur and pointer exit clear it, with all listeners and queued frames cleaned up.
-
-Final console QA found Lenis's automatic anchor handler racing React Router's cross-route hash navigation, producing missing-target warnings. Automatic anchors are disabled; the hero action and route/navigation controls use the same explicit scroll helper. The installed Lenis version already accounts for CSS scroll padding, so duplicate manual offsets and section scroll margins were removed. One 96px root scroll-padding token supplies the header clearance. Universal font and portrait preloads were also removed: routes request the fonts they actually use, while the hero's responsive image retains high fetch priority without fetching an unused larger source on mobile. The no-JavaScript project name is canonical too.
-
-The final touch review restores a visible Search icon for the command button when its desktop shortcut label is hidden. Its accessible label and keyboard shortcut remain available at all sizes.
-
-A direct native API probe showed the first wildcard bridge still left descendant declarative Routes outside the data-router transition context. Routes now register as real children in the entry point and App renders an Outlet; Home receives its existing callbacks through Outlet context. URLs, pages and animation lifecycles remain the same. The probe requires the browser transition's ready and finished promises to succeed, and verifies both reduced-motion and unavailable-API fallbacks.
-
-First-visit case-study accessibility also identified the brief welcome surface outside a landmark; it is now a native named section.
-
-### Final upgrade evidence
-
-- `npm run build`, `npm run lint`, `npm run verify`, `node scripts/extended-verify.mjs` and the separate mocked `scripts/form-states.mjs` checks pass.
-- Home: 320, 375, 430, 768, 1024, 1280, 1440 and 1920px, both themes; zero overflow, axe violations, under-12px content or browser warnings/errors. Keyboard search/selection, native modal focus containment, Escape, mobile navigation, copy, resume download, filters, routes and theme/sound persistence pass.
-- All three case studies: all eight widths; no overflow or artwork-label clipping. Case-study axe scans pass at 320px. Touch has a visible command button, usable palette, inactive particle field and no contextual cursor.
-- Native transition: actual browser API invoked, ready and finished both true. Reduced motion does not invoke it. An unavailable API retains working route navigation.
-- Lifecycle: 701 DOM elements, one canvas, one desktop pin and 20 ScrollTriggers remain stable over three route-return cycles at 1440px. The pin is removed at the mobile breakpoint. Hidden/offscreen gates are verified at hero, Journey and footer; offscreen running count is zero. Heap retention is not measured.
-- Form: all requests mocked against an isolated build. Invalid controls receive inline errors and focus; loading and failed requests retain input; only successful responses clear values, including a successful retry. No message was sent.
-- Final local mobile Lighthouse: 94 performance / 100 accessibility / 100 best practices / 100 SEO. FCP 2.2s, LCP 2.6s, TBT 100ms, CLS 0.015. A prior run scored 95 performance; results vary by timing. No typecheck command is configured.
-
-### Upgrade phase 5 — polish and refresh experience
-
-- Scroll restoration on refresh: `history.scrollRestoration` is set to manual early in index.html and main.jsx. On browser refresh/reload, the scroll offset immediately resets to 0 (Hero section on Home, top of case study on detail pages), preventing browsers from restoring arbitrary scroll positions. Hash targets from previous navigations are cleaned and suppressed on initial reload, ensuring the Hero is always the first visual state. Lenis initializes cleanly at offset 0.
-- Frosted-glass header: `.nav` adopts a subtle frosted-glass background (`color-mix(in srgb, var(--bg) 88%, transparent)` with `backdrop-filter: blur(12px)` and smooth color transitions), maintaining WCAG AA contrast while creating depth as content glides beneath.
-- Hero cue interaction: "Scroll to connect" in Hero is linked to `scrollToTarget("about")`, replacing the abrupt native jump with coordinated Lenis smooth scrolling.
-- Floating Back to Top button: Unobtrusive floating button appears once scroll exceeds 480px, with keyboard focus, accessible label, reduced motion compliance, and smooth Lenis scroll to 0.
-- Project case-study wayfinding: Direct "Home / Hero" return links added to the top navigation bar and bottom pagination in project detail pages.
-
-The editorial identity, candid portrait, self-hosted type and resume facts remain intact. Missing credential URLs remain visibly unlinked. The form endpoint and production origin are owner configuration inputs; the email fallback works. No site was published.
+# Design System: AFTER HOURS
 
 ## Overview
 
-**Creative North Star: "Editorial systems atlas"**
+**Creative North Star: "AFTER HOURS — the personal engineering workshop"**
 
-The portfolio retains its navy, paper and coral identity, candid portrait and self-hosted typography. The owner explicitly pinned a digital technical-library direction for Projects; this is an approved extension of the incumbent world, not an identity replacement. Its technical diagrams explain domain workflows, while concise case studies expose evidence and limits for recruiters and engineering peers.
+Alok’s engineering work lives in one personal after-hours workshop. Warm paper, deep ink, matte miniature objects and restrained amber/steel light connect the real person to inspectable project evidence. The name, engineering statement, portrait and work/resume actions lead; the desk and quiet charcoal companion support them.
 
-The current collection comprises twelve equally treated chapters: HistoFacts, AURA, Reimbursement Automation System, Techriciate, Bloom Blossom, FinCoach AI, Talent-Sync, Credit Card Fraud Detection, BookItNow, Speedotype, COSMEON FS-LITE and TrustNet-AI. AURA uses its corrected repository mapping; Reimbursement is one updated chapter. Historical three-study descriptions above remain implementation history.
+This is the owner-pinned Experience direction implemented in code, with no approved image comp. The surface composition and quality bar remain in `.impeccable/surfaces/after-hours-home.md`. The workshop is a metaphor, not a claim about Alok’s physical room; Patch is an original fictional companion. Project illustrations describe workflows and must not imply application screenshots or unverified results.
 
 **Key Characteristics:**
 
-- Equal chapter importance, with domain filters and technology/domain command search.
-- Readable technical publishing, quiet book edges and semantic workflow illustrations.
-- Source evidence and resume provenance remain distinct from claims of authorship or production readiness.
-- Native desktop collection scrolling and full-width mobile chapters.
+- One procedural matte desk on eligible desktop browsers, with immediate authored vector fallback.
+- Self-hosted editorial serif headings and clear sans-serif body/interface text.
+- Distinct source-grounded artifacts, warm notebook pages, tactile tool keys and compact archive rows.
+- Native phone scrolling, semantic controls, visible focus and readable reduced-motion states.
 
 ## Colors
 
-The extension inherits the live theme variables in `src/style.css`: navy and raised paper surfaces, coral interaction accents, muted text and quiet divider lines. Covers use restrained domain-specific tints inside the same notation grammar; those local illustration colors are not replacements for the portfolio palette.
+Warm neutrals establish the workshop; restrained functional accents identify light, action and object details. The frontmatter is normative.
 
-**The Inherited Palette Rule.** New library surfaces use the existing semantic theme variables; a project's cover tint does not become a global accent.
+### Primary
 
-Pre-existing documentation drift is recorded, not repaired in this extension: the historical Tokens section names chalk (#f5f6f8) and dark muted (#a9b6cd), while current CSS uses paper (#f5f1e9) and dark secondary text (#b6c2d4). Its 850ms entrance proposal also differs from the existing slow token (1200ms). The original section is preserved rather than treating its historical values as fresh measurements.
+- **Warm amber:** primary actions, dark-theme accent/focus, selection and lamp/object details.
+- **Paper amber:** the darker light-theme accent keeps labels and focus readable on paper.
+
+### Secondary
+
+- **Steel blue:** cool monitor light and technical marks inside the authored objects.
+- **Soft coral:** notebook marks and small object details.
+- **Muted mint:** plant/lamp/notebook details and quiet status dots.
+
+### Neutral
+
+- **Deeper ink / ink:** dark background and raised surface; ink becomes text on light paper.
+- **Warm paper / raised paper:** light background and fields. Notebook, ledger and contact remain paper in both themes.
+- **Light/dark muted text and rules:** theme-specific supporting copy and one-pixel separation.
+- **Artifact ground:** the illustration stage, scoped to project artwork.
+
+Light mode maps background to paper, surface to raised paper, text to navy, muted/rule to the light variants and accent/focus to paper amber. Dark maps background to deep, surface to navy, text to paper, muted/rule to the dark variants and accent/focus to amber. Dark is the initial workshop atmosphere; the theme control remains available.
+
+**The Material Rule.** Object colors stay local to their artwork; shared text and controls use semantic theme colors.
 
 ## Typography
 
-**Display / Body Font:** self-hosted Space Grotesk, registered as `Space`, with sans-serif fallback.
-**Editorial Font:** self-hosted Instrument Serif, registered as `Instrument`, with serif fallback where specified.
+**Display Font:** self-hosted Instrument Serif, registered as `Instrument`, with serif fallback.
+**Body Font:** self-hosted Space Grotesk, registered as `Space`, with sans-serif fallback.
 
-The library balances serif chapter titles against compact, readable interface text. Library headings use a fluid display size (48–80px), line height (1.04); book titles use Instrument Serif (34px, 400, 1.06), becoming 36px on mobile and 32px at the narrowest breakpoint. Case titles use Instrument Serif (48–88px, 400, 1.04). Book descriptions use body copy (14px, 1.6); case summaries scale (18–23px, 1.6). Metadata and cover evidence use 12–13px; explanatory architecture text uses 17px. These are current library measurements, not a rewrite of unrelated page type.
+Instrument provides narrow editorial contrast; Space keeps evidence, labels and actions legible. Local WOFF2 files use swap; Space has real regular, medium and bold faces (400/500/700), Instrument regular (400). Do not synthesize extra faces.
 
-**The Meaningful Label Rule.** Chapter positions and architecture steps express real sequence. Domain labels belong to covers, filters and case metadata; redundant heading eyebrows and decorative feature numbers are omitted.
+The frontmatter records the current hero, section, case, title, body and label roles. Body paragraphs use generous leading; project descriptions are compact (14px), About copy is larger (18px, 16px on phone), and supporting metadata is 12–13px. Case summaries scale (17–22px); technical copy generally caps at 65ch, with architecture descriptions up to 75ch. The hero summary caps at 39ch on desktop. Dates use tabular numerals.
+
+**The Meaningful Label Rule.** Labels identify real domains, sources, states or location/time. Avoid redundant lead-ins above already clear headings.
 
 ## Layout
 
-The inherited container caps content at 1600px, with fluid side gutters (20–64px). Above 768px, the library is a native horizontal flex track with mandatory snap alignment, a gap (28px) and equally sized book slots (330–420px). It displays chapter position, transform-based progress and previous/next controls. Horizontal input stays native; the track opts out of Lenis wheel handling without converting vertical wheel motion into horizontal navigation.
+The centered content width caps at 1360px with the fluid gutter token; section spacing uses the fluid section token. Desktop hero columns are 0.9fr/1.1fr; About and Journey use 0.8fr/1.2fr, Contact equal columns. These are surface compositions, not a universal card grid.
 
-At 768px and below, chapters stack vertically at full available width; desktop track navigation is hidden. Case-study introduction, engineering and status layouts collapse to one column. Architecture and feature grids become two columns, then one at 375px and below. Cover stages remain readable in a two-column mobile pipeline; the case hero uses four columns for the same pipeline on desktop. Detail routes retain return-to-library and wrapping previous/next chapter navigation.
+The artifact shelf uses three equal columns and gaps (44px vertically, 28px horizontally), two columns at 1100px and below, then one at 520px and below with a 35px gap. All twelve files share discoverability; filters express domains without ranking projects.
 
-**The Equal Chapter Rule.** The full collection remains visible through one shared structural grammar. Filters select domains without featured, secondary or archive tiers.
+At 768px and below, hero, About, Journey and Contact stack; the desk follows the introduction and caps at 620px. Navigation becomes a wrapping menu. At 520px and below, gutters become 20px, toolkit/honors and case text grids become single-column, forms tighten to 25px 22px and case architecture to 22px. Hero name becomes 70px; the case title becomes 48px and can wrap long words. Above 520px, the final base hero rule retains the frontmatter clamp, superseding earlier responsive font-size declarations. The 1700px rule widens hero spacing, but its earlier font-size declaration is superseded by the final base rule.
+
+The desk stage retains a 10:7 ratio and the final desk radius. WebGL eligibility starts at 1025px with fine pointer and no reduced-motion preference; saving data and reported low device capacity also select the authored fallback. Lenis eligibility begins at 769px with fine pointer and no reduced-motion preference. These gates are intentionally distinct.
+
+**The Readable First Rule.** Critical copy and actions render immediately; motion and the scene never gate access to content.
 
 ## Elevation & Depth
 
-Book depth is local to the owner-requested chapter objects: perspective (1100px), a neutral spine (8px), thin borders and layered page-edge shadows. At rest the exact shadow stack is `5px 7px 0 -3px var(--bg), 7px 7px 0 -3px var(--line), 10px 18px 25px -20px #0008`. Fine-pointer hover substitutes `5px 8px 0 -3px var(--bg), 7px 8px 0 -3px var(--line), 12px 28px 35px -22px #0009`. These page edges are a scoped book metaphor, not permission to add hard-offset shadows across other portfolio surfaces.
+Depth belongs to physical workshop objects and paper, with quiet tonal separation elsewhere. The procedural desk uses actual mesh thickness, matte materials (roughness 0.88, metalness 0.02), orthographic framing and warm/cool lights. It is the only real-time 3D anchor.
+
+The sidecar owns exact shadow and motion values. Paper pages share a diffuse shadow and a local paper-noise texture; tool cards/keys use shallow soft elevation; artifact art lifts slightly without adopting the former book spine or page-edge stack. The dialog alone receives a larger modal shadow.
+
+**The Local Depth Rule.** Keep dimensional treatments on meaningful workshop objects; do not spread 3D canvases or heavy shadows across ordinary copy.
 
 ## Shapes
 
-Books use subtly asymmetric corners (2px 5px 5px 2px), one-pixel outlines and a quiet neutral spine. Filters and architecture buttons use restrained corners (2px); chapter arrow buttons are circular (46px). Cover nodes, AURA outcome markers and active architecture descriptions use one-pixel rules. No thick accent strips are introduced as a reusable library device.
+Paper edges are nearly square; keys, small controls and modal corners remain restrained. Artifact tops soften without rounded bottoms. One-pixel borders supply structure; small dots are circular. The notebook’s half-degree tilt and short amber tape mark are local authored details. The final desk is a softly rounded rectangular stage, superseding the earlier arch silhouette.
 
 ## Components
 
-### Chapter books and covers
+### Actions and navigation
 
-Each complete book is one semantic case-study link, with chapter position, project-specific visual, title, purpose, up to three technology tags and a visible exploration action. No essential information depends on hover. Keyboard focus supplies an explicit outline (2px, offset 6px). Fine mouse input alone enables bounded rotation (±5° horizontal, ±2° vertical); hover lifts the book (7px), scales it (1.008) and shifts adjacent books (5px). Transform and shadow transitions take 450ms using the inherited easing. Queued pointer frames are cancelled during reset and unmount.
+Primary actions use amber, deep ink text, medium weight, the action padding and a shallow shadow. Hover lifts 2px over 180ms. Resume/text actions underline on hover. Shared focus is a 2px theme outline offset 5px; controls generally provide a 44px minimum target, with the compact phone header using 38px minimum widths. The sticky header is 80px high, 70px on narrower screens, with a one-pixel bottom rule and selected-section inset accent. Theme and command controls remain real buttons.
 
-Cover content, workflow labels, imagery references and provenance captions are editable only in `src/data/content.js`; presentation components supply geometry. TrustNet-AI now shows Image input → Forensics → Vision models → Explanation and explicitly labels its pipeline as conceptual and supplied-resume based. FinCoach shows its demo-context/advisor/explanation workflow, without invented financial plot measurements. Icons use the existing Lucide stroke system. The same media renderer supplies library and case-study artwork.
+### Project artifacts and case files
 
-### Filters, navigation and architecture
+Each artifact has a whole case-study link, distinct 8:5 source-grounded illustration, title, description, available status/technology and separate available code/live links. Its art lifts 4px and rotates −0.4 degrees over 250ms on hover; reduced motion removes the transform. Source photographs/logos remain distinguishable from conceptual illustrations. Missing links are omitted. Case pages preserve problem, implementation, interactive architecture, decisions, source references and honest scope; selected architecture controls invert semantic colors.
 
-Domain filters expose pressed state and at least 44px targets. On desktop, ArrowLeft/ArrowRight and Home/End move through the native track and focus chapter links; Enter opens the focused chapter. Track measurement uses a ResizeObserver, passive scroll listener and one queued animation frame, all cleaned up. Chapter navigation retains real links; architecture steps are ordered buttons with pressed state and a live status description, usable by keyboard and touch.
+### Toolkit keys and filters
 
-### Source, role, status and media assumptions
+Domain filters and tool groups use pressed/selected states with semantic color inversion. Toolkit containers use the key radius and medium padding; keys use a shallow shadow, 44px minimum height and 13px type. Hover lifts 2px; pressed keys sink 2px. Selection explains the tool’s actual application rather than expressing an invented proficiency score.
 
-Repository code outranks README claims. `PROJECT_RESEARCH.md` records inspected snapshots and implementation limitations; source links in each case expose that evidence. A system capability is not an individual contribution claim. Roles and years appear only where supplied evidence establishes them. HistoFacts is a fork with unestablished individual authorship. TrustNet's facts and contribution come from the supplied resume; its public repository and accuracy benchmarks are unavailable, its development status remains visible and no public link is fabricated.
+### Notebook, ledger and archive
 
-Only documented live URLs are rendered. Reimbursement's documented portal returned HTTP 200 during research; Techriciate's documented URL returned HTTP 403 to automated checking, so no successful availability assertion is made. Other unverified deployments are omitted. Prototype, demo-data, configuration-dependent, simulated and incomplete behavior stays explicit: FinCoach is not linked to banking data, BookItNow does not fulfill reservations, Bloom's persistence requires configuration, and COSMEON's consensus/audit are simulations. No accuracy, throughput, user-count or production-scale metrics are inferred.
+About is a paper note with readable personal context; substantive location/time appears in its footer. Journey is a paper ledger with real dated records and a thin progress rule. Credentials are compact rows; credentials without URLs remain visibly unlinked, and TODO slots are hidden.
 
-No usable application screenshots were established in the repository inventories. Authored covers are labeled system illustrations, not screenshots or measured results. Bloom Blossom uses repository product imagery and Techriciate uses its repository logo; compressed WebP assets retain their recorded provenance. Library imagery is lazy except prioritized case artwork. No stock art, fabricated dashboard or new GPU scene was added.
+### Contact note and command dialog
 
-### Motion and performance scope
+The contact form stays warm paper with navy text, a subtle amber top edge and diffuse paper shadow. Fields use raised paper, a one-pixel neutral border, small corners, 13px inset padding and a darker paper focus/caret. Invalid fields report their errors; pending/failure states retain entries. Submission success requires a successful service response. The command dialog is bounded to 600px / viewport minus 32px, has a dark backdrop and keyboard-operable results.
 
-One Lenis instance remains the vertical-scroll coordinator. Native track navigation uses instant movement under reduced motion. CSS removes book transforms/transitions, progress transitions and ticket rotation for that preference; touch and coarse pointers receive no book tilt. Progress animates with scaleX rather than width. The existing route-transition fallback, field visibility/hardware gates, and cleaned-up GSAP lifecycle remain part of the incumbent implementation. No dependency was added for the library. These implementation facts do not establish a new Lighthouse score, constant frame rate or measured heap-retention guarantee.
+### Desk and Patch
 
-### Scoped validation — 2 October 2026
+The desk’s Work/About/Contact hotspots have ordinary DOM links beneath the artwork. The immediate SVG poster remains behind the lazy desktop canvas and survives unsupported rendering or context loss. The scene renders at a capped 30fps, pixel ratio capped at 1.5, and stops offscreen/hidden. Pointer influence is damped and bounded.
 
-Fresh parent implementation evidence reports **PASS** for build and lint, full `npm run verify` at nine widths in both themes (zero axe violations, console errors or overflow), `scripts/library-verify.mjs` at eight widths, and `scripts/extended-verify.mjs` across all twelve detail routes at nine widths (320, 375, 390, 430, 768, 1024, 1280, 1440, 1920px: 108 route-width checks). Functional coverage includes filters, Home/End/arrows/Enter, architecture interaction, stack/domain search, bounded hover and ordinary vertical wheel behavior. Main verification waits 600ms for the existing theme crossfade to settle, removing a transient mid-transition navigation-contrast false failure. Isolated mocked contact checks also **PASS** for pending, success, error and retry; no external message was sent and form success requires a successful service response. `PROJECT_LIBRARY_REPORT.md` records implementation and QA scope. The documenter inspected source and recorded this evidence; it did not rerun browser QA or inspect screenshots.
+Patch uses original 48×48 source frames: idle 4, blink 3, tail 5, walk 8, sleep 4, peek 4 and paw 4 (32 distinct frames). The default CSS display is 96px, with desk scaling to 0.8 at 768px and 0.55 at 520px. Walk is confined to a 24px local stroll; no viewport wandering. Sprite loops pause offscreen/hidden; reduced motion uses the first idle frame (sleep retains its static pose). Keyboard activation triggers the same quiet reactions as click.
 
-The independent screenshot review initially returned **fix**, listing eight material items. Source inspection confirms fixes 1–7: semantic TrustNet/FinCoach pipelines, resume provenance, repaired apostrophe, removed redundant eyebrows/feature numbering, Lucide arrows, one-pixel accent rules and centralized cover content. This merge addresses documentation item 8. The final independent reviewer returned scoped disposition **ship**: all eight listed fixes resolved across 31 valid final captures, with no fix-batch regressions observed. This is a screenshot-based fix-list review, not a whole-surface independent functional audit; the fresh functional results above are supplied separately by the parent. Historical Lighthouse scores above belong to earlier phases, not this twelve-chapter extension.
-
-### Upgrade phase 6 — Practical & engaging engineering showcase (October 2026)
-
-- Transformed the project presentation from a forensic code audit feel into a compelling, professional engineering showcase designed for recruiters, interviewers, educators, and engineering peers.
-- Streamlined Project Cards (`src/components/ProjectBook.jsx` & `src/styles/project-library.css`):
-  - Modernized card aesthetics from the physical textbook metaphor (removing the 8px fake spine and hard multi-layered page shadows) to a sleek, contemporary 12px rounded surface with smooth ambient lighting and subtle border transitions.
-  - Replaced duplicate category tags with clean `#01` project indicators and accessible status badges featuring glowing indicator dots (coral for finalists, emerald for deployed apps) paired with high-contrast text to meet strict WCAG AAA guidelines.
-  - Converted tech stack tags into sleek minimalist pill badges (`border-radius: 999px`) with micro-hover interactions.
-  - Added quick-action direct links (`Live Demo ↗` and `GitHub ↗`) directly on project cards so visitors can inspect code and deployed applications in one click.
-  - Retained accessible, primary case-study card linking with `aria-label` compatibility.
-- Polished Project Case Studies (`src/pages/Project.jsx`):
-  - Removed forensic "Inspect the source evidence" file list accordion.
-  - Introduced a clean, high-contrast action CTA banner linking directly to live deployments and GitHub code repositories.
-  - Reframed "Result & current boundaries" to "Impact & Architecture Scope" and "Capabilities present in the inspected implementation" to "Core engineering modules and operational workflows".
-- Refined Single Content Source of Truth (`src/data/content.js`):
-  - Rephrased outcome statements and scope notes across all 12 projects to celebrate authentic engineering capabilities and architectures without defensive audit disclaimers, while preserving complete truthfulness to the resume and code facts.
-- Verified Quality & Compliance:
-  - Passed `npm run build` and `npm run lint` with 0 warnings or errors.
-  - Passed full `verify.mjs` test suite (9 screen widths, light/dark themes, WCAG AA axe accessibility, keyboard navigation, form states).
-  - Passed `extended-verify.mjs` across all 12 detail routes at all 9 widths with 0 axe violations.
-
-## Phase 7: Project Experience Streamlining & Visual Decluttering
-
-- **Streamlined Card Proportions & Unified Hierarchy** (`src/components/ProjectBook.jsx` & `src/styles/project-library.css`):
-  - Reduced bloated card height from ~560px down to an elegant, scannable ~420px by optimizing visual cover height from 290px to 200px (16:10 ratio).
-  - Unified the action footer: integrated direct `Case study →`, `Live Demo ↗`, and `GitHub ↗` pills cleanly into `.book-quick-bar`, eliminating the awkward redundant "Explore case study" intermediate row.
-  - Clamped description text to 2 lines for uniform visual rhythm across all project cards.
-  - Enhanced title styling with responsive Instrument Serif (26px) that smoothly highlights to `--focus` on card hover.
-- **Decluttered Case Study Pages** (`src/pages/Project.jsx`):
-  - Replaced academic "Chapter 01 / 12" with modern, confident "Project 01 / 12" wayfinding.
-  - Removed defensive bulleted "limitations" lists, consolidating the project evaluation into a confident, authoritative "Impact & Architecture Scope" outcome statement.
-- **Audience Impact (Teachers, Friends, Interviewers, Recruiters, Designers)**:
-  - Immediate visual clarity without cognitive or scroll fatigue.
-  - Instant access to working live applications and source repositories.
-  - Preserved 100% adherence to verified resume facts and zero invented claims.
-- **Verification & Accessibility**:
-  - `npm run build`, `npm run lint`, `node scripts/verify.mjs`, and `node scripts/extended-verify.mjs` all pass with exit code 0 and 0 accessibility violations across all 9 breakpoints and both themes.
+GSAP entrances move copy 12px over 0.8s and desk 8px over 1s with expo.out. The ledger rule scrubs with no easing. One route-scoped Lenis uses 0.85s duration on eligible desktop; phones use native scroll. Every effect must remove listeners, observers, timers and ticker hooks and dispose GPU resources.
 
 ## Do's and Don'ts
 
 ### Do:
 
-- **Do** preserve the inherited editorial systems atlas and its self-hosted fonts.
-- **Do** keep all twelve chapters equally discoverable, with source evidence and honest boundaries.
-- **Do** edit project facts, cover wording and provenance in `src/data/content.js`.
-- **Do** preserve native scrolling, keyboard focus, touch access and reduced-motion final states.
+- **Do** preserve the pinned workshop world, self-hosted fonts and semantic theme mappings.
+- **Do** keep all twelve artifacts equally discoverable and source-grounded.
+- **Do** edit content and project facts only in `src/data/content.js`.
+- **Do** keep semantic text, keyboard controls, visible focus, touch access and reduced-motion final states.
+- **Do** preserve one eligible route-scoped Lenis instance, native phone scrolling and complete resource cleanup.
 
 ### Don't:
 
-- **Don't** infer authorship, dates, metrics, deployment or model validity from repository existence.
-- **Don't** present conceptual diagrams as screenshots or resume-supported facts as verified source implementation.
-- **Don't** turn local cover colors, book-edge shadows or genuine sequence markers into unrelated decorative patterns.
-- **Don't** canonize redundant eyebrows, decorative feature numbering, glyph icon stand-ins or thick accent strips as the library system.
-- **Don't** link absent credentials, expose TODO slots, claim form success before service success or publish without owner authorization.
+- **Don't** invent clients, dates, awards, testimonials, metrics, project links or application screenshots.
+- **Don't** infer authorship, deployment or production readiness from repository existence.
+- **Don't** obscure meaningful artwork labels or reintroduce redundant heading eyebrows.
+- **Don't** expose TODO slots, link missing credentials or report form success before service success.
+- **Don't** publish without owner authorization.
+
+Missing service endpoint, production origin, credential document URLs and TrustNet public links remain owner inputs. Existing resume facts and supplied development status remain accurate; concept art does not certify application capability.
+
+Current evidence is in `test-results/after-hours`: runtime records support nine widths (320, 375, 390, 430, 768, 1024, 1280, 1440, 1920), both home themes and twelve case studies at those widths. The independent finish verdict is ship for the two scored fixes; it does not certify runtime behavior. Final local measurements and their sampling context belong in [the implementation report](AFTER_HOURS_IMPLEMENTATION_REPORT.md). These are local measured results, not universal performance or design guarantees; heap was not measured.

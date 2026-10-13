@@ -1,76 +1,323 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-01T23:44:37Z",
-  "title": "Design System: Alok Sahoo — Editorial systems atlas",
+  "generatedAt": "2026-10-13T18:35:31.197Z",
+  "title": "Design System: AFTER HOURS",
   "extensions": {
+    "colorMeta": {
+      "deep": {
+        "role": "neutral",
+        "displayName": "Deeper ink"
+      },
+      "navy": {
+        "role": "neutral",
+        "displayName": "Ink"
+      },
+      "paper": {
+        "role": "neutral",
+        "displayName": "Warm paper"
+      },
+      "steel": {
+        "role": "secondary",
+        "displayName": "Steel blue"
+      },
+      "amber": {
+        "role": "primary",
+        "displayName": "Warm amber"
+      },
+      "coral": {
+        "role": "secondary",
+        "displayName": "Soft coral"
+      },
+      "mint": {
+        "role": "secondary",
+        "displayName": "Muted mint"
+      },
+      "surface-light": {
+        "role": "neutral",
+        "displayName": "Raised paper"
+      },
+      "muted-light": {
+        "role": "neutral",
+        "displayName": "Paper supporting text"
+      },
+      "muted-dark": {
+        "role": "neutral",
+        "displayName": "Ink supporting text"
+      },
+      "line-light": {
+        "role": "neutral",
+        "displayName": "Paper rule"
+      },
+      "line-dark": {
+        "role": "neutral",
+        "displayName": "Ink rule"
+      },
+      "accent-light": {
+        "role": "primary",
+        "displayName": "Paper amber"
+      },
+      "artifact-ground": {
+        "role": "neutral",
+        "displayName": "Artifact ground"
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Workshop name",
+        "purpose": "Hero name; final base rule."
+      },
+      "headline": {
+        "displayName": "Editorial heading",
+        "purpose": "Main section headings."
+      },
+      "case-display": {
+        "displayName": "Case-file heading",
+        "purpose": "Case study title."
+      },
+      "title": {
+        "displayName": "Artifact title",
+        "purpose": "Project headings."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Default prose."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Supporting navigation and metadata."
+      }
+    },
     "shadows": [
-      { "name": "book-rest", "value": "5px 7px 0 -3px var(--bg), 7px 7px 0 -3px var(--line), 10px 18px 25px -20px #0008", "purpose": "Neutral page edges for project books only." },
-      { "name": "book-hover", "value": "5px 8px 0 -3px var(--bg), 7px 8px 0 -3px var(--line), 12px 28px 35px -22px #0009", "purpose": "Fine-pointer book lift; not a global shadow vocabulary." }
+      {
+        "name": "paper",
+        "value": "4px 12px 30px #0002",
+        "purpose": "Notebook, ledger and contact paper."
+      },
+      {
+        "name": "action",
+        "value": "0 3px 5px #0003",
+        "purpose": "Amber primary action."
+      },
+      {
+        "name": "tool-key",
+        "value": "0 3px 5px #0002",
+        "purpose": "Tactile key shell."
+      },
+      {
+        "name": "tool-card",
+        "value": "0 6px 12px #0002",
+        "purpose": "Toolkit container."
+      },
+      {
+        "name": "artifact",
+        "value": "0 14px 18px -14px #0008",
+        "purpose": "Project illustration stage."
+      },
+      {
+        "name": "case-art",
+        "value": "0 18px 24px -18px #0006",
+        "purpose": "Larger case-file art."
+      },
+      {
+        "name": "dialog",
+        "value": "0 25px 80px #0005",
+        "purpose": "Command modal."
+      },
+      {
+        "name": "nav-active",
+        "value": "inset 0 -2px var(--accent)",
+        "purpose": "Selected section."
+      }
     ],
     "motion": [
-      { "name": "ease", "value": "cubic-bezier(0.22, 1, 0.36, 1)", "purpose": "Inherited state easing." },
-      { "name": "book-transition", "value": "450ms", "purpose": "Book transform and shadow changes; removed for reduced motion." },
-      { "name": "progress-transition", "value": "350ms", "purpose": "Progress scaleX; removed for reduced motion." }
+      {
+        "name": "control-transform",
+        "value": "180ms",
+        "purpose": "Primary action and key state transforms."
+      },
+      {
+        "name": "artifact-transform",
+        "value": "250ms",
+        "purpose": "Small artifact hover lift."
+      },
+      {
+        "name": "copy-entrance",
+        "value": "12px / 0.8s / expo.out",
+        "purpose": "Eligible desktop copy entrance."
+      },
+      {
+        "name": "desk-entrance",
+        "value": "8px / 1s / expo.out",
+        "purpose": "Eligible desktop desk entrance."
+      },
+      {
+        "name": "ledger-progress",
+        "value": "scrub: true / ease: none",
+        "purpose": "Thin timeline fill."
+      },
+      {
+        "name": "lenis-duration",
+        "value": "0.85s",
+        "purpose": "One route-scoped instance on eligible desktop."
+      },
+      {
+        "name": "desk-render-cap",
+        "value": "30fps; pixel ratio ≤1.5",
+        "purpose": "Scene loop pauses offscreen/hidden."
+      },
+      {
+        "name": "desk-damping",
+        "value": "0.075; x 0.28 / y 0.18",
+        "purpose": "Bounded camera pointer response."
+      },
+      {
+        "name": "patch-stroll",
+        "value": "24px",
+        "purpose": "Local walk only; reduced motion selects static frames."
+      }
     ],
     "breakpoints": [
-      { "name": "library-mobile-max", "value": "768px" },
-      { "name": "library-narrow-max", "value": "375px" }
+      {
+        "name": "wide-min",
+        "value": "1700px"
+      },
+      {
+        "name": "shelf-tablet-max",
+        "value": "1100px"
+      },
+      {
+        "name": "webgl-min",
+        "value": "1025px"
+      },
+      {
+        "name": "lenis-min",
+        "value": "769px"
+      },
+      {
+        "name": "stack-max",
+        "value": "768px"
+      },
+      {
+        "name": "phone-max",
+        "value": "520px"
+      }
     ]
   },
   "components": [
     {
-      "name": "Primary Button",
+      "name": "Primary Action",
       "kind": "button",
-      "description": "Inherited rounded portfolio action.",
-      "html": "<button class=\"ds-primary\">Explore projects</button>",
-      "css": ".ds-primary{display:inline-flex;align-items:center;justify-content:center;gap:20px;min-height:48px;padding:16px 24px;background:var(--ink,#182b48);color:var(--bg,#f5f1e9);border:1px solid transparent;border-radius:40px;font:14px Space,sans-serif;cursor:pointer;transition:translate .3s var(--ease,cubic-bezier(.22,1,.36,1))}.ds-primary:hover{background:var(--coral,#ed6b36);color:var(--navy-deep,#101c30)}.ds-primary:focus-visible{outline:2px solid var(--focus,#a74019);outline-offset:5px}"
+      "refersTo": "button-primary",
+      "description": "Amber workshop action; a semantic link in the portfolio.",
+      "html": "<a class=\"ds-primary\" href=\"#work\">Explore my work <svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" aria-hidden=\"true\"><path d=\"M7 17 17 7M7 7h10v10\"/></svg></a>",
+      "css": ".ds-primary{display:inline-flex;align-items:center;gap:12px;min-height:44px;padding:16px 24px;background:var(--amber,#d7a35d);color:var(--deep,#111820);border-radius:4px;box-shadow:0 3px 5px #0003;font:500 16px Space,sans-serif;text-decoration:none;transition:transform .18s}.ds-primary:hover{transform:translateY(-2px)}.ds-primary:focus-visible,.ds-text:focus-visible,.ds-field:focus-visible,.ds-filter:focus-visible,.ds-nav button:focus-visible,.ds-artifact:focus-visible,.ds-key:focus-visible,.ds-step:focus-visible{outline:2px solid var(--focus,#d7a35d);outline-offset:5px}@media(prefers-reduced-motion:reduce){.ds-primary{transition:none;transform:none}}"
     },
     {
-      "name": "Outline Button",
+      "name": "Text Action",
       "kind": "button",
-      "description": "Inherited secondary action.",
-      "html": "<button class=\"ds-outline\">View resume</button>",
-      "css": ".ds-outline{min-height:48px;padding:16px 24px;background:transparent;color:var(--ink,#182b48);border:1px solid var(--line,#cec8bf);border-radius:40px;font:14px Space,sans-serif;cursor:pointer;transition:translate .3s var(--ease,cubic-bezier(.22,1,.36,1))}.ds-outline:hover{background:var(--paper-muted,#e9e4da);color:var(--navy,#182b48)}.ds-outline:focus-visible{outline:2px solid var(--focus,#a74019);outline-offset:5px}"
+      "refersTo": "button-text-dark",
+      "description": "Quiet resume or source action using semantic theme text.",
+      "html": "<a class=\"ds-text\" href=\"#resume\">Take my resume</a>",
+      "css": ".ds-text{display:inline-flex;align-items:center;gap:12px;min-height:44px;color:var(--ink,#f5efe5);font:14px Space,sans-serif;text-decoration:none}.ds-text:hover{text-decoration:underline;text-underline-offset:5px}.ds-primary:focus-visible,.ds-text:focus-visible,.ds-field:focus-visible,.ds-filter:focus-visible,.ds-nav button:focus-visible,.ds-artifact:focus-visible,.ds-key:focus-visible,.ds-step:focus-visible{outline:2px solid var(--focus,#d7a35d);outline-offset:5px}"
     },
     {
       "name": "Contact Field",
       "kind": "input",
-      "description": "Underlined field on the existing navy contact surface.",
-      "html": "<div class=\"ds-contact\"><label for=\"ds-email\">Email</label><input id=\"ds-email\" type=\"email\" placeholder=\"you@example.com\" /></div>",
-      "css": ".ds-contact{padding:24px;background:var(--navy,#182b48)}.ds-contact label{display:block;font:14px Space,sans-serif;margin-bottom:12px;color:var(--paper,#f5f1e9)}.ds-contact input{width:100%;background:transparent;color:var(--paper-raised,#fbf8f2);border:0;border-bottom:1px solid var(--line,#cec8bf);padding:10px 0 18px;font:16px Space,sans-serif;border-radius:0}.ds-contact input::placeholder{color:#b6c2d4}.ds-contact input:focus-visible{outline:2px solid var(--coral-hover,#ff986d);outline-offset:5px}"
+      "refersTo": "contact-field",
+      "description": "Bordered field on the persistent warm paper note.",
+      "html": "<div class=\"ds-note-field\"><label for=\"ds-email\">Email</label><input class=\"ds-field\" id=\"ds-email\" type=\"email\" placeholder=\"you@example.com\"></div>",
+      "css": ".ds-note-field{padding:22px;background:var(--paper,#f5efe5);color:var(--navy,#19212b);font:16px Space,sans-serif}.ds-note-field label{display:block;font-size:13px;margin:0 0 9px}.ds-field{display:block;width:100%;border:1px solid #a6a9a6;background:#fffaf1;color:var(--navy,#19212b);padding:13px;border-radius:2px;font:16px Space,sans-serif;caret-color:#825a26}.ds-field::placeholder{color:#606a70}.ds-field:focus-visible{outline:2px solid #825a26;outline-offset:5px}"
     },
     {
       "name": "Domain Filter",
       "kind": "chip",
-      "description": "Pressed-state domain discovery with a 44px target.",
-      "html": "<button class=\"ds-filter\" aria-pressed=\"true\">All</button>",
-      "css": ".ds-filter{min-height:44px;padding:12px 14px;border:1px solid var(--line,#cec8bf);border-radius:2px;background:transparent;color:var(--ink,#182b48);font:13px Space,sans-serif;cursor:pointer}.ds-filter[aria-pressed=true]{background:var(--ink,#182b48);color:var(--bg,#f5f1e9);border-color:var(--ink,#182b48)}.ds-filter:focus-visible{outline:2px solid var(--focus,#a74019);outline-offset:5px}"
+      "refersTo": "filter-selected-dark",
+      "description": "Domain discovery with a selected state and 44px target.",
+      "html": "<button class=\"ds-filter\" aria-pressed=\"true\">All</button><button class=\"ds-filter\" aria-pressed=\"false\">AI / ML</button>",
+      "css": ".ds-filter{padding:11px 12px;min-height:44px;font:13px Space,sans-serif;border:0;border-radius:3px;background:none;color:var(--ink,#f5efe5);cursor:pointer}.ds-filter[aria-pressed=true]{background:var(--ink,#f5efe5);color:var(--bg,#111820)}.ds-primary:focus-visible,.ds-text:focus-visible,.ds-field:focus-visible,.ds-filter:focus-visible,.ds-nav button:focus-visible,.ds-artifact:focus-visible,.ds-key:focus-visible,.ds-step:focus-visible{outline:2px solid var(--focus,#d7a35d);outline-offset:5px}"
     },
     {
-      "name": "Chapter Navigation",
+      "name": "Section Navigation",
       "kind": "nav",
-      "description": "Circular native-track navigation control.",
-      "html": "<nav class=\"ds-chapter-nav\" aria-label=\"Chapters\"><button aria-label=\"Next chapter\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12h14m-7-7 7 7-7 7\" /></svg></button></nav>",
-      "css": ".ds-chapter-nav button{width:46px;height:46px;display:grid;place-items:center;border:1px solid var(--line,#cec8bf);background:transparent;color:var(--ink,#182b48);border-radius:50%;cursor:pointer;transition:background 180ms}.ds-chapter-nav button:hover:not(:disabled){background:var(--surface,#fbf8f2)}.ds-chapter-nav button:disabled{opacity:.4;cursor:default}.ds-chapter-nav button:focus-visible{outline:2px solid var(--focus,#a74019);outline-offset:5px}"
+      "description": "Ordinary section buttons with a restrained active underline.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Sections\"><button class=\"ds-nav-active\" aria-current=\"location\">Work</button><button>About</button><button>Contact</button></nav>",
+      "css": ".ds-nav{display:flex;gap:8px;padding:12px;background:var(--bg,#111820);border-bottom:1px solid var(--line,#3e4a54)}.ds-nav button{min-height:44px;padding:12px;border:0;border-radius:3px;background:none;color:var(--ink,#f5efe5);font:14px Space,sans-serif;cursor:pointer}.ds-nav .ds-nav-active{background:var(--surface,#19212b);box-shadow:inset 0 -2px var(--accent,#d7a35d)}.ds-primary:focus-visible,.ds-text:focus-visible,.ds-field:focus-visible,.ds-filter:focus-visible,.ds-nav button:focus-visible,.ds-artifact:focus-visible,.ds-key:focus-visible,.ds-step:focus-visible{outline:2px solid var(--focus,#d7a35d);outline-offset:5px}"
     },
     {
-      "name": "Project Book Surface",
+      "name": "Artifact File",
       "kind": "card",
-      "description": "Neutral chapter shell with local page-edge depth; sample omits project facts.",
-      "html": "<a class=\"ds-book\" href=\"#chapter\"><span>Chapter</span><span class=\"ds-book-title\">Project title</span><span>Explore case study</span></a>",
-      "css": ".ds-book{display:flex;flex-direction:column;gap:22px;padding:20px 22px 20px 26px;background:var(--surface,#fbf8f2);border:1px solid var(--line,#cec8bf);border-radius:2px 5px 5px 2px;color:var(--ink,#182b48);font:13px Space,sans-serif;text-decoration:none;box-shadow:5px 7px 0 -3px var(--bg,#f5f1e9),7px 7px 0 -3px var(--line,#cec8bf),10px 18px 25px -20px #0008;transition:transform 450ms var(--ease,cubic-bezier(.22,1,.36,1)),box-shadow 450ms var(--ease,cubic-bezier(.22,1,.36,1))}.ds-book-title{font:400 34px/1.06 Instrument,serif;letter-spacing:-.015em}.ds-book:focus-visible{outline:2px solid var(--focus,#a74019);outline-offset:6px;transform:translateY(-6px)}@media(hover:hover) and (pointer:fine){.ds-book:hover{transform:translateY(-7px) scale(1.008);box-shadow:5px 8px 0 -3px var(--bg,#f5f1e9),7px 8px 0 -3px var(--line,#cec8bf),12px 28px 35px -22px #0009}}@media(prefers-reduced-motion:reduce){.ds-book{transform:none!important;transition:none}}"
+      "description": "Whole case-file link and quiet paper-art stage; preview uses an abstract vector, not product evidence.",
+      "html": "<a class=\"ds-artifact\" href=\"#case\"><span class=\"ds-artifact-art\"><svg viewBox=\"0 0 320 200\" width=\"100%\" fill=\"none\" aria-hidden=\"true\"><path fill=\"#f5efe5\" d=\"M58 35h190v130H58z\"/><path stroke=\"#87a9c4\" d=\"M82 70h120M82 90h135M82 110h80\"/><path stroke=\"#d98e7d\" d=\"M75 45v110\"/></svg></span><h3>Project file</h3><p>Source-grounded workflow and engineering decisions.</p><span class=\"ds-artifact-stack\">Case study · Source</span></a>",
+      "css": ".ds-artifact{display:block;border-bottom:1px solid var(--line,#3e4a54);padding-bottom:20px;color:var(--ink,#f5efe5);font:16px Space,sans-serif;text-decoration:none}.ds-artifact-art{display:block;aspect-ratio:8/5;background:#28333e;border-radius:5px 5px 0 0;overflow:hidden;border:1px solid var(--line,#3e4a54);box-shadow:0 14px 18px -14px #0008;transition:transform .25s}.ds-artifact:hover .ds-artifact-art{transform:translateY(-4px) rotate(-.4deg)}.ds-artifact h3{font-size:21px;line-height:1.3;margin:20px 0 8px}.ds-artifact p{font-size:14px;line-height:1.7;color:var(--muted,#afbcc6);margin:0 0 16px}.ds-artifact-stack{font-size:12px;color:var(--accent,#d7a35d)}.ds-primary:focus-visible,.ds-text:focus-visible,.ds-field:focus-visible,.ds-filter:focus-visible,.ds-nav button:focus-visible,.ds-artifact:focus-visible,.ds-key:focus-visible,.ds-step:focus-visible{outline:2px solid var(--focus,#d7a35d);outline-offset:5px}@media(prefers-reduced-motion:reduce){.ds-artifact-art{transition:none;transform:none!important}}"
+    },
+    {
+      "name": "Toolkit Key",
+      "kind": "chip",
+      "refersTo": "toolkit-key",
+      "description": "Small tactile pressed control for a real tool application.",
+      "html": "<span class=\"ds-key-shell\"><button class=\"ds-key\" aria-pressed=\"false\">React</button></span>",
+      "css": ".ds-key-shell{display:inline-block;border:1px solid var(--line,#3e4a54);background:var(--surface,#19212b);border-radius:4px;box-shadow:0 3px 5px #0002}.ds-key{padding:10px 12px;min-height:44px;font:13px Space,sans-serif;border:0;background:none;color:var(--ink,#f5efe5);border-radius:4px;transition:transform .18s;cursor:pointer}.ds-key:hover{transform:translateY(-2px)}.ds-key[aria-pressed=true]{background:var(--ink,#f5efe5);color:var(--bg,#111820);transform:translateY(2px)}.ds-primary:focus-visible,.ds-text:focus-visible,.ds-field:focus-visible,.ds-filter:focus-visible,.ds-nav button:focus-visible,.ds-artifact:focus-visible,.ds-key:focus-visible,.ds-step:focus-visible{outline:2px solid var(--focus,#d7a35d);outline-offset:5px}@media(prefers-reduced-motion:reduce){.ds-key{transition:none;transform:none!important}}"
+    },
+    {
+      "name": "Notebook Page",
+      "kind": "custom",
+      "refersTo": "notebook",
+      "description": "Warm paper note that retains its material in both themes.",
+      "html": "<article class=\"ds-notebook\"><h2>A note from the workshop</h2><p>Personal context belongs beside the engineering work.</p></article>",
+      "css": ".ds-notebook{position:relative;background:var(--paper,#f5efe5);color:var(--navy,#19212b);padding:44px 44px 32px;border-radius:2px;box-shadow:4px 12px 30px #0002;transform:rotate(.5deg);border-left:1px solid var(--coral,#d98e7d);font:18px/1.7 Space,sans-serif}.ds-notebook:before{content:'';position:absolute;top:-12px;left:40%;width:95px;height:25px;background:#d7a35d66;transform:rotate(-5deg)}.ds-notebook h2{font:400 30px/1.25 Instrument,serif}.ds-notebook p{margin-bottom:0}@media(max-width:520px){.ds-notebook{padding:27px;font-size:16px}}"
+    },
+    {
+      "name": "Architecture Step",
+      "kind": "button",
+      "description": "Inspectable workflow node with an explicit pressed state.",
+      "html": "<button class=\"ds-step\" aria-pressed=\"true\"><span>01</span> Workflow step <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" aria-hidden=\"true\"><path d=\"M5 12h14m-7-7 7 7-7 7\"/></svg></button>",
+      "css": ".ds-step{display:flex;align-items:center;gap:10px;min-height:70px;width:100%;text-align:left;padding:14px;border:1px solid var(--line,#3e4a54);border-radius:3px;font:13px Space,sans-serif;background:none;color:var(--ink,#f5efe5);cursor:pointer}.ds-step span{font-size:12px;color:var(--muted,#afbcc6)}.ds-step svg{margin-left:auto}.ds-step[aria-pressed=true]{background:var(--ink,#f5efe5);color:var(--bg,#111820)}.ds-step[aria-pressed=true] span{color:inherit}.ds-primary:focus-visible,.ds-text:focus-visible,.ds-field:focus-visible,.ds-filter:focus-visible,.ds-nav button:focus-visible,.ds-artifact:focus-visible,.ds-key:focus-visible,.ds-step:focus-visible{outline:2px solid var(--focus,#d7a35d);outline-offset:5px}"
     }
   ],
   "narrative": {
-    "northStar": "Editorial systems atlas",
-    "overview": "The portfolio retains its navy, paper and coral identity, candid portrait and self-hosted typography. The owner explicitly pinned a digital technical-library direction for Projects; this is an approved extension of the incumbent world, not an identity replacement. Its technical diagrams explain domain workflows, while concise case studies expose evidence and limits for recruiters and engineering peers.\n\nThe current collection comprises twelve equally treated chapters: HistoFacts, AURA, Reimbursement Automation System, Techriciate, Bloom Blossom, FinCoach AI, Talent-Sync, Credit Card Fraud Detection, BookItNow, Speedotype, COSMEON FS-LITE and TrustNet-AI. AURA uses its corrected repository mapping; Reimbursement is one updated chapter. Historical three-study descriptions above remain implementation history.",
-    "keyCharacteristics": ["Equal chapter importance, with domain filters and technology/domain command search.", "Readable technical publishing, quiet book edges and semantic workflow illustrations.", "Source evidence and resume provenance remain distinct from claims of authorship or production readiness.", "Native desktop collection scrolling and full-width mobile chapters."],
-    "rules": [
-      { "name": "The Inherited Palette Rule", "body": "New library surfaces use the existing semantic theme variables; a project's cover tint does not become a global accent.", "section": "colors" },
-      { "name": "The Meaningful Label Rule", "body": "Chapter positions and architecture steps express real sequence. Domain labels belong to covers, filters and case metadata; redundant heading eyebrows and decorative feature numbers are omitted.", "section": "typography" },
-      { "name": "The Equal Chapter Rule", "body": "The full collection remains visible through one shared structural grammar. Filters select domains without featured, secondary or archive tiers.", "section": "layout" }
+    "northStar": "AFTER HOURS — the personal engineering workshop",
+    "overview": "Alok’s engineering work lives in one personal after-hours workshop. Warm paper, deep ink, matte miniature objects and restrained amber/steel light connect the real person to inspectable project evidence. The name, engineering statement, portrait and work/resume actions lead; the desk and quiet charcoal companion support them.\n\nThis is the owner-pinned Experience direction implemented in code, with no approved image comp. The surface composition and quality bar remain in `.impeccable/surfaces/after-hours-home.md`. The workshop is a metaphor, not a claim about Alok’s physical room; Patch is an original fictional companion. Project illustrations describe workflows and must not imply application screenshots or unverified results.",
+    "keyCharacteristics": [
+      "One procedural matte desk on eligible desktop browsers, with immediate authored vector fallback.",
+      "Self-hosted editorial serif headings and clear sans-serif body/interface text.",
+      "Distinct source-grounded artifacts, warm notebook pages, tactile tool keys and compact archive rows.",
+      "Native phone scrolling, semantic controls, visible focus and readable reduced-motion states."
     ],
-    "dos": ["Do preserve the inherited editorial systems atlas and its self-hosted fonts.", "Do keep all twelve chapters equally discoverable, with source evidence and honest boundaries.", "Do edit project facts, cover wording and provenance in `src/data/content.js`.", "Do preserve native scrolling, keyboard focus, touch access and reduced-motion final states."],
-    "donts": ["Don't infer authorship, dates, metrics, deployment or model validity from repository existence.", "Don't present conceptual diagrams as screenshots or resume-supported facts as verified source implementation.", "Don't turn local cover colors, book-edge shadows or genuine sequence markers into unrelated decorative patterns.", "Don't canonize redundant eyebrows, decorative feature numbering, glyph icon stand-ins or thick accent strips as the library system.", "Don't link absent credentials, expose TODO slots, claim form success before service success or publish without owner authorization."]
+    "rules": [
+      {
+        "name": "The Material Rule",
+        "body": "Object colors stay local to their artwork; shared text and controls use semantic theme colors.",
+        "section": "neutral"
+      },
+      {
+        "name": "The Meaningful Label Rule",
+        "body": "Labels identify real domains, sources, states or location/time. Avoid redundant lead-ins above already clear headings.",
+        "section": "typography"
+      },
+      {
+        "name": "The Readable First Rule",
+        "body": "Critical copy and actions render immediately; motion and the scene never gate access to content.",
+        "section": "layout"
+      },
+      {
+        "name": "The Local Depth Rule",
+        "body": "Keep dimensional treatments on meaningful workshop objects; do not spread 3D canvases or heavy shadows across ordinary copy.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do preserve the pinned workshop world, self-hosted fonts and semantic theme mappings.",
+      "Do keep all twelve artifacts equally discoverable and source-grounded.",
+      "Do edit content and project facts only in `src/data/content.js`.",
+      "Do keep semantic text, keyboard controls, visible focus, touch access and reduced-motion final states.",
+      "Do preserve one eligible route-scoped Lenis instance, native phone scrolling and complete resource cleanup."
+    ],
+    "donts": [
+      "Don't invent clients, dates, awards, testimonials, metrics, project links or application screenshots.",
+      "Don't infer authorship, deployment or production readiness from repository existence.",
+      "Don't obscure meaningful artwork labels or reintroduce redundant heading eyebrows.",
+      "Don't expose TODO slots, link missing credentials or report form success before service success.",
+      "Don't publish without owner authorization."
+    ]
   }
 }

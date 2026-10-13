@@ -19,7 +19,9 @@ const icons = {
 export function Skills() {
   const [category, setCategory] = useState("All tools");
   const [selected, setSelected] = useState("");
-  const projects = content.projects.filter(project => project.stack.some(tool => tool.toLowerCase() === selected.toLowerCase()));
+  const projects = content.projects.filter((project) =>
+    project.stack.some((tool) => tool.toLowerCase() === selected.toLowerCase()),
+  );
   return (
     <section id="skills" className="skills-band">
       <div className="container">
@@ -27,24 +29,68 @@ export function Skills() {
           <h2 className="serif">{content.workshop.toolkitTitle}</h2>
           <p>{content.workshop.toolkitIntro}</p>
         </div>
-        <div className="toolkit-filters" aria-label="Tool categories">{["All tools", ...content.skills.map(skill => skill.title)].map(title => <button key={title} aria-pressed={category === title} onClick={() => { setCategory(title); setSelected(""); }}>{title}</button>)}</div>
-        <div className="skills-grid">
-          {content.skills.filter(skill => category === "All tools" || skill.title === category).map((s) => {
-            const Icon = icons[s.icon] || Code2;
-            return (
-              <article className={"skill-card " + s.icon} key={s.title}>
-                <Icon size={26} strokeWidth={1.5} />
-                <h3>{s.title}</h3>
-                <ul className="skill-chips">
-                  {s.items.map((item) => (
-                    <li key={item}><button aria-pressed={selected === item} onClick={() => setSelected(selected === item ? "" : item)}>{item}</button></li>
-                  ))}
-                </ul>
-              </article>
-            );
-          })}
+        <div className="toolkit-filters" aria-label="Tool categories">
+          {["All tools", ...content.skills.map((skill) => skill.title)].map(
+            (title) => (
+              <button
+                key={title}
+                aria-pressed={category === title}
+                onClick={() => {
+                  setCategory(title);
+                  setSelected("");
+                }}
+              >
+                {title}
+              </button>
+            ),
+          )}
         </div>
-        <div className="tool-selection" role="status">{selected && <><strong>{selected}</strong><p>{projects.length ? "In the project files: " + projects.map(project => project.title).join(", ") : "Part of the " + content.skills.find(skill => skill.items.includes(selected)).title.toLowerCase() + " toolkit."}</p></>}</div>
+        <div className="skills-grid">
+          {content.skills
+            .filter(
+              (skill) => category === "All tools" || skill.title === category,
+            )
+            .map((s) => {
+              const Icon = icons[s.icon] || Code2;
+              return (
+                <article className={"skill-card " + s.icon} key={s.title}>
+                  <Icon size={26} strokeWidth={1.5} />
+                  <h3>{s.title}</h3>
+                  <ul className="skill-chips">
+                    {s.items.map((item) => (
+                      <li key={item}>
+                        <button
+                          aria-pressed={selected === item}
+                          onClick={() =>
+                            setSelected(selected === item ? "" : item)
+                          }
+                        >
+                          {item}
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
+                </article>
+              );
+            })}
+        </div>
+        <div className="tool-selection" role="status">
+          {selected && (
+            <>
+              <strong>{selected}</strong>
+              <p>
+                {projects.length
+                  ? "In the project files: " +
+                    projects.map((project) => project.title).join(", ")
+                  : "Part of the " +
+                    content.skills
+                      .find((skill) => skill.items.includes(selected))
+                      .title.toLowerCase() +
+                    " toolkit."}
+              </p>
+            </>
+          )}
+        </div>
       </div>
     </section>
   );

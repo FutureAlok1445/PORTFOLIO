@@ -1,185 +1,117 @@
 import { chromium, expect } from "@playwright/test";
-import AxeBuilder from "@axe-core/playwright";
 import fs from "node:fs";
 import assert from "node:assert/strict";
+import crypto from "node:crypto";
+import sharp from "sharp";
 import { content } from "../src/data/content.js";
-fs.mkdirSync("test-results/library", { recursive: true });
-const browser = await chromium.launch({ channel: "chromium" });
-const context = await browser.newContext({ reducedMotion: "reduce" });
-const page = await context.newPage();
+const dir = "test-results/after-hours";
+fs.mkdirSync(dir, { recursive: true });
+const browser = await chromium.launch({ channel: "chromium" }),
+  context = await browser.newContext({ reducedMotion: "reduce" }),
+  page = await context.newPage();
 const errors = [];
-page.on("pageerror", (error) => errors.push(error.message));
-page.on("console", (message) => {
-  if (message.type() === "error") errors.push(message.text());
-});
-const base = "http://127.0.0.1:4173";
-const round = process.env.LIBRARY_ROUND || "initial";
-const layouts = [];
-for (const width of process.env.LIBRARY_FUNCTIONAL_ONLY
-  ? []
-  : [320, 375, 390, 430, 768, 1024, 1280, 1440]) {
-  await page.setViewportSize({ width, height: 1000 });
-  await page.goto(base);
-  await page.evaluate(() => document.fonts.ready);
-  await page
-    .getByRole("button", { name: "Switch to dark mode", exact: true })
-    .click();
-  await page
-    .locator("#work")
-    .evaluate((el) => window.scrollTo(0, el.offsetTop - 90));
-  await expect(page.locator(".project-card")).toHaveCount(12);
-  const layout = await page.locator(".library-track").evaluate((el) => ({
-    width: innerWidth,
-    scrolls: el.scrollWidth > el.clientWidth,
-    pageOverflow: document.documentElement.scrollWidth > innerWidth,
-    display: getComputedStyle(el).display,
-  }));
-  assert.equal(layout.pageOverflow, false);
-  assert.equal(layout.scrolls, width > 768);
-  layouts.push(layout);
-  const axe = await new AxeBuilder({ page }).include("#work").analyze();
-  assert.deepEqual(axe.violations, [], "Library axe " + width);
-  await page.mouse.move(0, 0);
-  await page.screenshot({ path: `test-results/library/${round}-${width}.png` });
-  if (width === 1440)
-    await page
-      .locator("#work")
-      .screenshot({
-        path: `test-results/library/${round}-desktop-section.png`,
-      });
-  if (width === 375)
-    for (const p of content.projects)
-      await page
-        .getByRole("link", { name: `View ${p.title} project`, exact: true })
-        .screenshot({
-          path: `test-results/library/${round}-book-${p.slug}-375.png`,
-        });
-  await page
-    .getByRole("button", { name: "Switch to light mode", exact: true })
-    .click();
-}
-if (process.env.LIBRARY_FUNCTIONAL_ONLY) {
-  await page.setViewportSize({ width: 1440, height: 1000 });
-  await page.goto(base);
-}
-await page.getByRole("button", { name: "Next chapter", exact: true }).click();
-await expect(page.locator(".library-position")).toHaveText("02 / 12");
-await page
-  .getByRole("button", { name: "Previous chapter", exact: true })
-  .click();
-await expect(page.locator(".library-position")).toHaveText("01 / 12");
-await page
-  .getByRole("link", { name: "View HistoFacts project", exact: true })
-  .focus();
-await page.keyboard.press("End");
-await expect(
-  page.getByRole("link", { name: "View TrustNet-AI project", exact: true }),
-).toBeFocused();
-await expect(
-  page.getByRole("button", { name: "Next chapter", exact: true }),
-).toBeDisabled();
-await page
-  .getByRole("button", { name: "Previous chapter", exact: true })
-  .click();
-await expect(
-  page.getByRole("button", { name: "Next chapter", exact: true }),
-).toBeEnabled();
-await page
-  .getByRole("link", { name: "View TrustNet-AI project", exact: true })
-  .focus();
-await page.keyboard.press("Home");
-await expect(
-  page.getByRole("link", { name: "View HistoFacts project", exact: true }),
-).toBeFocused();
-await page.keyboard.press("ArrowRight");
-await expect(
-  page.getByRole("link", { name: "View AURA project", exact: true }),
-).toBeFocused();
-await page.keyboard.press("Enter");
-await expect(
-  page.getByRole("heading", { name: "AURA", exact: true }),
-).toBeVisible();
-await page.getByRole("button", { name: /Response correlation/ }).click();
-await expect(page.locator(".node-description")).toContainText(
-  "detection alone does not mean success",
+page.on("pageerror", (e) => errors.push(e.message));
+await page.goto("http://127.0.0.1:4173/");
+await expect(page.locator(".project-card")).toHaveCount(12);
+const hashes = content.projects.map((p) =>
+  crypto
+    .createHash("sha256")
+    .update(
+      fs.readFileSync("public/images/after-hours/projects/" + p.slug + ".svg"),
+    )
+    .digest("hex"),
 );
-await page.getByRole("link", { name: "Project library", exact: true }).click();
-await expect(page.locator("#work")).toBeInViewport();
+assert.equal(new Set(hashes).size, 12, "Twelve genuinely distinct covers");
 for (const category of [
   ...new Set(content.projects.flatMap((p) => p.filters)),
 ]) {
   await page.getByRole("button", { name: category, exact: true }).click();
-  assert.equal(
-    await page.locator(".project-card").count(),
+  await expect(page.locator(".project-card")).toHaveCount(
     content.projects.filter((p) => p.filters.includes(category)).length,
   );
 }
 await page.getByRole("button", { name: "All", exact: true }).click();
-for (const query of ["Flutter", "distributed systems", "FastAPI"]) {
-  await page
-    .getByRole("button", { name: "Open command palette", exact: true })
-    .click();
-  await page.getByLabel("Search portfolio commands").fill(query);
-  assert.ok(
-    (await page.locator(".command-item").count()) > 0,
-    "Palette stack query " + query,
+for (const p of content.projects) {
+  const link = page.getByRole("link", {
+    name: "View " + p.title + " project",
+    exact: true,
+  });
+  await link.scrollIntoViewIfNeeded();
+  await expect(link.locator(".art-illustration")).toBeVisible();
+  await expect
+    .poll(() =>
+      link
+        .locator(".art-illustration")
+        .evaluate((img) => img.complete && img.naturalWidth > 0),
+    )
+    .toBe(true);
+  await link.click();
+  await expect(
+    page.getByRole("heading", { name: p.title, exact: true }),
+  ).toBeVisible();
+  await expect(page.locator(".case-meta")).toContainText(p.status);
+  await expect(page.locator(".case-status")).toContainText(p.scopeNotes[0]);
+  assert.equal(
+    await page.locator(".source-links a").count(),
+    p.sources?.length || 0,
   );
-  await page.keyboard.press("Escape");
-}
-for (const slug of ["aura", "bloom-blossom", "cosmeon-fs-lite", "trustnet-ai", "fincoach-ai"]) {
-  for (const width of [375, 1440]) {
-    await page.setViewportSize({ width, height: 1000 });
-    await page.goto(base + "/projects/" + slug);
-    await page
-      .getByRole("button", { name: "Switch to dark mode", exact: true })
-      .click();
-    await page.evaluate(() => document.fonts.ready);
-    if(slug==="trustnet-ai") {
-      await expect(page.locator(".cover-evidence")).toHaveText("Conceptual pipeline · supplied resume");
-      await expect(page.locator(".cover-pipeline")).toContainText("Forensics");
-    }
-    if(slug==="fincoach-ai") {
-      await expect(page.locator(".cover-pipeline")).toContainText("Puter advisor");
-      assert.equal(await page.locator(".finance-field").count(),0);
-    }
-    await page.mouse.move(0, 0);
-    await page.screenshot({
-      path: `test-results/library/${round}-${slug}-${width}.png`,
-      fullPage: true,
-    });
-    await page
-      .getByRole("button", { name: "Switch to light mode", exact: true })
-      .click();
+  for (let i = 0; i < p.nodes.length; i++) {
+    await page.locator(".architecture-steps button").nth(i).click();
+    await expect(page.locator(".node-description")).toContainText(
+      p.nodes[i].text,
+    );
   }
+  await page
+    .getByRole("link", { name: "Project library", exact: true })
+    .click();
 }
-await page.goto(base);
+const manifest = JSON.parse(
+    fs.readFileSync("public/images/after-hours/patch/patch-manifest.json"),
+  ),
+  sprites = [];
+for (const [name, a] of Object.entries(manifest.animations)) {
+  const file = "public/images/after-hours/patch/" + a.file,
+    metadata = await sharp(file).metadata(),
+    frames = [];
+  assert.equal(metadata.width, a.frames * 48);
+  assert.equal(metadata.height, 48);
+  assert.equal(metadata.hasAlpha, true);
+  for (let frame = 0; frame < a.frames; frame++)
+    frames.push(
+      crypto
+        .createHash("sha256")
+        .update(
+          await sharp(file)
+            .extract({ left: frame * 48, top: 0, width: 48, height: 48 })
+            .raw()
+            .toBuffer(),
+        )
+        .digest("hex"),
+    );
+  assert.equal(new Set(frames).size, a.frames, "Distinct frames " + name);
+  sprites.push({ name, frames: a.frames, unique: new Set(frames).size });
+}
 await page.setViewportSize({ width: 1440, height: 1000 });
-await page.emulateMedia({ reducedMotion: "no-preference" });
-await page.locator(".intro").waitFor({ state: "detached" });
+await page.goto("http://127.0.0.1:4173/");
 await page
-  .locator("#work")
-  .evaluate((el) => window.scrollTo(0, el.offsetTop - 90));
-await page
-  .getByRole("link", { name: "View HistoFacts project", exact: true })
-  .hover({ position: { x: 200, y: 100 } });
-const transform = await page
-  .getByRole("link", { name: "View HistoFacts project", exact: true })
-  .evaluate((el) => el.style.getPropertyValue("--book-ry"));
-assert.ok(Math.abs(parseFloat(transform)) <= 5, "Bounded book perspective");
-const y = await page.evaluate(() => scrollY);
-await page.mouse.wheel(0, 400);
-await expect.poll(() => page.evaluate(() => scrollY)).toBeGreaterThan(y + 100);
+  .getByRole("button", {
+    name: "Say hello to Patch, the workshop cat",
+    exact: true,
+  })
+  .focus();
+await page.keyboard.press("Enter");
+await expect(page.locator(".desk-stage .patch-button")).toHaveClass(
+  /patch-paw/,
+);
 assert.deepEqual(errors, []);
 fs.writeFileSync(
-  "test-results/library/verification.json",
+  dir + "/library-verification.json",
   JSON.stringify(
     {
-      layouts,
-      filters: "all domains checked",
-      keyboard: "Home, End, arrows, Enter",
-      architecture: "response correlation",
-      palette: "stack and domain search",
-      wheel: "vertical page scrolling",
+      projects: 12,
+      uniqueCovers: 12,
+      sprites,
+      architecture: "Every node checked",
       errors,
     },
     null,
@@ -188,5 +120,5 @@ fs.writeFileSync(
 );
 await browser.close();
 console.log(
-  "PASS: library layouts, domain filters, keyboard chapters, architecture, palette discovery, bounded pointer depth and native wheel scrolling.",
+  "PASS: twelve files and all architecture nodes, domain filters, preserved links/status/source references, 32 distinct transparent pixel frames and keyboard Patch reaction.",
 );

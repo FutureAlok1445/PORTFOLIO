@@ -2,6 +2,47 @@ import fs from "node:fs";
 import { loadEnv } from "vite";
 import { content } from "../src/data/content.js";
 const env = loadEnv("production", process.cwd(), "");
+const escape = (value) =>
+  String(value)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll('"', "&quot;");
+let html = fs.readFileSync("dist/index.html", "utf8");
+html = html.replace(
+  /<noscript[\s\S]*?<\/noscript\s*>/,
+  "<noscript><main><h1>" +
+    escape(content.profile.name) +
+    " — " +
+    escape(content.profile.title) +
+    "</h1><p>" +
+    escape(content.profile.about) +
+    '</p><a href="mailto:' +
+    escape(content.profile.email) +
+    '">Email Alok</a> <a href="' +
+    escape(content.profile.resume) +
+    '" download>Download resume</a><h2>Project files</h2>' +
+    content.projects
+      .map(
+        (project) =>
+          "<section><h3>" +
+          escape(project.title) +
+          "</h3><p>" +
+          escape(project.status) +
+          "</p><p>" +
+          escape(project.summary) +
+          "</p>" +
+          (project.repo
+            ? '<a href="' + escape(project.repo) + '">Source repository</a>'
+            : "") +
+          (project.live
+            ? ' <a href="' + escape(project.live) + '">Live project</a>'
+            : "") +
+          "</section>",
+      )
+      .join("") +
+    "</main></noscript>",
+);
+fs.writeFileSync("dist/index.html", html);
 const origin =
   env.VITE_SITE_URL ||
   (process.env.VERCEL_PROJECT_PRODUCTION_URL
@@ -28,7 +69,6 @@ fs.writeFileSync(
   "dist/robots.txt",
   "User-agent: *\nAllow: /\nSitemap: " + base + "/sitemap.xml\n",
 );
-let html = fs.readFileSync("dist/index.html", "utf8");
 html = html.replace(
   'content="/images/after-hours/brand/og-home.webp"',
   'content="' + base + '/images/after-hours/brand/og-home.webp"',

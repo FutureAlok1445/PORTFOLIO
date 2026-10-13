@@ -1,4 +1,12 @@
-import { Component, Suspense, useEffect, useRef, useState } from "react";
+import {
+  Component,
+  Suspense,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import { ArrowUpRight, Menu, Moon, Sun, X, Search } from "lucide-react";
 import { content } from "./data/content";
@@ -40,10 +48,7 @@ function NavButton({ label, active, onClick }) {
 export default function App() {
   const [theme, setTheme] = useState(() => {
     try {
-      return (
-        localStorage.getItem("theme") ||
-        "dark"
-      );
+      return localStorage.getItem("theme") || "dark";
     } catch {
       return "dark";
     }
@@ -54,7 +59,10 @@ export default function App() {
   const [active, setActive] = useState("");
   const [intro, setIntro] = useState(() => {
     try {
-      return !sessionStorage.getItem("visited") && !matchMedia("(prefers-reduced-motion:reduce)").matches;
+      return (
+        !sessionStorage.getItem("visited") &&
+        !matchMedia("(prefers-reduced-motion:reduce)").matches
+      );
     } catch {
       return true;
     }
@@ -154,12 +162,12 @@ export default function App() {
     return () => observer.disconnect();
   }, [location.pathname]);
   useEffect(() => () => clearTimeout(toastTimer.current), []);
-  function notify(message) {
+  const notify = useCallback((message) => {
     setToast(message);
     clearTimeout(toastTimer.current);
     toastTimer.current = setTimeout(() => setToast(""), 1800);
-  }
-  async function copyEmail() {
+  }, []);
+  const copyEmail = useCallback(async () => {
     try {
       await navigator.clipboard.writeText(content.profile.email);
       notify("Copied ✓");
@@ -168,7 +176,11 @@ export default function App() {
       notify("Copy unavailable. Email: " + content.profile.email);
       return false;
     }
-  }
+  }, [notify]);
+  const outletContext = useMemo(
+    () => ({ copyEmail, notify }),
+    [copyEmail, notify],
+  );
   function jump(id) {
     setPalette(false);
     setMenu(false);
@@ -192,7 +204,8 @@ export default function App() {
       {intro && (
         <section className="intro" aria-label="Welcome">
           <span>
-            <img src="/images/after-hours/brand/mark.svg" alt="" />{content.workshop.welcome}
+            <img src="/images/after-hours/brand/mark.svg" alt="" />
+            {content.workshop.welcome}
           </span>
           <button onClick={() => setIntro(false)}>
             Skip intro <X size={16} />
@@ -200,9 +213,16 @@ export default function App() {
         </section>
       )}
       <header className="nav">
-        <Link className="wordmark" to="/" aria-label="After hours — Alok Sahoo home">
+        <Link
+          className="wordmark"
+          to="/"
+          aria-label="After hours — Alok Sahoo home"
+        >
           <img src="/images/after-hours/brand/mark.svg" alt="" />
-          <span>{content.workshop.name}<small>{content.profile.name}</small></span>
+          <span>
+            {content.workshop.name}
+            <small>{content.profile.name}</small>
+          </span>
         </Link>
         <nav
           className={menu ? "links open" : "links"}
@@ -263,7 +283,7 @@ export default function App() {
         }
       >
         <div className="route-page" key={location.pathname}>
-          <Outlet context={{ copyEmail, notify }} />
+          <Outlet context={outletContext} />
         </div>
       </Suspense>
       {palette && (

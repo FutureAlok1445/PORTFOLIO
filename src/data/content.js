@@ -1,4 +1,54 @@
 export const content = {
+  projectBoundaries: {
+    histofacts: [
+      "AI/PDF quiz generation is incomplete; personalized quizzes use existing and template questions.",
+      "The upload interface reads files as text; reliable PDF extraction is not implemented.",
+      "The inspected repository is a fork; the snapshot does not establish individual authorship.",
+    ],
+    aura: [
+      "Response correlation is a heuristic, not proof of compromise; encrypted or missing HTTP evidence limits analysis.",
+      "A verified fine-tuned explainability checkpoint was not established; no explanation accuracy is claimed.",
+    ],
+    "reimbursement-system": [
+      "Formatted documents use the browser print flow; a separate server PDF engine is not claimed.",
+    ],
+    techriciate: [
+      "The current work list has no category filters. The contact form uses client-side native validation.",
+      "A 3D hero module exists in the source but is not mounted in the active homepage.",
+    ],
+    "bloom-blossom": [
+      "No online payment gateway is implemented.",
+      "Without MongoDB, preview checkout returns a simulated order without persistence. Real operation requires configured database and authentication services.",
+    ],
+    "fincoach-ai": [
+      "Spending context is demo data; statement ingestion and linked bank accounts are not implemented.",
+      "FastAPI routes are scaffolded rather than the active AI pipeline. Provider fallback models depend on availability.",
+    ],
+    "talent-sync": [
+      "The fallback still requires the SBERT embedding layer. Scorer artifacts require preprocessing and training.",
+      "Deployment and matching quality have not been independently established.",
+    ],
+    "credit-card-fraud-detection": [
+      "The Flask application serves XGBoost; other checked-in model artifacts are not served by that interface.",
+      "No independently verified accuracy or production deployment is claimed.",
+    ],
+    bookitnow: [
+      "No booking backend, seat inventory, payment processing or persisted reservation exists.",
+      "Movie suggestions require an API key. The local confirmation dialog does not represent a real booking.",
+    ],
+    speedotype: [
+      "No backend, account system, multiplayer leaderboard or additional test modes are implemented.",
+      "Personal best and theme are stored in the same browser.",
+    ],
+    "cosmeon-fs-lite": [
+      "Raft is a shared-process emulator, rather than a production distributed consensus guarantee.",
+      "The audit is a hash-challenge simulation. DTN behavior is protocol-inspired; real spacecraft availability is not claimed.",
+    ],
+    "trustnet-ai": [
+      "The pipeline remains in development. No accuracy or production benchmark is claimed.",
+      "Information comes from the supplied resume; no public repository is available for inspection.",
+    ],
+  },
   workshop: {
     name: "After hours",
     subtitle: "Alok’s digital workshop",
@@ -14,7 +64,8 @@ export const content = {
     welcome: "Warming up the desk lamp",
     aboutTitle: "A note from the person at the desk.",
     workTitle: "Things I’ve spent time building.",
-    workIntro: "Twelve projects. Different problems, carefully connected systems. Open a file to see how it works.",
+    workIntro:
+      "Twelve projects. Different problems, carefully connected systems. Open a file to see how it works.",
     toolkitTitle: "Tools within reach.",
     toolkitIntro: "The languages, frameworks and systems I work with.",
     journeyTitle: "The workbench log.",
@@ -532,7 +583,7 @@ export const content = {
         "Modular UI architecture enables smooth catalog browsing and authenticated administrative management.",
       ],
       outcome:
-        "Commercial agency web platform with responsive product catalogs, interactive category filters, and direct WhatsApp sales workflows.",
+        "A brand-led agency website presenting services, work and structured contact inquiries. Separate commercial-platform contributions are described in the work experience.",
       techGroups: {
         Frontend: [
           "Next.js",
@@ -1024,7 +1075,7 @@ export const content = {
         "Responsive mobile-first layout designed for rapid checkout flows and event scheduling.",
       ],
       outcome:
-        "A modern movie and event ticketing application with interactive venue seating maps and showtime discovery.",
+        "A Flutter movie and event interface prototype with browsing, detail screens and a validated booking form that shows a local confirmation.",
       techGroups: {
         Frontend: ["Flutter", "Dart", "Material 3"],
         Backend: ["HTTP"],
@@ -1442,6 +1493,7 @@ content.projects = content.projects
     status: "",
     visual: "generic",
     ...project,
+    scopeNotes: content.projectBoundaries[project.slug] || [],
     stack: Array.isArray(project.stack) ? project.stack : [],
     details: Array.isArray(project.details) ? project.details : [],
     decisions: Array.isArray(project.decisions) ? project.decisions : [],

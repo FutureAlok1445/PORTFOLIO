@@ -5,6 +5,7 @@ import { content } from "../src/data/content.js";
 import assert from "node:assert/strict";
 const browser = await chromium.launch({ channel: "chromium" });
 const context = await browser.newContext({ reducedMotion: "reduce" });
+await context.addInitScript(() => localStorage.setItem("theme", "light"));
 const page = await context.newPage();
 const errors = [];
 function monitor(target) {
@@ -90,15 +91,12 @@ await expect(touch.getByLabel("Search portfolio commands")).toBeFocused();
 await touch
   .getByRole("button", { name: "Close command palette", exact: true })
   .tap();
-await touch.waitForFunction(
-  () => document.querySelector("canvas")?.dataset.animationActive === "false",
-);
 assert.equal(
-  await touch
-    .locator(".view-cursor")
-    .evaluate((element) => getComputedStyle(element).display),
-  "none",
+  await touch.locator("canvas").count(),
+  0,
+  "Touch uses the static desk",
 );
+await expect(touch.locator(".desk-poster")).toBeVisible();
 await touch.screenshot({ path: "test-results/touch-mobile.png" });
 await touchContext.close();
 const transitionContext = await browser.newContext({
