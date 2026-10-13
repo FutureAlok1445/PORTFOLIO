@@ -116,8 +116,15 @@ export default function Project() {
       </div>
       <section className="case-status">
         <div>
-          <h2>Impact & Architecture Scope.</h2>
+          <h2>Current scope.</h2>
+          <p>{project.status}</p>
           <p>{project.outcome}</p>
+          {project.details.length > 0 && <ul className="decision-list">{project.details.map(detail => <li key={detail}>{detail}</li>)}</ul>}
+        </div>
+        <div>
+          <h3>Implementation notes</h3>
+          <ul className="decision-list">{(project.limitations || []).map(note => <li key={note}>{note}</li>)}</ul>
+          {project.sources?.length > 0 && <><h3>Source references</h3><ul className="source-links">{project.sources.map(source => <li key={source.url}><a href={source.url} target="_blank" rel="noopener noreferrer">{source.label} <ArrowUpRight size={13}/></a></li>)}</ul></>}
         </div>
       </section>
       {(project.live || project.repo) && (
@@ -125,7 +132,7 @@ export default function Project() {
           <div className="case-cta-text">
             <h2>Ready to inspect the build?</h2>
             <p>
-              Experience the deployed application or review the complete codebase on GitHub.
+              {project.live ? 'Open the linked project or inspect its source.' : 'Inspect the source and implementation on GitHub.'}
             </p>
           </div>
           <div className="case-cta-actions">
