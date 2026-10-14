@@ -25,6 +25,7 @@ for (const file of files) {
   );
   result.push({ file, status: response.status(), bytes: body.length });
 }
+fs.mkdirSync("test-results/living-workshop", { recursive: true });
 fs.writeFileSync(
   "test-results/living-workshop/assets-http.json",
   JSON.stringify(result, null, 2),
