@@ -37,6 +37,7 @@ for(const [state,[frames,fps,loop]] of Object.entries(states)){
 await sharp({create:{width:N*8,height:N*rows.length,channels:4,background:'#202d39'}}).composite(rows).png().toFile(dir+'/patch-contact-sheet.png');
 await sharp({create:{width:N*8,height:N*rows.length,channels:4,background:'#00000000'}}).composite(rows).png().toFile(dir+'/patch-atlas.png');
 fs.writeFileSync(dir+'/patch-manifest.json',JSON.stringify(manifest,null,2));
+fs.writeFileSync('src/data/patch-manifest.json',JSON.stringify(manifest,null,2));
 console.log('Patch: '+Object.keys(states).length+' states, '+Object.values(states).reduce((n,s)=>n+s[0],0)+' authored pixel frames.');
 
 await sharp(dir+'/patch-idle.png').extract({left:0,top:0,width:48,height:48}).png().toFile(dir+'/patch-poster.png');

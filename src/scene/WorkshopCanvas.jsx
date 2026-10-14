@@ -5,7 +5,7 @@ import { chapterById, patchZones } from "./SceneTimeline";
 import { useExperience } from "../components/after-hours/ExperienceContext";
 import { scrollToTarget } from "../components/scroll";
 import { content } from "../data/content";
-import patchManifest from "../../public/images/after-hours/patch/patch-manifest.json";
+import patchManifest from "../data/patch-manifest.json";
 import { CameraDirector } from "./CameraDirector";
 import { createWorldDebug } from "./WorldDebug";
 import { spatialAudit } from "./SpatialAudit";

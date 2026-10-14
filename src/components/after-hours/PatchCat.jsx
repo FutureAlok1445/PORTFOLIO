@@ -1,5 +1,5 @@
 import { useEffect, useEffectEvent, useRef, useState } from "react";
-import manifest from "../../../public/images/after-hours/patch/patch-manifest.json";
+import manifest from "../../data/patch-manifest.json";
 export default function PatchCat({
   variant = "idle",
   interactive = false,

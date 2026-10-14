@@ -1,0 +1,149 @@
+{
+  "character": "Patch",
+  "frameWidth": 48,
+  "frameHeight": 48,
+  "palette": {
+    "edge": "#111821",
+    "fur": "#303740",
+    "shade": "#59636c",
+    "cream": "#f5f0e6",
+    "amber": "#f2c477",
+    "moss": "#92af9a",
+    "coral": "#d98470"
+  },
+  "animations": {
+    "idle": {
+      "file": "patch-idle.png",
+      "frames": 4,
+      "fps": 2,
+      "loop": true,
+      "row": 0,
+      "columns": 4
+    },
+    "blink": {
+      "file": "patch-blink.png",
+      "frames": 4,
+      "fps": 8,
+      "loop": false,
+      "row": 1,
+      "columns": 4
+    },
+    "look": {
+      "file": "patch-look.png",
+      "frames": 4,
+      "fps": 5,
+      "loop": false,
+      "row": 2,
+      "columns": 4
+    },
+    "tail": {
+      "file": "patch-tail.png",
+      "frames": 6,
+      "fps": 7,
+      "loop": false,
+      "row": 3,
+      "columns": 6
+    },
+    "sleep": {
+      "file": "patch-sleep.png",
+      "frames": 4,
+      "fps": 2,
+      "loop": true,
+      "row": 4,
+      "columns": 4
+    },
+    "wake": {
+      "file": "patch-wake.png",
+      "frames": 6,
+      "fps": 7,
+      "loop": false,
+      "row": 5,
+      "columns": 6
+    },
+    "stretch": {
+      "file": "patch-stretch.png",
+      "frames": 6,
+      "fps": 7,
+      "loop": false,
+      "row": 6,
+      "columns": 6
+    },
+    "walk": {
+      "file": "patch-walk.png",
+      "frames": 8,
+      "fps": 10,
+      "loop": true,
+      "row": 7,
+      "columns": 8
+    },
+    "paw": {
+      "file": "patch-paw.png",
+      "frames": 5,
+      "fps": 7,
+      "loop": false,
+      "row": 8,
+      "columns": 5
+    },
+    "pet": {
+      "file": "patch-pet.png",
+      "frames": 6,
+      "fps": 7,
+      "loop": false,
+      "row": 9,
+      "columns": 6
+    },
+    "peek": {
+      "file": "patch-peek.png",
+      "frames": 5,
+      "fps": 6,
+      "loop": false,
+      "row": 10,
+      "columns": 5
+    },
+    "return": {
+      "file": "patch-return.png",
+      "frames": 8,
+      "fps": 15,
+      "loop": true,
+      "row": 11,
+      "columns": 8
+    },
+    "ear": {
+      "file": "patch-ear.png",
+      "frames": 4,
+      "fps": 6,
+      "loop": false,
+      "row": 12,
+      "columns": 4
+    },
+    "stand": {
+      "file": "patch-stand.png",
+      "frames": 4,
+      "fps": 3,
+      "loop": true,
+      "row": 13,
+      "columns": 4
+    },
+    "jump": {
+      "file": "patch-jump.png",
+      "frames": 6,
+      "fps": 9,
+      "loop": false,
+      "row": 14,
+      "columns": 6
+    },
+    "settle": {
+      "file": "patch-settle.png",
+      "frames": 5,
+      "fps": 6,
+      "loop": false,
+      "row": 15,
+      "columns": 5
+    }
+  },
+  "anchor": [
+    24,
+    41
+  ],
+  "safePath": "front desk edge, 0.6 world units"
+}
