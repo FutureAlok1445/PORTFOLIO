@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { content } from "../data/content";
 import ProjectArtifact from "./after-hours/ProjectArtifact";
-export default function Projects() {
+import ArtifactCarousel from "./after-hours/ArtifactCarousel";
+export function ProjectCollection() {
   const [filter, setFilter] = useState("All");
   const filters = [
     "All",
@@ -35,9 +36,9 @@ export default function Projects() {
     links[next].focus();
   }
   return (
-    <section id="work" className="work container project-library">
+    <section className="work container project-library all-projects">
       <div className="section-heading library-heading">
-        <h2 className="serif">{content.workshop.workTitle}</h2>
+        <h1 className="serif">{content.workshop.workTitle}</h1>
         <p>{content.workshop.workIntro}</p>
       </div>
       <div className="library-tools">
@@ -57,6 +58,7 @@ export default function Projects() {
           {projects.length} {projects.length === 1 ? "project" : "projects"}
         </span>
       </div>
+      <h2 className="sr-only">Project case files</h2>
       <div
         className="artifact-shelf"
         onKeyDown={keys}
@@ -66,6 +68,17 @@ export default function Projects() {
           <ProjectArtifact key={p.slug} project={p} />
         ))}
       </div>
+    </section>
+  );
+}
+export default function Projects() {
+  return (
+    <section id="work" className="work container project-library">
+      <div className="section-heading library-heading">
+        <h2 className="serif">{content.workshop.workTitle}</h2>
+        <p>{content.workshop.workIntro}</p>
+      </div>
+      <ArtifactCarousel />
     </section>
   );
 }

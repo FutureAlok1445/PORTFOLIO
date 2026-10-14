@@ -48,6 +48,65 @@ const origin =
   (process.env.VERCEL_PROJECT_PRODUCTION_URL
     ? "https://" + process.env.VERCEL_PROJECT_PRODUCTION_URL
     : process.env.URL);
+const shareBase = origin ? origin.replace(/\/$/, "") : "";
+for (const project of content.projects) {
+  let page = html.replace(
+    /<title>[\s\S]*?<\/title>/,
+    "<title>" + escape(project.title) + " — Alok Sahoo</title>",
+  );
+  for (const [attribute, key, value] of [
+    ["name", "description", project.summary],
+    ["property", "og:title", project.title + " — Alok Sahoo"],
+    ["property", "og:description", project.summary],
+    [
+      "property",
+      "og:image",
+      shareBase + "/images/after-hours/meta/og-" + project.slug + ".png",
+    ],
+  ]) {
+    page = page.replace(
+      new RegExp("<meta\\s+" + attribute + '="' + key + '"[\\s\\S]*?/>'),
+      "<meta " + attribute + '="' + key + '" content="' + escape(value) + '"/>',
+    );
+  }
+  if (shareBase)
+    page = page.replace(
+      "</head>",
+      '<link rel="canonical" href="' +
+        shareBase +
+        "/projects/" +
+        project.slug +
+        '"/><meta property="og:url" content="' +
+        shareBase +
+        "/projects/" +
+        project.slug +
+        '"/></head>',
+    );
+  fs.mkdirSync("dist/projects/" + project.slug, { recursive: true });
+  fs.writeFileSync("dist/projects/" + project.slug + "/index.html", page);
+  fs.writeFileSync("dist/projects/" + project.slug + ".html", page);
+}
+const hosting = JSON.parse(fs.readFileSync("vercel.json", "utf8"));
+const caseRewrites = content.projects.map((project) => ({
+  source: "/projects/" + project.slug,
+  destination: "/projects/" + project.slug + ".html",
+}));
+const generatedSources = new Set(caseRewrites.map((rule) => rule.source));
+hosting.rewrites = [
+  ...caseRewrites,
+  ...(hosting.rewrites || []).filter(
+    (rule) => !generatedSources.has(rule.source),
+  ),
+];
+fs.writeFileSync("vercel.json", JSON.stringify(hosting, null, 2) + "\n");
+fs.writeFileSync(
+  "dist/_redirects",
+  caseRewrites
+    .map((rule) => rule.source + " " + rule.destination + " 200")
+    .join("\n") +
+    "\n" +
+    fs.readFileSync("public/_redirects", "utf8"),
+);
 if (!origin) {
   console.log(
     "SEO: set VITE_SITE_URL to generate absolute sitemap and social metadata.",
@@ -58,7 +117,11 @@ const url = new URL(origin);
 if (!["http:", "https:"].includes(url.protocol))
   throw new Error("VITE_SITE_URL must be an HTTP(S) origin");
 const base = url.origin;
-const paths = ["/", ...content.projects.map((p) => "/projects/" + p.slug)];
+const paths = [
+  "/",
+  "/projects",
+  ...content.projects.map((p) => "/projects/" + p.slug),
+];
 fs.writeFileSync(
   "dist/sitemap.xml",
   '<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' +
@@ -70,8 +133,8 @@ fs.writeFileSync(
   "User-agent: *\nAllow: /\nSitemap: " + base + "/sitemap.xml\n",
 );
 html = html.replace(
-  'content="/images/after-hours/brand/og-home.webp"',
-  'content="' + base + '/images/after-hours/brand/og-home.webp"',
+  'content="/images/after-hours/meta/og-home.png"',
+  'content="' + base + '/images/after-hours/meta/og-home.png"',
 );
 html = html.replace(
   "</head>",

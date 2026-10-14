@@ -1,64 +1,456 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-13T18:35:31.197Z",
+  "generatedAt": "2026-10-14T05:43:06.8918197+00:00",
   "title": "Design System: AFTER HOURS",
   "extensions": {
     "colorMeta": {
       "deep": {
         "role": "neutral",
-        "displayName": "Deeper ink"
+        "displayName": "Deeper ink",
+        "tonalRamp": [
+          "oklch(15% 0.0192 252.10)",
+          "oklch(26% 0.0192 252.10)",
+          "oklch(38% 0.0192 252.10)",
+          "oklch(49% 0.0192 252.10)",
+          "oklch(61% 0.0192 252.10)",
+          "oklch(72% 0.0192 252.10)",
+          "oklch(84% 0.0192 252.10)",
+          "oklch(95% 0.0192 252.10)"
+        ]
       },
       "navy": {
         "role": "neutral",
-        "displayName": "Ink"
+        "displayName": "Ink",
+        "tonalRamp": [
+          "oklch(15% 0.0224 254.24)",
+          "oklch(26% 0.0224 254.24)",
+          "oklch(38% 0.0224 254.24)",
+          "oklch(49% 0.0224 254.24)",
+          "oklch(61% 0.0224 254.24)",
+          "oklch(72% 0.0224 254.24)",
+          "oklch(84% 0.0224 254.24)",
+          "oklch(95% 0.0224 254.24)"
+        ]
       },
       "paper": {
         "role": "neutral",
-        "displayName": "Warm paper"
+        "displayName": "Warm paper",
+        "tonalRamp": [
+          "oklch(15% 0.0148 80.71)",
+          "oklch(26% 0.0148 80.71)",
+          "oklch(38% 0.0148 80.71)",
+          "oklch(49% 0.0148 80.71)",
+          "oklch(61% 0.0148 80.71)",
+          "oklch(72% 0.0148 80.71)",
+          "oklch(84% 0.0148 80.71)",
+          "oklch(95% 0.0148 80.71)"
+        ]
       },
       "steel": {
         "role": "secondary",
-        "displayName": "Steel blue"
+        "displayName": "Steel blue",
+        "tonalRamp": [
+          "oklch(15% 0.0543 242.45)",
+          "oklch(26% 0.0543 242.45)",
+          "oklch(38% 0.0543 242.45)",
+          "oklch(49% 0.0543 242.45)",
+          "oklch(61% 0.0543 242.45)",
+          "oklch(72% 0.0543 242.45)",
+          "oklch(84% 0.0543 242.45)",
+          "oklch(95% 0.0543 242.45)"
+        ]
       },
       "amber": {
         "role": "primary",
-        "displayName": "Warm amber"
+        "displayName": "Warm amber",
+        "tonalRamp": [
+          "oklch(15% 0.1071 73.13)",
+          "oklch(26% 0.1071 73.13)",
+          "oklch(38% 0.1071 73.13)",
+          "oklch(49% 0.1071 73.13)",
+          "oklch(61% 0.1071 73.13)",
+          "oklch(72% 0.1071 73.13)",
+          "oklch(84% 0.1071 73.13)",
+          "oklch(95% 0.1071 73.13)"
+        ]
       },
       "coral": {
         "role": "secondary",
-        "displayName": "Soft coral"
+        "displayName": "Soft coral",
+        "tonalRamp": [
+          "oklch(15% 0.0954 33.39)",
+          "oklch(26% 0.0954 33.39)",
+          "oklch(38% 0.0954 33.39)",
+          "oklch(49% 0.0954 33.39)",
+          "oklch(61% 0.0954 33.39)",
+          "oklch(72% 0.0954 33.39)",
+          "oklch(84% 0.0954 33.39)",
+          "oklch(95% 0.0954 33.39)"
+        ]
       },
       "mint": {
         "role": "secondary",
-        "displayName": "Muted mint"
+        "displayName": "Muted mint",
+        "tonalRamp": [
+          "oklch(15% 0.0428 159.66)",
+          "oklch(26% 0.0428 159.66)",
+          "oklch(38% 0.0428 159.66)",
+          "oklch(49% 0.0428 159.66)",
+          "oklch(61% 0.0428 159.66)",
+          "oklch(72% 0.0428 159.66)",
+          "oklch(84% 0.0428 159.66)",
+          "oklch(95% 0.0428 159.66)"
+        ]
       },
       "surface-light": {
         "role": "neutral",
-        "displayName": "Raised paper"
+        "displayName": "Raised paper",
+        "tonalRamp": [
+          "oklch(15% 0.0130 82.40)",
+          "oklch(26% 0.0130 82.40)",
+          "oklch(38% 0.0130 82.40)",
+          "oklch(49% 0.0130 82.40)",
+          "oklch(61% 0.0130 82.40)",
+          "oklch(72% 0.0130 82.40)",
+          "oklch(84% 0.0130 82.40)",
+          "oklch(95% 0.0130 82.40)"
+        ]
       },
       "muted-light": {
         "role": "neutral",
-        "displayName": "Paper supporting text"
+        "displayName": "Paper supporting text",
+        "tonalRamp": [
+          "oklch(15% 0.0225 236.16)",
+          "oklch(26% 0.0225 236.16)",
+          "oklch(38% 0.0225 236.16)",
+          "oklch(49% 0.0225 236.16)",
+          "oklch(61% 0.0225 236.16)",
+          "oklch(72% 0.0225 236.16)",
+          "oklch(84% 0.0225 236.16)",
+          "oklch(95% 0.0225 236.16)"
+        ]
       },
       "muted-dark": {
         "role": "neutral",
-        "displayName": "Ink supporting text"
+        "displayName": "Ink supporting text",
+        "tonalRamp": [
+          "oklch(15% 0.0202 240.81)",
+          "oklch(26% 0.0202 240.81)",
+          "oklch(38% 0.0202 240.81)",
+          "oklch(49% 0.0202 240.81)",
+          "oklch(61% 0.0202 240.81)",
+          "oklch(72% 0.0202 240.81)",
+          "oklch(84% 0.0202 240.81)",
+          "oklch(95% 0.0202 240.81)"
+        ]
       },
       "line-light": {
         "role": "neutral",
-        "displayName": "Paper rule"
+        "displayName": "Paper rule",
+        "tonalRamp": [
+          "oklch(15% 0.0136 82.40)",
+          "oklch(26% 0.0136 82.40)",
+          "oklch(38% 0.0136 82.40)",
+          "oklch(49% 0.0136 82.40)",
+          "oklch(61% 0.0136 82.40)",
+          "oklch(72% 0.0136 82.40)",
+          "oklch(84% 0.0136 82.40)",
+          "oklch(95% 0.0136 82.40)"
+        ]
       },
       "line-dark": {
         "role": "neutral",
-        "displayName": "Ink rule"
+        "displayName": "Ink rule",
+        "tonalRamp": [
+          "oklch(15% 0.0229 243.47)",
+          "oklch(26% 0.0229 243.47)",
+          "oklch(38% 0.0229 243.47)",
+          "oklch(49% 0.0229 243.47)",
+          "oklch(61% 0.0229 243.47)",
+          "oklch(72% 0.0229 243.47)",
+          "oklch(84% 0.0229 243.47)",
+          "oklch(95% 0.0229 243.47)"
+        ]
       },
       "accent-light": {
         "role": "primary",
-        "displayName": "Paper amber"
+        "displayName": "Paper amber",
+        "tonalRamp": [
+          "oklch(15% 0.0857 70.55)",
+          "oklch(26% 0.0857 70.55)",
+          "oklch(38% 0.0857 70.55)",
+          "oklch(49% 0.0857 70.55)",
+          "oklch(61% 0.0857 70.55)",
+          "oklch(72% 0.0857 70.55)",
+          "oklch(84% 0.0857 70.55)",
+          "oklch(95% 0.0857 70.55)"
+        ]
       },
       "artifact-ground": {
         "role": "neutral",
-        "displayName": "Artifact ground"
+        "displayName": "Artifact ground",
+        "tonalRamp": [
+          "oklch(15% 0.0248 248.62)",
+          "oklch(26% 0.0248 248.62)",
+          "oklch(38% 0.0248 248.62)",
+          "oklch(49% 0.0248 248.62)",
+          "oklch(61% 0.0248 248.62)",
+          "oklch(72% 0.0248 248.62)",
+          "oklch(84% 0.0248 248.62)",
+          "oklch(95% 0.0248 248.62)"
+        ]
+      },
+      "ink-950": {
+        "role": "neutral",
+        "displayName": "Living room ink",
+        "tonalRamp": [
+          "oklch(15% 0.0209 254.93)",
+          "oklch(26% 0.0209 254.93)",
+          "oklch(38% 0.0209 254.93)",
+          "oklch(49% 0.0209 254.93)",
+          "oklch(61% 0.0209 254.93)",
+          "oklch(72% 0.0209 254.93)",
+          "oklch(84% 0.0209 254.93)",
+          "oklch(95% 0.0209 254.93)"
+        ]
+      },
+      "ink-800": {
+        "role": "neutral",
+        "displayName": "Furniture shadow",
+        "tonalRamp": [
+          "oklch(15% 0.0283 246.78)",
+          "oklch(26% 0.0283 246.78)",
+          "oklch(38% 0.0283 246.78)",
+          "oklch(49% 0.0283 246.78)",
+          "oklch(61% 0.0283 246.78)",
+          "oklch(72% 0.0283 246.78)",
+          "oklch(84% 0.0283 246.78)",
+          "oklch(95% 0.0283 246.78)"
+        ]
+      },
+      "paper-100": {
+        "role": "neutral",
+        "displayName": "Living warm paper",
+        "tonalRamp": [
+          "oklch(15% 0.0143 84.58)",
+          "oklch(26% 0.0143 84.58)",
+          "oklch(38% 0.0143 84.58)",
+          "oklch(49% 0.0143 84.58)",
+          "oklch(61% 0.0143 84.58)",
+          "oklch(72% 0.0143 84.58)",
+          "oklch(84% 0.0143 84.58)",
+          "oklch(95% 0.0143 84.58)"
+        ]
+      },
+      "paper-300": {
+        "role": "neutral",
+        "displayName": "Physical muted paper",
+        "tonalRamp": [
+          "oklch(15% 0.0215 79.08)",
+          "oklch(26% 0.0215 79.08)",
+          "oklch(38% 0.0215 79.08)",
+          "oklch(49% 0.0215 79.08)",
+          "oklch(61% 0.0215 79.08)",
+          "oklch(72% 0.0215 79.08)",
+          "oklch(84% 0.0215 79.08)",
+          "oklch(95% 0.0215 79.08)"
+        ]
+      },
+      "lamp-amber": {
+        "role": "primary",
+        "displayName": "Living lamp amber",
+        "tonalRamp": [
+          "oklch(15% 0.1088 79.35)",
+          "oklch(26% 0.1088 79.35)",
+          "oklch(38% 0.1088 79.35)",
+          "oklch(49% 0.1088 79.35)",
+          "oklch(61% 0.1088 79.35)",
+          "oklch(72% 0.1088 79.35)",
+          "oklch(84% 0.1088 79.35)",
+          "oklch(95% 0.1088 79.35)"
+        ]
+      },
+      "screen-blue": {
+        "role": "secondary",
+        "displayName": "Living screen blue",
+        "tonalRamp": [
+          "oklch(15% 0.0656 232.38)",
+          "oklch(26% 0.0656 232.38)",
+          "oklch(38% 0.0656 232.38)",
+          "oklch(49% 0.0656 232.38)",
+          "oklch(61% 0.0656 232.38)",
+          "oklch(72% 0.0656 232.38)",
+          "oklch(84% 0.0656 232.38)",
+          "oklch(95% 0.0656 232.38)"
+        ]
+      },
+      "moss": {
+        "role": "secondary",
+        "displayName": "Living moss",
+        "tonalRamp": [
+          "oklch(15% 0.0439 153.75)",
+          "oklch(26% 0.0439 153.75)",
+          "oklch(38% 0.0439 153.75)",
+          "oklch(49% 0.0439 153.75)",
+          "oklch(61% 0.0439 153.75)",
+          "oklch(72% 0.0439 153.75)",
+          "oklch(84% 0.0439 153.75)",
+          "oklch(95% 0.0439 153.75)"
+        ]
+      },
+      "room-midnight": {
+        "role": "neutral",
+        "displayName": "Room midnight",
+        "tonalRamp": [
+          "oklch(15% 0.0216 251.79)",
+          "oklch(26% 0.0216 251.79)",
+          "oklch(38% 0.0216 251.79)",
+          "oklch(49% 0.0216 251.79)",
+          "oklch(61% 0.0216 251.79)",
+          "oklch(72% 0.0216 251.79)",
+          "oklch(84% 0.0216 251.79)",
+          "oklch(95% 0.0216 251.79)"
+        ]
+      },
+      "room-wall": {
+        "role": "neutral",
+        "displayName": "Deep wall",
+        "tonalRamp": [
+          "oklch(15% 0.0279 248.87)",
+          "oklch(26% 0.0279 248.87)",
+          "oklch(38% 0.0279 248.87)",
+          "oklch(49% 0.0279 248.87)",
+          "oklch(61% 0.0279 248.87)",
+          "oklch(72% 0.0279 248.87)",
+          "oklch(84% 0.0279 248.87)",
+          "oklch(95% 0.0279 248.87)"
+        ]
+      },
+      "reading-paper": {
+        "role": "neutral",
+        "displayName": "Reading paper",
+        "tonalRamp": [
+          "oklch(15% 0.0160 82.79)",
+          "oklch(26% 0.0160 82.79)",
+          "oklch(38% 0.0160 82.79)",
+          "oklch(49% 0.0160 82.79)",
+          "oklch(61% 0.0160 82.79)",
+          "oklch(72% 0.0160 82.79)",
+          "oklch(84% 0.0160 82.79)",
+          "oklch(95% 0.0160 82.79)"
+        ]
+      },
+      "paper-edge": {
+        "role": "neutral",
+        "displayName": "Paper edge",
+        "tonalRamp": [
+          "oklch(15% 0.0244 79.73)",
+          "oklch(26% 0.0244 79.73)",
+          "oklch(38% 0.0244 79.73)",
+          "oklch(49% 0.0244 79.73)",
+          "oklch(61% 0.0244 79.73)",
+          "oklch(72% 0.0244 79.73)",
+          "oklch(84% 0.0244 79.73)",
+          "oklch(95% 0.0244 79.73)"
+        ]
+      },
+      "walnut": {
+        "role": "neutral",
+        "displayName": "Walnut",
+        "tonalRamp": [
+          "oklch(15% 0.0328 52.61)",
+          "oklch(26% 0.0328 52.61)",
+          "oklch(38% 0.0328 52.61)",
+          "oklch(49% 0.0328 52.61)",
+          "oklch(61% 0.0328 52.61)",
+          "oklch(72% 0.0328 52.61)",
+          "oklch(84% 0.0328 52.61)",
+          "oklch(95% 0.0328 52.61)"
+        ]
+      },
+      "room-gold": {
+        "role": "primary",
+        "displayName": "Room gold",
+        "tonalRamp": [
+          "oklch(15% 0.1051 78.15)",
+          "oklch(26% 0.1051 78.15)",
+          "oklch(38% 0.1051 78.15)",
+          "oklch(49% 0.1051 78.15)",
+          "oklch(61% 0.1051 78.15)",
+          "oklch(72% 0.1051 78.15)",
+          "oklch(84% 0.1051 78.15)",
+          "oklch(95% 0.1051 78.15)"
+        ]
+      },
+      "monitor-frost": {
+        "role": "secondary",
+        "displayName": "Monitor frost",
+        "tonalRamp": [
+          "oklch(15% 0.0510 220.73)",
+          "oklch(26% 0.0510 220.73)",
+          "oklch(38% 0.0510 220.73)",
+          "oklch(49% 0.0510 220.73)",
+          "oklch(61% 0.0510 220.73)",
+          "oklch(72% 0.0510 220.73)",
+          "oklch(84% 0.0510 220.73)",
+          "oklch(95% 0.0510 220.73)"
+        ]
+      },
+      "pale-text": {
+        "role": "neutral",
+        "displayName": "Pale text",
+        "tonalRamp": [
+          "oklch(15% 0.0115 84.58)",
+          "oklch(26% 0.0115 84.58)",
+          "oklch(38% 0.0115 84.58)",
+          "oklch(49% 0.0115 84.58)",
+          "oklch(61% 0.0115 84.58)",
+          "oklch(72% 0.0115 84.58)",
+          "oklch(84% 0.0115 84.58)",
+          "oklch(95% 0.0115 84.58)"
+        ]
+      },
+      "paper-ink": {
+        "role": "neutral",
+        "displayName": "Paper ink",
+        "tonalRamp": [
+          "oklch(15% 0.0267 240.04)",
+          "oklch(26% 0.0267 240.04)",
+          "oklch(38% 0.0267 240.04)",
+          "oklch(49% 0.0267 240.04)",
+          "oklch(61% 0.0267 240.04)",
+          "oklch(72% 0.0267 240.04)",
+          "oklch(84% 0.0267 240.04)",
+          "oklch(95% 0.0267 240.04)"
+        ]
+      },
+      "terminal": {
+        "role": "neutral",
+        "displayName": "Terminal",
+        "tonalRamp": [
+          "oklch(15% 0.0370 236.15)",
+          "oklch(26% 0.0370 236.15)",
+          "oklch(38% 0.0370 236.15)",
+          "oklch(49% 0.0370 236.15)",
+          "oklch(61% 0.0370 236.15)",
+          "oklch(72% 0.0370 236.15)",
+          "oklch(84% 0.0370 236.15)",
+          "oklch(95% 0.0370 236.15)"
+        ]
+      },
+      "terminal-chrome": {
+        "role": "neutral",
+        "displayName": "Terminal chrome",
+        "tonalRamp": [
+          "oklch(15% 0.0384 232.13)",
+          "oklch(26% 0.0384 232.13)",
+          "oklch(38% 0.0384 232.13)",
+          "oklch(49% 0.0384 232.13)",
+          "oklch(61% 0.0384 232.13)",
+          "oklch(72% 0.0384 232.13)",
+          "oklch(84% 0.0384 232.13)",
+          "oklch(95% 0.0384 232.13)"
+        ]
       }
     },
     "typographyMeta": {
@@ -85,6 +477,18 @@
       "label": {
         "displayName": "Label",
         "purpose": "Supporting navigation and metadata."
+      },
+      "room-name": {
+        "displayName": "Compact room identity",
+        "purpose": "World-view name; distinct from editorial Quick View hero."
+      },
+      "reading-body": {
+        "displayName": "Object reading",
+        "purpose": "Semantic paragraphs on focused object surfaces."
+      },
+      "reading-title": {
+        "displayName": "Object title",
+        "purpose": "Default reading-surface heading."
       }
     },
     "shadows": [
@@ -127,6 +531,16 @@
         "name": "nav-active",
         "value": "inset 0 -2px var(--accent)",
         "purpose": "Selected section."
+      },
+      {
+        "name": "object-surface",
+        "value": "0 15px 55px #0004",
+        "purpose": "Focused display surface."
+      },
+      {
+        "name": "pinned-note",
+        "value": "4px 12px 18px #1b131640",
+        "purpose": "Physical Journey reading note."
       }
     ],
     "motion": [
@@ -161,19 +575,34 @@
         "purpose": "One route-scoped instance on eligible desktop."
       },
       {
-        "name": "desk-render-cap",
-        "value": "30fps; pixel ratio ≤1.5",
-        "purpose": "Scene loop pauses offscreen/hidden."
+        "name": "living-render-policy",
+        "value": "on demand; DPR ≤1.5",
+        "purpose": "Render finite camera/object responses; pause hidden/offscreen."
       },
       {
-        "name": "desk-damping",
-        "value": "0.075; x 0.28 / y 0.18",
-        "purpose": "Bounded camera pointer response."
+        "name": "living-patch-walk",
+        "value": "0.6 world units / 2600ms",
+        "purpose": "Bounded desk walk/return; desktop articulated voxel gait and original pixel fallback remain one character state."
       },
       {
-        "name": "patch-stroll",
-        "value": "24px",
-        "purpose": "Local walk only; reduced motion selects static frames."
+        "name": "living-signal",
+        "value": "1350ms finite pulse",
+        "purpose": "Command-triggered cable/pulse, hidden in settled scene."
+      },
+      {
+        "name": "object-page-turn",
+        "value": "650ms / cubic-bezier(0.4,0,0.2,1)",
+        "purpose": "Hinged curved mesh and front/back semantic sheet; disabled under reduced motion."
+      },
+      {
+        "name": "world-camera",
+        "value": "single CameraDirector: Guided / Orbit / Fly / Top / Focus / Transition",
+        "purpose": "True 360° orbit/pan/orthographic zoom; six-axis drone with conservative swept collisions, lifted scripted routes and exact focus bookmarks; no pointer lock."
+      },
+      {
+        "name": "patch-ground-anchor",
+        "value": "desktop voxel four-paw contact; fallback [24,41] on 48×48 grid",
+        "purpose": "Grounded articulated cat in live 3D; sixteen pixel strips / 85 authored positions on touch and Quick View."
       }
     ],
     "breakpoints": [
@@ -229,14 +658,6 @@
       "css": ".ds-note-field{padding:22px;background:var(--paper,#f5efe5);color:var(--navy,#19212b);font:16px Space,sans-serif}.ds-note-field label{display:block;font-size:13px;margin:0 0 9px}.ds-field{display:block;width:100%;border:1px solid #a6a9a6;background:#fffaf1;color:var(--navy,#19212b);padding:13px;border-radius:2px;font:16px Space,sans-serif;caret-color:#825a26}.ds-field::placeholder{color:#606a70}.ds-field:focus-visible{outline:2px solid #825a26;outline-offset:5px}"
     },
     {
-      "name": "Domain Filter",
-      "kind": "chip",
-      "refersTo": "filter-selected-dark",
-      "description": "Domain discovery with a selected state and 44px target.",
-      "html": "<button class=\"ds-filter\" aria-pressed=\"true\">All</button><button class=\"ds-filter\" aria-pressed=\"false\">AI / ML</button>",
-      "css": ".ds-filter{padding:11px 12px;min-height:44px;font:13px Space,sans-serif;border:0;border-radius:3px;background:none;color:var(--ink,#f5efe5);cursor:pointer}.ds-filter[aria-pressed=true]{background:var(--ink,#f5efe5);color:var(--bg,#111820)}.ds-primary:focus-visible,.ds-text:focus-visible,.ds-field:focus-visible,.ds-filter:focus-visible,.ds-nav button:focus-visible,.ds-artifact:focus-visible,.ds-key:focus-visible,.ds-step:focus-visible{outline:2px solid var(--focus,#d7a35d);outline-offset:5px}"
-    },
-    {
       "name": "Section Navigation",
       "kind": "nav",
       "description": "Ordinary section buttons with a restrained active underline.",
@@ -251,73 +672,87 @@
       "css": ".ds-artifact{display:block;border-bottom:1px solid var(--line,#3e4a54);padding-bottom:20px;color:var(--ink,#f5efe5);font:16px Space,sans-serif;text-decoration:none}.ds-artifact-art{display:block;aspect-ratio:8/5;background:#28333e;border-radius:5px 5px 0 0;overflow:hidden;border:1px solid var(--line,#3e4a54);box-shadow:0 14px 18px -14px #0008;transition:transform .25s}.ds-artifact:hover .ds-artifact-art{transform:translateY(-4px) rotate(-.4deg)}.ds-artifact h3{font-size:21px;line-height:1.3;margin:20px 0 8px}.ds-artifact p{font-size:14px;line-height:1.7;color:var(--muted,#afbcc6);margin:0 0 16px}.ds-artifact-stack{font-size:12px;color:var(--accent,#d7a35d)}.ds-primary:focus-visible,.ds-text:focus-visible,.ds-field:focus-visible,.ds-filter:focus-visible,.ds-nav button:focus-visible,.ds-artifact:focus-visible,.ds-key:focus-visible,.ds-step:focus-visible{outline:2px solid var(--focus,#d7a35d);outline-offset:5px}@media(prefers-reduced-motion:reduce){.ds-artifact-art{transition:none;transform:none!important}}"
     },
     {
-      "name": "Toolkit Key",
-      "kind": "chip",
-      "refersTo": "toolkit-key",
-      "description": "Small tactile pressed control for a real tool application.",
-      "html": "<span class=\"ds-key-shell\"><button class=\"ds-key\" aria-pressed=\"false\">React</button></span>",
-      "css": ".ds-key-shell{display:inline-block;border:1px solid var(--line,#3e4a54);background:var(--surface,#19212b);border-radius:4px;box-shadow:0 3px 5px #0002}.ds-key{padding:10px 12px;min-height:44px;font:13px Space,sans-serif;border:0;background:none;color:var(--ink,#f5efe5);border-radius:4px;transition:transform .18s;cursor:pointer}.ds-key:hover{transform:translateY(-2px)}.ds-key[aria-pressed=true]{background:var(--ink,#f5efe5);color:var(--bg,#111820);transform:translateY(2px)}.ds-primary:focus-visible,.ds-text:focus-visible,.ds-field:focus-visible,.ds-filter:focus-visible,.ds-nav button:focus-visible,.ds-artifact:focus-visible,.ds-key:focus-visible,.ds-step:focus-visible{outline:2px solid var(--focus,#d7a35d);outline-offset:5px}@media(prefers-reduced-motion:reduce){.ds-key{transition:none;transform:none!important}}"
-    },
-    {
-      "name": "Notebook Page",
-      "kind": "custom",
-      "refersTo": "notebook",
-      "description": "Warm paper note that retains its material in both themes.",
-      "html": "<article class=\"ds-notebook\"><h2>A note from the workshop</h2><p>Personal context belongs beside the engineering work.</p></article>",
-      "css": ".ds-notebook{position:relative;background:var(--paper,#f5efe5);color:var(--navy,#19212b);padding:44px 44px 32px;border-radius:2px;box-shadow:4px 12px 30px #0002;transform:rotate(.5deg);border-left:1px solid var(--coral,#d98e7d);font:18px/1.7 Space,sans-serif}.ds-notebook:before{content:'';position:absolute;top:-12px;left:40%;width:95px;height:25px;background:#d7a35d66;transform:rotate(-5deg)}.ds-notebook h2{font:400 30px/1.25 Instrument,serif}.ds-notebook p{margin-bottom:0}@media(max-width:520px){.ds-notebook{padding:27px;font-size:16px}}"
-    },
-    {
-      "name": "Architecture Step",
+      "name": "Object Action",
       "kind": "button",
-      "description": "Inspectable workflow node with an explicit pressed state.",
-      "html": "<button class=\"ds-step\" aria-pressed=\"true\"><span>01</span> Workflow step <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" aria-hidden=\"true\"><path d=\"M5 12h14m-7-7 7 7-7 7\"/></svg></button>",
-      "css": ".ds-step{display:flex;align-items:center;gap:10px;min-height:70px;width:100%;text-align:left;padding:14px;border:1px solid var(--line,#3e4a54);border-radius:3px;font:13px Space,sans-serif;background:none;color:var(--ink,#f5efe5);cursor:pointer}.ds-step span{font-size:12px;color:var(--muted,#afbcc6)}.ds-step svg{margin-left:auto}.ds-step[aria-pressed=true]{background:var(--ink,#f5efe5);color:var(--bg,#111820)}.ds-step[aria-pressed=true] span{color:inherit}.ds-primary:focus-visible,.ds-text:focus-visible,.ds-field:focus-visible,.ds-filter:focus-visible,.ds-nav button:focus-visible,.ds-artifact:focus-visible,.ds-key:focus-visible,.ds-step:focus-visible{outline:2px solid var(--focus,#d7a35d);outline-offset:5px}"
+      "description": "Extracted from current object-surface styles.",
+      "html": "<button class=\"ds-object-action\">Open project</button>",
+      "css": ".ds-object-action{display:inline-flex;min-height:44px;padding:12px 16px;background:#f2c47b;color:#1b2933;border:0;border-radius:3px;font:16px Space,sans-serif;cursor:pointer}.ds-object-action:hover{filter:brightness(1.06)}.ds-object-action:focus-visible{outline:3px solid #d9a553;outline-offset:3px}",
+      "refersTo": "object-primary"
+    },
+    {
+      "name": "Object Search",
+      "kind": "input",
+      "description": "Extracted from current object-surface styles.",
+      "html": "<label class=\"ds-object-label\" for=\"ds-records\">Search records</label><input class=\"ds-object-field\" id=\"ds-records\" type=\"search\">",
+      "css": ".ds-object-label{display:block;color:#f4f0e8;font:14px Space,sans-serif;margin-bottom:6px}.ds-object-field{font:16px Space,sans-serif;min-height:44px;padding:10px 12px;border:1px solid #829aa6;border-radius:3px;background:#183340;color:#f4f0e8}.ds-object-field:hover{border-color:#9bc7d6}.ds-object-field:focus-visible{outline:3px solid #d9a553;outline-offset:3px}",
+      "refersTo": "object-field"
+    },
+    {
+      "name": "Monitor Apps",
+      "kind": "nav",
+      "description": "Extracted from current object-surface styles.",
+      "html": "<nav class=\"ds-apps\" aria-label=\"Monitor apps\"><button aria-pressed=\"true\">Explorer</button><button aria-pressed=\"false\">About</button></nav>",
+      "css": ".ds-apps{display:flex;flex-wrap:wrap;gap:5px;padding:8px 12px;background:#1d3542}.ds-apps button{font:16px Space,sans-serif;min-height:44px;padding:9px 14px;border:0;color:#d0e0e6;background:transparent}.ds-apps button[aria-pressed=true]{background:#9bc7d6;color:#1b2933;border-radius:3px}.ds-apps button:hover{background:#395565}.ds-apps button:focus-visible{outline:3px solid #d9a553;outline-offset:3px}"
+    },
+    {
+      "name": "Drawer Divider",
+      "kind": "chip",
+      "description": "Extracted from current object-surface styles.",
+      "html": "<button class=\"ds-divider\" aria-pressed=\"true\">Certificates</button>",
+      "css": ".ds-divider{font:16px Space,sans-serif;min-height:44px;padding:8px 12px;background:#cdbf9f;color:#1b2933;border:0;border-radius:6px 6px 0 0}.ds-divider:hover{background:#f5efe4}.ds-divider:focus-visible{outline:3px solid #d9a553;outline-offset:3px}"
+    },
+    {
+      "name": "Pinned Reading Note",
+      "kind": "custom",
+      "description": "Extracted from current object-surface styles.",
+      "html": "<article class=\"ds-pin-note\"><h3>Journey record</h3><p>Source-backed roles and dates remain readable on paper.</p></article>",
+      "css": ".ds-pin-note{position:relative;background:#f5efe4;color:#1b2933;padding:35px 35px 28px;box-shadow:4px 12px 18px #1b131640;transform:rotate(.4deg);font:16px/1.65 Space,sans-serif}.ds-pin-note h3{font-size:27px;line-height:1.2}"
     }
   ],
   "narrative": {
-    "northStar": "AFTER HOURS — the personal engineering workshop",
-    "overview": "Alok’s engineering work lives in one personal after-hours workshop. Warm paper, deep ink, matte miniature objects and restrained amber/steel light connect the real person to inspectable project evidence. The name, engineering statement, portrait and work/resume actions lead; the desk and quiet charcoal companion support them.\n\nThis is the owner-pinned Experience direction implemented in code, with no approved image comp. The surface composition and quality bar remain in `.impeccable/surfaces/after-hours-home.md`. The workshop is a metaphor, not a claim about Alok’s physical room; Patch is an original fictional companion. Project illustrations describe workflows and must not imply application screenshots or unverified results.",
+    "northStar": "AFTER HOURS — the world is the interface",
+    "overview": "Alok's personal engineering workshop uses walnut furniture, midnight walls, warm paper, frost-blue displays and amber practical light. The original identity, truthful portfolio, self-hosted fonts and editorial Quick View remain. The owner's 3.0 direction intentionally extends this material world into object-owned reading surfaces: operating a prop opens its monitor, paper, terminal, board or stationery, with semantic HTML aligned to the actual surface.\r\n\r\nThe workshop is a visual metaphor rather than a claim about Alok's physical room. Patch is an original fictional character. Project illustrations represent source-grounded workflows and do not imply application screenshots or unverified results. The approved repair extends this same identity into a bounded cutaway room, a dimensional day/night window, genuinely free camera controls and a grounded voxel Patch. It preserves the existing visual direction; historical implementation reports describe their original snapshots only.",
     "keyCharacteristics": [
-      "One procedural matte desk on eligible desktop browsers, with immediate authored vector fallback.",
-      "Self-hosted editorial serif headings and clear sans-serif body/interface text.",
-      "Distinct source-grounded artifacts, warm notebook pages, tactile tool keys and compact archive rows.",
-      "Native phone scrolling, semantic controls, visible focus and readable reduced-motion states."
+      "One persistent procedural matte room on eligible desktop browsers.",
+      "Crisp semantic text on meaningful physical surfaces, with a touch-oriented 2.5D handoff.",
+      "Self-hosted editorial serif and clear sans-serif interface type.",
+      "Complete Quick View, direct case routes, visible focus and reduced-motion access."
     ],
     "rules": [
       {
         "name": "The Material Rule",
-        "body": "Object colors stay local to their artwork; shared text and controls use semantic theme colors.",
-        "section": "neutral"
+        "body": "Use warm paper for physical reading and cool ink displays for operational interfaces. Object artwork may use local material colors; readable text must retain the surface's semantic contrast.",
+        "section": "colors"
       },
       {
         "name": "The Meaningful Label Rule",
-        "body": "Labels identify real domains, sources, states or location/time. Avoid redundant lead-ins above already clear headings.",
+        "body": "Labels identify real actions, records or states. Do not substitute pseudo-writing strokes for useful content or add redundant heading lead-ins.",
         "section": "typography"
       },
       {
-        "name": "The Readable First Rule",
-        "body": "Critical copy and actions render immediately; motion and the scene never gate access to content.",
+        "name": "The Shared Access Rule",
+        "body": "Every substantive object action has a semantic keyboard and touch path. No project, evidence or contact route is available only through a mesh hit.",
         "section": "layout"
       },
       {
-        "name": "The Local Depth Rule",
-        "body": "Keep dimensional treatments on meaningful workshop objects; do not spread 3D canvases or heavy shadows across ordinary copy.",
+        "name": "The Finite Response Rule",
+        "body": "Deliberate interactions move, explain their state and settle. Avoid perpetual gallery rotation, camera wandering or decorative signal wallpaper.",
         "section": "elevation"
       }
     ],
     "dos": [
-      "Do preserve the pinned workshop world, self-hosted fonts and semantic theme mappings.",
-      "Do keep all twelve artifacts equally discoverable and source-grounded.",
-      "Do edit content and project facts only in `src/data/content.js`.",
-      "Do keep semantic text, keyboard controls, visible focus, touch access and reduced-motion final states.",
-      "Do preserve one eligible route-scoped Lenis instance, native phone scrolling and complete resource cleanup."
+      "Do preserve the original identity, truthful facts, self-hosted fonts and material relationships.",
+      "Do keep content and project facts in `src/data/content.js`.",
+      "Do keep all twelve cases, direct work/resume actions and complete Quick View access.",
+      "Do preserve keyboard focus, touch access, reduced-motion states and complete cleanup.",
+      "Do distinguish local measured evidence from physical-device or service guarantees."
     ],
     "donts": [
-      "Don't invent clients, dates, awards, testimonials, metrics, project links or application screenshots.",
-      "Don't infer authorship, deployment or production readiness from repository existence.",
-      "Don't obscure meaningful artwork labels or reintroduce redundant heading eyebrows.",
-      "Don't expose TODO slots, link missing credentials or report form success before service success.",
-      "Don't publish without owner authorization."
+      "Don't invent clients, dates, awards, testimonials, metrics, links or screenshots.",
+      "Don't replace object-owned reading with detached generic side panels.",
+      "Don't expose TODO slots, link absent credentials or report form success before service acceptance.",
+      "Don't treat conceptual artwork or repository existence as proof of production capability.",
+      "Don't commit, push, merge or publish this upgrade without owner authorization."
     ]
   }
 }

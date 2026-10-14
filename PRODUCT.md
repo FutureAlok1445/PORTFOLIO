@@ -1,13 +1,17 @@
 # Portfolio product contract
 
-Alok Sahoo's existing engineering portfolio serves recruiters and engineering peers. Visitors should understand each project quickly, then inspect its technical workflow and source code. The owner confirmed this audience on 2 October 2026.
+Alok Sahoo's portfolio serves recruiters and engineering peers. Visitors should identify the person, understand each project quickly, inspect technical workflow/source evidence, take the resume and reach contact. The owner confirmed this audience on 2 October 2026.
 
-## Projects experience
+## Current experience
 
-The owner’s 13 October 2026 AFTER HOURS brief replaces the former horizontal book library with a personal digital workshop. One collection of twelve equally discoverable project artifacts uses distinct source-grounded illustrations, a three-column desktop shelf, two-column tablet shelf and vertical phone files. Filters discover domains without implying quality tiers. Case studies explain the problem, user flow, implementation, decisions, source references and honest limits. Architecture steps remain accessible interactive content. The signature desk is real procedural 3D on capable desktop browsers, with immediate authored vector art on touch, reduced-motion and unsupported devices. Patch is an original quiet pixel companion.
+The owner's AFTER HOURS 3.0 brief makes the workshop itself the interface. Monitor, notebook, circular project archive/examination station, keycap terminal, journey pins, credential drawer and stationery expose real semantic content within their physical reading surfaces. Compact direct work/resume actions remain immediate. All twelve projects stay equally discoverable, with complete case routes and a direct browse-all route.
+
+Desktop Explore uses one bounded procedural cutaway room, a dimensional night/day window and one camera director for true orbit, six-axis orthographic drone, overhead view and exact focus return; coarse/narrow Explore uses a lightweight 2.5D presentation and responsive reading handoffs. Quick View is a complete alternative. Reduced motion, low-power hints and rendering failure choose readable content; phones retain native scrolling. Patch is an original fictional companion with a grounded desktop voxel cat and the original sixteen-state pixel touch/Quick fallback. Coarse/narrow home/top/day plans are renderer-derived static 2.5D views, not free mobile 3D.
 
 ## Truth and constraints
 
-`src/data/content.js` is the single editable content source. Repository source outranks README claims. Resume-supported contributions remain distinguished from system capabilities. Unknown roles, dates, metrics and live deployments are omitted. TrustNet-AI retains its supplied development status and resume-supported facts. No invented dashboards, unrelated stock imagery, placeholder links or hidden project archive.
+`src/data/content.js` is the single editable factual source. Source evidence outranks promotional claims; resume-supported contributions remain distinct from system capabilities. Unknown facts/links are omitted. Credentials without URLs remain visibly unlinked; draft TODO slots remain hidden. TrustNet-AI retains supplied status and resume-supported scope. Conceptual artwork is never presented as application screenshots.
 
-Preserve React, Vite, React Router, GSAP, one Lenis instance when motion is enabled, self-hosted Space Grotesk / Instrument Serif, existing routes, navigation, contact, resume, education and credentials. The approved palette is ink, warm paper, steel blue, amber, coral and mint. Honor reduced motion and touch input; the phone experience uses native scrolling. No publication is authorized.
+Preserve React, Vite, React Router, GSAP, one eligible Lenis instance, self-hosted Space Grotesk/Instrument Serif, genuine media, navigation, contact, resume, education and credentials. Forms report success only after successful service acceptance. Latest owner authorization is local refinement only: no commit, reset, push, merge or publication. Existing v2 reports are retained as history; current evidence is linked from `docs/after-hours/CURRENT_STATE.md`.
+
+Current repair acceptance evidence and remaining scope limits live in [WORLD-REPAIR-REPORT.md](WORLD-REPAIR-REPORT.md); earlier 3.0 ledgers are historical. The approved room/camera/character expansion preserves the same identity and all factual content.

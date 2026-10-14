@@ -1,26 +1,17 @@
-import {
-  Code2,
-  Layers,
-  Database,
-  ScanFace,
-  ShieldCheck,
-  ArrowUpRight,
-  GraduationCap,
-} from "lucide-react";
+import { Code2, ArrowUpRight, GraduationCap } from "lucide-react";
 import { content } from "../data/content";
-import { useState } from "react";
-const icons = {
-  code: Code2,
-  layers: Layers,
-  database: Database,
-  scan: ScanFace,
-  shield: ShieldCheck,
-};
+import { useEffect, useState } from "react";
+import { useExperience } from "./after-hours/ExperienceContext";
+import { Link } from "react-router-dom";
 export function Skills() {
-  const [category, setCategory] = useState("All tools");
-  const [selected, setSelected] = useState("");
+  const e = useExperience(),
+    category = e.toolCategory,
+    selected = e.tool;
   const projects = content.projects.filter((project) =>
     project.stack.some((tool) => tool.toLowerCase() === selected.toLowerCase()),
+  );
+  const groups = content.skills.filter(
+    (s) => category === "All tools" || s.title === category,
   );
   return (
     <section id="skills" className="skills-band">
@@ -30,79 +21,83 @@ export function Skills() {
           <p>{content.workshop.toolkitIntro}</p>
         </div>
         <div className="toolkit-filters" aria-label="Tool categories">
-          {["All tools", ...content.skills.map((skill) => skill.title)].map(
-            (title) => (
-              <button
-                key={title}
-                aria-pressed={category === title}
-                onClick={() => {
-                  setCategory(title);
-                  setSelected("");
-                }}
-              >
-                {title}
-              </button>
-            ),
-          )}
+          {["All tools", ...content.skills.map((s) => s.title)].map((title) => (
+            <button
+              key={title}
+              className="physical-key"
+              aria-pressed={category === title}
+              onClick={() => e.chooseTool(title)}
+            >
+              {title}
+            </button>
+          ))}
         </div>
-        <div className="skills-grid">
-          {content.skills
-            .filter(
-              (skill) => category === "All tools" || skill.title === category,
-            )
-            .map((s) => {
-              const Icon = icons[s.icon] || Code2;
-              return (
-                <article className={"skill-card " + s.icon} key={s.title}>
-                  <Icon size={26} strokeWidth={1.5} />
-                  <h3>{s.title}</h3>
-                  <ul className="skill-chips">
-                    {s.items.map((item) => (
-                      <li key={item}>
-                        <button
-                          aria-pressed={selected === item}
-                          onClick={() =>
-                            setSelected(selected === item ? "" : item)
-                          }
-                        >
-                          {item}
-                        </button>
-                      </li>
-                    ))}
-                  </ul>
-                </article>
-              );
-            })}
-        </div>
-        <div className="tool-selection" role="status">
-          {selected && (
-            <>
-              <strong>{selected}</strong>
+        <div className="toolkit-reading">
+          <div className="skills-grid">
+            {groups.map((s) => (
+              <article className={"skill-card " + s.icon} key={s.title}>
+                <Code2 size={22} />
+                <h3>{s.title}</h3>
+                <ul className="skill-chips">
+                  {s.items.map((item) => (
+                    <li key={item}>
+                      <button
+                        aria-pressed={selected === item}
+                        onClick={() =>
+                          e.chooseTool(category, selected === item ? "" : item)
+                        }
+                      >
+                        {item}
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              </article>
+            ))}
+          </div>
+          <div className="tool-selection" role="status">
+            {selected ? (
+              <>
+                <strong>{selected}</strong>
+                <p>
+                  {projects.length
+                    ? "Used in these project files:"
+                    : "Part of the " +
+                      content.skills
+                        .find((s) => s.items.includes(selected))
+                        .title.toLowerCase() +
+                      " toolkit."}
+                </p>
+                {projects.map((p) => (
+                  <Link key={p.slug} to={"/projects/" + p.slug}>
+                    {p.title} <ArrowUpRight size={14} />
+                  </Link>
+                ))}
+              </>
+            ) : (
               <p>
-                {projects.length
-                  ? "In the project files: " +
-                    projects.map((project) => project.title).join(", ")
-                  : "Part of the " +
-                    content.skills
-                      .find((skill) => skill.items.includes(selected))
-                      .title.toLowerCase() +
-                    " toolkit."}
+                Press a category key, then choose a tool to find its place in
+                the project collection.
               </p>
-            </>
-          )}
+            )}
+          </div>
         </div>
       </div>
     </section>
   );
 }
 export function Experience() {
+  const [active, setActive] = useState(0);
+  useEffect(() => {
+    const pin = (event) => setActive(event.detail.index);
+    window.addEventListener("workshop:record", pin);
+    return () => window.removeEventListener("workshop:record", pin);
+  }, []);
   return (
     <section className="experience container" id="experience">
       <div className="experience-grid">
         <div className="experience-intro">
-          <h2 className="serif reveal-title">
-            {content.workshop.journeyTitle}
-          </h2>
+          <h2 className="serif">{content.workshop.journeyTitle}</h2>
           <p>
             Internships, independent contributions, and a degree in progress.
             Each one adds another layer.
@@ -114,38 +109,59 @@ export function Experience() {
         <div className="journey-records">
           <div className="timeline">
             <div className="timeline-fill" />
-            {content.experience.map((e) => (
-              <article key={e.company} className="timeline-item">
+            {content.experience.map((entry, index) => (
+              <article
+                key={entry.company}
+                className={
+                  "timeline-item " + (active === index ? "record-open" : "")
+                }
+              >
                 <div className="timeline-top">
-                  <span>{e.date}</span>
-                  <span>{e.location}</span>
+                  <span>{entry.date}</span>
+                  <span>{entry.location}</span>
                 </div>
-                <h3>{e.role}</h3>
-                {e.url ? (
-                  <a
-                    className="company"
-                    href={e.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {e.company} <ArrowUpRight size={14} />
-                  </a>
-                ) : (
-                  <p className="company">{e.company}</p>
-                )}
-                <p>{e.description}</p>
+                <button
+                  className="journey-pin"
+                  aria-expanded={active === index}
+                  aria-controls={"journey-record-" + index}
+                  onClick={() => setActive(active === index ? -1 : index)}
+                >
+                  <span className="record-pin" />
+                  <span>
+                    <strong>{entry.role}</strong>
+                    <small>{entry.company}</small>
+                  </span>
+                  <span aria-hidden="true">{active === index ? "−" : "+"}</span>
+                </button>
+                <div id={"journey-record-" + index} hidden={active !== index}>
+                  <p>{entry.description}</p>
+                  {entry.url && (
+                    <a
+                      className="company"
+                      href={entry.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {entry.company} <ArrowUpRight size={14} />
+                    </a>
+                  )}
+                </div>
               </article>
             ))}
           </div>
-          {content.education.map((e) => (
-            <article className="education" id="education" key={e.institution}>
+          {content.education.map((entry) => (
+            <article
+              className="education"
+              id="education"
+              key={entry.institution}
+            >
               <GraduationCap size={24} />
-              <span>{e.date}</span>
-              <h3>{e.institution}</h3>
-              <p>{e.degree}</p>
-              <p>{e.record}</p>
-              <small>{e.coursework}</small>
-              <small>Capstone: {e.capstone}</small>
+              <span>{entry.date}</span>
+              <h3>{entry.institution}</h3>
+              <p>{entry.degree}</p>
+              <p>{entry.record}</p>
+              <small>{entry.coursework}</small>
+              <small>Capstone: {entry.capstone}</small>
             </article>
           ))}
         </div>

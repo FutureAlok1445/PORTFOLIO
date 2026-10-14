@@ -16,6 +16,24 @@ colors:
   line-dark: "#3e4a54"
   accent-light: "#825a26"
   artifact-ground: "#28333e"
+  ink-950: "#111821"
+  ink-800: "#202d39"
+  paper-100: "#f5f0e6"
+  paper-300: "#d7cec0"
+  lamp-amber: "#f2c477"
+  screen-blue: "#82b4cf"
+  moss: "#92af9a"
+  room-midnight: "#111922"
+  room-wall: "#1d2935"
+  reading-paper: "#f5efe4"
+  paper-edge: "#d8cebe"
+  walnut: "#675347"
+  room-gold: "#f2c47b"
+  monitor-frost: "#9bc7d6"
+  pale-text: "#f4f0e8"
+  paper-ink: "#1b2933"
+  terminal: "#152b38"
+  terminal-chrome: "#233c49"
 typography:
   display:
     fontFamily: "Instrument, serif"
@@ -47,7 +65,21 @@ typography:
   label:
     fontFamily: "Space, sans-serif"
     fontSize: "13px"
+  room-name:
+    fontFamily: "Instrument, serif"
+    fontSize: "38px"
+    lineHeight: 1
+    letterSpacing: "-0.025em"
+  reading-body:
+    fontFamily: "Space, sans-serif"
+    fontSize: "16px"
+    lineHeight: 1.65
+  reading-title:
+    fontFamily: "Space, sans-serif"
+    fontSize: "27px"
+    lineHeight: 1.2
 rounded:
+  handoff: "9px"
   paper: "2px"
   control: "3px"
   key: "4px"
@@ -106,134 +138,125 @@ components:
     textColor: "{colors.navy}"
     rounded: "{rounded.paper}"
     padding: "36px"
+  object-primary:
+    backgroundColor: "{colors.room-gold}"
+    textColor: "{colors.paper-ink}"
+    rounded: "{rounded.control}"
+    padding: "12px 16px"
+  object-field:
+    backgroundColor: "#183340"
+    textColor: "{colors.pale-text}"
+    rounded: "{rounded.control}"
+    padding: "10px 12px"
 ---
 
 # Design System: AFTER HOURS
 
 ## Overview
 
-**Creative North Star: "AFTER HOURS — the personal engineering workshop"**
+**Creative North Star: "AFTER HOURS — the world is the interface"**
 
-Alok’s engineering work lives in one personal after-hours workshop. Warm paper, deep ink, matte miniature objects and restrained amber/steel light connect the real person to inspectable project evidence. The name, engineering statement, portrait and work/resume actions lead; the desk and quiet charcoal companion support them.
+Alok's personal engineering workshop uses walnut furniture, midnight walls, warm paper, frost-blue displays and amber practical light. The original identity, truthful portfolio, self-hosted fonts and editorial Quick View remain. The owner's 3.0 direction intentionally extends this material world into object-owned reading surfaces: operating a prop opens its monitor, paper, terminal, board or stationery, with semantic HTML aligned to the actual surface.
 
-This is the owner-pinned Experience direction implemented in code, with no approved image comp. The surface composition and quality bar remain in `.impeccable/surfaces/after-hours-home.md`. The workshop is a metaphor, not a claim about Alok’s physical room; Patch is an original fictional companion. Project illustrations describe workflows and must not imply application screenshots or unverified results.
+The workshop is a visual metaphor rather than a claim about Alok's physical room. Patch is an original fictional character. Project illustrations represent source-grounded workflows and do not imply application screenshots or unverified results. The approved repair extends this same identity into a bounded cutaway room, a dimensional day/night window, genuinely free camera controls and a grounded voxel Patch. It preserves the existing visual direction; historical implementation reports describe their original snapshots only.
 
 **Key Characteristics:**
 
-- One procedural matte desk on eligible desktop browsers, with immediate authored vector fallback.
-- Self-hosted editorial serif headings and clear sans-serif body/interface text.
-- Distinct source-grounded artifacts, warm notebook pages, tactile tool keys and compact archive rows.
-- Native phone scrolling, semantic controls, visible focus and readable reduced-motion states.
+- One persistent procedural matte room on eligible desktop browsers.
+- Crisp semantic text on meaningful physical surfaces, with a touch-oriented 2.5D handoff.
+- Self-hosted editorial serif and clear sans-serif interface type.
+- Complete Quick View, direct case routes, visible focus and reduced-motion access.
 
 ## Colors
 
-Warm neutrals establish the workshop; restrained functional accents identify light, action and object details. The frontmatter is normative.
+Warm paper and walnut distinguish physical records from cool operational displays. Root theme tokens remain available for Quick View and case pages; room-scoped tokens in the frontmatter describe the warm practical/cool display relationship across authored night and day moods.
 
 ### Primary
 
-- **Warm amber:** primary actions, dark-theme accent/focus, selection and lamp/object details.
-- **Paper amber:** the darker light-theme accent keeps labels and focus readable on paper.
+- **Room gold:** actions, selected technical details, practical lamp accents and visible focus.
+- **Paper amber:** the darker focus/action accent on light reading material.
 
 ### Secondary
 
-- **Steel blue:** cool monitor light and technical marks inside the authored objects.
-- **Soft coral:** notebook marks and small object details.
-- **Muted mint:** plant/lamp/notebook details and quiet status dots.
+- **Monitor frost and steel blue:** selected apps, monitor light and technical cues.
+- **Coral and moss:** restrained pins, bindings, notebook and character details.
 
 ### Neutral
 
-- **Deeper ink / ink:** dark background and raised surface; ink becomes text on light paper.
-- **Warm paper / raised paper:** light background and fields. Notebook, ledger and contact remain paper in both themes.
-- **Light/dark muted text and rules:** theme-specific supporting copy and one-pixel separation.
-- **Artifact ground:** the illustration stage, scoped to project artwork.
+- **Room midnight and wall:** connected architecture and navigation backing.
+- **Walnut:** examination station and journey-board framing.
+- **Reading paper and edge:** notebooks, credentials and stationery; dark paper ink supplies readable copy.
+- **Terminal and chrome:** cool display surfaces with pale text.
 
-Light mode maps background to paper, surface to raised paper, text to navy, muted/rule to the light variants and accent/focus to paper amber. Dark maps background to deep, surface to navy, text to paper, muted/rule to the dark variants and accent/focus to amber. Dark is the initial workshop atmosphere; the theme control remains available.
-
-**The Material Rule.** Object colors stay local to their artwork; shared text and controls use semantic theme colors.
+**The Material Rule.** Use warm paper for physical reading and cool ink displays for operational interfaces. Object artwork may use local material colors; readable text must retain the surface's semantic contrast.
 
 ## Typography
 
 **Display Font:** self-hosted Instrument Serif, registered as `Instrument`, with serif fallback.
 **Body Font:** self-hosted Space Grotesk, registered as `Space`, with sans-serif fallback.
 
-Instrument provides narrow editorial contrast; Space keeps evidence, labels and actions legible. Local WOFF2 files use swap; Space has real regular, medium and bold faces (400/500/700), Instrument regular (400). Do not synthesize extra faces.
+Instrument is regular (400); Space has real 400/500/700 files. Preserve these local WOFF2 files and their licenses. The existing editorial display, headline and case roles remain for Quick View and case routes. The compact room name uses the room-name role (42px on narrow screens). Reading body uses the dedicated 16px / 1.65 role, generally capped at 70ch. Object chrome uses 16px medium text; object reading titles use 27px, with local serif notebook and case-document titles.
 
-The frontmatter records the current hero, section, case, title, body and label roles. Body paragraphs use generous leading; project descriptions are compact (14px), About copy is larger (18px, 16px on phone), and supporting metadata is 12–13px. Case summaries scale (17–22px); technical copy generally caps at 65ch, with architecture descriptions up to 75ch. The hero summary caps at 39ch on desktop. Dates use tabular numerals.
-
-**The Meaningful Label Rule.** Labels identify real domains, sources, states or location/time. Avoid redundant lead-ins above already clear headings.
+**The Meaningful Label Rule.** Labels identify real actions, records or states. Do not substitute pseudo-writing strokes for useful content or add redundant heading lead-ins.
 
 ## Layout
 
-The centered content width caps at 1360px with the fluid gutter token; section spacing uses the fluid section token. Desktop hero columns are 0.9fr/1.1fr; About and Journey use 0.8fr/1.2fr, Contact equal columns. These are surface compositions, not a universal card grid.
+World view centers the connected room below the controls and compact identity. One object reading surface is authoritative at a time. Desktop bounds are projected from real Three.js surface corners; the camera approaches the same physical bezel/page/station. Reading containers have flexible inner scrolling rather than forcing the entire page beneath fixed chrome. Notebook navigation stays outside the scrollable print region.
 
-The artifact shelf uses three equal columns and gaps (44px vertically, 28px horizontally), two columns at 1100px and below, then one at 520px and below with a 35px gap. All twelve files share discoverability; filters express domains without ranking projects.
+At widths at or below 1024px, or with coarse input, Explore becomes a lightweight 2.5D room with actual renderer-derived home/top/day plan images, labeled object entrances, touch archive and responsive reading surfaces. Desktop orbit/drone controls belong only to eligible live 3D; the mobile plan does not imply free 3D. Patch and patrol occupy a reserved flow row before instructions and object actions; the Room settings tray anchors to the whole control cluster. The handoff keeps material-specific borders and fills the available viewport with bounded margins. Explorer stacks, archive files scroll horizontally, notebook flyleaf yields to the reading leaf, toolkit uses two columns, and records/contact stack. Native vertical scrolling remains available.
 
-At 768px and below, hero, About, Journey and Contact stack; the desk follows the introduction and caps at 620px. Navigation becomes a wrapping menu. At 520px and below, gutters become 20px, toolkit/honors and case text grids become single-column, forms tighten to 25px 22px and case architecture to 22px. Hero name becomes 70px; the case title becomes 48px and can wrap long words. Above 520px, the final base hero rule retains the frontmatter clamp, superseding earlier responsive font-size declarations. The 1700px rule widens hero spacing, but its earlier font-size declaration is superseded by the final base rule.
+Reduced motion, low-power hints, explicit Quick View or scene failure select the complete editorial content path. The live renderer additionally requires width at least 1025px and fine input. These are distinct gates: touch does not automatically mean Quick View. Quick View preserves its existing fluid gutter, 1360px content cap, responsive shelves and case typography.
 
-The desk stage retains a 10:7 ratio and the final desk radius. WebGL eligibility starts at 1025px with fine pointer and no reduced-motion preference; saving data and reported low device capacity also select the authored fallback. Lenis eligibility begins at 769px with fine pointer and no reduced-motion preference. These gates are intentionally distinct.
-
-**The Readable First Rule.** Critical copy and actions render immediately; motion and the scene never gate access to content.
+**The Shared Access Rule.** Every substantive object action has a semantic keyboard and touch path. No project, evidence or contact route is available only through a mesh hit.
 
 ## Elevation & Depth
 
-Depth belongs to physical workshop objects and paper, with quiet tonal separation elsewhere. The procedural desk uses actual mesh thickness, matte materials (roughness 0.88, metalness 0.02), orthographic framing and warm/cool lights. It is the only real-time 3D anchor.
+Depth comes from actual matte furniture, architectural anchors, local light and a controlled orthographic camera. Paper sheets, pinned notes, drawer files and bezels retain physical edges. Paper shadows and shallow key elevation support their materials; ordinary copy remains quiet. The current room uses one canvas; desktop Patch is an original voxel cat with four paws, pointed ears, muzzle/whiskers, curving tail and grounded gait/contact. Original nearest-filtered pixel artwork remains the mobile/Quick fallback.
 
-The sidecar owns exact shadow and motion values. Paper pages share a diffuse shadow and a local paper-noise texture; tool cards/keys use shallow soft elevation; artifact art lifts slightly without adopting the former book spine or page-edge stack. The dialog alone receives a larger modal shadow.
+CameraDirector is the single camera authority. Look around supplies true 360° orbit, pan and orthographic zoom; Free roam supplies six-axis travel and drag look within conservative room/furniture bounds; Top view supplies overhead pan/zoom. Object focus bookmarks and restores the prior pose. Lifted scripted routes avoid major solids. The orthographic lens is retained deliberately; free position/look is not a perspective FPS. A user-triggered page turn combines a hinged curved paper mesh and matching front/back HTML over 650ms. Reduced motion presents stable readable pages. The sidecar records motion and shadow extensions.
 
-**The Local Depth Rule.** Keep dimensional treatments on meaningful workshop objects; do not spread 3D canvases or heavy shadows across ordinary copy.
+**The Finite Response Rule.** Deliberate interactions move, explain their state and settle. Avoid perpetual gallery rotation, camera wandering or decorative signal wallpaper.
 
 ## Shapes
 
-Paper edges are nearly square; keys, small controls and modal corners remain restrained. Artifact tops soften without rounded bottoms. One-pixel borders supply structure; small dots are circular. The notebook’s half-degree tilt and short amber tape mark are local authored details. The final desk is a softly rounded rectangular stage, superseding the earlier arch silhouette.
+Physical edges determine the reading silhouette: monitor bezel, notebook binding, examination board, drawer tab and stationery. Shared small controls use restrained 3px corners; room navigation uses 6px and the responsive object handoff 9px. Circular pins and Patch's pixel clusters stay local to their objects. The archive is a real independent alcove with a solid concentric plinth and pedestal trays, without radial rods. Evenly spaced content-derived slots and a radius that grows to preserve chord clearance keep artifacts separate from the desk. The cutaway room uses a walnut plank floor, bounded walls and a dimensional signature window; the exposed diorama opening is intentional.
 
 ## Components
 
-### Actions and navigation
+### Actions, navigation and fields
 
-Primary actions use amber, deep ink text, medium weight, the action padding and a shallow shadow. Hover lifts 2px over 180ms. Resume/text actions underline on hover. Shared focus is a 2px theme outline offset 5px; controls generally provide a 44px minimum target, with the compact phone header using 38px minimum widths. The sticky header is 80px high, 70px on narrower screens, with a one-pixel bottom rule and selected-section inset accent. Theme and command controls remain real buttons.
+Real buttons and anchors expose selected/pressed/current states. Reading actions and inputs generally retain 44px targets; compact chrome close controls use 36px. Object focus uses a 3px amber outline offset 3px. Selected desktop apps invert frost and ink; selected document tabs invert walnut and paper. Fields use explicit labels, readable errors and native text editing. Preserve the established theme and command controls.
 
-### Project artifacts and case files
+### Object-owned reading surfaces
 
-Each artifact has a whole case-study link, distinct 8:5 source-grounded illustration, title, description, available status/technology and separate available code/live links. Its art lifts 4px and rotates −0.4 degrees over 250ms on hover; reduced motion removes the transform. Source photographs/logos remain distinguishable from conceptual illustrations. Missing links are omitted. Case pages preserve problem, implementation, interactive architecture, decisions, source references and honest scope; selected architecture controls invert semantic colors.
+The monitor contains Explorer/search/filter, Architecture, About, Build Notes and Contact. Notebook pages contain actual profile/field notes. Project inspection uses a connected examination station with real overview/implementation/architecture/source content. Toolkit keys control their attached terminal. Journey opens truthful pinned records; credentials use a searchable grouped drawer; contact uses the existing form on stationery. The window is an eighth reading surface and controls authored night/day mood with moon/stars, sun/clouds and tiny bird silhouettes. Surface geometry and matching responsive framing replace the earlier detached content-panel arrangement.
 
-### Toolkit keys and filters
+### Archive and records
 
-Domain filters and tool groups use pressed/selected states with semantic color inversion. Toolkit containers use the key radius and medium padding; keys use a shallow shadow, 44px minimum height and 13px type. Hover lifts 2px; pressed keys sink 2px. Selection explains the tool’s actual application rather than expressing an invented proficiency score.
+Slots derive from project count; selection wraps and returns to the same slot after inspection. Keep all twelve current projects discoverable through the ring, monitor, browse-all route and full case routes. Credential IDs derive from supplied IDs or kind/title/date, records sort by available year with stable source-order ties, and grouping/search are presentation adapters over content.js. Missing credential URLs stay visibly unlinked and TODO slots stay hidden.
 
-### Notebook, ledger and archive
+### Patch and motion ownership
 
-About is a paper note with readable personal context; substantive location/time appears in its footer. Journey is a paper ledger with real dated records and a thin progress rule. Credentials are compact rows; credentials without URLs remain visibly unlinked, and TODO slots are hidden.
+Patch has sixteen authored fallback state strips and 85 frame positions on a 48px grid. Live desktop rendering uses the procedural voxel cat; the projected DOM button remains the accessible interaction target. Touch/Quick use the original semantic pixel control. A bounded walk and return path with changing paw poses keeps the live character grounded on the desk. Paused ambient motion does not remove intentional visitor reactions; reduced motion and visibility gates stop incidental animation.
 
-### Contact note and command dialog
-
-The contact form stays warm paper with navy text, a subtle amber top edge and diffuse paper shadow. Fields use raised paper, a one-pixel neutral border, small corners, 13px inset padding and a darker paper focus/caret. Invalid fields report their errors; pending/failure states retain entries. Submission success requires a successful service response. The command dialog is bounded to 600px / viewport minus 32px, has a dark backdrop and keyboard-operable results.
-
-### Desk and Patch
-
-The desk’s Work/About/Contact hotspots have ordinary DOM links beneath the artwork. The immediate SVG poster remains behind the lazy desktop canvas and survives unsupported rendering or context loss. The scene renders at a capped 30fps, pixel ratio capped at 1.5, and stops offscreen/hidden. Pointer influence is damped and bounded.
-
-Patch uses original 48×48 source frames: idle 4, blink 3, tail 5, walk 8, sleep 4, peek 4 and paw 4 (32 distinct frames). The default CSS display is 96px, with desk scaling to 0.8 at 768px and 0.55 at 520px. Walk is confined to a 24px local stroll; no viewport wandering. Sprite loops pause offscreen/hidden; reduced motion uses the first idle frame (sleep retains its static pose). Keyboard activation triggers the same quiet reactions as click.
-
-GSAP entrances move copy 12px over 0.8s and desk 8px over 1s with expo.out. The ledger rule scrubs with no easing. One route-scoped Lenis uses 0.85s duration on eligible desktop; phones use native scroll. Every effect must remove listeners, observers, timers and ticker hooks and dispose GPU resources.
+React owns semantic state, one scene renderer owns transforms, and one eligible route-scoped Lenis owns enhanced scrolling. Clean up events, timers, observers, ticker hooks and GPU resources. Render on invalidation and stop settled/hidden/offscreen work.
 
 ## Do's and Don'ts
 
 ### Do:
 
-- **Do** preserve the pinned workshop world, self-hosted fonts and semantic theme mappings.
-- **Do** keep all twelve artifacts equally discoverable and source-grounded.
-- **Do** edit content and project facts only in `src/data/content.js`.
-- **Do** keep semantic text, keyboard controls, visible focus, touch access and reduced-motion final states.
-- **Do** preserve one eligible route-scoped Lenis instance, native phone scrolling and complete resource cleanup.
+- **Do** preserve the original identity, truthful facts, self-hosted fonts and material relationships.
+- **Do** keep content and project facts in `src/data/content.js`.
+- **Do** keep all twelve cases, direct work/resume actions and complete Quick View access.
+- **Do** preserve keyboard focus, touch access, reduced-motion states and complete cleanup.
+- **Do** distinguish local measured evidence from physical-device or service guarantees.
 
 ### Don't:
 
-- **Don't** invent clients, dates, awards, testimonials, metrics, project links or application screenshots.
-- **Don't** infer authorship, deployment or production readiness from repository existence.
-- **Don't** obscure meaningful artwork labels or reintroduce redundant heading eyebrows.
-- **Don't** expose TODO slots, link missing credentials or report form success before service success.
-- **Don't** publish without owner authorization.
+- **Don't** invent clients, dates, awards, testimonials, metrics, links or screenshots.
+- **Don't** replace object-owned reading with detached generic side panels.
+- **Don't** expose TODO slots, link absent credentials or report form success before service acceptance.
+- **Don't** treat conceptual artwork or repository existence as proof of production capability.
+- **Don't** commit, push, merge or publish this upgrade without owner authorization.
 
-Missing service endpoint, production origin, credential document URLs and TrustNet public links remain owner inputs. Existing resume facts and supplied development status remain accurate; concept art does not certify application capability.
-
-Current evidence is in `test-results/after-hours`: runtime records support nine widths (320, 375, 390, 430, 768, 1024, 1280, 1440, 1920), both home themes and twelve case studies at those widths. The independent finish verdict is ship for the two scored fixes; it does not certify runtime behavior. Final local measurements and their sampling context belong in [the implementation report](AFTER_HOURS_IMPLEMENTATION_REPORT.md). These are local measured results, not universal performance or design guarantees; heap was not measured.
+Assumptions: the room and fictional Patch express a metaphor, not biographical facts. No production origin or Formspree endpoint is configured. Real service delivery, physical-device behavior and browsers beyond local Chromium remain unverified. Current implementation/QA status lives in [WORLD-REPAIR-REPORT.md](WORLD-REPAIR-REPORT.md) and docs/after-hours/CURRENT_STATE.md; earlier ledgers/scores are historical. The cutaway room, orthographic drone and static mobile 2.5D plan are intentional scope choices. Conservative proxy collisions and local Chromium checks do not guarantee universal hardware or physics behavior.

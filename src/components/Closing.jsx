@@ -13,6 +13,7 @@ import {
 import { content } from "../data/content";
 import { Magnetic } from "./Motion";
 import PatchCat from "./after-hours/PatchCat";
+import { useExperience } from "./after-hours/ExperienceContext";
 export function Credentials() {
   const icons = { flag: Flag, trophy: Trophy, medal: Medal };
   return (
@@ -72,7 +73,8 @@ export function Credentials() {
     </section>
   );
 }
-export function Contact({ copyEmail, notify }) {
+export function Contact({ copyEmail, notify, inObject=false }) {
+  const experience = useExperience();
   const [state, setState] = useState("idle");
   const [error, setError] = useState("");
   const [fields, setFields] = useState({});
@@ -125,6 +127,11 @@ export function Contact({ copyEmail, notify }) {
     setState("loading");
     setError("");
     abort.current = new AbortController();
+    let timedOut = false;
+    const timeout = setTimeout(() => {
+      timedOut = true;
+      abort.current?.abort();
+    }, 15000);
     try {
       const response = await fetch(endpoint, {
         method: "POST",
@@ -137,10 +144,12 @@ export function Contact({ copyEmail, notify }) {
       form.reset();
       notify("Message sent. Thanks for reaching out.");
     } catch (err) {
-      if (err.name !== "AbortError") {
+      if (err.name !== "AbortError" || timedOut) {
         setState("error");
         setError("Your message didn’t send. Try again, or email me directly.");
       }
+    } finally {
+      clearTimeout(timeout);
     }
   }
   return (
@@ -183,7 +192,15 @@ export function Contact({ copyEmail, notify }) {
                 </Magnetic>
               ))}
             </div>
-            <PatchCat variant="sleep" />
+            {!experience?.live && !inObject && (
+              <PatchCat
+                variant="sleep"
+                interactive
+                label="Wake Patch"
+                chapter="contact"
+                ambient={experience?.ambient}
+              />
+            )}
           </div>
           <form
             noValidate

@@ -1,1 +1,56 @@
-{ "rewrites": [{ "source": "/((?!.*\\.).*)", "destination": "/index.html" }] }
+{
+  "rewrites": [
+    {
+      "source": "/projects/histofacts",
+      "destination": "/projects/histofacts.html"
+    },
+    {
+      "source": "/projects/aura",
+      "destination": "/projects/aura.html"
+    },
+    {
+      "source": "/projects/reimbursement-system",
+      "destination": "/projects/reimbursement-system.html"
+    },
+    {
+      "source": "/projects/techriciate",
+      "destination": "/projects/techriciate.html"
+    },
+    {
+      "source": "/projects/bloom-blossom",
+      "destination": "/projects/bloom-blossom.html"
+    },
+    {
+      "source": "/projects/fincoach-ai",
+      "destination": "/projects/fincoach-ai.html"
+    },
+    {
+      "source": "/projects/talent-sync",
+      "destination": "/projects/talent-sync.html"
+    },
+    {
+      "source": "/projects/credit-card-fraud-detection",
+      "destination": "/projects/credit-card-fraud-detection.html"
+    },
+    {
+      "source": "/projects/bookitnow",
+      "destination": "/projects/bookitnow.html"
+    },
+    {
+      "source": "/projects/speedotype",
+      "destination": "/projects/speedotype.html"
+    },
+    {
+      "source": "/projects/cosmeon-fs-lite",
+      "destination": "/projects/cosmeon-fs-lite.html"
+    },
+    {
+      "source": "/projects/trustnet-ai",
+      "destination": "/projects/trustnet-ai.html"
+    },
+    {
+      "source": "/((?!.*\\.).*)",
+      "destination": "/index.html"
+    }
+  ]
+}

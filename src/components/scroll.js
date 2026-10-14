@@ -19,6 +19,10 @@ export function bindScroll(instance) {
   };
 }
 export function scrollToTarget(target) {
+  if (typeof target === "string" && document.querySelector(".world-interface")) {
+    window.dispatchEvent(new CustomEvent("workshop:navigate", {detail:target.replace(/^#/, "")}));
+    return;
+  }
   // A direct user action supersedes any queued route anchor.
   cancelAnimationFrame(scheduledFrame);
   scheduledFrame = undefined;

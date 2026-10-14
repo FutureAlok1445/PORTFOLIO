@@ -318,3 +318,6 @@ fs.writeFileSync(
     "\n\nExisting user-supplied assets: profile.webp, profile-small.webp, profile.jpg, Techriciate logo and three Bloom product WebPs in public/images/projects; resume.pdf is retained. No AI likenesses, stock photos or fabricated screenshots are used. Desk layer is the static fallback; desk-poster is a compressed derivative. Individual desk SVGs are editable motif studies; the production composition uses desk-layer.svg and procedural DeskScene3D geometry. Project filenames follow canonical slugs (fincoach-ai, talent-sync, credit-card-fraud-detection, cosmeon-fs-lite, trustnet-ai), rather than shortened brief aliases.\n",
 );
 console.log("Generated " + files.length + " workshop assets.");
+
+await import('./living-sprites.mjs');
+await import('./living-textures.mjs');

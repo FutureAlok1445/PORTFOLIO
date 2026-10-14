@@ -1,0 +1,1932 @@
+{
+  "generatedAt": "2026-10-14T05:25:03.895Z",
+  "assets": [
+    {
+      "path": "public/images/after-hours/brand/favicon.svg",
+      "format": "svg",
+      "bytes": 569,
+      "dimensions": [
+        76,
+        64
+      ],
+      "sha256": "aabd71702ef50be8bf8a43366ff36f797b8e9676aaa12f09f02b4f492388ba2c",
+      "purpose": "brand or retained supporting artwork",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "brand or retained supporting artwork; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/brand/mark.svg",
+      "format": "svg",
+      "bytes": 569,
+      "dimensions": [
+        76,
+        64
+      ],
+      "sha256": "aabd71702ef50be8bf8a43366ff36f797b8e9676aaa12f09f02b4f492388ba2c",
+      "purpose": "brand or retained supporting artwork",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "brand or retained supporting artwork; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/brand/og-home.webp",
+      "format": "webp",
+      "bytes": 13848,
+      "dimensions": [
+        1200,
+        630
+      ],
+      "sha256": "0aca72b6af87de930dc9d83eefc4f36a448425b4cda82e666e893517cf2ba206",
+      "purpose": "brand or retained supporting artwork",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "brand or retained supporting artwork; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/brand/og-home.webp.json",
+      "format": "json",
+      "bytes": 200,
+      "sha256": "ae6173abff16221b78f17aa333f141e303ff4bf5f7314a6c56ae3ff3487fe184",
+      "purpose": "brand or retained supporting artwork",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "brand or retained supporting artwork; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/brand/wordmark.svg",
+      "format": "svg",
+      "bytes": 615,
+      "dimensions": [
+        300,
+        100
+      ],
+      "sha256": "962b77945411de7326d73bdb8083f1c433dfa7af664b0f274c2686f71309f57f",
+      "purpose": "brand or retained supporting artwork",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "brand or retained supporting artwork; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/desk/desk-layer.svg",
+      "format": "svg",
+      "bytes": 6775,
+      "dimensions": [
+        800,
+        560
+      ],
+      "sha256": "7eced5a86158065e9b2fb590e48c8fcc5666adf176a54f47d258a862910d456b",
+      "purpose": "brand or retained supporting artwork",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "brand or retained supporting artwork; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/desk/desk-note.svg",
+      "format": "svg",
+      "bytes": 934,
+      "dimensions": [
+        400,
+        300
+      ],
+      "sha256": "523388c08016d9c65345554e9c673205a3839b0385e174d5c4d08fe6a4ad2387",
+      "purpose": "brand or retained supporting artwork",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "brand or retained supporting artwork; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/desk/desk-poster.webp",
+      "format": "webp",
+      "bytes": 15808,
+      "dimensions": [
+        800,
+        560
+      ],
+      "sha256": "54d026ffef19e8b3b54c93be0698b7e66a46a20f6186c7950eaeb05bce83b002",
+      "purpose": "brand or retained supporting artwork",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "brand or retained supporting artwork; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/desk/desk-poster.webp.json",
+      "format": "json",
+      "bytes": 200,
+      "sha256": "ae6173abff16221b78f17aa333f141e303ff4bf5f7314a6c56ae3ff3487fe184",
+      "purpose": "brand or retained supporting artwork",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "brand or retained supporting artwork; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/desk/keyboard.svg",
+      "format": "svg",
+      "bytes": 6069,
+      "dimensions": [
+        400,
+        300
+      ],
+      "sha256": "1367a14ac12b9cec9015dbec77cf0a4733f685678c8c3752db648e025009df21",
+      "purpose": "brand or retained supporting artwork",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "brand or retained supporting artwork; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/desk/lamp.svg",
+      "format": "svg",
+      "bytes": 743,
+      "dimensions": [
+        400,
+        300
+      ],
+      "sha256": "8b671b723fa105c41d388991536e0f91173fa806cea7827ed5904d4e2e0cfec7",
+      "purpose": "brand or retained supporting artwork",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "brand or retained supporting artwork; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/desk/monitor-screen.svg",
+      "format": "svg",
+      "bytes": 982,
+      "dimensions": [
+        400,
+        300
+      ],
+      "sha256": "21ad87a6b85d4af1aaba9233705094901faed9278b11306a22cf4c1d35929a67",
+      "purpose": "brand or retained supporting artwork",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "brand or retained supporting artwork; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/desk/notebook.svg",
+      "format": "svg",
+      "bytes": 1169,
+      "dimensions": [
+        400,
+        300
+      ],
+      "sha256": "3955d5c9e2adbe84a6e73869a34e254b49ec605cf2df352cbe256a1b8a9df5f8",
+      "purpose": "brand or retained supporting artwork",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "brand or retained supporting artwork; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/desk/workshop-desktop.webp",
+      "format": "webp",
+      "bytes": 96804,
+      "dimensions": [
+        1600,
+        900
+      ],
+      "sha256": "f421c2d7d2477f236250024371050b180875c59f16b340cd9ff61a2f1545a5a4",
+      "purpose": "actual authored Three.js room render",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "actual authored Three.js room render; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/desk/workshop-desktop.webp.json",
+      "format": "json",
+      "bytes": 264,
+      "sha256": "7c72ea7ffb3bea0204f282dfb8551c543f1edb239d188073ba9c889269ff3011",
+      "purpose": "actual authored Three.js room render",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "actual authored Three.js room render; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/desk/workshop-mobile-day.webp",
+      "format": "webp",
+      "bytes": 47138,
+      "dimensions": [
+        780,
+        700
+      ],
+      "sha256": "8a33b9986705c8d68e9ccc5f09bd1f96fc4c6eaacf5ee151f58bbbdc2e03ab5c",
+      "purpose": "actual authored Three.js room render",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "actual authored Three.js room render; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/desk/workshop-mobile-day.webp.json",
+      "format": "json",
+      "bytes": 264,
+      "sha256": "7c72ea7ffb3bea0204f282dfb8551c543f1edb239d188073ba9c889269ff3011",
+      "purpose": "actual authored Three.js room render",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "actual authored Three.js room render; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/desk/workshop-mobile.webp",
+      "format": "webp",
+      "bytes": 38810,
+      "dimensions": [
+        780,
+        700
+      ],
+      "sha256": "acb1b48c32d192b1e6b6405f90690cde63f4f40bcb564aba8710bc3ad9ab06ec",
+      "purpose": "actual authored Three.js room render",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "actual authored Three.js room render; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/desk/workshop-mobile.webp.json",
+      "format": "json",
+      "bytes": 264,
+      "sha256": "7c72ea7ffb3bea0204f282dfb8551c543f1edb239d188073ba9c889269ff3011",
+      "purpose": "actual authored Three.js room render",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "actual authored Three.js room render; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/desk/workshop-top-day.webp",
+      "format": "webp",
+      "bytes": 21496,
+      "dimensions": [
+        780,
+        700
+      ],
+      "sha256": "2808a4b7f40496a211171142cbe08c11b803d4b4c290e5313df51177f5690297",
+      "purpose": "actual authored Three.js room render",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "actual authored Three.js room render; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/desk/workshop-top-day.webp.json",
+      "format": "json",
+      "bytes": 264,
+      "sha256": "7c72ea7ffb3bea0204f282dfb8551c543f1edb239d188073ba9c889269ff3011",
+      "purpose": "actual authored Three.js room render",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "actual authored Three.js room render; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/desk/workshop-top.webp",
+      "format": "webp",
+      "bytes": 20440,
+      "dimensions": [
+        780,
+        700
+      ],
+      "sha256": "21055f25b3308645e57e70a8b2e5f3f7fc6a717142f4ba505fdc9a6b6fc1686a",
+      "purpose": "actual authored Three.js room render",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "actual authored Three.js room render; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/desk/workshop-top.webp.json",
+      "format": "json",
+      "bytes": 264,
+      "sha256": "7c72ea7ffb3bea0204f282dfb8551c543f1edb239d188073ba9c889269ff3011",
+      "purpose": "actual authored Three.js room render",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "actual authored Three.js room render; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/meta/og-aura.png",
+      "format": "png",
+      "bytes": 36523,
+      "dimensions": [
+        1200,
+        630
+      ],
+      "sha256": "07bf960d4da5068a291379703f85d8d3ade36899e2d83c706b1f7aa9872975a1",
+      "purpose": "social identity artwork",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "social identity artwork; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/meta/og-aura.png.json",
+      "format": "json",
+      "bytes": 258,
+      "sha256": "13031299b1ea584393b66337cf17bc433ab92b0327058631d3541778e29a4001",
+      "purpose": "social identity artwork",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "social identity artwork; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/meta/og-bloom-blossom.png",
+      "format": "png",
+      "bytes": 50215,
+      "dimensions": [
+        1200,
+        630
+      ],
+      "sha256": "b09cd439e3d90a712296f3ff4818e67fb3977aca429e49047659ac6e2638806d",
+      "purpose": "social identity artwork",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "social identity artwork; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/meta/og-bloom-blossom.png.json",
+      "format": "json",
+      "bytes": 258,
+      "sha256": "13031299b1ea584393b66337cf17bc433ab92b0327058631d3541778e29a4001",
+      "purpose": "social identity artwork",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "social identity artwork; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/meta/og-bookitnow.png",
+      "format": "png",
+      "bytes": 69975,
+      "dimensions": [
+        1200,
+        630
+      ],
+      "sha256": "d2f4dbfccf832f77c034e414d235391b5f6426f5836d26ba3e8eb7370672577f",
+      "purpose": "social identity artwork",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "social identity artwork; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/meta/og-bookitnow.png.json",
+      "format": "json",
+      "bytes": 258,
+      "sha256": "13031299b1ea584393b66337cf17bc433ab92b0327058631d3541778e29a4001",
+      "purpose": "social identity artwork",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "social identity artwork; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/meta/og-cosmeon-fs-lite.png",
+      "format": "png",
+      "bytes": 67090,
+      "dimensions": [
+        1200,
+        630
+      ],
+      "sha256": "4da945c7faadb813786a7480901feb16740489aad5cf5b889183d59347d320f3",
+      "purpose": "social identity artwork",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "social identity artwork; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/meta/og-cosmeon-fs-lite.png.json",
+      "format": "json",
+      "bytes": 258,
+      "sha256": "13031299b1ea584393b66337cf17bc433ab92b0327058631d3541778e29a4001",
+      "purpose": "social identity artwork",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "social identity artwork; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/meta/og-credit-card-fraud-detection.png",
+      "format": "png",
+      "bytes": 49102,
+      "dimensions": [
+        1200,
+        630
+      ],
+      "sha256": "e2ff94ff197b93aab6be01477cbfe6760ee9ad58e04c4454f67538c60f9f5772",
+      "purpose": "social identity artwork",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "social identity artwork; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/meta/og-credit-card-fraud-detection.png.json",
+      "format": "json",
+      "bytes": 258,
+      "sha256": "13031299b1ea584393b66337cf17bc433ab92b0327058631d3541778e29a4001",
+      "purpose": "social identity artwork",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "social identity artwork; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/meta/og-fincoach-ai.png",
+      "format": "png",
+      "bytes": 40456,
+      "dimensions": [
+        1200,
+        630
+      ],
+      "sha256": "22b02445bbde31614662033d1e30f7eca2fb51b24c2d862e6d1dbd73059e8241",
+      "purpose": "social identity artwork",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "social identity artwork; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/meta/og-fincoach-ai.png.json",
+      "format": "json",
+      "bytes": 258,
+      "sha256": "13031299b1ea584393b66337cf17bc433ab92b0327058631d3541778e29a4001",
+      "purpose": "social identity artwork",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "social identity artwork; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/meta/og-histofacts.png",
+      "format": "png",
+      "bytes": 37635,
+      "dimensions": [
+        1200,
+        630
+      ],
+      "sha256": "d1c6acc2d428360b417e68495b26085ab5eacf57a8517ccb30faf690df15e13a",
+      "purpose": "social identity artwork",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "social identity artwork; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/meta/og-histofacts.png.json",
+      "format": "json",
+      "bytes": 258,
+      "sha256": "13031299b1ea584393b66337cf17bc433ab92b0327058631d3541778e29a4001",
+      "purpose": "social identity artwork",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "social identity artwork; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/meta/og-home.png",
+      "format": "png",
+      "bytes": 119746,
+      "dimensions": [
+        1200,
+        630
+      ],
+      "sha256": "f056a90ace76dbfd5cc1d48d47eaca20ad81a4aa34d453527db6d75b9b8a3637",
+      "purpose": "social identity artwork",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "social identity artwork; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/meta/og-home.png.json",
+      "format": "json",
+      "bytes": 258,
+      "sha256": "13031299b1ea584393b66337cf17bc433ab92b0327058631d3541778e29a4001",
+      "purpose": "social identity artwork",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "social identity artwork; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/meta/og-project-default.webp",
+      "format": "webp",
+      "bytes": 13848,
+      "dimensions": [
+        1200,
+        630
+      ],
+      "sha256": "0aca72b6af87de930dc9d83eefc4f36a448425b4cda82e666e893517cf2ba206",
+      "purpose": "social identity artwork",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "social identity artwork; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/meta/og-project-default.webp.json",
+      "format": "json",
+      "bytes": 200,
+      "sha256": "ae6173abff16221b78f17aa333f141e303ff4bf5f7314a6c56ae3ff3487fe184",
+      "purpose": "social identity artwork",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "social identity artwork; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/meta/og-reimbursement-system.png",
+      "format": "png",
+      "bytes": 60435,
+      "dimensions": [
+        1200,
+        630
+      ],
+      "sha256": "fc73a467be0e06ee34d20be1a4d00086ae4cb2d81519a4ab98634cd7c2e72693",
+      "purpose": "social identity artwork",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "social identity artwork; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/meta/og-reimbursement-system.png.json",
+      "format": "json",
+      "bytes": 258,
+      "sha256": "13031299b1ea584393b66337cf17bc433ab92b0327058631d3541778e29a4001",
+      "purpose": "social identity artwork",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "social identity artwork; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/meta/og-speedotype.png",
+      "format": "png",
+      "bytes": 43351,
+      "dimensions": [
+        1200,
+        630
+      ],
+      "sha256": "ee56346b7ef7ca3f3f4d6edbd045ce1a4c1d04aeba0c37af9235567de7b4b565",
+      "purpose": "social identity artwork",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "social identity artwork; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/meta/og-speedotype.png.json",
+      "format": "json",
+      "bytes": 258,
+      "sha256": "13031299b1ea584393b66337cf17bc433ab92b0327058631d3541778e29a4001",
+      "purpose": "social identity artwork",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "social identity artwork; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/meta/og-talent-sync.png",
+      "format": "png",
+      "bytes": 37751,
+      "dimensions": [
+        1200,
+        630
+      ],
+      "sha256": "225a51fdba9ffc1c916bc25edb7d8ce272b9e94020b7fa8c5570460f90a9b565",
+      "purpose": "social identity artwork",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "social identity artwork; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/meta/og-talent-sync.png.json",
+      "format": "json",
+      "bytes": 258,
+      "sha256": "13031299b1ea584393b66337cf17bc433ab92b0327058631d3541778e29a4001",
+      "purpose": "social identity artwork",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "social identity artwork; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/meta/og-techriciate.png",
+      "format": "png",
+      "bytes": 38798,
+      "dimensions": [
+        1200,
+        630
+      ],
+      "sha256": "ef18674d40036d9d74569d63a9e2c697586e679783a28e5b7a60b7499f3d6e89",
+      "purpose": "social identity artwork",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "social identity artwork; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/meta/og-techriciate.png.json",
+      "format": "json",
+      "bytes": 258,
+      "sha256": "13031299b1ea584393b66337cf17bc433ab92b0327058631d3541778e29a4001",
+      "purpose": "social identity artwork",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "social identity artwork; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/meta/og-trustnet-ai.png",
+      "format": "png",
+      "bytes": 70938,
+      "dimensions": [
+        1200,
+        630
+      ],
+      "sha256": "b1b6df6d924501c786544707fccf61412b15ae83357128ed6f79b96af32af5bb",
+      "purpose": "social identity artwork",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "social identity artwork; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/meta/og-trustnet-ai.png.json",
+      "format": "json",
+      "bytes": 258,
+      "sha256": "13031299b1ea584393b66337cf17bc433ab92b0327058631d3541778e29a4001",
+      "purpose": "social identity artwork",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "social identity artwork; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/patch/patch-atlas.png",
+      "format": "png",
+      "bytes": 11261,
+      "dimensions": [
+        384,
+        768
+      ],
+      "sha256": "47ece96c57bef89c9f219ced15592485ec0bd2fd97caedbd6ae35af31b3bb5e3",
+      "purpose": "Patch frame artwork",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "Patch frame artwork; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/patch/patch-atlas.png.json",
+      "format": "json",
+      "bytes": 216,
+      "sha256": "698538415bf1f95b75647802473c717508b63e82a54340bb9cfad93369bb9759",
+      "purpose": "Patch frame artwork",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "Patch frame artwork; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/patch/patch-blink.png",
+      "format": "png",
+      "bytes": 702,
+      "dimensions": [
+        192,
+        48
+      ],
+      "sha256": "0bfcec5a87043d4d8a957ca57d322c143b46c6ebfa6906a073bd9357d4fa0c16",
+      "purpose": "Patch frame artwork",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "Patch frame artwork; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/patch/patch-blink.png.json",
+      "format": "json",
+      "bytes": 216,
+      "sha256": "698538415bf1f95b75647802473c717508b63e82a54340bb9cfad93369bb9759",
+      "purpose": "Patch frame artwork",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "Patch frame artwork; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/patch/patch-contact-sheet.png",
+      "format": "png",
+      "bytes": 14249,
+      "dimensions": [
+        384,
+        768
+      ],
+      "sha256": "7baae48a5b736586bc26a7d30fcca03495c11f29e70e5c69c8107f90c9b4cd79",
+      "purpose": "Patch frame artwork",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "Patch frame artwork; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/patch/patch-contact-sheet.png.json",
+      "format": "json",
+      "bytes": 216,
+      "sha256": "698538415bf1f95b75647802473c717508b63e82a54340bb9cfad93369bb9759",
+      "purpose": "Patch frame artwork",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "Patch frame artwork; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/patch/patch-ear.png",
+      "format": "png",
+      "bytes": 717,
+      "dimensions": [
+        192,
+        48
+      ],
+      "sha256": "326bcbc6b1fea671b7c0c7fdeb2eb4668e0002f92f99015167f4754aacd5befb",
+      "purpose": "Patch frame artwork",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "Patch frame artwork; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/patch/patch-ear.png.json",
+      "format": "json",
+      "bytes": 216,
+      "sha256": "698538415bf1f95b75647802473c717508b63e82a54340bb9cfad93369bb9759",
+      "purpose": "Patch frame artwork",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "Patch frame artwork; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/patch/patch-idle.png",
+      "format": "png",
+      "bytes": 693,
+      "dimensions": [
+        192,
+        48
+      ],
+      "sha256": "bd8a4c4b4df76096cac5472105820be00e899265db7c89618168bcd90ccb29cb",
+      "purpose": "Patch frame artwork",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "Patch frame artwork; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/patch/patch-idle.png.json",
+      "format": "json",
+      "bytes": 216,
+      "sha256": "698538415bf1f95b75647802473c717508b63e82a54340bb9cfad93369bb9759",
+      "purpose": "Patch frame artwork",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "Patch frame artwork; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/patch/patch-jump.png",
+      "format": "png",
+      "bytes": 840,
+      "dimensions": [
+        288,
+        48
+      ],
+      "sha256": "f397717aec376c59661ddf459bf6452b097670a1d0a72e48177a34ca9d41cb47",
+      "purpose": "Patch frame artwork",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "Patch frame artwork; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/patch/patch-jump.png.json",
+      "format": "json",
+      "bytes": 216,
+      "sha256": "698538415bf1f95b75647802473c717508b63e82a54340bb9cfad93369bb9759",
+      "purpose": "Patch frame artwork",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "Patch frame artwork; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/patch/patch-look.png",
+      "format": "png",
+      "bytes": 703,
+      "dimensions": [
+        192,
+        48
+      ],
+      "sha256": "9c6795ed1d87bfaab7f43e941820f5b797b6e311b983e674e297b95315e1bda1",
+      "purpose": "Patch frame artwork",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "Patch frame artwork; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/patch/patch-look.png.json",
+      "format": "json",
+      "bytes": 216,
+      "sha256": "698538415bf1f95b75647802473c717508b63e82a54340bb9cfad93369bb9759",
+      "purpose": "Patch frame artwork",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "Patch frame artwork; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/patch/patch-manifest.json",
+      "format": "json",
+      "bytes": 2677,
+      "sha256": "0634b0ce87083699c9392aac8684137dfb253450d0a7b8fd70a97da98a3fc5bb",
+      "purpose": "Patch frame artwork",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "Patch frame artwork; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/patch/patch-paw.png",
+      "format": "png",
+      "bytes": 817,
+      "dimensions": [
+        240,
+        48
+      ],
+      "sha256": "91ef85799898c427d078866bb096bb6abc677f9532ac9063dd8e17b356ed6d32",
+      "purpose": "Patch frame artwork",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "Patch frame artwork; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/patch/patch-paw.png.json",
+      "format": "json",
+      "bytes": 216,
+      "sha256": "698538415bf1f95b75647802473c717508b63e82a54340bb9cfad93369bb9759",
+      "purpose": "Patch frame artwork",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "Patch frame artwork; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/patch/patch-peek.png",
+      "format": "png",
+      "bytes": 813,
+      "dimensions": [
+        240,
+        48
+      ],
+      "sha256": "fc3e7c566a9a8cee0fd7592dfa64e6d16d1f95516d0e786675dd1113ebd663c5",
+      "purpose": "Patch frame artwork",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "Patch frame artwork; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/patch/patch-peek.png.json",
+      "format": "json",
+      "bytes": 216,
+      "sha256": "698538415bf1f95b75647802473c717508b63e82a54340bb9cfad93369bb9759",
+      "purpose": "Patch frame artwork",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "Patch frame artwork; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/patch/patch-pet.png",
+      "format": "png",
+      "bytes": 877,
+      "dimensions": [
+        288,
+        48
+      ],
+      "sha256": "24be92d0db9fee05bbdcd750aee598eb133b87002be59e2d3ccdb58ddf192d78",
+      "purpose": "Patch frame artwork",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "Patch frame artwork; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/patch/patch-pet.png.json",
+      "format": "json",
+      "bytes": 216,
+      "sha256": "698538415bf1f95b75647802473c717508b63e82a54340bb9cfad93369bb9759",
+      "purpose": "Patch frame artwork",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "Patch frame artwork; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/patch/patch-poster.png",
+      "format": "png",
+      "bytes": 404,
+      "dimensions": [
+        48,
+        48
+      ],
+      "sha256": "339aa1dc0e49e52a9cf72957b9cbba4a54e4b67dc70d7208e825f8550932dca6",
+      "purpose": "Patch frame artwork",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "Patch frame artwork; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/patch/patch-poster.png.json",
+      "format": "json",
+      "bytes": 216,
+      "sha256": "698538415bf1f95b75647802473c717508b63e82a54340bb9cfad93369bb9759",
+      "purpose": "Patch frame artwork",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "Patch frame artwork; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/patch/patch-return.png",
+      "format": "png",
+      "bytes": 915,
+      "dimensions": [
+        384,
+        48
+      ],
+      "sha256": "3bd6c760295613645295728d0af3defaa400a00dcfe8dbc307552a555e6b51dc",
+      "purpose": "Patch frame artwork",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "Patch frame artwork; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/patch/patch-return.png.json",
+      "format": "json",
+      "bytes": 216,
+      "sha256": "698538415bf1f95b75647802473c717508b63e82a54340bb9cfad93369bb9759",
+      "purpose": "Patch frame artwork",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "Patch frame artwork; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/patch/patch-settle.png",
+      "format": "png",
+      "bytes": 754,
+      "dimensions": [
+        240,
+        48
+      ],
+      "sha256": "e6510bfa83c2e754021a70b3306d87d7914db8fab0b336e2fcd8fe5fc240363e",
+      "purpose": "Patch frame artwork",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "Patch frame artwork; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/patch/patch-settle.png.json",
+      "format": "json",
+      "bytes": 216,
+      "sha256": "698538415bf1f95b75647802473c717508b63e82a54340bb9cfad93369bb9759",
+      "purpose": "Patch frame artwork",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "Patch frame artwork; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/patch/patch-sleep.png",
+      "format": "png",
+      "bytes": 385,
+      "dimensions": [
+        192,
+        48
+      ],
+      "sha256": "37dc173ee33837c4850efdb279e85191fa7e68ac6147d840ad012a32f3d5a5e1",
+      "purpose": "Patch frame artwork",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "Patch frame artwork; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/patch/patch-sleep.png.json",
+      "format": "json",
+      "bytes": 216,
+      "sha256": "698538415bf1f95b75647802473c717508b63e82a54340bb9cfad93369bb9759",
+      "purpose": "Patch frame artwork",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "Patch frame artwork; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/patch/patch-stand.png",
+      "format": "png",
+      "bytes": 729,
+      "dimensions": [
+        192,
+        48
+      ],
+      "sha256": "70e310f7a2ba3178ee19df38b8e6cd47b6fd7b4800d7f56723d9bad3d47058b6",
+      "purpose": "Patch frame artwork",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "Patch frame artwork; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/patch/patch-stand.png.json",
+      "format": "json",
+      "bytes": 216,
+      "sha256": "698538415bf1f95b75647802473c717508b63e82a54340bb9cfad93369bb9759",
+      "purpose": "Patch frame artwork",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "Patch frame artwork; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/patch/patch-stretch.png",
+      "format": "png",
+      "bytes": 968,
+      "dimensions": [
+        288,
+        48
+      ],
+      "sha256": "45da387468690b9becc39d1425dab39ed4943d26bf2f604bcd791388b1b0396f",
+      "purpose": "Patch frame artwork",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "Patch frame artwork; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/patch/patch-stretch.png.json",
+      "format": "json",
+      "bytes": 216,
+      "sha256": "698538415bf1f95b75647802473c717508b63e82a54340bb9cfad93369bb9759",
+      "purpose": "Patch frame artwork",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "Patch frame artwork; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/patch/patch-tail.png",
+      "format": "png",
+      "bytes": 895,
+      "dimensions": [
+        288,
+        48
+      ],
+      "sha256": "548ef0fe67f25def26559836988888f1d1926c643924e5e86205b16856694e40",
+      "purpose": "Patch frame artwork",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "Patch frame artwork; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/patch/patch-tail.png.json",
+      "format": "json",
+      "bytes": 216,
+      "sha256": "698538415bf1f95b75647802473c717508b63e82a54340bb9cfad93369bb9759",
+      "purpose": "Patch frame artwork",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "Patch frame artwork; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/patch/patch-wake.png",
+      "format": "png",
+      "bytes": 859,
+      "dimensions": [
+        288,
+        48
+      ],
+      "sha256": "90ac4801751df7b15258159cebc85c35c4f3283e64c7b469264a378f78e8b835",
+      "purpose": "Patch frame artwork",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "Patch frame artwork; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/patch/patch-wake.png.json",
+      "format": "json",
+      "bytes": 216,
+      "sha256": "698538415bf1f95b75647802473c717508b63e82a54340bb9cfad93369bb9759",
+      "purpose": "Patch frame artwork",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "Patch frame artwork; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/patch/patch-walk.png",
+      "format": "png",
+      "bytes": 915,
+      "dimensions": [
+        384,
+        48
+      ],
+      "sha256": "3bd6c760295613645295728d0af3defaa400a00dcfe8dbc307552a555e6b51dc",
+      "purpose": "Patch frame artwork",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "Patch frame artwork; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/patch/patch-walk.png.json",
+      "format": "json",
+      "bytes": 216,
+      "sha256": "698538415bf1f95b75647802473c717508b63e82a54340bb9cfad93369bb9759",
+      "purpose": "Patch frame artwork",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "Patch frame artwork; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/projects/aura.svg",
+      "format": "svg",
+      "bytes": 1819,
+      "dimensions": [
+        800,
+        500
+      ],
+      "sha256": "32a00417d2acac0fe365957fd7eb13e7ad07514242fef0a60d9d5d5f13aabb7c",
+      "purpose": "project-specific conceptual diagram",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "project-specific conceptual diagram; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/projects/bloom-blossom.svg",
+      "format": "svg",
+      "bytes": 1220,
+      "dimensions": [
+        800,
+        500
+      ],
+      "sha256": "be1e8c3029310b0de830f5efa469686783d315cedb3a560966c788643e1907db",
+      "purpose": "project-specific conceptual diagram",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "project-specific conceptual diagram; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/projects/bookitnow.svg",
+      "format": "svg",
+      "bytes": 1544,
+      "dimensions": [
+        800,
+        500
+      ],
+      "sha256": "ef32609c7596978939d15c6bca9730abfadf2a347d3e4108394578f22b5ca9f6",
+      "purpose": "project-specific conceptual diagram",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "project-specific conceptual diagram; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/projects/cosmeon-fs-lite.svg",
+      "format": "svg",
+      "bytes": 2219,
+      "dimensions": [
+        800,
+        500
+      ],
+      "sha256": "b4b3eeb766555012b2d72ba3a76d7b832acf7478a22deed3a35ee6a0f5017762",
+      "purpose": "project-specific conceptual diagram",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "project-specific conceptual diagram; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/projects/credit-card-fraud-detection.svg",
+      "format": "svg",
+      "bytes": 2182,
+      "dimensions": [
+        800,
+        500
+      ],
+      "sha256": "cba0c90a12c6e24fa588ac4f445c6f746e07ba8df25acc3913849c737a0ebdad",
+      "purpose": "project-specific conceptual diagram",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "project-specific conceptual diagram; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/projects/fincoach-ai.svg",
+      "format": "svg",
+      "bytes": 1911,
+      "dimensions": [
+        800,
+        500
+      ],
+      "sha256": "4b4346a0ed4444935548dba02330e40e738e2c493dbc85b3ca7b6fc1e25fa54f",
+      "purpose": "project-specific conceptual diagram",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "project-specific conceptual diagram; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/projects/histofacts.svg",
+      "format": "svg",
+      "bytes": 2016,
+      "dimensions": [
+        800,
+        500
+      ],
+      "sha256": "b22158f4bfa9eda2eb991cd53182e3111887b075933816ca1e036aa7807bbc3e",
+      "purpose": "project-specific conceptual diagram",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "project-specific conceptual diagram; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/projects/reimbursement-system.svg",
+      "format": "svg",
+      "bytes": 2458,
+      "dimensions": [
+        800,
+        500
+      ],
+      "sha256": "37a4ed6329406b1b4b9fdfbd187b9670b3ea667ea45428db01e718522182535b",
+      "purpose": "project-specific conceptual diagram",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "project-specific conceptual diagram; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/projects/speedotype.svg",
+      "format": "svg",
+      "bytes": 6647,
+      "dimensions": [
+        800,
+        500
+      ],
+      "sha256": "18ebe8487ffa6441d23dfdb590ecb45602a80e60e29bcd32c2db856380110a36",
+      "purpose": "project-specific conceptual diagram",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "project-specific conceptual diagram; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/projects/talent-sync.svg",
+      "format": "svg",
+      "bytes": 2173,
+      "dimensions": [
+        800,
+        500
+      ],
+      "sha256": "a4bdd69424f42c73b6aec817dd931b08ae2465c96bb2a876e8395e8af7fb6c7f",
+      "purpose": "project-specific conceptual diagram",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "project-specific conceptual diagram; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/projects/techriciate.svg",
+      "format": "svg",
+      "bytes": 1768,
+      "dimensions": [
+        800,
+        500
+      ],
+      "sha256": "8cc098a2a10dbfd5b0480ee4725310be034d13f46158704c26d61d4a6b5c8fde",
+      "purpose": "project-specific conceptual diagram",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "project-specific conceptual diagram; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/projects/trustnet-ai.svg",
+      "format": "svg",
+      "bytes": 5742,
+      "dimensions": [
+        800,
+        500
+      ],
+      "sha256": "9b41c39312b02fa0c811e3b9dd1669b782c91f046d1b8c96492a640fe12891c0",
+      "purpose": "project-specific conceptual diagram",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "project-specific conceptual diagram; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/textures/paper-noise.png",
+      "format": "png",
+      "bytes": 26086,
+      "dimensions": [
+        128,
+        128
+      ],
+      "sha256": "4fb40557c07beca848d35118194a49f319d92b682236684240f51b0b409e4207",
+      "purpose": "original surface texture",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "original surface texture; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/textures/paper-noise.png.json",
+      "format": "json",
+      "bytes": 196,
+      "sha256": "5f63e962d246a8bc5b148d20b944f5e700bd8eab2f9191269388c4f1ef4bdcd9",
+      "purpose": "original surface texture",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "original surface texture; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/textures/paper-noise.webp",
+      "format": "webp",
+      "bytes": 9106,
+      "dimensions": [
+        128,
+        128
+      ],
+      "sha256": "9616cd870c5d73556af2f75c202b1927f72eb96d3ae4a3917383bf08f913c7e3",
+      "purpose": "original surface texture",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "original surface texture; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/textures/paper-noise.webp.json",
+      "format": "json",
+      "bytes": 189,
+      "sha256": "74b46f7d35e4aa20f0161601ca9550a26305cad9b0ef63e19ee175b295289bdf",
+      "purpose": "original surface texture",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "original surface texture; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/textures/soft-grain.webp",
+      "format": "webp",
+      "bytes": 9106,
+      "dimensions": [
+        128,
+        128
+      ],
+      "sha256": "9616cd870c5d73556af2f75c202b1927f72eb96d3ae4a3917383bf08f913c7e3",
+      "purpose": "original surface texture",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "original surface texture; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/textures/soft-grain.webp.json",
+      "format": "json",
+      "bytes": 189,
+      "sha256": "74b46f7d35e4aa20f0161601ca9550a26305cad9b0ef63e19ee175b295289bdf",
+      "purpose": "original surface texture",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "original surface texture; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/textures/wood-grain.webp",
+      "format": "webp",
+      "bytes": 1158,
+      "dimensions": [
+        256,
+        256
+      ],
+      "sha256": "76292737756c53889801447574a29c171663c7b71545adb91fc7b6ad470e8b2e",
+      "purpose": "original surface texture",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "original surface texture; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/after-hours/textures/wood-grain.webp.json",
+      "format": "json",
+      "bytes": 230,
+      "sha256": "be2bc9021f25908bc868376c3e6dd5721754308c8ff0d9e1ef730301be6b2634",
+      "purpose": "original surface texture",
+      "origin": "Original local code-authored artwork; recipe in scripts/living-*.mjs or scripts/after-hours-assets.mjs",
+      "license": "Original portfolio source under repository license; genuine embedded photographs remain supplied media",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Workshop, case studies, metadata or retained prior artwork; see source and per-file provenance sidecar",
+      "verifiedLoad": "HTTP200 with exact source bytes",
+      "semanticDescription": "original surface texture; never presented as an external product screenshot"
+    },
+    {
+      "path": "public/images/profile.webp",
+      "format": "webp",
+      "bytes": 54152,
+      "dimensions": [
+        540,
+        960
+      ],
+      "sha256": "dc3667de33d0d6269f19284a893fec1e687beaff2c153b2c17febb7636b44873",
+      "purpose": "genuine supplied photograph, logo, product image, resume or self-hosted font",
+      "origin": "Existing repository asset; retained without inventing its origin",
+      "license": "Supplied repository media; font licenses retained in public/fonts",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Existing profile, case media, resume download or self-hosted typography",
+      "verifiedLoad": "Preserved repository file; runtime and resume checks recorded separately",
+      "semanticDescription": "Authentic repository content"
+    },
+    {
+      "path": "public/images/profile-small.webp",
+      "format": "webp",
+      "bytes": 30842,
+      "dimensions": [
+        360,
+        640
+      ],
+      "sha256": "9ca73a4473f3de83a5c937e3fbf3fb7e1fa33b2de7720ffdf61c91ac695273af",
+      "purpose": "genuine supplied photograph, logo, product image, resume or self-hosted font",
+      "origin": "Existing repository asset; retained without inventing its origin",
+      "license": "Supplied repository media; font licenses retained in public/fonts",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Existing profile, case media, resume download or self-hosted typography",
+      "verifiedLoad": "Preserved repository file; runtime and resume checks recorded separately",
+      "semanticDescription": "Authentic repository content"
+    },
+    {
+      "path": "public/resume.pdf",
+      "format": "pdf",
+      "bytes": 42686,
+      "sha256": "2ba04f220ed71e3fa604946a0fbdd4b059caa20e0eded0792dfd2b0f2bcf51de",
+      "purpose": "genuine supplied photograph, logo, product image, resume or self-hosted font",
+      "origin": "Existing repository asset; retained without inventing its origin",
+      "license": "Supplied repository media; font licenses retained in public/fonts",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Existing profile, case media, resume download or self-hosted typography",
+      "verifiedLoad": "Preserved repository file; runtime and resume checks recorded separately",
+      "semanticDescription": "Authentic repository content"
+    },
+    {
+      "path": "public/images/projects/techriciate-logo.webp",
+      "format": "webp",
+      "bytes": 24588,
+      "dimensions": [
+        1000,
+        545
+      ],
+      "sha256": "ff3c46b539f94e0e8065e6400f59e8c4746994469426c1abfcdf825677552f8d",
+      "purpose": "genuine supplied photograph, logo, product image, resume or self-hosted font",
+      "origin": "Existing repository asset; retained without inventing its origin",
+      "license": "Supplied repository media; font licenses retained in public/fonts",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Existing profile, case media, resume download or self-hosted typography",
+      "verifiedLoad": "Preserved repository file; runtime and resume checks recorded separately",
+      "semanticDescription": "Authentic repository content"
+    },
+    {
+      "path": "public/images/projects/bloom-pink.webp",
+      "format": "webp",
+      "bytes": 76184,
+      "dimensions": [
+        1000,
+        1000
+      ],
+      "sha256": "3707ee20a2b94863f397ed9400ae7eaad8b7ce04788995443849afaaf7f47e9f",
+      "purpose": "genuine supplied photograph, logo, product image, resume or self-hosted font",
+      "origin": "Existing repository asset; retained without inventing its origin",
+      "license": "Supplied repository media; font licenses retained in public/fonts",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Existing profile, case media, resume download or self-hosted typography",
+      "verifiedLoad": "Preserved repository file; runtime and resume checks recorded separately",
+      "semanticDescription": "Authentic repository content"
+    },
+    {
+      "path": "public/images/projects/bloom-chocolate.webp",
+      "format": "webp",
+      "bytes": 72272,
+      "dimensions": [
+        1000,
+        1000
+      ],
+      "sha256": "d72931178eec8e248d9bf99528716df906525634b5ca2bfb8236007b580da8ab",
+      "purpose": "genuine supplied photograph, logo, product image, resume or self-hosted font",
+      "origin": "Existing repository asset; retained without inventing its origin",
+      "license": "Supplied repository media; font licenses retained in public/fonts",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Existing profile, case media, resume download or self-hosted typography",
+      "verifiedLoad": "Preserved repository file; runtime and resume checks recorded separately",
+      "semanticDescription": "Authentic repository content"
+    },
+    {
+      "path": "public/images/projects/bloom-teddy.webp",
+      "format": "webp",
+      "bytes": 85244,
+      "dimensions": [
+        1000,
+        1000
+      ],
+      "sha256": "1a9f30df12bf21e27a7fc0d1c860b32498090d12b6af96746c3168a26932500a",
+      "purpose": "genuine supplied photograph, logo, product image, resume or self-hosted font",
+      "origin": "Existing repository asset; retained without inventing its origin",
+      "license": "Supplied repository media; font licenses retained in public/fonts",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Existing profile, case media, resume download or self-hosted typography",
+      "verifiedLoad": "Preserved repository file; runtime and resume checks recorded separately",
+      "semanticDescription": "Authentic repository content"
+    },
+    {
+      "path": "public/fonts/instrument-serif-latin-400-normal.woff2",
+      "format": "woff2",
+      "bytes": 21032,
+      "sha256": "5eb09b5ac0e28b67c2f041c8ba6d244604ca0c0980d65912ab2d47fed84ddc31",
+      "purpose": "genuine supplied photograph, logo, product image, resume or self-hosted font",
+      "origin": "Existing repository asset; retained without inventing its origin",
+      "license": "Supplied repository media; font licenses retained in public/fonts",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Existing profile, case media, resume download or self-hosted typography",
+      "verifiedLoad": "Preserved repository file; runtime and resume checks recorded separately",
+      "semanticDescription": "Authentic repository content"
+    },
+    {
+      "path": "public/fonts/instrument-serif-LICENSE.txt",
+      "format": "txt",
+      "bytes": 4625,
+      "sha256": "2c156af6bd31c661b0beb16c8651343006c8cfd9284cef77a88a39d31b89b5ac",
+      "purpose": "genuine supplied photograph, logo, product image, resume or self-hosted font",
+      "origin": "Existing repository asset; retained without inventing its origin",
+      "license": "Supplied repository media; font licenses retained in public/fonts",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Existing profile, case media, resume download or self-hosted typography",
+      "verifiedLoad": "Preserved repository file; runtime and resume checks recorded separately",
+      "semanticDescription": "Authentic repository content"
+    },
+    {
+      "path": "public/fonts/space-grotesk-latin-400-normal.woff2",
+      "format": "woff2",
+      "bytes": 13388,
+      "sha256": "65fd17fcbd2e2f522940b5f67ead3d23329e02891aa5495e74d11a499c0b0673",
+      "purpose": "genuine supplied photograph, logo, product image, resume or self-hosted font",
+      "origin": "Existing repository asset; retained without inventing its origin",
+      "license": "Supplied repository media; font licenses retained in public/fonts",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Existing profile, case media, resume download or self-hosted typography",
+      "verifiedLoad": "Preserved repository file; runtime and resume checks recorded separately",
+      "semanticDescription": "Authentic repository content"
+    },
+    {
+      "path": "public/fonts/space-grotesk-latin-500-normal.woff2",
+      "format": "woff2",
+      "bytes": 13312,
+      "sha256": "1b1a8131d9edf975d9decee81e2f2bf504812f7a4f498e5500f28a613e22e64c",
+      "purpose": "genuine supplied photograph, logo, product image, resume or self-hosted font",
+      "origin": "Existing repository asset; retained without inventing its origin",
+      "license": "Supplied repository media; font licenses retained in public/fonts",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Existing profile, case media, resume download or self-hosted typography",
+      "verifiedLoad": "Preserved repository file; runtime and resume checks recorded separately",
+      "semanticDescription": "Authentic repository content"
+    },
+    {
+      "path": "public/fonts/space-grotesk-latin-700-normal.woff2",
+      "format": "woff2",
+      "bytes": 12840,
+      "sha256": "35f8aec56cfd5cbfdb03cc68733a54a0b05bb3617ffcd5fd332badc0b045ca55",
+      "purpose": "genuine supplied photograph, logo, product image, resume or self-hosted font",
+      "origin": "Existing repository asset; retained without inventing its origin",
+      "license": "Supplied repository media; font licenses retained in public/fonts",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Existing profile, case media, resume download or self-hosted typography",
+      "verifiedLoad": "Preserved repository file; runtime and resume checks recorded separately",
+      "semanticDescription": "Authentic repository content"
+    },
+    {
+      "path": "public/fonts/space-grotesk-LICENSE.txt",
+      "format": "txt",
+      "bytes": 4494,
+      "sha256": "c9a6f76d065b19ee383e42c8a114915e733bcbaed9759de41f4016b64d502cd5",
+      "purpose": "genuine supplied photograph, logo, product image, resume or self-hosted font",
+      "origin": "Existing repository asset; retained without inventing its origin",
+      "license": "Supplied repository media; font licenses retained in public/fonts",
+      "fallback": "Readable semantic content / Quick View; static Patch frame and real renderer posters where applicable",
+      "usedBy": "Existing profile, case media, resume download or self-hosted typography",
+      "verifiedLoad": "Preserved repository file; runtime and resume checks recorded separately",
+      "semanticDescription": "Authentic repository content"
+    }
+  ],
+  "procedural": [
+    {
+      "path": "src/scene/createWorkshopWorld.js",
+      "format": "editable JavaScript geometry / canvas texture source",
+      "origin": "Original source-coded geometry",
+      "purpose": "Connected room, physical reading surfaces, curved paper, scaled archive and distinct project artifacts",
+      "fallback": "Quick View and rendered room posters"
+    },
+    {
+      "path": "src/scene/ObjectWorld.js",
+      "format": "editable JavaScript geometry / canvas texture source",
+      "origin": "Original source-coded geometry",
+      "purpose": "Connected room, physical reading surfaces, curved paper, scaled archive and distinct project artifacts",
+      "fallback": "Quick View and rendered room posters"
+    },
+    {
+      "path": "src/scene/ArtifactModels.js",
+      "format": "editable JavaScript geometry / canvas texture source",
+      "origin": "Original source-coded geometry",
+      "purpose": "Connected room, physical reading surfaces, curved paper, scaled archive and distinct project artifacts",
+      "fallback": "Quick View and rendered room posters"
+    },
+    {
+      "path": "src/scene/worldLayout.js",
+      "format": "editable JavaScript geometry / canvas texture source",
+      "origin": "Original source-coded geometry",
+      "purpose": "Connected room, physical reading surfaces, curved paper, scaled archive and distinct project artifacts",
+      "fallback": "Quick View and rendered room posters"
+    },
+    {
+      "path": "src/scene/RoomShell.js",
+      "format": "editable JavaScript geometry / canvas texture source",
+      "origin": "Original source-coded geometry",
+      "purpose": "Connected room, physical reading surfaces, curved paper, scaled archive and distinct project artifacts",
+      "fallback": "Quick View and rendered room posters"
+    },
+    {
+      "path": "src/scene/PatchModel.js",
+      "format": "editable JavaScript geometry / canvas texture source",
+      "origin": "Original source-coded geometry",
+      "purpose": "Connected room, physical reading surfaces, curved paper, scaled archive and distinct project artifacts",
+      "fallback": "Quick View and rendered room posters"
+    }
+  ]
+}

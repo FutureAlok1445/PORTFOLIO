@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Link from "../components/TransitionLink";
 import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
@@ -11,18 +10,6 @@ export default function Project() {
   const { slug } = useParams();
   useMotion(slug);
   const project = content.projects.find((p) => p.slug === slug);
-  useEffect(() => {
-    document.title = project
-      ? project.title + " — Alok Sahoo"
-      : "Page not found — Alok Sahoo";
-    const description = document.querySelector('meta[name="description"]');
-    const original = description?.content;
-    if (description && project) description.content = project.summary;
-    return () => {
-      document.title = "Alok Sahoo — Software Engineer";
-      if (description) description.content = original;
-    };
-  }, [project]);
   if (!project) return <NotFound />;
   const index = content.projects.indexOf(project);
   const previous =

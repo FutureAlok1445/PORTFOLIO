@@ -10,7 +10,7 @@ import {
 import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import { ArrowUpRight, Menu, Moon, Sun, X, Search } from "lucide-react";
 import { content } from "./data/content";
-import { scrollToTarget, scheduleScrollToTarget } from "./components/scroll";
+import { scheduleScrollToTarget } from "./components/scroll";
 import Seo from "./components/Seo";
 import CommandPalette from "./components/CommandPalette";
 import BackToTop from "./components/BackToTop";
@@ -70,20 +70,8 @@ export default function App() {
   const location = useLocation();
   const navigate = useNavigate();
   const toastTimer = useRef();
-  const isReload = useRef(
-    typeof window !== "undefined" &&
-      ((window.performance &&
-        window.performance.getEntriesByType("navigation")[0]?.type ===
-          "reload") ||
-        window.performance?.navigation?.type === 1),
-  );
   useEffect(() => {
-    if (isReload.current) {
-      if (window.location.hash) {
-        window.history.replaceState(null, "", window.location.pathname);
-      }
-      window.scrollTo({ top: 0, behavior: "instant" });
-    } else if (!location.hash) {
+    if (!location.hash) {
       window.scrollTo({ top: 0, behavior: "instant" });
     }
   }, [location.pathname, location.hash]);
@@ -148,9 +136,7 @@ export default function App() {
             setActive(
               ["credentials", "education"].includes(e.target.id)
                 ? "experience"
-                : e.target.id === "skills"
-                  ? "about"
-                  : e.target.id,
+                : e.target.id,
             );
         });
       },
@@ -185,16 +171,13 @@ export default function App() {
     setPalette(false);
     setMenu(false);
     if (location.pathname !== "/") navigate("/#" + id);
-    else scrollToTarget(id);
+    else navigate("/#" + id, { preventScrollReset: true });
   }
   useEffect(() => {
+    if (document.querySelector('.world-interface')) return;
     if (!location.hash) return;
-    if (isReload.current) {
-      isReload.current = false;
-      return;
-    }
     return scheduleScrollToTarget(location.hash);
-  }, [location]);
+  }, [location.pathname,location.hash]);
   return (
     <ErrorBoundary>
       <Seo />
@@ -244,11 +227,11 @@ export default function App() {
         <div className="nav-tools">
           <button
             aria-label="Open command palette"
-            data-tooltip={"Search portfolio · " + shortcut}
+            data-tooltip={content.workshop.interface.quickActionsHint + " · " + shortcut}
             onClick={() => setPalette(true)}
           >
             <Search size={18} className="command-icon" />
-            <span className="key-label">{shortcut}</span>
+            <span className="key-label">{content.workshop.interface.quickActions}</span>
           </button>
           <button
             aria-label={

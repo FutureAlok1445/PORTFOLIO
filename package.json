@@ -9,7 +9,11 @@
     "lint": "eslint .",
     "preview": "vite preview --host 127.0.0.1",
     "seo": "node scripts/seo.mjs",
-    "verify": "node scripts/verify.mjs"
+    "verify": "node scripts/world-content-audit.mjs && node scripts/world-verify.mjs",
+    "verify:workshop": "node scripts/world-refinement-verify.mjs && node scripts/world-failure-verify.mjs && node scripts/living-assets-verify.mjs",
+    "verify:form": "node scripts/world-form-verify.mjs",
+    "assets:patch": "node scripts/living-sprites.mjs && node scripts/living-provenance.mjs",
+    "verify:performance": "node scripts/world-performance.mjs"
   },
   "keywords": [],
   "author": "",

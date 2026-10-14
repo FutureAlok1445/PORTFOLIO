@@ -50,6 +50,19 @@ export const content = {
     ],
   },
   workshop: {
+    interface: {
+      quickActions: "Find your way",
+      quickActionsHint: "A shortcut to anywhere in the workshop",
+      lookAround: "Look around",
+      returnDesk: "Back to the desk",
+      ambientOn: "Quiet mode",
+      ambientOff: "Let the room breathe",
+      lightOn: "Desk light on",
+      lightOff: "Desk light off",
+      recordSearch: "Find something in the paper trail",
+      recordEmpty: "No matching records on this shelf. Try a different word.",
+      chapterLabels: {desk:"At the desk",about:"Field notes",work:"Build archive",skills:"The workbench",experience:"Pinned moments",contact:"Leave a note"},
+    },
     name: "After hours",
     subtitle: "Alok’s digital workshop",
     identity: "Software engineer, human first.",
@@ -61,7 +74,7 @@ export const content = {
     noteLink: "Leave a note",
     scrollCue: "Step into the workshop",
     footerLine: "Backend / Full-stack / AI",
-    welcome: "Warming up the desk lamp",
+    welcome: "Welcome to the workshop",
     aboutTitle: "A note from the person at the desk.",
     workTitle: "Things I’ve spent time building.",
     workIntro:
@@ -79,6 +92,7 @@ export const content = {
   navigation: [
     { label: "About", id: "about" },
     { label: "Work", id: "work" },
+    { label: "Toolkit", id: "skills" },
     { label: "Journey", id: "experience" },
     { label: "Contact", id: "contact" },
   ],

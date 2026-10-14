@@ -1,0 +1,5 @@
+import {CameraDirector} from '../src/scene/CameraDirector.js';import * as THREE from 'three';import {sceneLayout,archiveLayoutFor} from '../src/scene/worldLayout.js';import fs from 'node:fs';import assert from 'node:assert/strict';
+const d=new CameraDirector(new THREE.OrthographicCamera(),new THREE.Vector3(0,5,5),new THREE.Vector3(),4,()=>{}),checks=[];
+for(const count of [1,2,12,13,20,40]){const a=archiveLayoutFor(count);if(count>2)assert(2*a.radius*Math.sin(Math.PI/count)>=3.1-1e-6);}checks.push('Dynamic archive chord >=3.1 units for 12/13/20/40; 1/2 remain supported');
+const p=d.constrain(new THREE.Vector3(0,2,5),new THREE.Vector3(0,2,-5));assert(p.z>2.3);const floor=d.constrain(new THREE.Vector3(0,5,5),new THREE.Vector3(0,-5,5));assert(floor.y>=.45);const edge=d.constrain(new THREE.Vector3(0,8,5),new THREE.Vector3(900,8,5));assert(edge.x<=sceneLayout.room.maxX-.39);checks.push('Swept drone step stops before desk, floor and room perimeter');
+fs.writeFileSync('test-results/after-hours/repair/unit.json',JSON.stringify({checks},null,2));console.log(checks);

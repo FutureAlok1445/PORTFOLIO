@@ -1,0 +1,2 @@
+import {chromium} from '@playwright/test';import fs from 'node:fs';
+const out='test-results/after-hours/before';fs.mkdirSync(out,{recursive:true});const b=await chromium.launch({channel:'chromium'}),p=await b.newPage({viewport:{width:1920,height:1080}});for(const c of ['desk','experience','contact','work']){await p.goto('http://127.0.0.1:4180/?qa=1#'+c,{waitUntil:'networkidle'});await p.waitForFunction(()=>document.querySelector('canvas')?.dataset.sceneSettled==='true');await p.screenshot({path:out+'/'+c+'.png'});}await b.close();

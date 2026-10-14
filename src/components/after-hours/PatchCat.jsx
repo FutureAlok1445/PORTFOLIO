@@ -1,31 +1,63 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useEffectEvent, useRef, useState } from "react";
 import manifest from "../../../public/images/after-hours/patch/patch-manifest.json";
 export default function PatchCat({
   variant = "idle",
   interactive = false,
-  label = "Say hello to Patch",
-  size = 96,
+  label = "Pet Patch",
+  size = 144,
   direction = "right",
+  ambient = true,
+  chapter = "desk",
+  lampOn = true,
 }) {
-  const [reaction, setReaction] = useState(null);
-  const host = useRef(null);
-  const timer = useRef(null);
-  const count = useRef(0);
-  const state = reaction || { sit: "idle", curl: "sleep" }[variant] || variant;
-  const animation = manifest.animations[state] || manifest.animations.idle;
+  const [reaction, setReaction] = useState(null),
+    [running, setRunning] = useState(false),
+    host = useRef(null),
+    timer = useRef(null),
+    count = useRef(0),
+    visitor = useRef(false);
+  const resting =
+    variant === "curl" ||
+    variant === "sleep" ||
+    chapter === "contact" ||
+    !lampOn
+      ? "sleep"
+      : "idle";
+  const state = reaction || resting,
+    animation = manifest.animations[state] || manifest.animations.idle;
   useEffect(() => {
-    const el = host.current;
-    const reduced = matchMedia("(prefers-reduced-motion:reduce)");
-    let inView = false;
+    const el = host.current,
+      reduced = matchMedia("(prefers-reduced-motion:reduce)");
+    let visible = false,
+      active = true,
+      scheduled;
+    function cycle() {
+      if (!active || !visible || document.hidden || reduced.matches || !ambient)
+        return;
+      if (visitor.current) {
+        scheduled = setTimeout(cycle, 9000);
+        return;
+      }
+      const cues = ["blink", "look", "tail", "ear", "stand", "paw", "peek", "settle", "jump"];
+      setReaction(cues[count.current++ % cues.length]);
+      scheduled = setTimeout(() => {
+        if (!visitor.current) setReaction(null);
+        scheduled = setTimeout(cycle, 9000 + (count.current % 4) * 1200);
+      }, 1100);
+    }
     function sync() {
-      el.classList.toggle(
-        "patch-visible",
-        inView && !document.hidden && !reduced.matches,
-      );
-      el.classList.toggle("patch-static", reduced.matches);
+      const supported =
+        visible &&
+        !document.hidden &&
+        !reduced.matches &&
+        ["desk", "about", "contact"].includes(chapter);
+      const enabled = supported && ambient;
+      setRunning(supported);
+      clearTimeout(scheduled);
+      if (enabled && resting === "idle") scheduled = setTimeout(cycle, 9000);
     }
     const observer = new IntersectionObserver(([entry]) => {
-      inView = entry.isIntersecting;
+      visible = entry.isIntersecting;
       sync();
     });
     observer.observe(el);
@@ -33,29 +65,59 @@ export default function PatchCat({
     document.addEventListener("visibilitychange", sync);
     sync();
     return () => {
+      active = false;
+      clearTimeout(scheduled);
       observer.disconnect();
       reduced.removeEventListener("change", sync);
       document.removeEventListener("visibilitychange", sync);
-      clearTimeout(timer.current);
     };
-  }, []);
-  function hello() {
+  }, [ambient, resting, chapter]);
+  useEffect(() => () => clearTimeout(timer.current), []);
+  useEffect(()=>{
+    window.dispatchEvent(new CustomEvent('workshop:patch',{detail:{state:state.toUpperCase()}}));
+  },[state]);
+  useEffect(()=>{
+    const reset=setTimeout(()=>{clearTimeout(timer.current);visitor.current=false;setReaction(null);window.dispatchEvent(new Event('workshop:patch-cancel'));},0);
+    return ()=>clearTimeout(reset);
+  },[chapter]);
+  const monitorWalk=useEffectEvent(()=>{if(resting==='idle'&&!visitor.current)walk();});
+  useEffect(()=>{const run=()=>monitorWalk();window.addEventListener('workshop:monitor-open',run);return ()=>window.removeEventListener('workshop:monitor-open',run);},[]);
+  useEffect(() => {
+    const cue = () => {
+      if (!visitor.current && resting === "idle" && ambient) {
+        visitor.current = true;
+        setReaction("look");
+        clearTimeout(timer.current);
+        timer.current = setTimeout(() => {
+          visitor.current = false;
+          setReaction(null);
+        }, 800);
+      }
+    };
+    window.addEventListener("workshop:look", cue);
+    return () => window.removeEventListener("workshop:look", cue);
+  }, [resting, ambient]);
+  function act(next, duration, after) {
     clearTimeout(timer.current);
-    const next = ["paw", "blink", "tail", "peek", "walk"][count.current++ % 5];
+    visitor.current = true;
     setReaction(next);
-    timer.current = setTimeout(
-      () => setReaction(null),
-      next === "walk" ? 1900 : 1500,
-    );
+    timer.current = setTimeout(() => {
+      if (after) {
+        after();
+        return;
+      }
+      visitor.current = false;
+      setReaction(null);
+    }, duration);
   }
-  const props = {
-    ref: host,
-    className: `patch-button patch-${state}`,
-    style: { width: size, height: size },
-    ...(interactive
-      ? { onClick: hello, "aria-label": label, title: label }
-      : { "aria-hidden": true }),
-  };
+  function hello() {
+    if (resting === "sleep") {
+      act("wake", 900, () => act("stretch", 900));
+    } else act("pet", 1000);
+  }
+  function walk() {
+    act("walk", 1560, () => act("return", 1040));
+  }
   const sprite = (
     <span
       key={state}
@@ -68,15 +130,45 @@ export default function PatchCat({
         "--frames": animation.frames,
         "--duration": `${animation.frames / animation.fps}s`,
         "--iterations": animation.loop ? "infinite" : 1,
-        scale: direction === "left" ? "-1 1" : undefined,
+        scale: direction === "left" || state === "return" ? "-1 1" : undefined,
       }}
     />
   );
-  return interactive ? (
-    <button type="button" {...props}>
-      {sprite}
-    </button>
-  ) : (
-    <span {...props}>{sprite}</span>
+  const props = {
+    ref: host,
+    className: `patch-button patch-${state} ${running && (ambient || reaction) ? "patch-visible" : "patch-static"}`,
+    style: { width: size, height: size },
+    "data-patch-state": state,
+  };
+  return (
+    <>
+      {interactive ? (
+        <button
+          type="button"
+          {...props}
+          onClick={hello}
+          onPointerEnter={() =>
+            window.dispatchEvent(new Event("workshop:look"))
+          }
+          aria-label={resting === "sleep" ? "Wake Patch" : label}
+          title={resting === "sleep" ? "Wake Patch" : label}
+        >
+          {sprite}
+        </button>
+      ) : (
+        <span {...props} aria-hidden="true">
+          {sprite}
+        </span>
+      )}
+      {interactive && chapter === "desk" && (
+        <button
+          className="patch-walk-control"
+          onClick={walk}
+          aria-label="Let Patch stretch its legs"
+        >
+          A little desk patrol ↗
+        </button>
+      )}
+    </>
   );
 }
