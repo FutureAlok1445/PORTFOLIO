@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Compass, ChevronDown, RotateCcw } from "lucide-react";
 import { useExperience } from "./ExperienceContext";
 const names = {
@@ -10,27 +10,54 @@ const names = {
 export default function CameraControls() {
   const e = useExperience(),
     [hint, setHint] = useState(true),
-    [patchView, setPatchView] = useState(false);
+    [patchView, setPatchView] = useState(false),
+    detailsRef = useRef(null);
+
   useEffect(() => {
+    const onPointerDown = (ev) => {
+      if (detailsRef.current?.open && !detailsRef.current.contains(ev.target)) {
+        detailsRef.current.open = false;
+      }
+    };
     const key = (ev) => {
       if (ev.target.closest?.("input,textarea,select,[contenteditable],dialog"))
         return;
+      if (ev.key === "Escape") {
+        if (detailsRef.current?.open) {
+          detailsRef.current.open = false;
+        }
+        if (e.cameraMode !== "guided") {
+          e.setCameraMode("guided");
+          e.sceneAPI.current?.invalidate();
+        }
+      }
       if (ev.key.toLowerCase() === "r") {
         e.goChapter("desk");
         setHint(true);
         setPatchView(false);
       }
-      if (ev.key === "Escape" && e.cameraMode !== "guided") {
-        e.setCameraMode("guided");
-        e.sceneAPI.current?.invalidate();
-      }
     };
+    window.addEventListener("pointerdown", onPointerDown);
     window.addEventListener("keydown", key);
-    return () => window.removeEventListener("keydown", key);
+    return () => {
+      window.removeEventListener("pointerdown", onPointerDown);
+      window.removeEventListener("keydown", key);
+    };
   }, [e]);
+
+  const handleToggle = (ev) => {
+    if (ev.target.open) {
+      document
+        .querySelectorAll(".experience-controls details[open]")
+        .forEach((d) => {
+          if (d !== ev.target) d.open = false;
+        });
+    }
+  };
+
   return (
     <div className="camera-controls">
-      <details>
+      <details ref={detailsRef} onToggle={handleToggle}>
         <summary aria-label="Explore camera modes">
           <Compass size={17} />
           Explore <span>{names[e.cameraMode]}</span>

@@ -14,6 +14,7 @@ import ProjectArchitecture from "../ProjectArchitecture";
 import { Contact } from "../Closing";
 import { projectArtFor } from "../../data/projectArt";
 import CredentialDrawer from "./CredentialDrawer";
+import { playPageTurn } from "../../utils/sound";
 
 export function ProjectLinks({ project }) {
   return (
@@ -144,7 +145,7 @@ export function MonitorApps() {
               </option>
             ))}
           </select>
-          <ProjectArchitecture key={project.slug} nodes={project.nodes} />
+          <ProjectArchitecture key={project.slug} nodes={project.nodes} project={project} />
           <ProjectLinks project={project} />
         </div>
       )}
@@ -231,6 +232,7 @@ export function NotebookPages() {
     }
     turning.current = true;
     setSheet({ from: page, to: next, direction: dir });
+    playPageTurn();
     e.issue("page", { direction: dir });
     clearTimeout(turnTimer.current);
     turnTimer.current = setTimeout(() => {

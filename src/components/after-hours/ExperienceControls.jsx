@@ -17,21 +17,37 @@ export default function ExperienceControls() {
   const e = useExperience(),
     [help, setHelp] = useState(false),
     dialog = useRef(null),
-    previous = useRef(null);
+    previous = useRef(null),
+    roomSettingsRef = useRef(null);
   const index = Math.max(
     0,
     sceneChapters.findIndex((c) => c.id === e.chapter),
   );
   useEffect(() => {
+    const onPointerDown = (ev) => {
+      if (
+        roomSettingsRef.current?.open &&
+        !roomSettingsRef.current.contains(ev.target)
+      ) {
+        roomSettingsRef.current.open = false;
+      }
+    };
     const key = (event) => {
       if (
         event.key === "?" &&
         !event.target.closest("input,textarea,[contenteditable]")
       )
         setHelp(true);
+      if (event.key === "Escape" && roomSettingsRef.current?.open) {
+        roomSettingsRef.current.open = false;
+      }
     };
+    window.addEventListener("pointerdown", onPointerDown);
     window.addEventListener("keydown", key);
-    return () => window.removeEventListener("keydown", key);
+    return () => {
+      window.removeEventListener("pointerdown", onPointerDown);
+      window.removeEventListener("keydown", key);
+    };
   }, []);
   useEffect(() => {
     if (help) {
@@ -42,6 +58,17 @@ export default function ExperienceControls() {
       previous.current?.focus();
     }
   }, [help]);
+
+  const handleToggle = (ev) => {
+    if (ev.target.open) {
+      document
+        .querySelectorAll(".experience-controls details[open]")
+        .forEach((d) => {
+          if (d !== ev.target) d.open = false;
+        });
+    }
+  };
+
   return (
     <>
       <div
@@ -50,7 +77,12 @@ export default function ExperienceControls() {
         aria-label="Workshop settings"
       >
         {e.worldMode && <CameraControls />}
-        <details className="room-settings" open={e.failed || undefined}>
+        <details
+          ref={roomSettingsRef}
+          className="room-settings"
+          open={e.failed || undefined}
+          onToggle={handleToggle}
+        >
           <summary>Room settings</summary>
           <div className="room-settings-tray">
             <div className="mode-switch" role="group" aria-label="Portfolio view">

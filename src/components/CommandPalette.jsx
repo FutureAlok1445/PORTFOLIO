@@ -1,12 +1,15 @@
 import { useEffect, useRef, useState } from "react";
 import { ArrowUpRight, Search, X } from "lucide-react";
 import { content } from "../data/content";
+import { playKeyClick } from "../utils/sound";
+
 export default function CommandPalette({
   close,
   jump,
   openProject,
   copyEmail,
   toggleTheme,
+  toggleSound,
 }) {
   const dialog = useRef();
   const input = useRef();
@@ -24,11 +27,15 @@ export default function CommandPalette({
       run: () => jump(id),
     })),
     ...content.projects.map((p) => ({
-      label: p.title,
+      label: p.title + (p.featured ? " ★ Flagship" : ""),
       group: "Project",
-      search: [p.category, p.summary, ...p.stack, ...(p.filters || [])].join(
-        " ",
-      ),
+      search: [
+        p.category,
+        p.summary,
+        p.featured ? "flagship featured" : "archive",
+        ...p.stack,
+        ...(p.filters || []),
+      ].join(" "),
       run: () => openProject(p.slug),
     })),
     {
@@ -44,6 +51,16 @@ export default function CommandPalette({
     })),
     { label: "Copy email", group: "Connect", run: copyEmail },
     { label: "Toggle color theme", group: "View", run: toggleTheme },
+    ...(toggleSound
+      ? [
+          {
+            label: "Toggle tactile workshop audio",
+            group: "Atmosphere",
+            search: "sound audio mute key click rain",
+            run: toggleSound,
+          },
+        ]
+      : []),
   ].filter((a) =>
     (a.label + " " + a.group + " " + (a.search || ""))
       .toLowerCase()
@@ -65,12 +82,14 @@ export default function CommandPalette({
       ?.scrollIntoView({ block: "nearest" });
   }, [selected, query]);
   function activate(action) {
+    playKeyClick(1.1);
     action.run?.();
     close();
   }
   function keys(e) {
     if (["ArrowDown", "ArrowUp", "Home", "End"].includes(e.key)) {
       e.preventDefault();
+      playKeyClick(0.95);
       setSelected((i) =>
         e.key === "Home"
           ? 0
@@ -112,7 +131,7 @@ export default function CommandPalette({
         <input
           ref={input}
           value={query}
-          placeholder="Search projects, sections, or actions"
+          placeholder="Search projects (e.g. COSMEON, AURA), stack, or actions"
           onChange={(e) => {
             setQuery(e.target.value);
             setSelected(0);

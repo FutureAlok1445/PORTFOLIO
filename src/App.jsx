@@ -8,12 +8,16 @@ import {
   useState,
 } from "react";
 import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
-import { ArrowUpRight, Menu, Moon, Sun, X, Search } from "lucide-react";
+import { ArrowUpRight, Menu, Moon, Sun, X, Search, Volume2, VolumeX, LampDesk } from "lucide-react";
 import { content } from "./data/content";
 import { scheduleScrollToTarget } from "./components/scroll";
 import Seo from "./components/Seo";
 import CommandPalette from "./components/CommandPalette";
 import BackToTop from "./components/BackToTop";
+import CustomReticle from "./components/CustomReticle";
+import { getISTSnapshot } from "./utils/istTime";
+import { isSoundEnabled, setSoundEnabled, playLampPull, playKeyClick } from "./utils/sound";
+
 class ErrorBoundary extends Component {
   state = { failed: false };
   static getDerivedStateFromError() {
@@ -53,6 +57,8 @@ export default function App() {
       return "dark";
     }
   });
+  const [sound, setSound] = useState(() => isSoundEnabled());
+  const [ist, setIst] = useState(() => getISTSnapshot());
   const [menu, setMenu] = useState(false);
   const [palette, setPalette] = useState(false);
   const [toast, setToast] = useState("");
@@ -70,6 +76,12 @@ export default function App() {
   const location = useLocation();
   const navigate = useNavigate();
   const toastTimer = useRef();
+
+  useEffect(() => {
+    const id = setInterval(() => setIst(getISTSnapshot()), 10000);
+    return () => clearInterval(id);
+  }, []);
+
   useEffect(() => {
     if (!location.hash) {
       window.scrollTo({ top: 0, behavior: "instant" });
@@ -118,6 +130,7 @@ export default function App() {
     const key = (e) => {
       if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "k") {
         e.preventDefault();
+        playKeyClick(1.1);
         setPalette((v) => !v);
       }
       if (e.key === "Escape") {
@@ -163,35 +176,51 @@ export default function App() {
       return false;
     }
   }, [notify]);
+  const toggleSound = useCallback(() => {
+    const next = setSoundEnabled(!sound);
+    setSound(next);
+    notify(next ? "Tactile workshop audio enabled" : "Workshop audio muted");
+  }, [sound, notify]);
+
   const outletContext = useMemo(
-    () => ({ copyEmail, notify }),
-    [copyEmail, notify],
+    () => ({ copyEmail, notify, sound, toggleSound, ist }),
+    [copyEmail, notify, sound, toggleSound, ist],
   );
   function jump(id) {
+    playKeyClick(1.0);
     setPalette(false);
     setMenu(false);
     if (location.pathname !== "/") navigate("/#" + id);
     else navigate("/#" + id, { preventScrollReset: true });
   }
   useEffect(() => {
-    if (document.querySelector('.world-interface')) return;
+    if (document.querySelector(".world-interface")) return;
     if (!location.hash) return;
     return scheduleScrollToTarget(location.hash);
-  }, [location.pathname,location.hash]);
+  }, [location.pathname, location.hash]);
   return (
     <ErrorBoundary>
       <Seo />
+      <CustomReticle />
       <a className="skip-link" href="#main">
         Skip to content
       </a>
       {intro && (
-        <section className="intro" aria-label="Welcome">
+        <section className="intro atelier-ignition" aria-label="Welcome">
           <span>
             <img src="/images/after-hours/brand/mark.svg" alt="" />
-            {content.workshop.welcome}
+            <strong>{content.workshop.welcome}</strong>
+            <small className="mono-telemetry">
+              THANE / KALYAN · {ist.shortClock} · {ist.phase.toUpperCase()}
+            </small>
           </span>
-          <button onClick={() => setIntro(false)}>
-            Skip intro <X size={16} />
+          <button
+            onClick={() => {
+              playLampPull(true);
+              setIntro(false);
+            }}
+          >
+            <LampDesk size={16} /> Pull lamp chain / Enter <X size={16} />
           </button>
         </section>
       )}
@@ -204,7 +233,9 @@ export default function App() {
           <img src="/images/after-hours/brand/mark.svg" alt="" />
           <span>
             {content.workshop.name}
-            <small>{content.profile.name}</small>
+            <small>
+              {content.profile.name} · <em className="ist-badge">{ist.shortClock}</em>
+            </small>
           </span>
         </Link>
         <nav
@@ -228,10 +259,21 @@ export default function App() {
           <button
             aria-label="Open command palette"
             data-tooltip={content.workshop.interface.quickActionsHint + " · " + shortcut}
-            onClick={() => setPalette(true)}
+            onClick={() => {
+              playKeyClick(1.08);
+              setPalette(true);
+            }}
           >
             <Search size={18} className="command-icon" />
             <span className="key-label">{content.workshop.interface.quickActions}</span>
+          </button>
+          <button
+            aria-label={sound ? "Mute workshop soundscape" : "Enable tactile workshop soundscape"}
+            data-tooltip={sound ? "Mute workshop audio" : "Enable tactile key & studio audio"}
+            aria-pressed={sound}
+            onClick={toggleSound}
+          >
+            {sound ? <Volume2 size={18} /> : <VolumeX size={18} />}
           </button>
           <button
             aria-label={
@@ -240,7 +282,10 @@ export default function App() {
             data-tooltip={
               "Switch to " + (theme === "light" ? "dark" : "light") + " mode"
             }
-            onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+            onClick={() => {
+              playLampPull(theme === "light");
+              setTheme(theme === "light" ? "dark" : "light");
+            }}
           >
             {theme === "light" ? <Moon size={19} /> : <Sun size={19} />}
           </button>
@@ -275,6 +320,7 @@ export default function App() {
           jump={jump}
           copyEmail={copyEmail}
           toggleTheme={() => setTheme(theme === "light" ? "dark" : "light")}
+          toggleSound={toggleSound}
           openProject={(slug) =>
             navigate("/projects/" + slug, {
               viewTransition:

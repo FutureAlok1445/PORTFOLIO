@@ -1,8 +1,11 @@
-import { Code2, ArrowUpRight, GraduationCap } from "lucide-react";
+import { Code2, ArrowUpRight, GraduationCap, Briefcase } from "lucide-react";
 import { content } from "../data/content";
+import { experienceRecords } from "../data/workshopSelectors";
 import { useEffect, useState } from "react";
 import { useExperience } from "./after-hours/ExperienceContext";
 import { Link } from "react-router-dom";
+import { playKeyClick, playPageTurn } from "../utils/sound";
+
 export function Skills() {
   const e = useExperience(),
     category = e.toolCategory,
@@ -17,16 +20,22 @@ export function Skills() {
     <section id="skills" className="skills-band">
       <div className="container">
         <div className="section-heading">
-          <h2 className="serif">{content.workshop.toolkitTitle}</h2>
+          <div>
+            <span className="mono-telemetry">03 // TACTILE KEYCAP WORKSTATION</span>
+            <h2 className="serif">{content.workshop.toolkitTitle}</h2>
+          </div>
           <p>{content.workshop.toolkitIntro}</p>
         </div>
         <div className="toolkit-filters" aria-label="Tool categories">
-          {["All tools", ...content.skills.map((s) => s.title)].map((title) => (
+          {["All tools", ...content.skills.map((s) => s.title)].map((title, idx) => (
             <button
               key={title}
               className="physical-key"
               aria-pressed={category === title}
-              onClick={() => e.chooseTool(title)}
+              onClick={() => {
+                playKeyClick(0.9 + idx * 0.05);
+                e.chooseTool(title);
+              }}
             >
               {title}
             </button>
@@ -39,13 +48,14 @@ export function Skills() {
                 <Code2 size={22} />
                 <h3>{s.title}</h3>
                 <ul className="skill-chips">
-                  {s.items.map((item) => (
+                  {s.items.map((item, i) => (
                     <li key={item}>
                       <button
                         aria-pressed={selected === item}
-                        onClick={() =>
-                          e.chooseTool(category, selected === item ? "" : item)
-                        }
+                        onClick={() => {
+                          playKeyClick(1.0 + (i % 5) * 0.04);
+                          e.chooseTool(category, selected === item ? "" : item);
+                        }}
                       >
                         {item}
                       </button>
@@ -61,11 +71,11 @@ export function Skills() {
                 <strong>{selected}</strong>
                 <p>
                   {projects.length
-                    ? "Used in these project files:"
+                    ? `Active across ${projects.length} system build${projects.length === 1 ? "" : "s"}:`
                     : "Part of the " +
-                      content.skills
+                      (content.skills
                         .find((s) => s.items.includes(selected))
-                        .title.toLowerCase() +
+                        ?.title.toLowerCase() || "core") +
                       " toolkit."}
                 </p>
                 {projects.map((p) => (
@@ -76,8 +86,7 @@ export function Skills() {
               </>
             ) : (
               <p>
-                Press a category key, then choose a tool to find its place in
-                the project collection.
+                Press a category key, then choose a tool to trace every project file built with that technology.
               </p>
             )}
           </div>
@@ -86,8 +95,10 @@ export function Skills() {
     </section>
   );
 }
+
 export function Experience() {
   const [active, setActive] = useState(0);
+  const records = experienceRecords();
   useEffect(() => {
     const pin = (event) => setActive(event.detail.index);
     window.addEventListener("workshop:record", pin);
@@ -97,10 +108,12 @@ export function Experience() {
     <section className="experience container" id="experience">
       <div className="experience-grid">
         <div className="experience-intro">
+          <span className="mono-telemetry">
+            <Briefcase size={14} /> 04 // WORKBENCH LOG ({records.length} ROLES)
+          </span>
           <h2 className="serif">{content.workshop.journeyTitle}</h2>
           <p>
-            Internships, independent contributions, and a degree in progress.
-            Each one adds another layer.
+            Internships, production engineering contributions, and academic foundations—automatically indexed as new roles are added.
           </p>
           <a href={content.profile.resume} download className="text-link">
             The full story, in a PDF <ArrowUpRight size={17} />
@@ -109,9 +122,9 @@ export function Experience() {
         <div className="journey-records">
           <div className="timeline">
             <div className="timeline-fill" />
-            {content.experience.map((entry, index) => (
+            {records.map((entry, index) => (
               <article
-                key={entry.company}
+                key={entry.company + "-" + index}
                 className={
                   "timeline-item " + (active === index ? "record-open" : "")
                 }
@@ -124,7 +137,10 @@ export function Experience() {
                   className="journey-pin"
                   aria-expanded={active === index}
                   aria-controls={"journey-record-" + index}
-                  onClick={() => setActive(active === index ? -1 : index)}
+                  onClick={() => {
+                    playPageTurn();
+                    setActive(active === index ? -1 : index);
+                  }}
                 >
                   <span className="record-pin" />
                   <span>
@@ -135,6 +151,15 @@ export function Experience() {
                 </button>
                 <div id={"journey-record-" + index} hidden={active !== index}>
                   <p>{entry.description}</p>
+                  {entry.stack?.length > 0 && (
+                    <div className="experience-stack-chips">
+                      {entry.stack.map((tech) => (
+                        <span key={tech} className="mono-chip">
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  )}
                   {entry.url && (
                     <a
                       className="company"

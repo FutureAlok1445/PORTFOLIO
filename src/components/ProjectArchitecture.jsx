@@ -1,6 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { ArrowLeft, ArrowRight, RotateCcw, Play } from "lucide-react";
-export default function ProjectArchitecture({ nodes }) {
+import SystemSandbox from "./sandboxes/SystemSandbox";
+import { playKeyClick } from "../utils/sound";
+
+export default function ProjectArchitecture({ nodes, project }) {
   const [active, setActive] = useState(0),
     [tracing, setTracing] = useState(false),
     [started, setStarted] = useState(false),
@@ -8,12 +11,15 @@ export default function ProjectArchitecture({ nodes }) {
   useEffect(() => {
     if (!tracing) return;
     timer.current = setTimeout(() => {
-      if (active < nodes.length - 1) setActive(active + 1);
-      else setTracing(false);
+      if (active < nodes.length - 1) {
+        playKeyClick(0.95 + active * 0.05);
+        setActive(active + 1);
+      } else setTracing(false);
     }, 1400);
     return () => clearTimeout(timer.current);
   }, [tracing, active, nodes.length]);
   function select(index) {
+    playKeyClick(1 + index * 0.04);
     setTracing(false);
     setStarted(true);
     setActive(index);
@@ -26,13 +32,14 @@ export default function ProjectArchitecture({ nodes }) {
       <div className="case-section-heading">
         <h2 id="architecture-title">Trace this build.</h2>
         <p>
-          Follow the documented system layers. This walkthrough explains the
-          build; it does not execute the external project.
+          Follow the documented system layers and interact with the telemetry model. This walkthrough explains the build; it does not execute the external project.
         </p>
       </div>
+      {project && <SystemSandbox project={project} />}
       <div className="trace-controls">
         <button
           onClick={() => {
+            playKeyClick(1.1);
             setActive(0);
             setStarted(true);
             setTracing(true);
@@ -55,6 +62,7 @@ export default function ProjectArchitecture({ nodes }) {
         </button>
         <button
           onClick={() => {
+            playKeyClick(0.85);
             setTracing(false);
             setStarted(false);
             setActive(0);

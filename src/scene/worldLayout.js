@@ -8,8 +8,8 @@ export function archiveLayoutFor(count) {
   return {
     count,
     radius,
-    centerX: 9.4 + radius,
-    centerZ: 3.2,
+    centerX: 7.6 + radius,
+    centerZ: 1.6,
     baseRadius: radius + 1.05,
   };
 }
@@ -36,7 +36,7 @@ export const sceneLayout = {
     toolkit: [-8, 2.6, -1],
     journey: [-10.08, 4.9, -2.02],
     credentials: [-5, 1.2, 5.8],
-    contact: [6.2, 1.4, 1.3],
+    contact: [5.2, 1.4, 1.2],
     window: [5.2, 4.5, -6.7],
   },
   // Major solid proxies, not decoration. Camera radius and swept-segment collision apply.
@@ -46,7 +46,7 @@ export const sceneLayout = {
     { id: "desk", min: [-4, 0, -2.3], max: [4, 3.35, 2.3] },
     { id: "workbench", min: [-10.7, 0, -1.6], max: [-5.3, 3.4, 3.3] },
     { id: "records", min: [-6.15, 0, 3.9], max: [-3.85, 1.9, 5.7] },
-    { id: "message-desk", min: [4.6, 0, 0.1], max: [7.8, 1.4, 2.3] },
+    { id: "message-desk", min: [4.1, 0, 0.1], max: [6.3, 1.4, 2.3] },
     {
       id: "archive",
       cylinder: [

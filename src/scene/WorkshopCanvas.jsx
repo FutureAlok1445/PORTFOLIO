@@ -74,6 +74,8 @@ export default function WorkshopCanvas({ patchAnchor, onReady }) {
       halfHeight = chapterById.desk.halfHeight,
       angle = 0,
       inspectAmount = 0,
+      chairSwivelGoal = 2.82,
+      hpLiftGoal = 0,
       ready = false;
     let patchState = "idle",
       patchStarted = 0,
@@ -169,11 +171,28 @@ export default function WorkshopCanvas({ patchAnchor, onReady }) {
         else item.group.rotation.y = 0;
         focusMoving ||= Math.abs(blend - goal) > 0.008;
       });
+      let pressMoving = false;
       world.drawer.position.z = THREE.MathUtils.lerp(
         world.drawer.position.z,
         state.focusedObject === "credentials" ? 6.4 : 5.74,
         ease,
       );
+      if (world.chairGroup) {
+        world.chairGroup.rotation.y = THREE.MathUtils.lerp(
+          world.chairGroup.rotation.y,
+          chairSwivelGoal,
+          ease,
+        );
+        pressMoving ||= Math.abs(world.chairGroup.rotation.y - chairSwivelGoal) > 0.003;
+      }
+      if (world.hpGroup) {
+        world.hpGroup.position.y = THREE.MathUtils.lerp(
+          world.hpGroup.position.y,
+          1.04 + hpLiftGoal,
+          ease,
+        );
+        pressMoving ||= Math.abs(world.hpGroup.position.y - (1.04 + hpLiftGoal)) > 0.002;
+      }
       if (command.current.serial !== lastCommand) {
         lastCommand = command.current.serial;
         pulseStart = time;
@@ -214,7 +233,6 @@ export default function WorkshopCanvas({ patchAnchor, onReady }) {
         state.focusedObject === "project" || state.inspecting ? 1 : 0,
         ease,
       );
-      let pressMoving = false;
       for (const file of world.artifacts) {
         const isSelected = file.index === state.selected;
         const lift =
@@ -300,7 +318,7 @@ export default function WorkshopCanvas({ patchAnchor, onReady }) {
           anchor.y +=
             Math.sin(Math.min(1, (time - patchStarted) / 670) * Math.PI) * 0.18;
         world.patchModel.root.position.copy(anchor);
-        world.patchModel.update(patchState, state.ambient ? time : 0);
+        world.patchModel.update(patchState, state.ambient ? time : 0, pointerTarget);
         world.patchModel.root.rotation.y =
           patchState === "walk"
             ? Math.PI / 2
@@ -369,12 +387,15 @@ export default function WorkshopCanvas({ patchAnchor, onReady }) {
           (corners[1].x - corners[0].x) * 0.5 * el.clientWidth + "px";
         node.style.height =
           (corners[0].y - corners[1].y) * 0.5 * el.clientHeight + "px";
+        const dist = position.distanceTo(desiredPosition) + target.distanceTo(desiredTarget);
+        const progress = THREE.MathUtils.clamp(1 - dist / 2.2, 0, 1);
         const aligned =
           position.distanceTo(desiredPosition) < 0.04 &&
           target.distanceTo(desiredTarget) < 0.04 &&
           Math.abs(halfHeight - pose.halfHeight) < 0.02 &&
           !focusMoving;
-        node.style.opacity = aligned ? "1" : "0";
+        node.style.opacity = aligned ? "1" : String( (progress * progress * 0.92).toFixed(3) );
+        node.style.transform = `scale(${(0.94 + 0.06 * progress).toFixed(4)})`;
         node.dataset.aligned = String(aligned);
       }
       if (actionsAnchor.current) {
@@ -570,7 +591,11 @@ export default function WorkshopCanvas({ patchAnchor, onReady }) {
                   ? "Read " + content.experience[data.index].company
                   : data?.action === "lamp"
                     ? "Switch the desk lamp"
-                    : "";
+                    : data?.action === "chair"
+                      ? "Swivel studio chair"
+                      : data?.action === "headphones"
+                        ? "Inspect studio headphones"
+                        : "";
       }
       invalidate();
     }
@@ -616,6 +641,11 @@ export default function WorkshopCanvas({ patchAnchor, onReady }) {
       const data = object.userData;
       if (data.action === "window") objectOpen.current("window");
       else if (data.action === "lamp") toggleLamp();
+      else if (data.action === "chair") {
+        chairSwivelGoal = chairSwivelGoal > 2.9 ? 2.55 : 3.18;
+      } else if (data.action === "headphones") {
+        hpLiftGoal = hpLiftGoal > 0.05 ? 0 : 0.14;
+      }
       else if (data.action === "object") objectOpen.current(data.objectId);
       else if (data.action === "artifact") {
         window.dispatchEvent(new Event("workshop:look"));
@@ -703,8 +733,10 @@ export default function WorkshopCanvas({ patchAnchor, onReady }) {
         world.pulse.visible = false;
         world.signal.visible = false;
         world.dust.visible = false;
-        world.patchModel.root.visible = false;
-        world.patchShadow.visible = false;
+        world.patchModel.root.visible = true;
+        world.patchModel.root.position.set(...patchZones.home);
+        world.patchModel.update('idle', 0);
+        world.patchShadow.visible = true;
         renderer.setPixelRatio(1);
         renderer.setSize(width, height, false);
         const h = Math.max(

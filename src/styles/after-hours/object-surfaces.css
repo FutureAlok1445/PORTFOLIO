@@ -208,7 +208,8 @@
   color: #f4f0e8;
 }
 .object-focus-dialog::backdrop {
-  background: #08131d55;
+  background: rgba(8, 19, 29, 0.16);
+  backdrop-filter: blur(1.5px);
 }
 .object-owned-surface {
   position: absolute;
@@ -1756,4 +1757,24 @@
 }
 .surface-window.surface-handoff .object-surface-content {
   overflow: hidden;
+}
+
+
+/* AFTER HOURS v4 — Diegetic Object Bezel & Reticle Drag Arc */
+.object-owned-surface {
+  border: 2px solid #53666f;
+  border-radius: 6px;
+  transition: opacity 0.16s ease-out, transform 0.16s ease-out;
+  transform-origin: center center;
+}
+.object-owned-surface.surface-notebook,
+.object-owned-surface.surface-contact {
+  border-color: #bba184;
+}
+.atelier-reticle.is-dragging .reticle-dot {
+  width: 22px;
+  height: 22px;
+  border-style: dashed;
+  border-width: 2px;
+  background: rgba(242, 196, 119, 0.35);
 }

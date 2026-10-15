@@ -9,26 +9,57 @@ import {
   Flag,
   Trophy,
   Medal,
+  Search,
 } from "lucide-react";
 import { content } from "../data/content";
 import { Magnetic } from "./Motion";
 import PatchCat from "./after-hours/PatchCat";
 import { useExperience } from "./after-hours/ExperienceContext";
+import { playKeyClick } from "../utils/sound";
+
 export function Credentials() {
   const icons = { flag: Flag, trophy: Trophy, medal: Medal };
+  const [certQuery, setCertQuery] = useState("");
+  const validAchievements = (content.achievements || []).filter(
+    (a) => a.title && !a.title.startsWith("TODO"),
+  );
+  const validCertificates = (content.certificates || []).filter(
+    (c) =>
+      c.title &&
+      !c.title.startsWith("TODO") &&
+      (c.title + " " + c.issuer + " " + (c.date || ""))
+        .toLowerCase()
+        .includes(certQuery.trim().toLowerCase()),
+  );
   return (
     <section className="credentials container" id="credentials">
-      <h2 className="serif reveal-title">
-        {content.workshop.credentialsTitle}
-      </h2>
-      <div className="honors">
-        {content.achievements.map((a) => {
+      <div className="section-heading">
+        <div>
+          <span className="mono-telemetry">
+            05 // VERIFIED HONORS ({validAchievements.length} WINS · {content.certificates.length} CERTIFICATES)
+          </span>
+          <h2 className="serif reveal-title">
+            {content.workshop.credentialsTitle}
+          </h2>
+        </div>
+      </div>
+      <div className="honors bento-honors">
+        {validAchievements.map((a, idx) => {
           const Icon = icons[a.icon] || Medal;
+          const isSpotlight = a.spotlight || idx === 0;
           return (
-            <article key={a.title}>
-              <span>{a.year}</span>
+            <article
+              key={a.title + "-" + idx}
+              className={isSpotlight ? "bento-spotlight" : ""}
+            >
+              <div className="honor-top-row">
+                <span className="honor-year">{a.year || a.date}</span>
+                {isSpotlight && (
+                  <span className="spotlight-badge">★ National / Podium Spotlight</span>
+                )}
+              </div>
               <h3>{a.title}</h3>
-              <p>{a.result}</p>
+              <p className="honor-result">{a.result}</p>
               <small>{a.issuer}</small>
               <Icon size={22} />
             </article>
@@ -36,11 +67,23 @@ export function Credentials() {
         })}
       </div>
       <div className="certificate-heading">
-        <h3>Courses & certificates</h3>
-        <p>A growing set of foundations.</p>
+        <div>
+          <h3>Courses, Virtual Internships &amp; Certificates</h3>
+          <p>A growing ledger of foundations—search by issuer, domain, or year.</p>
+        </div>
+        <label className="cert-inline-search">
+          <Search size={15} />
+          <span className="sr-only">Search certificates</span>
+          <input
+            type="search"
+            value={certQuery}
+            onChange={(e) => setCertQuery(e.target.value)}
+            placeholder="Filter certificates (e.g. Oracle, AWS, NPTEL)..."
+          />
+        </label>
       </div>
       <div className="certificates">
-        {content.certificates.map((c) => {
+        {validCertificates.map((c, idx) => {
           const Body = (
             <>
               <span className="certificate-date">{c.date}</span>
@@ -59,12 +102,13 @@ export function Credentials() {
               href={c.url}
               target="_blank"
               rel="noopener noreferrer"
-              key={c.title}
+              key={c.title + "-" + idx}
+              onClick={() => playKeyClick(1.05)}
             >
               {Body}
             </a>
           ) : (
-            <article className="certificate" key={c.title}>
+            <article className="certificate" key={c.title + "-" + idx}>
               {Body}
             </article>
           );
@@ -73,7 +117,8 @@ export function Credentials() {
     </section>
   );
 }
-export function Contact({ copyEmail, notify, inObject=false }) {
+
+export function Contact({ copyEmail, notify, inObject = false }) {
   const experience = useExperience();
   const [state, setState] = useState("idle");
   const [error, setError] = useState("");
@@ -89,6 +134,7 @@ export function Contact({ copyEmail, notify, inObject=false }) {
     [],
   );
   async function copy() {
+    playKeyClick(1.15);
     if (await copyEmail()) {
       setCopied(true);
       clearTimeout(copyTimer.current);
@@ -157,6 +203,7 @@ export function Contact({ copyEmail, notify, inObject=false }) {
       <div className="container">
         <div className="contact-grid">
           <div>
+            <span className="mono-telemetry">06 // DIRECT DISPATCH</span>
             <h2 className="contact-title reveal-title">
               {content.workshop.contactTitle}
             </h2>

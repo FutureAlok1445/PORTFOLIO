@@ -1,11 +1,12 @@
 import { useParams } from "react-router-dom";
 import Link from "../components/TransitionLink";
-import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
+import { ArrowLeft, ArrowRight, ArrowUpRight, Cpu, Layers, ShieldCheck } from "lucide-react";
 import { content } from "../data/content";
 import ProjectMedia from "../components/ProjectMedia";
 import ProjectArchitecture from "../components/ProjectArchitecture";
 import NotFound from "./NotFound";
 import { useMotion } from "../components/useMotion";
+
 export default function Project() {
   const { slug } = useParams();
   useMotion(slug);
@@ -18,24 +19,32 @@ export default function Project() {
     ];
   const next = content.projects[(index + 1) % content.projects.length];
   return (
-    <main id="main" className="case-study container">
+    <main id="main" className="case-study container blueprint-spec-sheet">
       <div className="case-wayfinding">
         <Link to="/#work" className="text-link">
           <ArrowLeft size={17} /> Project library
         </Link>
-        <span>
-          Project {String(index + 1).padStart(2, "0")} /{" "}
+        <span className="mono-telemetry">
+          BLUEPRINT // {String(index + 1).padStart(2, "0")} OF{" "}
           {String(content.projects.length).padStart(2, "0")}
+          {project.featured ? " · FLAGSHIP SYSTEM" : " · ARCHIVE RECORD"}
         </span>
       </div>
       <header className="detail-heading case-hero">
-        <h1>{project.title}</h1>
-        <p>{project.summary}</p>
         <div className="case-meta">
-          <span>{project.category}</span>
+          <span className="meta-pill-primary">{project.category}</span>
           <span>{project.status}</span>
           {project.role && <span>{project.role}</span>}
           {project.year && <span>{project.year}</span>}
+        </div>
+        <h1>{project.title}</h1>
+        <p className="case-lead">{project.summary}</p>
+        <div className="case-stack-pills" aria-label="Core stack">
+          {project.stack.map((tech) => (
+            <span key={tech} className="mono-chip">
+              {tech}
+            </span>
+          ))}
         </div>
         <div className="case-links">
           {project.repo && (
@@ -57,34 +66,39 @@ export default function Project() {
         <ProjectMedia key={slug} project={project} priority />
       </div>
       <div className="case-introduction">
-        <section>
+        <section className="blueprint-card">
+          <span className="blueprint-index">01 // THE BOTTLENECK</span>
           <h2>Why it exists.</h2>
           <p>{project.problem}</p>
           {project.context && <p>{project.context}</p>}
         </section>
-        <section>
+        <section className="blueprint-card">
+          <span className="blueprint-index">02 // SYSTEM ARCHITECTURE</span>
           <h2>What the system does.</h2>
           <p>{project.solution || project.details.join(" ")}</p>
         </section>
       </div>
       {project.nodes.length > 0 && (
-        <ProjectArchitecture key={slug} nodes={project.nodes} />
+        <ProjectArchitecture key={slug} nodes={project.nodes} project={project} />
       )}
       <section className="case-features">
         <div className="case-section-heading">
+          <span className="blueprint-index">03 // CORE MODULES</span>
           <h2>Inside the build.</h2>
           <p>Core engineering modules and operational workflows.</p>
         </div>
         <ul>
           {(project.features || []).map((f) => (
             <li key={f}>
+              <Layers size={16} aria-hidden="true" />
               <h3>{f}</h3>
             </li>
           ))}
         </ul>
       </section>
       <div className="case-engineering">
-        <section>
+        <section className="blueprint-card">
+          <span className="blueprint-index">04 // ARCHITECTURAL DECISIONS</span>
           <h2>Engineering decisions.</h2>
           <ul className="decision-list">
             {project.decisions.map((d) => (
@@ -92,7 +106,8 @@ export default function Project() {
             ))}
           </ul>
         </section>
-        <section className="case-stack">
+        <section className="case-stack blueprint-card">
+          <span className="blueprint-index">05 // STACK TELEMETRY</span>
           <h2>Technology.</h2>
           {Object.entries(project.techGroups || {}).map(([group, values]) => (
             <div key={group}>
@@ -104,6 +119,7 @@ export default function Project() {
       </div>
       <section className="case-status">
         <div>
+          <span className="blueprint-index">06 // OUTCOME &amp; VERIFICATION</span>
           <h2>Current scope.</h2>
           <p>{project.status}</p>
           <p>{project.outcome}</p>
@@ -116,7 +132,9 @@ export default function Project() {
           )}
         </div>
         <div>
-          <h3>Scope & limits</h3>
+          <h3>
+            <ShieldCheck size={17} aria-hidden="true" /> Architecture boundaries &amp; scope notes
+          </h3>
           <ul className="decision-list">
             {project.scopeNotes.map((note) => (
               <li key={note}>{note}</li>
@@ -124,7 +142,9 @@ export default function Project() {
           </ul>
           {project.sources?.length > 0 && (
             <>
-              <h3>Source references</h3>
+              <h3>
+                <Cpu size={17} aria-hidden="true" /> Verified source references
+              </h3>
               <ul className="source-links">
                 {project.sources.map((source) => (
                   <li key={source.url}>

@@ -32,6 +32,7 @@ const objects = [
 export default function WorldInterface({ copyEmail, notify }) {
   const e = useExperience(),
     wheelAt = useRef(0),
+    wheelAccum = useRef(0),
     actions = useRef(null);
   const swipe = useRef(null),
     dragged = useRef(false);
@@ -48,16 +49,22 @@ export default function WorldInterface({ copyEmail, notify }) {
         focusedObject ||
         e.cameraMode !== "guided" ||
         ev.target.closest("dialog,input,select,textarea") ||
-        Math.abs(ev.deltaY) < 20
+        Math.abs(ev.deltaY) < 8
       )
         return;
       ev.preventDefault();
-      if (performance.now() - wheelAt.current < 1000) return;
-      wheelAt.current = performance.now();
+      const now = performance.now();
+      if (now - wheelAt.current > 350) wheelAccum.current = 0;
+      wheelAccum.current += ev.deltaY;
+      if (Math.abs(wheelAccum.current) < 42 || now - wheelAt.current < 420)
+        return;
+      const dir = Math.sign(wheelAccum.current);
+      wheelAccum.current = 0;
+      wheelAt.current = now;
       const index = sceneChapters.findIndex((c) => c.id === chapter),
         next = Math.max(
           0,
-          Math.min(sceneChapters.length - 1, index + Math.sign(ev.deltaY)),
+          Math.min(sceneChapters.length - 1, index + dir),
         );
       if (index !== next) goChapter(sceneChapters[next].id);
     };

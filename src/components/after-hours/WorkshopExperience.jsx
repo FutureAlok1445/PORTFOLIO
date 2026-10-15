@@ -8,6 +8,7 @@ import {
 import { ExperienceContext } from "./ExperienceContext";
 import { sceneChapters } from "../../scene/SceneTimeline";
 import { content } from "../../data/content";
+import { playCartridgeSlot, playLampPull } from "../../utils/sound";
 import { useLocation, useNavigate } from "react-router-dom";
 const allowed = matchMedia(
   "(min-width:1025px) and (pointer:fine) and (prefers-reduced-motion:no-preference)",
@@ -169,6 +170,7 @@ export default function WorkshopExperience({ children }) {
       } catch {
         /* Optional selection memory. */
       }
+      playCartridgeSlot();
       issue("archive");
     },
     [issue],
@@ -181,7 +183,10 @@ export default function WorkshopExperience({ children }) {
     [issue],
   );
   const toggleLamp = useCallback(() => {
-    setLampOn((v) => !v);
+    setLampOn((v) => {
+      playLampPull(!v);
+      return !v;
+    });
     issue("lamp");
   }, [issue]);
   const sceneFailed = useCallback(() => setFailed(true), []);

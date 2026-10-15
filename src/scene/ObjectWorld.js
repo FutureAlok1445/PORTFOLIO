@@ -213,16 +213,16 @@ export function upgradeObjectWorld({
   box(3.1, 0.13, 0.65, 7, 3.8, -2, "#675347");
   face("AURA\nRequest → response", 2.1, 0.8, 7, 4.3, -2.18, "#9bc7d6");
   // Window-side message station and a working file cabinet.
-  box(3.2, 0.2, 2.2, 6.2, 1.2, 1.2, "#675347");
-  for (const x of [4.9, 7.5]) box(0.16, 1.1, 0.16, x, 0.6, 1.4, "#51616b");
-  const note = box(1.7, 0.06, 1.35, 6.2, 1.35, 1.2, "#f5efe4");
+  box(2.2, 0.2, 2.2, 5.2, 1.2, 1.2, "#675347");
+  for (const x of [4.3, 6.1]) box(0.16, 1.1, 0.16, x, 0.6, 1.4, "#51616b");
+  const note = box(1.5, 0.06, 1.25, 5.2, 1.35, 1.2, "#f5efe4");
   note.userData = { action: "object", objectId: "contact" };
   hotspots.push(note);
   const noteFace = face(
     "Leave a note\n" + content.profile.email,
-    1.58,
-    1.22,
-    6.2,
+    1.4,
+    1.1,
+    5.2,
     1.386,
     1.2,
   );
@@ -238,6 +238,197 @@ export function upgradeObjectWorld({
       ink: "#f4f0e8",
       size: 65,
     });
+  // =========================================================================
+  // COMPLETE PERSONAL STUDIO PROPS: Chair, Laptop, Side Display, Headphones,
+  // Mouse + Desk Mat, and Trophy / Certificate Gallery Shelf
+  // =========================================================================
+
+  // 1. Extended Matte Desk Pad & Sculpted Wireless Mouse
+  box(4.1, 0.016, 1.32, -0.25, 1.028, 0.98, "#1e2a34");
+  const mouseGroup = new THREE.Group();
+  mouseGroup.position.set(1.02, 1.065, 1.02);
+  mouseGroup.rotation.y = -0.08;
+  world.add(mouseGroup);
+  box(0.24, 0.075, 0.38, 0, 0, 0, "#202d39", mouseGroup);
+  box(0.035, 0.085, 0.09, 0, 0.015, -0.09, "#d7a35d", mouseGroup); // Scroll wheel
+
+  // 2. Angled Laptop on Brushed Aluminum Stand (Right of main monitor)
+  const laptopGroup = new THREE.Group();
+  laptopGroup.position.set(1.75, 1.04, -0.82);
+  laptopGroup.rotation.y = -0.32;
+  world.add(laptopGroup);
+  box(0.85, 0.22, 0.65, 0, 0.11, 0, "#53626a", laptopGroup); // Stand riser
+  const laptopBase = box(1.32, 0.05, 0.92, 0, 0.25, 0.08, "#283642", laptopGroup);
+  laptopBase.rotation.x = 0.18;
+  const laptopLid = new THREE.Group();
+  laptopLid.position.set(0, 0.34, -0.34);
+  laptopLid.rotation.x = -0.26;
+  laptopGroup.add(laptopLid);
+  const lidShell = box(1.32, 0.88, 0.045, 0, 0.42, 0, "#19212b", laptopLid);
+  lidShell.userData = { action: "object", objectId: "monitor" };
+  hotspots.push(lidShell);
+  const laptopScreen = face(
+    "COSMEON · 4+2 SHARDS\nFastAPI · Docker · Ready",
+    1.22,
+    0.78,
+    0,
+    0.42,
+    0.026,
+    "#18303d",
+    laptopLid,
+  );
+  laptopScreen.material.map.dispose();
+  textures.delete(laptopScreen.material.map);
+  laptopScreen.material.map = labelTexture(
+    "COSMEON · 4+2 SHARDS\nFastAPI · Docker · Ready",
+    textures,
+    { paper: "#18303d", ink: "#9bc7d6", size: 46, top: 135 },
+  );
+
+  // 3. Vertical Secondary Code & Telemetry Display (Left of main monitor)
+  const sideDisplay = new THREE.Group();
+  sideDisplay.position.set(-2.32, 2.08, -0.92);
+  sideDisplay.rotation.y = 0.28;
+  world.add(sideDisplay);
+  box(0.14, 0.95, 0.14, 0, -0.58, -0.08, "#53626a", sideDisplay); // Stand pole
+  box(0.62, 0.05, 0.48, 0, -1.03, -0.04, "#53626a", sideDisplay); // Stand base
+  const vShell = box(1.08, 1.76, 0.12, 0, 0, 0, "#111820", sideDisplay);
+  vShell.userData = { action: "object", objectId: "monitor" };
+  hotspots.push(vShell);
+  const vScreen = face(
+    "AURA · SecBERT XAI\nStatus: 200 OK\nTrustNet · ViT",
+    0.96,
+    1.62,
+    0,
+    0,
+    0.066,
+    "#1b3340",
+    sideDisplay,
+  );
+  vScreen.material.map.dispose();
+  textures.delete(vScreen.material.map);
+  vScreen.material.map = labelTexture(
+    "AURA · SecBERT XAI\nStatus: 200 OK\nTrustNet · ViT",
+    textures,
+    { paper: "#1b3340", ink: "#f2c477", width: 512, height: 860, size: 44, top: 140 },
+  );
+
+  // 4. Studio Headphones on a Walnut & Brass Stand (Far left of desk)
+  const hpGroup = new THREE.Group();
+  hpGroup.position.set(-3.42, 1.04, -0.82);
+  hpGroup.rotation.y = 0.35;
+  world.add(hpGroup);
+  box(0.38, 0.05, 0.38, 0, 0.025, 0, "#675347", hpGroup);
+  box(0.05, 0.68, 0.05, 0, 0.36, 0, "#d7a35d", hpGroup);
+  box(0.24, 0.04, 0.12, 0, 0.7, 0, "#675347", hpGroup);
+  const headband = new THREE.Mesh(
+    new THREE.TorusGeometry(0.21, 0.032, 10, 24, Math.PI),
+    new THREE.MeshStandardMaterial({ color: "#202d39", roughness: 0.5 }),
+  );
+  headband.position.set(0, 0.52, 0);
+  hpGroup.add(headband);
+  for (const side of [-0.2, 0.2]) {
+    const cup = box(0.09, 0.22, 0.17, side, 0.44, 0, "#334550", hpGroup);
+    cup.rotation.z = side > 0 ? -0.12 : 0.12;
+    cup.userData = { action: "headphones" };
+    hotspots.push(cup);
+  }
+
+  // 5. Ergonomic Studio Task Chair (In front of desk, angled naturally)
+  const chairGroup = new THREE.Group();
+  chairGroup.name = "studio-task-chair";
+  chairGroup.position.set(-0.48, 0, 2.55);
+  chairGroup.rotation.y = 2.82; // Facing the desk at a lived-in angle
+  world.add(chairGroup);
+  // 5-star base & casters
+  const pedestal = new THREE.Mesh(
+    new THREE.CylinderGeometry(0.07, 0.09, 0.52, 14),
+    new THREE.MeshStandardMaterial({ color: "#2a353d", metalness: 0.4, roughness: 0.5 }),
+  );
+  pedestal.position.y = 0.28;
+  chairGroup.add(pedestal);
+  for (let arm = 0; arm < 5; arm++) {
+    const a = (arm * Math.PI * 2) / 5;
+    const leg = box(0.11, 0.055, 0.62, Math.sin(a) * 0.28, 0.08, Math.cos(a) * 0.28, "#334550", chairGroup);
+    leg.rotation.y = a;
+  }
+  // Contoured seat cushion + walnut shell
+  const chairHit = box(1.18, 0.11, 1.12, 0, 0.56, 0, "#675347", chairGroup);
+  chairHit.userData = { action: "chair" };
+  hotspots.push(chairHit);
+  box(1.12, 0.09, 1.06, 0, 0.63, 0, "#263542", chairGroup);
+  // Backrest spine + lumbar support + walnut back shell
+  box(0.14, 0.78, 0.08, 0, 0.98, -0.54, "#334550", chairGroup);
+  box(1.08, 0.92, 0.09, 0, 1.24, -0.49, "#675347", chairGroup);
+  box(1.02, 0.86, 0.08, 0, 1.24, -0.44, "#263542", chairGroup);
+  // Padded armrests
+  for (const side of [-0.62, 0.62]) {
+    box(0.07, 0.34, 0.07, side, 0.74, -0.1, "#334550", chairGroup);
+    box(0.14, 0.06, 0.54, side, 0.92, -0.05, "#675347", chairGroup);
+  }
+
+  // 6. Dedicated Trophy Shelf & Certificate Gallery Wall (Left side of room, x = -11.5, z = 3.1)
+  const trophyUnit = new THREE.Group();
+  trophyUnit.name = "trophy-and-certificate-gallery";
+  trophyUnit.position.set(-11.45, 0, 3.15);
+  world.add(trophyUnit);
+  // Vertical steel uprights & 3 walnut shelves
+  for (const sz of [-1.35, 1.35]) {
+    box(0.12, 3.85, 0.82, 0, 1.925, sz, "#334550", trophyUnit);
+  }
+  for (const sy of [0.85, 2.15, 3.45]) {
+    const shelf = box(0.88, 0.11, 2.95, 0, sy, 0, "#675347", trophyUnit);
+    shelf.userData = { action: "object", objectId: "credentials" };
+    hotspots.push(shelf);
+  }
+  // 3 Sculpted Hackathon Trophies on Top Shelf (SIH 2025, OpsStorm 1st, IEEE Techithon 1st)
+  const trophyColors = ["#f2c477", "#d98e7d", "#9bc7d6"];
+  for (let t = 0; t < 3; t++) {
+    const tz = -0.85 + t * 0.85;
+    const tBase = box(0.28, 0.14, 0.28, 0.05, 3.58, tz, "#202d39", trophyUnit);
+    const tCup = box(0.22, 0.38, 0.22, 0.05, 3.84, tz, trophyColors[t], trophyUnit);
+    tBase.userData = { action: "object", objectId: "credentials" };
+    tCup.userData = { action: "object", objectId: "credentials" };
+    hotspots.push(tBase, tCup);
+  }
+  // Stacked books & archive binders on middle/lower shelves
+  for (let b = 0; b < 5; b++) {
+    box(
+      0.52,
+      0.58 + (b % 2) * 0.12,
+      0.16,
+      0.04,
+      2.5 + (b % 2) * 0.06,
+      -0.9 + b * 0.22,
+      ["#8fae9c", "#d7a35d", "#87a9c4", "#d98e7d", "#334550"][b],
+      trophyUnit,
+    );
+  }
+  // Framed Achievement & Certificate Plaques mounted above the shelf on the left wall
+  const certTitles = [
+    "SIH 2025\nGrand Finale",
+    "OpsStorm ’26\n1st Prize",
+    "IEEE Techithon\n1st Rank",
+  ];
+  for (let c = 0; c < 3; c++) {
+    const cz = 1.95 + c * 1.15;
+    const frame = box(0.08, 0.92, 0.96, -12.22, 4.75, cz, "#675347");
+    frame.userData = { action: "object", objectId: "credentials" };
+    hotspots.push(frame);
+    const plaque = face(
+      certTitles[c],
+      0.82,
+      0.78,
+      -12.16,
+      4.75,
+      cz,
+      "#f5efe4",
+    );
+    plaque.rotation.y = Math.PI / 2;
+    plaque.userData = { action: "object", objectId: "credentials" };
+    hotspots.push(plaque);
+  }
+
   const surfaces = {
     monitor: {
       mesh: screen,
@@ -285,7 +476,7 @@ export function upgradeObjectWorld({
       color: "#51616b",
     },
     contact: {
-      position: [6.2, 2.7, 3.4],
+      position: [5.2, 2.7, 3.4],
       width: 6.7,
       height: 4.6,
       color: "#675347",
@@ -392,5 +583,5 @@ export function upgradeObjectWorld({
     position.needsUpdate = true;
     pageGeometry.computeVertexNormals();
   }
-  return { surfaces, drawer, terminalPreview, turningPaper, turnPage };
+  return { surfaces, drawer, terminalPreview, turningPaper, turnPage, chairGroup, laptopLid, hpGroup };
 }

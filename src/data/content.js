@@ -187,6 +187,7 @@ export const content = {
   experience: [
     {
       company: "IMS Learning Resources Pvt Ltd",
+      stack: ["TypeScript", "Fastify", "Elasticsearch", "REST APIs", "Vercel"],
       role: "Software Engineer Intern",
       date: "Feb — Apr 2026",
       location: "Remote",
@@ -195,6 +196,7 @@ export const content = {
     },
     {
       company: "Sapphire Infocom Private Limited",
+      stack: ["Node.js", "Express.js", "MongoDB", "JWT", "Cloudinary"],
       role: "Full-Stack Developer Intern",
       date: "Dec 2025 — Mar 2026",
       location: "Remote",
@@ -203,6 +205,7 @@ export const content = {
     },
     {
       company: "Techriciate",
+      stack: ["Next.js", "React", "E-Commerce", "DNS / SSL"],
       role: "Project-based Technical Contributor",
       date: "2026",
       location: "Remote",
@@ -235,6 +238,7 @@ export const content = {
       visual: "history",
       title: "HistoFacts",
       slug: "histofacts",
+      featured: true,
       filters: ["AI / ML", "Full Stack"],
       problem:
         "Learning history often separates discovery, practice and collaboration into disconnected tools.",
@@ -343,6 +347,7 @@ export const content = {
       visual: "aura",
       title: "AURA",
       slug: "aura",
+      featured: true,
       filters: ["Cybersecurity", "AI / ML", "Full Stack"],
       problem:
         "A malicious request alone cannot tell an analyst whether a server was compromised.",
@@ -774,6 +779,7 @@ export const content = {
       visual: "finance",
       title: "FinCoach AI",
       slug: "fincoach-ai",
+      featured: true,
       filters: ["AI / ML", "Web"],
       problem:
         "Irregular income can make spending patterns difficult to interpret without a contextual explanation.",
@@ -1206,6 +1212,7 @@ export const content = {
       visual: "orbit",
       title: "COSMEON FS-LITE",
       slug: "cosmeon-fs-lite",
+      featured: true,
       filters: ["Distributed Systems", "Full Stack"],
       problem:
         "Intermittent links and node failures make a single-node storage strategy fragile in an orbital simulation.",
@@ -1316,6 +1323,7 @@ export const content = {
       visual: "forensics",
       title: "TrustNet-AI",
       slug: "trustnet-ai",
+      featured: true,
       stack: [
         "Python",
         "FastAPI",
@@ -1390,6 +1398,7 @@ export const content = {
   achievements: [
     {
       title: "Smart India Hackathon",
+      spotlight: true,
       icon: "flag",
       result: "National Grand Finale finalist",
       issuer: "Ministry of Education / AICTE",
@@ -1397,6 +1406,7 @@ export const content = {
     },
     {
       title: "OpsStorm Hackathon",
+      spotlight: true,
       icon: "trophy",
       result: "1st prize",
       issuer: "Technical Systems & Automation Challenge",
@@ -1404,6 +1414,7 @@ export const content = {
     },
     {
       title: "IEEE Techithon ’26 · Hackdeck 2.0",
+      spotlight: true,
       icon: "medal",
       result: "1st rank",
       issuer: "Atharva University Mumbai",
@@ -1493,9 +1504,9 @@ export const content = {
     ],
   },
 };
-// Normalize optional fields so adding an incomplete entry cannot break a route.
+// Normalize optional fields so adding an incomplete project, internship, or credential entry cannot break a route or 3D object.
 content.projects = content.projects
-  .filter((project) => project.title && project.slug)
+  .filter((project) => project.title && project.slug && !project.title.startsWith("TODO"))
   .map((project) => ({
     category: "Project",
     description: "",
@@ -1504,14 +1515,59 @@ content.projects = content.projects
     year: "",
     live: "",
     repo: "",
-    status: "",
+    status: "Active build",
     visual: "generic",
+    featured: false,
     ...project,
-    scopeNotes: content.projectBoundaries[project.slug] || [],
+    filters: Array.isArray(project.filters) && project.filters.length
+      ? project.filters
+      : [project.category || "Full Stack"],
+    scopeNotes:
+      project.scopeNotes ||
+      content.projectBoundaries[project.slug] || [
+        "Source-verified engineering architecture and modular implementation.",
+      ],
     stack: Array.isArray(project.stack) ? project.stack : [],
+    features: Array.isArray(project.features) ? project.features : [],
     details: Array.isArray(project.details) ? project.details : [],
     decisions: Array.isArray(project.decisions) ? project.decisions : [],
+    techGroups:
+      project.techGroups ||
+      (Array.isArray(project.stack) && project.stack.length
+        ? { "Core Stack": project.stack }
+        : {}),
     nodes: Array.isArray(project.nodes)
       ? project.nodes.filter((node) => node.name && node.text)
       : [],
+  }));
+
+content.experience = (content.experience || [])
+  .filter((item) => item.company && item.role && !item.company.startsWith("TODO"))
+  .map((item) => ({
+    date: "2026",
+    location: "Remote",
+    description: "",
+    url: "",
+    ...item,
+    stack: Array.isArray(item.stack) ? item.stack : [],
+  }));
+
+content.achievements = (content.achievements || [])
+  .filter((item) => item.title && !item.title.startsWith("TODO"))
+  .map((item) => ({
+    icon: "trophy",
+    result: "",
+    issuer: "",
+    year: "2026",
+    spotlight: false,
+    ...item,
+  }));
+
+content.certificates = (content.certificates || [])
+  .filter((item) => item.title && !item.title.startsWith("TODO"))
+  .map((item) => ({
+    issuer: "",
+    date: "2026",
+    url: "",
+    ...item,
   }));
