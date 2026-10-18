@@ -40,8 +40,25 @@ export default function WorkshopHero() {
                 <Code2 size={17} /> GitHub
               </a>
             )}
-            <a href={"mailto:" + p.email}>
-              <Mail size={17} /> Get in touch
+            <a
+              href="#contact"
+              onClick={(ev) => {
+                ev.preventDefault();
+                if (e.live && e.openObject) {
+                  e.openObject("contact");
+                } else {
+                  const target = document.getElementById("contact");
+                  if (target) {
+                    target.scrollIntoView({ behavior: "smooth" });
+                    setTimeout(() => {
+                      const msg = document.getElementById("message");
+                      if (msg) msg.focus();
+                    }, 400);
+                  }
+                }
+              }}
+            >
+              <Mail size={17} /> Writing desk
             </a>
           </div>
           <div className="hero-person">

@@ -10,6 +10,9 @@ import {
   Trophy,
   Medal,
   Search,
+  Briefcase,
+  GraduationCap,
+  Sparkles,
 } from "lucide-react";
 import { content } from "../data/content";
 import { Magnetic } from "./Motion";
@@ -124,8 +127,22 @@ export function Contact({ copyEmail, notify, inObject = false }) {
   const [error, setError] = useState("");
   const [fields, setFields] = useState({});
   const [copied, setCopied] = useState(false);
+  const [audience, setAudience] = useState("recruiter");
   const copyTimer = useRef();
   const abort = useRef();
+  const textareaRef = useRef(null);
+
+  const audienceConfig = content.workshop.audienceOptions || {};
+  const currentAudience = audienceConfig[audience] || {
+    id: audience,
+    label: "Visitor",
+    tagline: "Leave a note on the desk.",
+    namePlaceholder: "How should I call you?",
+    emailPlaceholder: "you@example.com",
+    messagePlaceholder: "What are you working on or what sparked an idea?",
+    prompts: [],
+  };
+
   useEffect(
     () => () => {
       abort.current?.abort();
@@ -133,6 +150,7 @@ export function Contact({ copyEmail, notify, inObject = false }) {
     },
     [],
   );
+
   async function copy() {
     playKeyClick(1.15);
     if (await copyEmail()) {
@@ -141,6 +159,24 @@ export function Contact({ copyEmail, notify, inObject = false }) {
       copyTimer.current = setTimeout(() => setCopied(false), 1800);
     }
   }
+
+  function handleAudienceChange(nextAudience) {
+    playKeyClick(1.05);
+    setAudience(nextAudience);
+  }
+
+  function insertPrompt(promptText) {
+    playKeyClick(1.08);
+    const textarea = textareaRef.current || document.getElementById("message");
+    if (textarea) {
+      textarea.value = promptText + " — ";
+      textarea.focus();
+      if (fields.message) {
+        setFields((prev) => ({ ...prev, message: undefined }));
+      }
+    }
+  }
+
   async function submit(e) {
     e.preventDefault();
     const form = e.currentTarget;
@@ -198,6 +234,7 @@ export function Contact({ copyEmail, notify, inObject = false }) {
       clearTimeout(timeout);
     }
   }
+
   return (
     <section id="contact" className="contact-band">
       <div className="container">
@@ -209,17 +246,23 @@ export function Contact({ copyEmail, notify, inObject = false }) {
             </h2>
             <p className="contact-intro">{content.workshop.contactIntro}</p>
             <div className="email-row">
-              <a href={"mailto:" + content.profile.email}>
-                {content.profile.email}
-              </a>
-              <Magnetic
-                aria-label="Copy email address"
-                data-tooltip={copied ? "Copied" : "Copy email address"}
+              <button
+                type="button"
+                className="email-pill-button"
                 onClick={copy}
+                title="Click to copy email address directly"
+                aria-label="Copy Alok's email address"
               >
-                {copied ? <Check size={18} /> : <Copy size={18} />}
-              </Magnetic>
+                <span className="email-text">{content.profile.email}</span>
+                <span className="email-copy-tag">
+                  {copied ? <Check size={16} /> : <Copy size={16} />}
+                  <span>{copied ? "Copied" : "Copy email"}</span>
+                </span>
+              </button>
             </div>
+            <p className="email-hint-note">
+              Direct copy to clipboard · No email client / Outlook pop-up
+            </p>
             <div className="social-links">
               {content.socials.map((s) => (
                 <Magnetic
@@ -261,6 +304,70 @@ export function Contact({ copyEmail, notify, inObject = false }) {
             }}
           >
             <p>{content.workshop.contactFormTitle}</p>
+            
+            <div className="desk-audience-selector" role="tablist" aria-label="Select message perspective">
+              <button
+                type="button"
+                role="tab"
+                id="audience-tab-recruiter"
+                aria-selected={audience === "recruiter"}
+                aria-controls="audience-panel"
+                className={"audience-tab " + (audience === "recruiter" ? "active" : "")}
+                onClick={() => handleAudienceChange("recruiter")}
+              >
+                <Briefcase size={15} />
+                <span>Recruiter / Hiring</span>
+              </button>
+              <button
+                type="button"
+                role="tab"
+                id="audience-tab-student"
+                aria-selected={audience === "student"}
+                aria-controls="audience-panel"
+                className={"audience-tab " + (audience === "student" ? "active" : "")}
+                onClick={() => handleAudienceChange("student")}
+              >
+                <GraduationCap size={15} />
+                <span>Student / Peer</span>
+              </button>
+              <button
+                type="button"
+                role="tab"
+                id="audience-tab-collab"
+                aria-selected={audience === "collaborator"}
+                aria-controls="audience-panel"
+                className={"audience-tab " + (audience === "collaborator" ? "active" : "")}
+                onClick={() => handleAudienceChange("collaborator")}
+              >
+                <Sparkles size={15} />
+                <span>Collaborator</span>
+              </button>
+            </div>
+
+            <div id="audience-panel" className="audience-context" role="tabpanel" aria-labelledby={"audience-tab-" + audience}>
+              <p className="audience-tagline">{currentAudience.tagline}</p>
+              {currentAudience.prompts && currentAudience.prompts.length > 0 && (
+                <div className="prompt-chips" role="group" aria-label="Suggested discussion starters">
+                  <span className="prompt-chips-label">Quick topics:</span>
+                  <div className="prompt-chips-list">
+                    {currentAudience.prompts.map((p) => (
+                      <button
+                        key={p}
+                        type="button"
+                        className="prompt-chip"
+                        onClick={() => insertPrompt(p)}
+                        title={"Click to start message with: " + p}
+                      >
+                        + {p}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+
+            <input type="hidden" name="audience_track" value={currentAudience.label} />
+
             <label htmlFor="name">Your name</label>
             <input
               id="name"
@@ -268,7 +375,7 @@ export function Contact({ copyEmail, notify, inObject = false }) {
               aria-describedby={fields.name ? "name-error" : undefined}
               name="name"
               autoComplete="name"
-              placeholder="How should I call you?"
+              placeholder={currentAudience.namePlaceholder}
               required
               maxLength={100}
             />
@@ -285,7 +392,7 @@ export function Contact({ copyEmail, notify, inObject = false }) {
               name="email"
               type="email"
               autoComplete="email"
-              placeholder="you@company.com"
+              placeholder={currentAudience.emailPlaceholder}
               required
               maxLength={254}
             />
@@ -294,13 +401,20 @@ export function Contact({ copyEmail, notify, inObject = false }) {
                 {fields.email}
               </p>
             )}
-            <label htmlFor="message">What are you thinking?</label>
+            <label htmlFor="message">
+              {audience === "recruiter"
+                ? "Role details & team context"
+                : audience === "student"
+                  ? "Your question or learning topic"
+                  : "What are you thinking?"}
+            </label>
             <textarea
+              ref={textareaRef}
               id="message"
               aria-invalid={fields.message ? true : undefined}
               aria-describedby={fields.message ? "message-error" : undefined}
               name="message"
-              placeholder="A project, a role, or an interesting idea…"
+              placeholder={currentAudience.messagePlaceholder}
               required
               minLength={10}
               maxLength={5000}
@@ -338,7 +452,7 @@ export function Contact({ copyEmail, notify, inObject = false }) {
               )}
             </div>
             <small>
-              Prefer your own inbox? The email link opens it directly.
+              Direct dispatch straight to Alok's desk. No client app redirect needed.
             </small>
           </form>
         </div>

@@ -88,13 +88,13 @@ export default function ExperienceControls() {
             <div className="mode-switch" role="group" aria-label="Portfolio view">
               <button
                 aria-pressed={e.worldMode}
-                disabled={!e.capable}
+                disabled={!e.inputCapable || !e.capable}
                 onClick={() => e.chooseMode("explore")}
                 title={
-                  !e.capable
-                    ? "Quick View respects reduced motion and limited hardware."
-                    : e.failed
-                      ? "Retry the 3D scene. Quick View keeps all content available."
+                  !e.inputCapable
+                    ? "3D Workshop view is optimized for desktop and laptop screens."
+                    : !e.capable
+                      ? "Quick View respects reduced motion and hardware constraints."
                       : undefined
                 }
               >
@@ -103,6 +103,7 @@ export default function ExperienceControls() {
               <button
                 aria-pressed={!e.worldMode}
                 onClick={() => e.chooseMode("quick")}
+                title="Quick View delivers the complete responsive editorial experience."
               >
                 Quick View
               </button>

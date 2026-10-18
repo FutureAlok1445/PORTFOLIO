@@ -87,7 +87,9 @@ export default function WorldInterface({ copyEmail, notify }) {
             <a href={content.profile.resume} download>
               Resume
             </a>
-            <a href={"mailto:" + content.profile.email}>Email</a>
+            <button type="button" onClick={() => e.openObject("contact")}>
+              Writing desk
+            </button>
           </div>
         </div>
         {!e.live && (

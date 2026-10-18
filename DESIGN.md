@@ -260,3 +260,9 @@ React owns semantic state, one scene renderer owns transforms, and one eligible 
 - **Don't** commit, push, merge or publish this upgrade without owner authorization.
 
 Assumptions: the room and fictional Patch express a metaphor, not biographical facts. No production origin or Formspree endpoint is configured. Real service delivery, physical-device behavior and browsers beyond local Chromium remain unverified. Current implementation/QA status lives in [WORLD-REPAIR-REPORT.md](WORLD-REPAIR-REPORT.md) and docs/after-hours/CURRENT_STATE.md; earlier ledgers/scores are historical. The cutaway room, orthographic drone and static mobile 2.5D plan are intentional scope choices. Conservative proxy collisions and local Chromium checks do not guarantee universal hardware or physics behavior.
+
+Writing Desk & Navigation Assumptions:
+- Mailto links are avoided site-wide to prevent triggering local mail client popups (e.g., Microsoft Outlook). Email interaction points either copy the address directly with visual/audio feedback or focus the Writing Desk message form.
+- The Writing Desk and Visitor Dossier explicitly address two primary audience personas: Engineering Recruiters (evaluating technical skills, backend reliability, and full-time hiring) and Students/Peers (exploring architecture blueprints, hackathon lessons, and tech roadmaps).
+- Device view delivery: Mobile and touch viewports (< 1025px) automatically default to Quick View for maximum speed, battery efficiency, and clean editorial presentation; desktop and laptop viewports (>= 1025px with fine pointer) default to the immersive 3D Workshop Atelier. Both retain access to toggle views in room settings.
+

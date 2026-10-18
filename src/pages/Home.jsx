@@ -1,4 +1,5 @@
 import { About } from "../components/Hero";
+import VisitorDossier from "../components/VisitorDossier";
 import WorkshopHero from "../components/after-hours/WorkshopHero";
 import { Skills, Experience } from "../components/Credibility";
 import Projects from "../components/Projects";
@@ -28,6 +29,7 @@ function HomeView({copyEmail,notify}) {
       <main id="main">
         <WorkshopHero />
         <About />
+        <VisitorDossier />
         <Projects />
         <Skills />
         <div className="journey-band">

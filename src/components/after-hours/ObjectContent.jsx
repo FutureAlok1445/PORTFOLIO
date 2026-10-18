@@ -7,6 +7,7 @@ import {
   Mail,
   Network,
   NotebookPen,
+  Copy,
 } from "lucide-react";
 import { content } from "../../data/content";
 import { useExperience } from "./ExperienceContext";
@@ -198,9 +199,14 @@ export function MonitorApps() {
           >
             Open the writing surface
           </button>
-          <a href={"mailto:" + content.profile.email}>
-            {content.profile.email}
-          </a>
+          <button
+            type="button"
+            className="surface-email-pill"
+            onClick={() => copyEmail()}
+            title="Click to copy email address"
+          >
+            <Copy size={14} /> Copy {content.profile.email}
+          </button>
         </div>
       )}
     </div>

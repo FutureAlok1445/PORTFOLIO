@@ -2671,3 +2671,389 @@ textarea {
   gap: 8px;
   margin-bottom: 8px;
 }
+
+/* ==========================================================================
+   Writing Desk & Email Display (No Mailto Redirect)
+   ========================================================================== */
+.email-pill-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 10px 18px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+  color: var(--text);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.email-pill-button:hover {
+  border-color: var(--amber);
+  background: rgba(215, 163, 93, 0.06);
+}
+
+.email-pill-button:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 2px;
+}
+
+.email-pill-button .email-text {
+  font-family: Space, sans-serif;
+  font-size: clamp(14px, 1.4vw, 17px);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.email-copy-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-family: Space, sans-serif;
+  color: var(--amber);
+  background: rgba(215, 163, 93, 0.14);
+  padding: 4px 10px;
+  border-radius: 3px;
+  font-weight: 600;
+}
+
+.email-hint-note {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 8px;
+  line-height: 1.5;
+}
+
+/* Desk Audience Switcher (Recruiter / Student / Collaborator) */
+.desk-audience-selector {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  margin: 16px 0 14px;
+  background: rgba(0, 0, 0, 0.04);
+  padding: 4px;
+  border-radius: 4px;
+  border: 1px solid #c9c4bb;
+}
+
+@media (max-width: 580px) {
+  .desk-audience-selector {
+    grid-template-columns: 1fr;
+  }
+}
+
+.audience-tab {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 9px 10px;
+  font-size: 13px;
+  font-family: Space, sans-serif;
+  font-weight: 500;
+  border: none;
+  background: transparent;
+  color: #53616a;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.audience-tab:hover {
+  color: #111820;
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.audience-tab.active {
+  color: #111820;
+  background: #fffaf1;
+  font-weight: 600;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  border: 1px solid #d7cec0;
+}
+
+.audience-context {
+  margin-bottom: 18px;
+  padding: 12px 14px;
+  background: #fffaf1;
+  border-left: 3px solid #d7a35d;
+  border-radius: 0 3px 3px 0;
+  border: 1px solid #e2ddd4;
+  border-left-width: 3px;
+}
+
+.audience-tagline {
+  font-size: 13px;
+  color: #3e4a54;
+  margin: 0 0 10px 0;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+.prompt-chips {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.prompt-chips-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #825a26;
+  font-weight: 600;
+}
+
+.prompt-chips-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.prompt-chip {
+  font-size: 12px;
+  font-family: Space, sans-serif;
+  background: #f5f0e6;
+  color: #202d39;
+  border: 1px solid #c9c4bb;
+  padding: 4px 10px;
+  border-radius: 12px;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.15s ease;
+  line-height: 1.4;
+}
+
+.prompt-chip:hover {
+  background: #d7a35d;
+  color: #111820;
+  border-color: #825a26;
+  transform: translateY(-1px);
+}
+
+/* Surface email pill in 3D object dialog */
+.surface-email-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--line);
+  color: var(--text);
+  padding: 8px 14px;
+  border-radius: 4px;
+  font-size: 13px;
+  font-family: Space, sans-serif;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.surface-email-pill:hover {
+  border-color: var(--amber);
+  color: var(--amber);
+}
+
+/* ==========================================================================
+   Visitor Dossier (Dual-Track Recruiter & Student Roadmap)
+   ========================================================================== */
+.visitor-dossier {
+  margin: clamp(48px, 7vw, 96px) auto;
+}
+
+.dossier-lead {
+  max-width: 68ch;
+  color: var(--muted);
+  font-size: clamp(15px, 1.4vw, 17px);
+  line-height: 1.65;
+  margin-top: 12px;
+}
+
+.dossier-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: clamp(20px, 3vw, 32px);
+  margin-top: 36px;
+}
+
+.dossier-card {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: clamp(24px, 3.5vw, 36px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.dossier-card:hover {
+  border-color: var(--line-light);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+}
+
+.card-recruiter {
+  border-top: 3px solid var(--amber);
+}
+
+.card-student {
+  border-top: 3px solid var(--mint);
+}
+
+.dossier-badge-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.dossier-icon-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 4px;
+  background: rgba(215, 163, 93, 0.15);
+  color: var(--amber);
+  flex-shrink: 0;
+}
+
+.dossier-icon-box.student-icon {
+  background: rgba(143, 174, 156, 0.18);
+  color: var(--mint);
+}
+
+.dossier-chip {
+  font-family: Space, sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--amber);
+}
+
+.dossier-chip.student-chip {
+  color: var(--mint);
+}
+
+.dossier-card h3 {
+  font-family: Instrument, serif;
+  font-size: clamp(22px, 2.3vw, 29px);
+  line-height: 1.2;
+  color: var(--text);
+  margin: 0 0 8px 0;
+  font-weight: 400;
+}
+
+.dossier-summary {
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--muted);
+  margin: 0;
+}
+
+.dossier-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.dossier-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 13.5px;
+  line-height: 1.5;
+}
+
+.dossier-list li svg {
+  flex-shrink: 0;
+  margin-top: 3px;
+  color: var(--amber);
+}
+
+.card-student .dossier-list li svg {
+  color: var(--mint);
+}
+
+.dossier-list li strong {
+  display: block;
+  color: var(--text);
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.dossier-list li span {
+  display: block;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.dossier-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  margin-top: auto;
+  padding-top: 16px;
+  border-top: 1px dashed var(--line);
+}
+
+.dossier-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  padding: 9px 18px;
+}
+
+.dossier-primary.student-btn {
+  background: var(--mint);
+  color: #111820;
+  border-color: var(--mint);
+}
+
+.dossier-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 14px;
+  font-size: 13px;
+  font-family: Space, sans-serif;
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  color: var(--text);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.dossier-secondary:hover {
+  border-color: var(--text);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.dossier-tertiary {
+  font-size: 13px;
+  font-family: Space, sans-serif;
+  background: transparent;
+  border: none;
+  color: var(--muted);
+  cursor: pointer;
+  padding: 6px 10px;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.15s ease;
+}
+
+.dossier-tertiary:hover {
+  color: var(--text);
+}

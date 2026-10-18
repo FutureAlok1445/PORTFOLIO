@@ -75,17 +75,60 @@ export const content = {
     scrollCue: "Step into the workshop",
     footerLine: "Backend / Full-stack / AI",
     welcome: "Welcome to the workshop",
-    aboutTitle: "A note from the person at the desk.",
+    aboutTitle: "Field notes from the engineer at the desk.",
     workTitle: "Things I’ve spent time building.",
     workIntro:
-      "Twelve projects. Different problems, carefully connected systems. Open a file to see how it works.",
+      "Twelve projects. Different problems, carefully connected systems. Open any file to explore architectural choices.",
     toolkitTitle: "Tools within reach.",
     toolkitIntro: "The languages, frameworks and systems I work with.",
     journeyTitle: "The workbench log.",
     credentialsTitle: "Collected along the way.",
-    contactTitle: "Leave a note on the desk.",
-    contactIntro: "If something here sparked an idea, let’s talk.",
-    contactFormTitle: "What are you working on?",
+    contactTitle: "The Writing Desk.",
+    contactIntro: "A direct station for recruiters evaluating engineering roles and students reaching out to connect.",
+    contactFormTitle: "Send a note to Alok",
+    audienceOptions: {
+      recruiter: {
+        id: "recruiter",
+        label: "Recruiter / Hiring Team",
+        tagline: "Evaluating full-stack / backend capabilities, system design depth, or team fit.",
+        namePlaceholder: "Your name or company (e.g. Sarah · Engineering Recruiter)",
+        emailPlaceholder: "recruiter@company.com",
+        messagePlaceholder: "Hi Alok, I'm reaching out from [Company] regarding a software engineering role. We reviewed your work on...",
+        prompts: [
+          "Full-time engineering role opening",
+          "Technical interview / team conversation",
+          "System architecture & code discussion",
+          "Checking availability for 2027 / immediate roles"
+        ]
+      },
+      student: {
+        id: "student",
+        label: "Student / Peer",
+        tagline: "Curious about project blueprints, SIH hackathons, tech stack decisions, or learning together.",
+        namePlaceholder: "Your name or college / handle (e.g. Rohan · IT Student)",
+        emailPlaceholder: "you@student.edu or personal email",
+        messagePlaceholder: "Hey Alok, I was exploring your projects and wanted to ask how you built...",
+        prompts: [
+          "How did you implement Raft consensus in Cosmeon FS?",
+          "Smart India Hackathon (SIH 2025) tips & lessons",
+          "Backend roadmap & system design advice",
+          "Collaboration / project feedback"
+        ]
+      },
+      collaborator: {
+        id: "collaborator",
+        label: "Collaborator / Other",
+        tagline: "Building something together, sharing an idea, or just saying hi.",
+        namePlaceholder: "How should I call you?",
+        emailPlaceholder: "you@domain.com",
+        messagePlaceholder: "Hey Alok, I'd like to connect regarding...",
+        prompts: [
+          "Open-source idea / building together",
+          "Quick technical question",
+          "Just saying hello"
+        ]
+      }
+    },
     close: "Still learning. Still building.",
     patchHello: "Patch says hello. Then gets back to supervising.",
   },

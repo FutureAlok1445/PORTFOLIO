@@ -64,7 +64,13 @@ export default function WorkshopExperience({ children }) {
     subscribeMotion,
     () => reducedQuery.matches,
   );
-  const [mode, setMode] = useState(() => read("workshop-view", "explore"));
+  const [mode, setMode] = useState(() => {
+    const saved = read("workshop-view", null);
+    if (saved) return saved;
+    if (objectParam) return "explore";
+    // Mobile / touch devices get fast Quick View; Desktop / laptop gets 3D explore view
+    return allowed.matches ? "explore" : "quick";
+  });
   const [observedChapter, setChapter] = useState("desk");
   const [lampOn, setLampOn] = useState(true);
   const [ambient, setAmbient] = useState(true);
@@ -303,6 +309,7 @@ export default function WorkshopExperience({ children }) {
     actionsAnchor,
     bindSurface,
     bindActions,
+    inputCapable,
     live,
     capable,
     failed,

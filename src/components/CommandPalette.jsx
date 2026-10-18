@@ -49,6 +49,12 @@ export default function CommandPalette({
       group: "Connect",
       url: s.url,
     })),
+    {
+      label: "Writing Desk — Leave a message",
+      group: "Connect",
+      search: "email contact recruiter student message note",
+      run: () => jump("contact"),
+    },
     { label: "Copy email", group: "Connect", run: copyEmail },
     { label: "Toggle color theme", group: "View", run: toggleTheme },
     ...(toggleSound

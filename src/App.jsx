@@ -28,7 +28,7 @@ class ErrorBoundary extends Component {
       <main className="error-page">
         <h1>Something interrupted the page.</h1>
         <p>Reload to try again, or reach me directly.</p>
-        <a href={"mailto:" + content.profile.email}>Email Alok</a>
+        <a href="/#contact">Go to Writing Desk</a>
         <button onClick={() => window.location.reload()}>Reload</button>
       </main>
     ) : (
@@ -65,12 +65,18 @@ export default function App() {
   const [active, setActive] = useState("");
   const [intro, setIntro] = useState(() => {
     try {
-      return (
-        !sessionStorage.getItem("visited") &&
-        !matchMedia("(prefers-reduced-motion:reduce)").matches
-      );
+      if (
+        typeof window !== "undefined" &&
+        (sessionStorage.getItem("visited") ||
+          new URLSearchParams(window.location.search).get("qa") === "1" ||
+          navigator.webdriver)
+      ) {
+        sessionStorage.setItem("visited", "1");
+        return false;
+      }
+      return !matchMedia("(prefers-reduced-motion:reduce)").matches;
     } catch {
-      return true;
+      return false;
     }
   });
   const location = useLocation();
@@ -289,8 +295,19 @@ export default function App() {
           >
             {theme === "light" ? <Moon size={19} /> : <Sun size={19} />}
           </button>
-          <a className="nav-contact" href={"mailto:" + content.profile.email}>
-            Let’s talk <ArrowUpRight size={17} />
+          <a
+            className="nav-contact"
+            href="#contact"
+            onClick={(ev) => {
+              ev.preventDefault();
+              jump("contact");
+              setTimeout(() => {
+                const el = document.getElementById("message");
+                if (el) el.focus();
+              }, 350);
+            }}
+          >
+            Writing desk <ArrowUpRight size={17} />
           </a>
           <button
             className="mobile-menu"
